@@ -7,12 +7,14 @@
 const char* s = "(520-20)/10$";
 int         p = 0;
 
-// void SyntaxError ()
-// {
-//     printf ("ERROR");
-//     abort ();
-//     return 0;
-// }
+/*
+{ G ::= E '&'
+{ E ::= T {['+' '-'] T}*
+{ T ::= P {['*' '/'] P}*
+{ P ::= '(' E ')' | N
+{ N ::= ['0'-'9']+
+
+*/
 
 int GetG ()
 {

@@ -2,7 +2,7 @@ CC = g++
 FLAGS = -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ \
 	-Waggressive-loop-optimizations -Wc++14-compat -Wmissing-declarations \
 	-Wcast-align -Wcast-qual -Wchar-subscripts -Wconditionally-supported -Wconversion \
-	-Wctor-dtor-privacy -Wempty-body -Wfloat-equal -Wformat-nonliteral -Wformat-security \
+	-Wctor-dtor-privacy -Wempty-body -Wformat-nonliteral -Wformat-security \
 	-Wformat-signedness -Wformat=2 -Winline -Wlogical-op -Wnon-virtual-dtor -Wopenmp-simd \
 	-Woverloaded-virtual -Wpacked -Wpointer-arith -Winit-self -Wredundant-decls -Wshadow \
 	-Wsign-conversion -Wsign-promo -Wstrict-null-sentinel -Wstrict-overflow=2 -Wsuggest-attribute=noreturn \
@@ -14,11 +14,17 @@ FLAGS = -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ \
 	nonnull-attribute,null,object-size,return,returns-nonnull-attribute,shift,$\
 	signed-integer-overflow,undefined,unreachable,vla-bound,vptr
 
-a.exe: main.o Lection_Exp.o
-	$(CC) main.o Lection_Exp.o -o a.exe $(FLAGS)
+a.exe: ReсursiveReader.o MyLanguage.o DumpProgram.o main.o
+	$(CC) ReсursiveReader.o MyLanguage.o DumpProgram.o main.o -o a.exe $(FLAGS)
 
-Lection_Exp.o: Lection_Exp.cpp Language.h
-	$(CC) -c Lection_Exp.cpp -o Lection_Exp.o $(FLAGS)
+DumpProgram.o: DumpProgram.cpp MyLanguage.h DumpProgram.h
+	$(CC) -c DumpProgram.cpp -o DumpProgram.o $(FLAGS)
 
-main.o: main.cpp
+MyLanguage.o: MyLanguage.cpp MyLanguage.h DSL.h
+	$(CC) -c MyLanguage.cpp -o MyLanguage.o $(FLAGS)
+
+ReсursiveReader.o: ReсursiveReader.cpp MyLanguage.h DSL.h
+	$(CC) -c ReсursiveReader.cpp -o ReсursiveReader.o $(FLAGS)
+
+main.o: main.cpp MyLanguage.h
 	$(CC) -c main.cpp -o main.o $(FLAGS)

@@ -1,12 +1,23 @@
 #include <stdio.h>
 
-#include "Language.h"
+#include "MyLanguage.h"
+#include "DumpProgram.h"
+#include "DSL.h"
+#include "colors.h"
 
 int main ()
 {
-    printf ("Start programm\n");
-    int val = GetG ();
-    printf ("val = %d\n", val);
+    printf (MAG "Start program\n" RESET);
+
+    tree_t program = {};
+
+    ProgramCtor (&program);
+
+    printf (MAG "expr.root = %p\n" RESET, program.root);
+
+    ProgramGraphviz (&program);
+
+    ProgramDtor (&program);
 
     return 0;
 }

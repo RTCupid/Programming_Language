@@ -5,6 +5,7 @@
 #include "MyLanguage.h"
 #include "DSL.h"
 #include "colors.h"
+#include "RecursiveReader.h"
 
 node_t* NewNode (size_t type, double value, node_t* left, node_t* right)
 {

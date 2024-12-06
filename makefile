@@ -20,10 +20,10 @@ a.exe: ReсursiveReader.o MyLanguage.o DumpProgram.o main.o
 DumpProgram.o: DumpProgram.cpp MyLanguage.h DumpProgram.h
 	$(CC) -c DumpProgram.cpp -o DumpProgram.o $(FLAGS)
 
-MyLanguage.o: MyLanguage.cpp MyLanguage.h DSL.h
+MyLanguage.o: MyLanguage.cpp MyLanguage.h RecursiveReader.h DSL.h
 	$(CC) -c MyLanguage.cpp -o MyLanguage.o $(FLAGS)
 
-ReсursiveReader.o: ReсursiveReader.cpp MyLanguage.h DSL.h
+ReсursiveReader.o: ReсursiveReader.cpp RecursiveReader.h MyLanguage.h DSL.h
 	$(CC) -c ReсursiveReader.cpp -o ReсursiveReader.o $(FLAGS)
 
 main.o: main.cpp MyLanguage.h

@@ -12,14 +12,15 @@
 #include "MyLanguage.h"
 #include "DSL.h"
 #include "colors.h"
+#include "RecursiveReader.h"
 
 /*
-{ G ::= E '&'
-{ E ::= T {['+' '-'] T}*
-{ T ::= P {['*' '/'] P}*
-{ P ::= '(' E ')' | N
-{ N ::= ['0'-'9']+
-
+{ G  ::= E '&'
+{ E  ::= T {['+' '-'] T}*
+{ T  ::= P {['*' '/'] P}*
+{ P  ::= '(' E ')' | N | Id
+{ N  ::= ['0'-'9']+
+{ Id ::= 'x'
 */
 int p = 0;
 
@@ -92,10 +93,25 @@ node_t* GetP (tree_t* program)
         p++;
         return node;
     }
+    if (isalpha (program->data[p]))
+    {
+        return GetId (program);
+    }
     else
     {
         return GetN (program);
     }
+}
+
+node_t* GetId (tree_t* program)
+{
+    printf (RED "is alpha\n" RESET);
+    char alpha = '\0';
+    sscanf (program->data + p, "%c", &alpha);
+
+    printf (RED "return alpha\n" RESET);
+    p++;
+    return _VAR (alpha);
 }
 
 node_t* GetN (tree_t* program)

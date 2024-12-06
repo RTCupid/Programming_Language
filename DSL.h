@@ -1,7 +1,7 @@
 #ifndef DSL_H
     #define DSL_H
 
-    #define _VAR        NewNode(VAR,     x, NULL, NULL)
+    #define _VAR(name)  NewNode(VAR, name,  NULL, NULL)
     #define _NUM(value) NewNode(NUM, value, NULL, NULL)
 
     #define _ADD(L,R)   NewNode(OP, ADD, L, R)

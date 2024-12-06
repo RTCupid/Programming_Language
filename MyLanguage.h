@@ -42,8 +42,6 @@
     /*-ret-------func----------------------arguments-----------------------------------*/
     node_t*     NewNode         (size_t type, double value, node_t* left, node_t* right);
 
-    void        InputProgram    (tree_t* expr);
-
     bool        ProgramCtor     (tree_t* expr);
 
     void        ProgramDtor     (tree_t* expr);
@@ -51,14 +49,4 @@
     void        ClearTree       (node_t* node);
 
     void        VerifyOpenFile  (FILE* file, const char* namefunc);
-
-    node_t*     GetG            (tree_t* program);
-
-    node_t*     GetE            (tree_t* program);
-
-    node_t*     GetT            (tree_t* program);
-
-    node_t*     GetP            (tree_t* program);
-
-    node_t*     GetN            (tree_t* program);
 #endif

@@ -1,8 +1,8 @@
 
-15
-count of char = 15
+10
+count of char = 10
 
-10/5*2*2*3*2$
+10+a*19$
 
-sizeOfFile = <15>
+sizeOfFile = <10>
 

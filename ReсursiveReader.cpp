@@ -107,10 +107,17 @@ node_t* GetId (tree_t* program)
 {
     printf (RED "is alpha\n" RESET);
     char alpha = '\0';
+    char identificator = {};
+
     sscanf (program->data + p, "%c", &alpha);
 
-    printf (RED "return alpha\n" RESET);
-    p++;
+    while (isalpha (alpha))
+    {
+        p++;
+
+        sscanf (program->data + p, "%c", &alpha);
+    }
+
     return _VAR (alpha);
 }
 

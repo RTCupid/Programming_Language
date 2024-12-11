@@ -2,6 +2,8 @@
     #define RECURSIVEREADER_H
     void        InputProgram    (tree_t* expr);
 
+    void        SintaxError     (tree_t* program, size_t p);
+
     node_t*     GetG            (tree_t* program);
 
     node_t*     GetE            (tree_t* program);

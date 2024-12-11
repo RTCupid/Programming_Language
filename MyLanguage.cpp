@@ -12,7 +12,15 @@ node_t* NewNode (size_t type, double value, node_t* left, node_t* right)
     node_t* node = (node_t*) calloc (1, sizeof (*node));
 
     node->type = type;
-    node->value = value;
+
+    if (node->type == ID)
+    {
+        node->value = (size_t)value;
+    }
+    else
+    {
+        node->value = value;
+    }
     node->left = left;
     node->right = right;
 
@@ -28,6 +36,8 @@ bool ProgramCtor (tree_t* program)
     VerifyOpenFile (program->log_file, "ProgramCtor");
 
     program->crnt_node = NULL;
+
+    program->nametable = (identificator_t*) calloc (SIZE_NAMETABLE, sizeof (*program->nametable));
 
     InputProgram (program);
     printf (BLU "program->data = <%s>\n" RESET, program->data);
@@ -48,7 +58,16 @@ void ProgramDtor (tree_t* program)
     free (program->data);
     program->data = NULL;
 
+    free (program->nametable);
+    program->nametable = NULL;
+
     program->crnt_node = NULL;
+}
+
+void SintaxError (tree_t* program, size_t p)
+{
+    fprintf (program->dbg_log_file, "SYNTAX ERROR: %c\n", program->data[p]);
+    abort ();
 }
 
 void ClearTree (node_t* node)

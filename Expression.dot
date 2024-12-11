@@ -1,6 +1,9 @@
 digraph G {
 	rankdir = HR;
 	bgcolor="#F7F9FB"
+	 node0x5030000001c0 [shape=Mrecord; style=filled; color="#aed6dc"; label =  "+ " ];
+	 node0x5030000001c0 -> node0x503000000100 [ style=bold; weight=1000; ];
+	 node0x5030000001c0 -> node0x503000000190 [ style=bold; weight=1000; ];
 	 node0x503000000100 [shape=Mrecord; style=filled; color="#aed6dc"; label =  "+ " ];
 	 node0x503000000100 -> node0x503000000040 [ style=bold; weight=1000; ];
 	 node0x503000000100 -> node0x5030000000d0 [ style=bold; weight=1000; ];
@@ -8,6 +11,11 @@ digraph G {
 	 node0x5030000000d0 [shape=Mrecord; style=filled; color="#aed6dc"; label =  "* " ];
 	 node0x5030000000d0 -> node0x503000000070 [ style=bold; weight=1000; ];
 	 node0x5030000000d0 -> node0x5030000000a0 [ style=bold; weight=1000; ];
-	 node0x503000000070 [shape=Mrecord; style=filled; color="#4a536b"; label =  "a " ];
-	 node0x5030000000a0 [shape=Mrecord; style=filled; color="#ff9a8d"; label =  "19.000000 " ];
+	 node0x503000000070 [shape=Mrecord; style=filled; color="#4a536b"; label =  "0 " ];
+	 node0x5030000000a0 [shape=Mrecord; style=filled; color="#4a536b"; label =  "1 " ];
+	 node0x503000000190 [shape=Mrecord; style=filled; color="#aed6dc"; label =  "* " ];
+	 node0x503000000190 -> node0x503000000130 [ style=bold; weight=1000; ];
+	 node0x503000000190 -> node0x503000000160 [ style=bold; weight=1000; ];
+	 node0x503000000130 [shape=Mrecord; style=filled; color="#4a536b"; label =  "2 " ];
+	 node0x503000000160 [shape=Mrecord; style=filled; color="#4a536b"; label =  "3 " ];
 }

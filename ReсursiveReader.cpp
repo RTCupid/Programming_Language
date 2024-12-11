@@ -22,7 +22,7 @@
 { N  ::= ['0'-'9']+
 { Id ::= 'x'
 */
-int p = 0;
+size_t p = 0;
 
 node_t* GetG (tree_t* program)
 {
@@ -30,7 +30,7 @@ node_t* GetG (tree_t* program)
     node_t* node = GetE (program);
     if (program->data[p] != '$')
     {
-        assert (0);
+        SintaxError (program, p);
     }
     p++;
     return node;
@@ -88,37 +88,48 @@ node_t* GetP (tree_t* program)
         node_t* node = GetE (program);
         if (program->data[p] != ')')
         {
-            assert (0);
+            SintaxError (program, p);
         }
         p++;
         return node;
     }
     if (isalpha (program->data[p]))
     {
-        return GetId (program);
+        node_t* new_node = GetId (program);
+        program->nametable_id++;
+        return new_node;
     }
-    else
+    if (isdigit (program->data[p]))
     {
         return GetN (program);
     }
+
+    /*---else---*/
+    SintaxError (program, p);
+    return NULL;
 }
 
 node_t* GetId (tree_t* program)
 {
-    printf (RED "is alpha\n" RESET);
-    char alpha = '\0';
-    char identificator = {};
+    printf (MAG "is alpha\n" RESET);
 
-    sscanf (program->data + p, "%c", &alpha);
+    size_t n_symbols = 0;
+    size_t start_pos = p;
 
-    while (isalpha (alpha))
+    while (isalpha (program->data[p]))
     {
+        fprintf(program->dbg_log_file, "p = %lu, alpha = <%c>\n", p, program->data[p]);
+        n_symbols++;
         p++;
-
-        sscanf (program->data + p, "%c", &alpha);
     }
 
-    return _VAR (alpha);
+    fprintf (program->dbg_log_file, "nt_id = %lu, start_pos = %lu, n_symbols = %lu\n", program->nametable_id, start_pos, n_symbols);
+
+    program->nametable[program->nametable_id].n_symbols = n_symbols;
+    program->nametable[program->nametable_id].start_pos = start_pos;
+    size_t index = program->nametable_id;
+
+    return _ID ((double)index);
 }
 
 node_t* GetN (tree_t* program)

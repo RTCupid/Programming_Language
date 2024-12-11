@@ -3,7 +3,9 @@
 
 //--ret-value---function-------------argument------------------------------------------------------
 
-    void    ProgramGraphviz  (tree_t* expr);
+    void    ProgramGraphviz         (tree_t* expr);
+
+    void    MakeNameTableHTM        (tree_t* expr);
 
     void    MakeDotFileGraphviz     (tree_t* expr);
 
@@ -17,7 +19,7 @@
 
     void    PrintDump               (tree_t tree, node_t* node, FILE* dot_file);
 
-    void    PrintNodeDumpDot        (FILE* dot_file, node_t* node);
+    void    PrintNodeDumpDot        (FILE* dot_file, node_t* node, tree_t tree);
 
 //-------------------------------------------------------------------------------------------------
 

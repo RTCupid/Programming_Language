@@ -9,7 +9,11 @@
 
 void ProgramGraphviz (tree_t* expr)
 {
-    fprintf (expr->log_file, "<FONT SIZE=\"6\"><center>Programm: expression</center><FONT SIZE=\"5\">\n\n");
+    fprintf (expr->log_file, "<FONT SIZE=\"6\"><center>Program:</center><FONT SIZE=\"5\">\n\n");
+
+    fprintf (expr->log_file, "<center><%s></center>\n", expr->data);
+
+    MakeNameTableHTM (expr);
 
     MakeDotFileGraphviz (expr);
 
@@ -25,6 +29,41 @@ void ProgramGraphviz (tree_t* expr)
     system (systemCall);
 
     fprintf (expr->log_file, "<center><img src = %s.png ></center>\n\n", namepng);
+}
+
+void MakeNameTableHTM (tree_t* expr)
+{
+    fprintf (expr->log_file, "<center> Nametable </center>\n");
+    fprintf (expr->log_file, "<center><table border= \"1\">\n");
+
+    fprintf (expr->log_file, "\t<thead>\n");
+
+    fprintf (expr->log_file, "\t\t<tr>\n"
+                                "\t\t\t<th></th>\n"
+                                "\t\t\t<th>Start position</th>\n"
+                                "\t\t\t<th>Number of symbols</th>\n"
+                             "\t\t</tr>\n");
+
+    fprintf (expr->log_file, "</thead>\n");
+
+    fprintf (expr->log_file, "<tbody>\n");
+
+    for (size_t i = 0; i < expr->nametable_id; i++)
+    {
+        fprintf (expr->log_file, "<tr>\n");
+
+        fprintf (expr->log_file, "<td> %lu </td>\n", i);
+
+        fprintf (expr->log_file, "<td> %lu </td>\n", expr->nametable[i].start_pos);
+
+        fprintf (expr->log_file, "<td> %lu </td>\n", expr->nametable[i].n_symbols);
+
+        fprintf (expr->log_file, "</tr>\n");
+    }
+
+    fprintf (expr->log_file, "</tbody>\n");
+
+    fprintf (expr->log_file, "</table></center>\n" );
 }
 
 void MakeDotFileGraphviz (tree_t* expr)
@@ -79,9 +118,9 @@ void PrintNodeDot (FILE* dot_file, node_t* node)
     {
         fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#ff9a8d\"; label =  \"%f \" ];\n", node, node->value);
     }
-    if (node->type == VAR)
+    if (node->type == ID)
     {
-        fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#4a536b\"; label =  \"%c \" ];\n", node, (int)node->value);
+        fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#4a536b\"; label =  \"%d \" ];\n", node, (int)node->value);
     }
 }
 
@@ -133,7 +172,7 @@ void PrintDump (tree_t tree, node_t* node, FILE* dot_file)
         return;
     }
 
-    PrintNodeDumpDot (dot_file, node);
+    PrintNodeDumpDot (dot_file, node, tree);
 
     if (node->left)
     {
@@ -151,7 +190,7 @@ void PrintDump (tree_t tree, node_t* node, FILE* dot_file)
     PrintDump (tree, node->right, dot_file);
 }
 
-void PrintNodeDumpDot (FILE* dot_file, node_t* node)
+void PrintNodeDumpDot (FILE* dot_file, node_t* node, tree_t tree)
 {
     if (node->type == OP)
     {
@@ -168,11 +207,11 @@ void PrintNodeDumpDot (FILE* dot_file, node_t* node)
 
         //fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#ff9a8d\"; label =  \"%d \" ];\n", node, node->value);
     }
-    if (node->type == VAR)
+    if (node->type == ID)
     {
         fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#4a536b\"; "
-            "label =  \"{node: %p | value: %c | type: VAR | {<left>left: %p | <right>right: %p}  }\" ];\n",
-            node, node, (int)node->value,  node->left, node->right);
+            "label =  \"{node: %p | nametable_id: %d | {start_pos: %lu | n_symbols: %lu} | type: ID | {<left>left: %p | <right>right: %p}  }\" ];\n",
+            node, node, (int)node->value, tree.nametable[(int)node->value].start_pos, tree.nametable[(int)node->value].n_symbols, node->left, node->right);
 
         //fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#4a536b\"; label =  \"%c \" ];\n", node, node->value);
     }

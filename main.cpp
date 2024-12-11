@@ -17,6 +17,8 @@ int main ()
 
     ProgramGraphviz (&program);
 
+    DiffDump (&program);
+
     ProgramDtor (&program);
 
     return 0;

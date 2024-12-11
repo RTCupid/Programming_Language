@@ -11,7 +11,8 @@ void ProgramGraphviz (tree_t* expr)
 {
     fprintf (expr->log_file, "<FONT SIZE=\"6\"><center>Program:</center><FONT SIZE=\"5\">\n\n");
 
-    fprintf (expr->log_file, "<center><%s></center>\n", expr->data);
+    printf (BLU "<%s>\n" RESET, expr->data);
+    fprintf (expr->log_file, "<center>\"%s\"</center>\n", expr->data);
 
     MakeNameTableHTM (expr);
 
@@ -128,7 +129,7 @@ void PrintNodeDot (FILE* dot_file, node_t* node)
 
 void DiffDump (tree_t* tree)
 {
-    fprintf (tree->log_file, "<FONT SIZE=\"6\"><center>Dump Differentiator!:</center><FONT SIZE=\"5\">\n\n");
+    fprintf (tree->log_file, "<FONT SIZE=\"6\"><center>Dump program:</center><FONT SIZE=\"5\">\n\n");
 
     MakeDotFileDump (tree);
 

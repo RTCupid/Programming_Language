@@ -1,37 +1,23 @@
 
-36
-count of char = 36
+21
+count of char = 21
 
-10+delicious*food+(sinus*cosinus)$
+delicious=food+666$
 
-sizeOfFile = <36>
+sizeOfFile = <21>
 
-p = 3, alpha = <d>
-p = 4, alpha = <e>
-p = 5, alpha = <l>
-p = 6, alpha = <i>
-p = 7, alpha = <c>
-p = 8, alpha = <i>
-p = 9, alpha = <o>
-p = 10, alpha = <u>
-p = 11, alpha = <s>
-nt_id = 0, start_pos = 3, n_symbols = 9
-p = 13, alpha = <f>
-p = 14, alpha = <o>
-p = 15, alpha = <o>
-p = 16, alpha = <d>
-nt_id = 1, start_pos = 13, n_symbols = 4
-p = 19, alpha = <s>
-p = 20, alpha = <i>
-p = 21, alpha = <n>
-p = 22, alpha = <u>
-p = 23, alpha = <s>
-nt_id = 2, start_pos = 19, n_symbols = 5
-p = 25, alpha = <c>
-p = 26, alpha = <o>
-p = 27, alpha = <s>
-p = 28, alpha = <i>
-p = 29, alpha = <n>
-p = 30, alpha = <u>
-p = 31, alpha = <s>
-nt_id = 3, start_pos = 25, n_symbols = 7
+p = 0, alpha = <d>
+p = 1, alpha = <e>
+p = 2, alpha = <l>
+p = 3, alpha = <i>
+p = 4, alpha = <c>
+p = 5, alpha = <i>
+p = 6, alpha = <o>
+p = 7, alpha = <u>
+p = 8, alpha = <s>
+nt_id = 0, start_pos = 0, n_symbols = 9
+p = 10, alpha = <f>
+p = 11, alpha = <o>
+p = 12, alpha = <o>
+p = 13, alpha = <d>
+nt_id = 1, start_pos = 10, n_symbols = 4

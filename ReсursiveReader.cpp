@@ -15,25 +15,51 @@
 #include "RecursiveReader.h"
 
 /*
-{ G  ::= E '&'
+{ G  ::= A '&'
+{ A  ::= Id '=' E
 { E  ::= T {['+' '-'] T}*
 { T  ::= P {['*' '/'] P}*
 { P  ::= '(' E ')' | N | Id
 { N  ::= ['0'-'9']+
-{ Id ::= 'x'
+{ Id ::= ['a'-'z']+
 */
 size_t p = 0;
 
 node_t* GetG (tree_t* program)
 {
     printf (GRN "Start\n" RESET);
-    node_t* node = GetE (program);
+    node_t* node = GetA (program);
     if (program->data[p] != '$')
     {
         SintaxError (program, p);
     }
     p++;
     return node;
+}
+
+node_t* GetA (tree_t* program)
+{
+    node_t* new_right_node = NULL;
+    node_t* new_left_node  = NULL;
+    if (isalpha (program->data[p]))
+    {
+        new_left_node = GetId (program);
+        if (program->data[p] == '=')
+        {
+            p++;
+        }
+        else
+        {
+            SintaxError (program, p);
+        }
+        new_right_node = GetE (program);
+    }
+    else
+    {
+        SintaxError (program, p);
+    }
+
+    return _EQU (new_left_node, new_right_node);
 }
 
 node_t* GetE (tree_t* program)
@@ -95,9 +121,7 @@ node_t* GetP (tree_t* program)
     }
     if (isalpha (program->data[p]))
     {
-        node_t* new_node = GetId (program);
-        program->nametable_id++;
-        return new_node;
+        return GetId (program);
     }
     if (isdigit (program->data[p]))
     {
@@ -128,6 +152,8 @@ node_t* GetId (tree_t* program)
     program->nametable[program->nametable_id].n_symbols = n_symbols;
     program->nametable[program->nametable_id].start_pos = start_pos;
     size_t index = program->nametable_id;
+
+    program->nametable_id++;
 
     return _ID ((double)index);
 }

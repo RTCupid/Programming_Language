@@ -6,6 +6,8 @@
 
     node_t*     GetG            (tree_t* program);
 
+    node_t*     GetA            (tree_t* program);
+
     node_t*     GetE            (tree_t* program);
 
     node_t*     GetT            (tree_t* program);

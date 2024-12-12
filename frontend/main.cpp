@@ -1,11 +1,10 @@
 #include <stdio.h>
 
 #include "../ProgramFunc.h"
-#include "MyLanguage.h"
 #include "DumpProgram.h"
 #include "WriteProgramFile.h"
 #include "DSL.h"
-#include "colors.h"
+#include "../colors.h"
 
 int main ()
 {
@@ -13,7 +12,7 @@ int main ()
 
     tree_t program = {};
 
-    ProgramCtor (&program);
+    ProgramCtor (&program, RECURSIVE);
 
     printf (MAG "expr.root = %p\n" RESET, program.root);
 

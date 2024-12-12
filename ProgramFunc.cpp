@@ -1,8 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
+#include <ctype.h>
+#include <string.h>
+#include <stdbool.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <errno.h>
 
 #include "Enum.h"
 #include "ProgramFunc.h"
+#include "frontend/RecursiveReader.h"
+#include "backend/ProgramReader.h"
+#include "colors.h"
+
 
 node_t* NewNode (size_t type, double value, node_t* left, node_t* right)
 {
@@ -24,6 +36,51 @@ node_t* NewNode (size_t type, double value, node_t* left, node_t* right)
     return node;
 }
 
+bool ProgramCtor (tree_t* program, mode_read_t mode)
+{
+    program->dbg_log_file = fopen ("frontend/dbg_log_file.txt", "wt");
+    VerifyOpenFile (program->dbg_log_file, "ProgramCtor");
+
+    program->log_file = fopen ("./bin/png/log_file.htm", "wt");
+    VerifyOpenFile (program->log_file, "ProgramCtor");
+
+    program->crnt_node = NULL;
+
+    program->nametable = (identificator_t*) calloc (SIZE_NAMETABLE, sizeof (*program->nametable));
+
+    InputProgram (program);
+    printf (BLU "program->data = <%s>\n" RESET, program->data);
+    if (mode == RECURSIVE)
+    {
+        program->root = GetG (program);
+    }
+    else if (mode == BRACKETS)
+    {
+        program->root = MakeProgram (program);
+    }
+
+    printf (GRN "Finish expression construction \n" RESET);
+    printf (GRN "expr->root = %p\n" RESET, program->root);
+
+    return true;
+}
+
+void ProgramDtor (tree_t* program)
+{
+    fclose (program->dbg_log_file);
+    fclose (program->log_file);
+
+    ClearTree (program->root);
+
+    free (program->data);
+    program->data = NULL;
+
+    free (program->nametable);
+    program->nametable = NULL;
+
+    program->crnt_node = NULL;
+}
+
 void ClearTree (node_t* node)
 {
     if (!node)
@@ -42,3 +99,54 @@ void ClearTree (node_t* node)
     free (node);
     node = NULL;
 }
+
+void InputProgram (tree_t* expr)
+{
+    struct stat fileInf = {};
+
+    int err = stat ("Program.txt", &fileInf);
+    if (err != 0)
+    {
+        fprintf(expr->dbg_log_file, "Stat err %d\n", err);
+    }
+
+    fprintf (expr->dbg_log_file, "\n%lu\n", (size_t)fileInf.st_size);
+    fprintf (expr->dbg_log_file, "count of char = %lu\n", (size_t)fileInf.st_size / sizeof (char));
+
+    char* expression = (char*)calloc ((size_t)fileInf.st_size + 1, sizeof(char));      // каллочу буффер, чтобы в него считать текст
+
+    FILE* expr_file = fopen ("Program.txt", "rt");
+
+    if (expr_file == NULL)
+    {
+        fprintf (expr->dbg_log_file, "File opening error\n");
+        fprintf (expr->dbg_log_file, "errno = <%d>\n", errno);
+        perror("Program.txt\n");
+    }
+
+    expr->size_data = (int) fread (expression, sizeof (char), (size_t)fileInf.st_size, expr_file); // с помощью fread читаю файл в буффер, сохраняю возвращаемое значение fread ()
+
+    if (expr->size_data == 0)
+    {
+        fprintf (expr->dbg_log_file, "errno = <%d>\n", errno);
+        perror ("Program.txt");
+    }
+
+    fprintf (expr->dbg_log_file, "\n%s\n", expression);                    // вывожу вид выражения
+
+    fclose (expr_file);                                                   // закрываю файл
+
+    fprintf (expr->dbg_log_file, "sizeOfFile = <%d>\n\n", expr->size_data);
+
+    expr->data = expression;
+}
+
+void VerifyOpenFile (FILE* file, const char* namefunc)
+{
+    if (file == NULL)
+    {
+        printf ("ERROR: in func: %s fopen returned nullptr\n", namefunc);
+        assert (0);
+    }
+}
+

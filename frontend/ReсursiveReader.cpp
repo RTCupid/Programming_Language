@@ -11,9 +11,8 @@
 
 #include "../Enum.h"
 #include "../ProgramFunc.h"
-#include "MyLanguage.h"
 #include "DSL.h"
-#include "colors.h"
+#include "../colors.h"
 #include "RecursiveReader.h"
 
 
@@ -177,47 +176,5 @@ void SintaxError (tree_t* program)
     fprintf (program->dbg_log_file, "SYNTAX ERROR: %c\n", program->data[p]);
     abort ();
 }
-
-void InputProgram (tree_t* expr)
-{
-    struct stat fileInf = {};
-
-    int err = stat ("Program.txt", &fileInf);
-    if (err != 0)
-    {
-        fprintf(expr->dbg_log_file, "Stat err %d\n", err);
-    }
-
-    fprintf (expr->dbg_log_file, "\n%lu\n", (size_t)fileInf.st_size);
-    fprintf (expr->dbg_log_file, "count of char = %lu\n", (size_t)fileInf.st_size / sizeof (char));
-
-    char* expression = (char*)calloc ((size_t)fileInf.st_size + 1, sizeof(char));      // каллочу буффер, чтобы в него считать текст
-
-    FILE* expr_file = fopen ("Program.txt", "rt");
-
-    if (expr_file == NULL)
-    {
-        fprintf (expr->dbg_log_file, "File opening error\n");
-        fprintf (expr->dbg_log_file, "errno = <%d>\n", errno);
-        perror("Program.txt\n");
-    }
-
-    expr->size_data = (int) fread (expression, sizeof (char), (size_t)fileInf.st_size, expr_file); // с помощью fread читаю файл в буффер, сохраняю возвращаемое значение fread ()
-
-    if (expr->size_data == 0)
-    {
-        fprintf (expr->dbg_log_file, "errno = <%d>\n", errno);
-        perror ("Program.txt");
-    }
-
-    fprintf (expr->dbg_log_file, "\n%s\n", expression);                    // вывожу вид выражения
-
-    fclose (expr_file);                                                   // закрываю файл
-
-    fprintf (expr->dbg_log_file, "sizeOfFile = <%d>\n\n", expr->size_data);
-
-    expr->data = expression;
-}
-
 
 

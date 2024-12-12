@@ -27,8 +27,22 @@
         FILE* dbg_log_file;
     } tree_t;
 
+    enum mode_read_t
+    {
+        RECURSIVE = 0,
+        BRACKETS,
+    };
+
+    const size_t SIZE_NAMETABLE = 100;
+
     /*-ret-------func----------------------arguments-----------------------------------*/
+    bool        ProgramCtor     (tree_t* expr, mode_read_t mode);
+
+    void        ProgramDtor     (tree_t* expr);
+
     node_t*     NewNode         (size_t type, double value, node_t* left, node_t* right);
 
     void        ClearTree       (node_t* node);
+
+    void        VerifyOpenFile  (FILE* file, const char* namefunc);
 #endif

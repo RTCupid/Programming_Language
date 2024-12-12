@@ -14,26 +14,36 @@ FLAGS = -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ \
 	nonnull-attribute,null,object-size,return,returns-nonnull-attribute,shift,$\
 	signed-integer-overflow,undefined,unreachable,vla-bound,vptr
 
-./bin/a.exe: ./bin/ReсursiveReader.o ./bin/MyLanguage.o ./bin/DumpProgram.o ./bin/WriteProgramFile.o ./bin/ProgramFunc.o ./bin/main.o
-	$(CC) ./bin/ReсursiveReader.o ./bin/MyLanguage.o ./bin/DumpProgram.o ./bin/WriteProgramFile.o ./bin/ProgramFunc.o ./bin/main.o -o ./bin/a.exe $(FLAGS)
+run: ./bin/front.exe ./bin/back.exe
+	./bin/front.exe
+	./bin/back.exe
 
-./bin/DumpProgram.o: frontend/DumpProgram.cpp frontend/MyLanguage.h frontend/DumpProgram.h
+./bin/front.exe: ./bin/ReсursiveReader.o ./bin/DumpProgram.o ./bin/WriteProgramFile.o ./bin/ProgramFunc.o ./bin/ProgramReader.o ./bin/fmain.o
+	$(CC) ./bin/ReсursiveReader.o ./bin/DumpProgram.o ./bin/WriteProgramFile.o ./bin/ProgramFunc.o ./bin/ProgramReader.o ./bin/fmain.o -o ./bin/front.exe $(FLAGS)
+
+./bin/back.exe: ./bin/ProgramReader.o ./bin/bmain.o ./bin/ProgramFunc.o
+	$(CC) ./bin/ProgramReader.o ./bin/ProgramFunc.o ./bin/bmain.o $(FLAGS)
+
+./bin/DumpProgram.o: frontend/DumpProgram.cpp frontend/DumpProgram.h
 	$(CC) -c ./frontend/DumpProgram.cpp -o ./bin/DumpProgram.o $(FLAGS)
 
-./bin/MyLanguage.o: frontend/MyLanguage.cpp frontend/MyLanguage.h frontend/RecursiveReader.h frontend/DSL.h ProgramFunc.h
-	$(CC) -c ./frontend/MyLanguage.cpp -o ./bin/MyLanguage.o $(FLAGS)
-
-./bin/ReсursiveReader.o: frontend/ReсursiveReader.cpp frontend/RecursiveReader.h frontend/MyLanguage.h frontend/DSL.h ProgramFunc.h
+./bin/ReсursiveReader.o: frontend/ReсursiveReader.cpp frontend/RecursiveReader.h frontend/DSL.h ProgramFunc.h
 	$(CC) -c ./frontend/ReсursiveReader.cpp -o ./bin/ReсursiveReader.o $(FLAGS)
 
 ./bin/WriteProgramFile.o: frontend/WriteProgramFile.cpp frontend/WriteProgramFile.h
 	$(CC) -c ./frontend/WriteProgramFile.cpp -o ./bin/WriteProgramFile.o $(FLAGS)
 
-./bin/main.o: frontend/main.cpp frontend/MyLanguage.h frontend/WriteProgramFile.h
-	$(CC) -c ./frontend/main.cpp -o ./bin/main.o $(FLAGS)
+./bin/fmain.o: frontend/main.cpp  frontend/WriteProgramFile.h frontend/DumpProgram.h Enum.h ProgramFunc.h
+	$(CC) -c ./frontend/main.cpp -o ./bin/fmain.o $(FLAGS)
 
-./bin/ProgramFunc.o: ProgramFunc.cpp ProgramFunc.h
+./bin/ProgramFunc.o: ProgramFunc.cpp Enum.h ProgramFunc.h frontend/RecursiveReader.h backend/ProgramReader.h
 	$(CC) -c ./ProgramFunc.cpp -o ./bin/ProgramFunc.o $(FLAGS)
+
+./bin/ProgramReader.o: backend/ProgramReader.cpp backend/ProgramReader.h
+	$(CC) -c ./backend/ProgramReader.cpp -o ./bin/ProgramReader.o $(FLAGS)
+
+./bin/bmain.o: backend/main.cpp Enum.h ProgramFunc.h
+	$(CC) -c ./backend/main.cpp -o ./bin/bmain.o $(FLAGS)
 
 clean:
 	rm -f main ./bin/*.o ./bin/png/*.png

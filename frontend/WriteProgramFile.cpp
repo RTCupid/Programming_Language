@@ -3,9 +3,8 @@
 
 #include "../Enum.h"
 #include "../ProgramFunc.h"
-#include "MyLanguage.h"
 #include "WriteProgramFile.h"
-#include "colors.h"
+#include "../colors.h"
 
 void WriteBase (node_t* crnt_node, FILE* file, int level)
 {

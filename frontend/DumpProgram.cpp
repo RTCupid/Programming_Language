@@ -24,7 +24,7 @@ void ProgramGraphviz (tree_t* expr)
     sprintf (namepng, "%d", numpng);
     numpng++;
     char systemCall[100] = {};
-    sprintf (systemCall,"dot -Tpng Expression.dot -o %s.png", namepng);
+    sprintf (systemCall,"dot -Tpng frontend/Expression.dot -o %s.png", namepng);
     //printf ("systemCall = <<%s>>\n", systemCall);
 
     system (systemCall);
@@ -69,7 +69,7 @@ void MakeNameTableHTM (tree_t* expr)
 
 void MakeDotFileGraphviz (tree_t* expr)
 {
-    FILE* dot_file = fopen ("Expression.dot", "wt");
+    FILE* dot_file = fopen ("frontend/Expression.dot", "wt");
     VerifyOpenFile (dot_file, "MakeDotFileGraphviz");
 
     fprintf (dot_file, "digraph G {\n");
@@ -139,7 +139,7 @@ void DiffDump (tree_t* tree)
     sprintf (namepng, "%d", numpng);
     numpng++;
     char systemCall[100] = {};
-    sprintf (systemCall,"dot -Tpng DiffDump.dot -o %s.png", namepng);
+    sprintf (systemCall,"dot -Tpng frontend/DiffDump.dot -o %s.png", namepng);
     //printf ("systemCall = <<%s>>\n", systemCall);
 
     system (systemCall);
@@ -154,7 +154,7 @@ void DiffDump (tree_t* tree)
 
 void MakeDotFileDump (tree_t* tree)
 {
-    FILE* dot_file = fopen ("DiffDump.dot", "wt");
+    FILE* dot_file = fopen ("frontend/DiffDump.dot", "wt");
 
     fprintf (dot_file, "digraph G {\n");
     fprintf (dot_file, "\trankdir = HR;\n");

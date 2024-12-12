@@ -29,10 +29,10 @@ node_t* NewNode (size_t type, double value, node_t* left, node_t* right)
 
 bool ProgramCtor (tree_t* program)
 {
-    program->dbg_log_file = fopen ("dbg_log_file.txt", "wt");
+    program->dbg_log_file = fopen ("frontend/dbg_log_file.txt", "wt");
     VerifyOpenFile (program->dbg_log_file, "ProgramCtor");
 
-    program->log_file = fopen ("log_file.htm", "wt");
+    program->log_file = fopen ("frontend/log_file.htm", "wt");
     VerifyOpenFile (program->log_file, "ProgramCtor");
 
     program->crnt_node = NULL;

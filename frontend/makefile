@@ -14,17 +14,17 @@ FLAGS = -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ \
 	nonnull-attribute,null,object-size,return,returns-nonnull-attribute,shift,$\
 	signed-integer-overflow,undefined,unreachable,vla-bound,vptr
 
-a.exe: ReсursiveReader.o MyLanguage.o DumpProgram.o main.o
-	$(CC) ReсursiveReader.o MyLanguage.o DumpProgram.o main.o -o a.exe $(FLAGS)
+./bin/a.exe: ./bin/ReсursiveReader.o ./bin/MyLanguage.o ./bin/DumpProgram.o ./bin/main.o
+	$(CC) ./bin/ReсursiveReader.o ./bin/MyLanguage.o ./bin/DumpProgram.o ./bin/main.o -o ./bin/a.exe $(FLAGS)
 
-DumpProgram.o: DumpProgram.cpp MyLanguage.h DumpProgram.h
-	$(CC) -c DumpProgram.cpp -o DumpProgram.o $(FLAGS)
+./bin/DumpProgram.o: frontend/DumpProgram.cpp frontend/MyLanguage.h frontend/DumpProgram.h
+	$(CC) -c ./frontend/DumpProgram.cpp -o ./bin/DumpProgram.o $(FLAGS)
 
-MyLanguage.o: MyLanguage.cpp MyLanguage.h RecursiveReader.h DSL.h
-	$(CC) -c MyLanguage.cpp -o MyLanguage.o $(FLAGS)
+./bin/MyLanguage.o: frontend/MyLanguage.cpp frontend/MyLanguage.h frontend/RecursiveReader.h frontend/DSL.h
+	$(CC) -c ./frontend/MyLanguage.cpp -o ./bin/MyLanguage.o $(FLAGS)
 
-ReсursiveReader.o: ReсursiveReader.cpp RecursiveReader.h MyLanguage.h DSL.h
-	$(CC) -c ReсursiveReader.cpp -o ReсursiveReader.o $(FLAGS)
+./bin/ReсursiveReader.o: frontend/ReсursiveReader.cpp frontend/RecursiveReader.h frontend/MyLanguage.h frontend/DSL.h
+	$(CC) -c ./frontend/ReсursiveReader.cpp -o ./bin/ReсursiveReader.o $(FLAGS)
 
-main.o: main.cpp MyLanguage.h
-	$(CC) -c main.cpp -o main.o $(FLAGS)
+./bin/main.o: frontend/main.cpp frontend/MyLanguage.h
+	$(CC) -c ./frontend/main.cpp -o ./bin/main.o $(FLAGS)

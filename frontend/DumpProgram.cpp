@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "../Enum.h"
+#include "../ProgramFunc.h"
 #include "MyLanguage.h"
 #include "DumpProgram.h"
 #include "colors.h"

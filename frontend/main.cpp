@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+#include "../ProgramFunc.h"
 #include "MyLanguage.h"
 #include "DumpProgram.h"
 #include "WriteProgramFile.h"

@@ -2,30 +2,11 @@
 #include <stdlib.h>
 #include <assert.h>
 
+#include "../ProgramFunc.h"
 #include "MyLanguage.h"
 #include "DSL.h"
 #include "colors.h"
 #include "RecursiveReader.h"
-
-node_t* NewNode (size_t type, double value, node_t* left, node_t* right)
-{
-    node_t* node = (node_t*) calloc (1, sizeof (*node));
-
-    node->type = type;
-
-    if (node->type == ID)
-    {
-        node->value = (size_t)value;
-    }
-    else
-    {
-        node->value = value;
-    }
-    node->left = left;
-    node->right = right;
-
-    return node;
-}
 
 bool ProgramCtor (tree_t* program)
 {
@@ -62,31 +43,6 @@ void ProgramDtor (tree_t* program)
     program->nametable = NULL;
 
     program->crnt_node = NULL;
-}
-
-void SintaxError (tree_t* program, size_t p)
-{
-    fprintf (program->dbg_log_file, "SYNTAX ERROR: %c\n", program->data[p]);
-    abort ();
-}
-
-void ClearTree (node_t* node)
-{
-    if (!node)
-    {
-        return;
-    }
-    if (node->left)
-    {
-        ClearTree (node->left);
-    }
-    if (node->right)
-    {
-        ClearTree (node->right);
-    }
-
-    free (node);
-    node = NULL;
 }
 
 void VerifyOpenFile (FILE* file, const char* namefunc)

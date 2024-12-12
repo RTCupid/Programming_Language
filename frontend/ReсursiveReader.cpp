@@ -9,10 +9,13 @@
 #include <unistd.h>
 #include <errno.h>
 
+#include "../Enum.h"
+#include "../ProgramFunc.h"
 #include "MyLanguage.h"
 #include "DSL.h"
 #include "colors.h"
 #include "RecursiveReader.h"
+
 
 /*
 { G  ::= A '&'
@@ -31,7 +34,7 @@ node_t* GetG (tree_t* program)
     node_t* node = GetA (program);
     if (program->data[p] != '$')
     {
-        SintaxError (program, p);
+        SintaxError (program);
     }
     p++;
     return node;
@@ -50,13 +53,13 @@ node_t* GetA (tree_t* program)
         }
         else
         {
-            SintaxError (program, p);
+            SintaxError (program);
         }
         new_right_node = GetE (program);
     }
     else
     {
-        SintaxError (program, p);
+        SintaxError (program);
     }
 
     return _EQU (new_left_node, new_right_node);
@@ -114,7 +117,7 @@ node_t* GetP (tree_t* program)
         node_t* node = GetE (program);
         if (program->data[p] != ')')
         {
-            SintaxError (program, p);
+            SintaxError (program);
         }
         p++;
         return node;
@@ -129,7 +132,7 @@ node_t* GetP (tree_t* program)
     }
 
     /*---else---*/
-    SintaxError (program, p);
+    SintaxError (program);
     return NULL;
 }
 
@@ -167,6 +170,12 @@ node_t* GetN (tree_t* program)
         p++;
     }
     return _NUM (val);
+}
+
+void SintaxError (tree_t* program)
+{
+    fprintf (program->dbg_log_file, "SYNTAX ERROR: %c\n", program->data[p]);
+    abort ();
 }
 
 void InputProgram (tree_t* expr)
@@ -209,4 +218,6 @@ void InputProgram (tree_t* expr)
 
     expr->data = expression;
 }
+
+
 

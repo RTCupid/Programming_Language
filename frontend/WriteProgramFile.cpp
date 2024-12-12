@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <assert.h>
 
+#include "../Enum.h"
+#include "../ProgramFunc.h"
 #include "MyLanguage.h"
 #include "WriteProgramFile.h"
 #include "colors.h"

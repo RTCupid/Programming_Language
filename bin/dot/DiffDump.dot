@@ -1,13 +1,13 @@
 digraph G {
 	rankdir = HR;
 	bgcolor="#F7F9FB"
-	 node0x503000000130 [shape=Mrecord; style=filled; color="#aed6dc"; label =  "{node: 0x503000000130 | value: = | type: OP | {<left>left: 0x503000000070 | <right>right: 0x503000000100}  }" ];
+	 node0x503000000130 [shape=Mrecord; style=filled; color=" #FFC9A5"; label =  "{node: 0x503000000130 | value: = | type: OP | {<left>left: 0x503000000070 | <right>right: 0x503000000100}  }" ];
 	 node0x503000000130:<left> -> node0x503000000070 [style=bold; weight=1000; ];
 	 node0x503000000130:<right> -> node0x503000000100 [style=bold; weight=1000; ];
-	 node0x503000000070 [shape=Mrecord; style=filled; color="#4a536b"; label =  "{node: 0x503000000070 | nametable_id: 0 | {start_pos: 0 | n_symbols: 9} | type: ID | {<left>left: (nil) | <right>right: (nil)}  }" ];
-	 node0x503000000100 [shape=Mrecord; style=filled; color="#aed6dc"; label =  "{node: 0x503000000100 | value: + | type: OP | {<left>left: 0x5030000000a0 | <right>right: 0x5030000000d0}  }" ];
+	 node0x503000000070 [shape=Mrecord; style=filled; color="#FF898D"; label =  "{node: 0x503000000070 | nametable_id: 0 | {start_pos: 0 | n_symbols: 9} | type: ID | {<left>left: (nil) | <right>right: (nil)}  }" ];
+	 node0x503000000100 [shape=Mrecord; style=filled; color=" #FFC9A5"; label =  "{node: 0x503000000100 | value: + | type: OP | {<left>left: 0x5030000000a0 | <right>right: 0x5030000000d0}  }" ];
 	 node0x503000000100:<left> -> node0x5030000000a0 [style=bold; weight=1000; ];
 	 node0x503000000100:<right> -> node0x5030000000d0 [style=bold; weight=1000; ];
-	 node0x5030000000a0 [shape=Mrecord; style=filled; color="#4a536b"; label =  "{node: 0x5030000000a0 | nametable_id: 1 | {start_pos: 10 | n_symbols: 4} | type: ID | {<left>left: (nil) | <right>right: (nil)}  }" ];
-	 node0x5030000000d0 [shape=Mrecord; style=filled; color="#ff9a8d"; label =  "{node: 0x5030000000d0 | value: 666.000000 | type: NUM | {<left>left: (nil) | <right>right: (nil)}  }" ];
+	 node0x5030000000a0 [shape=Mrecord; style=filled; color="#FF898D"; label =  "{node: 0x5030000000a0 | nametable_id: 1 | {start_pos: 10 | n_symbols: 4} | type: ID | {<left>left: (nil) | <right>right: (nil)}  }" ];
+	 node0x5030000000d0 [shape=Mrecord; style=filled; color="#C88DC2"; label =  "{node: 0x5030000000d0 | value: 666.000000 | type: NUM | {<left>left: (nil) | <right>right: (nil)}  }" ];
 }

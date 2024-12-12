@@ -32,7 +32,7 @@ bool ProgramCtor (tree_t* program)
     program->dbg_log_file = fopen ("frontend/dbg_log_file.txt", "wt");
     VerifyOpenFile (program->dbg_log_file, "ProgramCtor");
 
-    program->log_file = fopen ("frontend/log_file.htm", "wt");
+    program->log_file = fopen ("./bin/png/log_file.htm", "wt");
     VerifyOpenFile (program->log_file, "ProgramCtor");
 
     program->crnt_node = NULL;

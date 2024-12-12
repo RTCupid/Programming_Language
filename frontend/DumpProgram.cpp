@@ -24,7 +24,7 @@ void ProgramGraphviz (tree_t* expr)
     sprintf (namepng, "%d", numpng);
     numpng++;
     char systemCall[100] = {};
-    sprintf (systemCall,"dot -Tpng frontend/Expression.dot -o %s.png", namepng);
+    sprintf (systemCall,"dot -Tpng frontend/Expression.dot -o ./bin/png/%s.png", namepng);
     //printf ("systemCall = <<%s>>\n", systemCall);
 
     system (systemCall);
@@ -139,7 +139,7 @@ void DiffDump (tree_t* tree)
     sprintf (namepng, "%d", numpng);
     numpng++;
     char systemCall[100] = {};
-    sprintf (systemCall,"dot -Tpng frontend/DiffDump.dot -o %s.png", namepng);
+    sprintf (systemCall,"dot -Tpng frontend/DiffDump.dot -o ./bin/png/%s.png", namepng);
     //printf ("systemCall = <<%s>>\n", systemCall);
 
     system (systemCall);

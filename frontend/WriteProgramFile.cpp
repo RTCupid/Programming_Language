@@ -1,8 +1,41 @@
+#include <stdio.h>
+#include <assert.h>
+
+#include "MyLanguage.h"
+#include "WriteProgramFile.h"
+#include "colors.h"
+
 void WriteBase (node_t* crnt_node, FILE* file, int level)
 {
     WriteTab (level, file);
     fprintf (file, "{");
-    fprintf (file, "\"%s\"", crnt_node->text);
+    if (crnt_node->type == OP)
+    {
+        if (crnt_node->value == SIN)
+        {
+            fprintf (file, "sin");
+        }
+        if (crnt_node->value == COS)
+        {
+            fprintf (file, "cos");
+        }
+        if (crnt_node->value == LN)
+        {
+            fprintf (file, "ln");
+        }
+        else
+        {
+            fprintf (file, "%c", (int)crnt_node->value);
+        }
+    }
+    else if (crnt_node->type == NUM)
+    {
+        fprintf (file, "%f", crnt_node->value);
+    }
+    else if (crnt_node->type == ID)
+    {
+        fprintf (file, "id%d", (int)crnt_node->value);
+    }
 
     if (crnt_node->left)
     {

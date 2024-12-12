@@ -14,8 +14,8 @@ FLAGS = -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ \
 	nonnull-attribute,null,object-size,return,returns-nonnull-attribute,shift,$\
 	signed-integer-overflow,undefined,unreachable,vla-bound,vptr
 
-./bin/a.exe: ./bin/ReсursiveReader.o ./bin/MyLanguage.o ./bin/DumpProgram.o ./bin/main.o
-	$(CC) ./bin/ReсursiveReader.o ./bin/MyLanguage.o ./bin/DumpProgram.o ./bin/main.o -o ./bin/a.exe $(FLAGS)
+./bin/a.exe: ./bin/ReсursiveReader.o ./bin/MyLanguage.o ./bin/DumpProgram.o ./bin/WriteProgramFile.o ./bin/main.o
+	$(CC) ./bin/ReсursiveReader.o ./bin/MyLanguage.o ./bin/DumpProgram.o ./bin/WriteProgramFile.o ./bin/main.o -o ./bin/a.exe $(FLAGS)
 
 ./bin/DumpProgram.o: frontend/DumpProgram.cpp frontend/MyLanguage.h frontend/DumpProgram.h
 	$(CC) -c ./frontend/DumpProgram.cpp -o ./bin/DumpProgram.o $(FLAGS)
@@ -26,5 +26,11 @@ FLAGS = -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ \
 ./bin/ReсursiveReader.o: frontend/ReсursiveReader.cpp frontend/RecursiveReader.h frontend/MyLanguage.h frontend/DSL.h
 	$(CC) -c ./frontend/ReсursiveReader.cpp -o ./bin/ReсursiveReader.o $(FLAGS)
 
-./bin/main.o: frontend/main.cpp frontend/MyLanguage.h
+./bin/WriteProgramFile.o: frontend/WriteProgramFile.cpp frontend/WriteProgramFile.h
+	$(CC) -c ./frontend/WriteProgramFile.cpp -o ./bin/WriteProgramFile.o $(FLAGS)
+
+./bin/main.o: frontend/main.cpp frontend/MyLanguage.h frontend/WriteProgramFile.h
 	$(CC) -c ./frontend/main.cpp -o ./bin/main.o $(FLAGS)
+
+clean:
+	rm -f main ./bin/*.o ./bin/png/*.png

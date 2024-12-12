@@ -1,11 +1,11 @@
 #ifndef PROGRAMREADER_H
     #define PROGRAMREADER_H
 
-    node_t* MakeProgram     (tree_t* expr);
+    const size_t MAX_LEN_BUF = 20;
 
-    node_t* RunReadProgram  (tree_t* expr);
+    node_t* MakeProgram (tree_t* program, const char* namefile);
 
-    void    PrintExprDump   (tree_t* expr, int ID);
+    node_t* RunProgram  (tree_t* program, FILE* base_file);
 
-    size_t  NodeType        (tree_t* expr, int value);
+    size_t  NodeType    (tree_t* expr, char* value);
 #endif

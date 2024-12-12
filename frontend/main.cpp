@@ -1,9 +1,9 @@
 #include <stdio.h>
 
 #include "../ProgramFunc.h"
-#include "DumpProgram.h"
+#include "../DumpProgram.h"
 #include "WriteProgramFile.h"
-#include "DSL.h"
+#include "../DSL.h"
 #include "../colors.h"
 
 int main ()
@@ -12,11 +12,11 @@ int main ()
 
     tree_t program = {};
 
-    ProgramCtor (&program, RECURSIVE);
+    ProgramCtor (&program, FRONTEND);
 
     printf (MAG "expr.root = %p\n" RESET, program.root);
 
-    ProgramGraphviz (&program);
+    ProgramGraphviz (&program, FRONTEND);
 
     DiffDump (&program);
 

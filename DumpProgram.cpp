@@ -1,16 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../Enum.h"
-#include "../ProgramFunc.h"
+#include "Enum.h"
+#include "ProgramFunc.h"
 #include "DumpProgram.h"
-#include "../colors.h"
+#include "colors.h"
 
 //-----------------------------------------------TREE-------------------------------------------------------------
 
-void ProgramGraphviz (tree_t* expr)
+void ProgramGraphviz (tree_t* expr, modelang_t mode)
 {
-    fprintf (expr->log_file, "<FONT SIZE=\"6\"><center>Program:</center><FONT SIZE=\"5\">\n\n");
+    if (mode == FRONTEND)
+        fprintf (expr->log_file, "<FONT SIZE=\"6\"><center>Program: Frontend</center><FONT SIZE=\"5\">\n\n");
+    else if (mode == BACKEND)
+        fprintf (expr->log_file, "<FONT SIZE=\"6\"><center>Program: Backend</center><FONT SIZE=\"5\">\n\n");
 
     printf (BLU "<%s>\n" RESET, expr->data);
     fprintf (expr->log_file, "<center>\"%s\"</center>\n", expr->data);

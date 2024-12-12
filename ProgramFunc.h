@@ -27,16 +27,16 @@
         FILE* dbg_log_file;
     } tree_t;
 
-    enum mode_read_t
+    enum modelang_t
     {
-        RECURSIVE = 0,
-        BRACKETS,
+        FRONTEND = 0,
+        BACKEND,
     };
 
     const size_t SIZE_NAMETABLE = 100;
 
     /*-ret-------func----------------------arguments-----------------------------------*/
-    bool        ProgramCtor     (tree_t* expr, mode_read_t mode);
+    bool        ProgramCtor     (tree_t* expr, modelang_t mode);
 
     void        ProgramDtor     (tree_t* expr);
 

@@ -21,19 +21,19 @@ run: ./bin/front.exe ./bin/back.exe
 ./bin/front.exe: ./bin/ReсursiveReader.o ./bin/DumpProgram.o ./bin/WriteProgramFile.o ./bin/ProgramFunc.o ./bin/ProgramReader.o ./bin/fmain.o
 	$(CC) ./bin/ReсursiveReader.o ./bin/DumpProgram.o ./bin/WriteProgramFile.o ./bin/ProgramFunc.o ./bin/ProgramReader.o ./bin/fmain.o -o ./bin/front.exe $(FLAGS)
 
-./bin/back.exe: ./bin/ProgramReader.o ./bin/bmain.o ./bin/ProgramFunc.o
-	$(CC) ./bin/ProgramReader.o ./bin/ProgramFunc.o ./bin/bmain.o $(FLAGS)
+./bin/back.exe: ./bin/ProgramReader.o ./bin/DumpProgram.o ./bin/bmain.o ./bin/ProgramFunc.o ./bin/ReсursiveReader.o
+	$(CC) ./bin/ProgramReader.o ./bin/DumpProgram.o ./bin/ProgramFunc.o ./bin/ReсursiveReader.o ./bin/bmain.o -o ./bin/back.exe $(FLAGS)
 
-./bin/DumpProgram.o: frontend/DumpProgram.cpp frontend/DumpProgram.h
-	$(CC) -c ./frontend/DumpProgram.cpp -o ./bin/DumpProgram.o $(FLAGS)
+./bin/DumpProgram.o: DumpProgram.cpp DumpProgram.h
+	$(CC) -c DumpProgram.cpp -o ./bin/DumpProgram.o $(FLAGS)
 
-./bin/ReсursiveReader.o: frontend/ReсursiveReader.cpp frontend/RecursiveReader.h frontend/DSL.h ProgramFunc.h
+./bin/ReсursiveReader.o: frontend/ReсursiveReader.cpp frontend/RecursiveReader.h DSL.h ProgramFunc.h
 	$(CC) -c ./frontend/ReсursiveReader.cpp -o ./bin/ReсursiveReader.o $(FLAGS)
 
 ./bin/WriteProgramFile.o: frontend/WriteProgramFile.cpp frontend/WriteProgramFile.h
 	$(CC) -c ./frontend/WriteProgramFile.cpp -o ./bin/WriteProgramFile.o $(FLAGS)
 
-./bin/fmain.o: frontend/main.cpp  frontend/WriteProgramFile.h frontend/DumpProgram.h Enum.h ProgramFunc.h
+./bin/fmain.o: frontend/main.cpp  frontend/WriteProgramFile.h DumpProgram.h Enum.h ProgramFunc.h
 	$(CC) -c ./frontend/main.cpp -o ./bin/fmain.o $(FLAGS)
 
 ./bin/ProgramFunc.o: ProgramFunc.cpp Enum.h ProgramFunc.h frontend/RecursiveReader.h backend/ProgramReader.h
@@ -42,7 +42,7 @@ run: ./bin/front.exe ./bin/back.exe
 ./bin/ProgramReader.o: backend/ProgramReader.cpp backend/ProgramReader.h
 	$(CC) -c ./backend/ProgramReader.cpp -o ./bin/ProgramReader.o $(FLAGS)
 
-./bin/bmain.o: backend/main.cpp Enum.h ProgramFunc.h
+./bin/bmain.o: backend/main.cpp Enum.h ProgramFunc.h DumpProgram.h
 	$(CC) -c ./backend/main.cpp -o ./bin/bmain.o $(FLAGS)
 
 clean:

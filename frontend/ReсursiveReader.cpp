@@ -11,7 +11,7 @@
 
 #include "../Enum.h"
 #include "../ProgramFunc.h"
-#include "DSL.h"
+#include "../DSL.h"
 #include "../colors.h"
 #include "RecursiveReader.h"
 

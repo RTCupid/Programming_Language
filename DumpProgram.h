@@ -3,7 +3,7 @@
 
 //--ret-value---function-------------argument------------------------------------------------------
 
-    void    ProgramGraphviz         (tree_t* expr);
+    void    ProgramGraphviz         (tree_t* expr, modelang_t mode);
 
     void    MakeNameTableHTM        (tree_t* expr);
 

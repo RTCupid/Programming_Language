@@ -36,13 +36,10 @@ node_t* NewNode (size_t type, double value, node_t* left, node_t* right)
     return node;
 }
 
-bool ProgramCtor (tree_t* program, mode_read_t mode)
+bool ProgramCtor (tree_t* program, modelang_t mode)
 {
     program->dbg_log_file = fopen ("frontend/dbg_log_file.txt", "wt");
     VerifyOpenFile (program->dbg_log_file, "ProgramCtor");
-
-    program->log_file = fopen ("./bin/png/log_file.htm", "wt");
-    VerifyOpenFile (program->log_file, "ProgramCtor");
 
     program->crnt_node = NULL;
 
@@ -50,13 +47,19 @@ bool ProgramCtor (tree_t* program, mode_read_t mode)
 
     InputProgram (program);
     printf (BLU "program->data = <%s>\n" RESET, program->data);
-    if (mode == RECURSIVE)
+    if (mode == FRONTEND)
     {
+        program->log_file = fopen ("./bin/png/front_log_file.htm", "wt");
+        VerifyOpenFile (program->log_file, "ProgramCtor");
+
         program->root = GetG (program);
     }
-    else if (mode == BRACKETS)
+    else if (mode == BACKEND)
     {
-        program->root = MakeProgram (program);
+        program->log_file = fopen ("./bin/png/back_log_file.htm", "wt");
+        VerifyOpenFile (program->log_file, "ProgramCtor");
+
+        program->root = MakeProgram (program, "Program_file.txt");
     }
 
     printf (GRN "Finish expression construction \n" RESET);
@@ -68,6 +71,7 @@ bool ProgramCtor (tree_t* program, mode_read_t mode)
 void ProgramDtor (tree_t* program)
 {
     fclose (program->dbg_log_file);
+
     fclose (program->log_file);
 
     ClearTree (program->root);

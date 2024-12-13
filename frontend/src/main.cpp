@@ -1,10 +1,10 @@
 #include <stdio.h>
 
-#include "../ProgramFunc.h"
-#include "../DumpProgram.h"
-#include "WriteProgramFile.h"
-#include "../DSL.h"
-#include "../colors.h"
+#include "../../hdr/ProgramFunc.h"
+#include "../../hdr/DumpProgram.h"
+#include "../hdr/WriteProgramFile.h"
+#include "../../hdr/DSL.h"
+#include "../../hdr/colors.h"
 
 int main ()
 {

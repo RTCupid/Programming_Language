@@ -9,11 +9,11 @@
 #include <unistd.h>
 #include <errno.h>
 
-#include "Enum.h"
-#include "ProgramFunc.h"
-#include "frontend/RecursiveReader.h"
-#include "backend/ProgramReader.h"
-#include "colors.h"
+#include "../hdr/Enum.h"
+#include "../hdr/ProgramFunc.h"
+#include "../frontend/hdr/RecursiveReader.h"
+#include "../backend/hdr/ProgramReader.h"
+#include "../hdr/colors.h"
 
 
 node_t* NewNode (size_t type, double value, node_t* left, node_t* right)

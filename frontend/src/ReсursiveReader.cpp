@@ -9,11 +9,11 @@
 #include <unistd.h>
 #include <errno.h>
 
-#include "../Enum.h"
-#include "../ProgramFunc.h"
-#include "../DSL.h"
-#include "../colors.h"
-#include "RecursiveReader.h"
+#include "../../hdr/Enum.h"
+#include "../../hdr/ProgramFunc.h"
+#include "../../hdr/DSL.h"
+#include "../../hdr/colors.h"
+#include "../hdr/RecursiveReader.h"
 
 
 /*

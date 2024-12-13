@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-#include "../Enum.h"
-#include "../ProgramFunc.h"
-#include "../DumpProgram.h"
+#include "../../hdr/Enum.h"
+#include "../../hdr/ProgramFunc.h"
+#include "../../hdr/DumpProgram.h"
 
 int main ()
 {

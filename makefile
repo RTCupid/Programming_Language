@@ -24,26 +24,26 @@ run: ./bin/front.exe ./bin/back.exe
 ./bin/back.exe: ./bin/ProgramReader.o ./bin/DumpProgram.o ./bin/bmain.o ./bin/ProgramFunc.o ./bin/ReсursiveReader.o
 	$(CC) ./bin/ProgramReader.o ./bin/DumpProgram.o ./bin/ProgramFunc.o ./bin/ReсursiveReader.o ./bin/bmain.o -o ./bin/back.exe $(FLAGS)
 
-./bin/DumpProgram.o: DumpProgram.cpp DumpProgram.h
-	$(CC) -c DumpProgram.cpp -o ./bin/DumpProgram.o $(FLAGS)
+./bin/DumpProgram.o: src/DumpProgram.cpp hdr/DumpProgram.h
+	$(CC) -c ./src/DumpProgram.cpp -o ./bin/DumpProgram.o $(FLAGS)
 
-./bin/ReсursiveReader.o: frontend/ReсursiveReader.cpp frontend/RecursiveReader.h DSL.h ProgramFunc.h
-	$(CC) -c ./frontend/ReсursiveReader.cpp -o ./bin/ReсursiveReader.o $(FLAGS)
+./bin/ReсursiveReader.o: frontend/src/ReсursiveReader.cpp frontend/hdr/RecursiveReader.h hdr/DSL.h hdr/ProgramFunc.h hdr/Enum.h
+	$(CC) -c ./frontend/src/ReсursiveReader.cpp -o ./bin/ReсursiveReader.o $(FLAGS)
 
-./bin/WriteProgramFile.o: frontend/WriteProgramFile.cpp frontend/WriteProgramFile.h
-	$(CC) -c ./frontend/WriteProgramFile.cpp -o ./bin/WriteProgramFile.o $(FLAGS)
+./bin/WriteProgramFile.o: frontend/src/WriteProgramFile.cpp frontend/hdr/WriteProgramFile.h
+	$(CC) -c ./frontend/src/WriteProgramFile.cpp -o ./bin/WriteProgramFile.o $(FLAGS)
 
-./bin/fmain.o: frontend/main.cpp  frontend/WriteProgramFile.h DumpProgram.h Enum.h ProgramFunc.h
-	$(CC) -c ./frontend/main.cpp -o ./bin/fmain.o $(FLAGS)
+./bin/fmain.o: frontend/src/main.cpp  frontend/hdr/WriteProgramFile.h hdr/DumpProgram.h hdr/Enum.h hdr/ProgramFunc.h
+	$(CC) -c ./frontend/src/main.cpp -o ./bin/fmain.o $(FLAGS)
 
-./bin/ProgramFunc.o: ProgramFunc.cpp Enum.h ProgramFunc.h frontend/RecursiveReader.h backend/ProgramReader.h
-	$(CC) -c ./ProgramFunc.cpp -o ./bin/ProgramFunc.o $(FLAGS)
+./bin/ProgramFunc.o: src/ProgramFunc.cpp hdr/Enum.h hdr/ProgramFunc.h frontend/hdr/RecursiveReader.h backend/hdr/ProgramReader.h
+	$(CC) -c ./src/ProgramFunc.cpp -o ./bin/ProgramFunc.o $(FLAGS)
 
-./bin/ProgramReader.o: backend/ProgramReader.cpp backend/ProgramReader.h
-	$(CC) -c ./backend/ProgramReader.cpp -o ./bin/ProgramReader.o $(FLAGS)
+./bin/ProgramReader.o: backend/src/ProgramReader.cpp backend/hdr/ProgramReader.h
+	$(CC) -c ./backend/src/ProgramReader.cpp -o ./bin/ProgramReader.o $(FLAGS)
 
-./bin/bmain.o: backend/main.cpp Enum.h ProgramFunc.h DumpProgram.h
-	$(CC) -c ./backend/main.cpp -o ./bin/bmain.o $(FLAGS)
+./bin/bmain.o: backend/src/main.cpp hdr/Enum.h hdr/ProgramFunc.h hdr/DumpProgram.h
+	$(CC) -c ./backend/src/main.cpp -o ./bin/bmain.o $(FLAGS)
 
 clean:
 	rm -f main ./bin/*.o ./bin/png/*.png

@@ -4,11 +4,11 @@
 #include <ctype.h>
 #include <string.h>
 
-#include "../Enum.h"
-#include "../DSL.h"
-#include "../ProgramFunc.h"
-#include "ProgramReader.h"
-#include "../colors.h"
+#include "../../hdr/Enum.h"
+#include "../../hdr/DSL.h"
+#include "../../hdr/ProgramFunc.h"
+#include "../hdr/ProgramReader.h"
+#include "../../hdr/colors.h"
 
 
 node_t* MakeProgram (tree_t* program, const char* namefile)

@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <assert.h>
 
-#include "../Enum.h"
-#include "../ProgramFunc.h"
-#include "WriteProgramFile.h"
-#include "../colors.h"
+#include "../../hdr/Enum.h"
+#include "../../hdr/ProgramFunc.h"
+#include "../hdr/WriteProgramFile.h"
+#include "../../hdr/colors.h"
 
 void WriteBase (node_t* crnt_node, FILE* file, int level)
 {

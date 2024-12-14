@@ -21,8 +21,8 @@ run: ./bin/front.exe ./bin/back.exe
 ./bin/front.exe: ./bin/ReсursiveReader.o ./bin/DumpProgram.o ./bin/WriteProgramFile.o ./bin/ProgramFunc.o ./bin/ProgramReader.o ./bin/fmain.o
 	$(CC) ./bin/ReсursiveReader.o ./bin/DumpProgram.o ./bin/WriteProgramFile.o ./bin/ProgramFunc.o ./bin/ProgramReader.o ./bin/fmain.o -o ./bin/front.exe $(FLAGS)
 
-./bin/back.exe: ./bin/ProgramReader.o ./bin/DumpProgram.o ./bin/bmain.o ./bin/ProgramFunc.o ./bin/ReсursiveReader.o
-	$(CC) ./bin/ProgramReader.o ./bin/DumpProgram.o ./bin/ProgramFunc.o ./bin/ReсursiveReader.o ./bin/bmain.o -o ./bin/back.exe $(FLAGS)
+./bin/back.exe: ./bin/ProgramReader.o ./bin/DumpProgram.o ./bin/MakeCodeAsm.o ./bin/bmain.o ./bin/ProgramFunc.o ./bin/ReсursiveReader.o
+	$(CC) ./bin/ProgramReader.o ./bin/DumpProgram.o ./bin/MakeCodeAsm.o ./bin/ProgramFunc.o ./bin/ReсursiveReader.o ./bin/bmain.o -o ./bin/back.exe $(FLAGS)
 
 ./bin/DumpProgram.o: src/DumpProgram.cpp hdr/DumpProgram.h
 	$(CC) -c ./src/DumpProgram.cpp -o ./bin/DumpProgram.o $(FLAGS)
@@ -38,6 +38,9 @@ run: ./bin/front.exe ./bin/back.exe
 
 ./bin/ProgramFunc.o: src/ProgramFunc.cpp hdr/Enum.h hdr/ProgramFunc.h frontend/hdr/RecursiveReader.h backend/hdr/ProgramReader.h
 	$(CC) -c ./src/ProgramFunc.cpp -o ./bin/ProgramFunc.o $(FLAGS)
+
+./bin/MakeCodeAsm.o: backend/src/MakeCodeAsm.cpp backend/hdr/MakeCodeAsm.h hdr/ProgramFunc.h hdr/Enum.h hdr/colors.h
+	$(CC) -c ./backend/src/MakeCodeAsm.cpp -o ./bin/MakeCodeAsm.o $(FLAGS)
 
 ./bin/ProgramReader.o: backend/src/ProgramReader.cpp backend/hdr/ProgramReader.h
 	$(CC) -c ./backend/src/ProgramReader.cpp -o ./bin/ProgramReader.o $(FLAGS)

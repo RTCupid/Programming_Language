@@ -3,6 +3,7 @@
 #include "../../hdr/Enum.h"
 #include "../../hdr/ProgramFunc.h"
 #include "../../hdr/DumpProgram.h"
+#include "../hdr/MakeCodeAsm.h"
 
 int main ()
 {
@@ -10,7 +11,7 @@ int main ()
 
     ProgramCtor (&bprogram, BACKEND);
 
-    //FILE* file_asm = RecursiveMakeAsm (&bprogram, bprogram.root);
+    MakeAsmCode (&bprogram);
 
     ProgramGraphviz (&bprogram, BACKEND);
 

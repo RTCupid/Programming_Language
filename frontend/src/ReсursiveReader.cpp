@@ -43,6 +43,7 @@ node_t* GetG (tree_t* program)
     {
         p++;
         crnt_node->left = GetOp (program);
+        crnt_node->right = _ST(NULL, NULL);
         crnt_node = crnt_node->right;
     }
 

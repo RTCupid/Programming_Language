@@ -1,13 +1,27 @@
-size table: 2
+size table: 4
 0 delicious
 1 food
+2 ded
+3 tyoma
 {OP:";"
 	{OP:"="
 		{ID:"0"}
-		{OP:"+"
+		{OP:"*"
 			{ID:"1"}
 			{NUM:"666.000000"}
 		}
 	}
-	{OP:";"}
+	{OP:";"
+		{OP:"="
+			{ID:"2"}
+			{NUM:"333.000000"}
+		}
+		{OP:";"
+			{OP:"="
+				{ID:"3"}
+				{NUM:"166.000000"}
+			}
+			{OP:";"}
+		}
+	}
 }

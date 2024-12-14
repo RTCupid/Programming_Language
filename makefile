@@ -17,6 +17,8 @@ FLAGS = -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ \
 run: ./bin/front.exe ./bin/back.exe
 	./bin/front.exe
 	./bin/back.exe
+	./processor/Asm.exe Asm_file.txt
+	./processor/Run.exe Programm_code.txt
 
 ./bin/front.exe: ./bin/ReсursiveReader.o ./bin/DumpProgram.o ./bin/WriteProgramFile.o ./bin/ProgramFunc.o ./bin/ProgramReader.o ./bin/fmain.o
 	$(CC) ./bin/ReсursiveReader.o ./bin/DumpProgram.o ./bin/WriteProgramFile.o ./bin/ProgramFunc.o ./bin/ProgramReader.o ./bin/fmain.o -o ./bin/front.exe $(FLAGS)

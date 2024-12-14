@@ -8,7 +8,6 @@
 
 void MakeAsmCode (tree_t* program)
 {
-    size_t n_operator = 0;
     FILE* file_asm = fopen ("Asm_file.txt", "wt");
     if (file_asm == NULL)
     {
@@ -16,27 +15,61 @@ void MakeAsmCode (tree_t* program)
         abort ();
     }
 
-    RecursiveMakeAsm (program, file_asm, program->root, n_operator);
+    RecursiveMakeAsm (program, file_asm, program->root);
 }
 
-void RecursiveMakeAsm (tree_t* program, FILE* file_asm, node_t* crnt_node, size_t n_operator)
+void RecursiveMakeAsm (tree_t* program, FILE* file_asm, node_t* crnt_node)
 {
-    fprintf (file_asm, ";%lu\n", n_operator);
+    static size_t n_operator = 0;
 
-    if (crnt_node->type == NUM)
+    if (crnt_node == NULL)
     {
-        fprintf (file_asm, "%f\n", crnt_node->value);
+        return;
+    }
+
+    if (crnt_node->type == OP)
+    {
+        fprintf (file_asm, ";%lu\n", n_operator);
+
+        switch ((int)crnt_node->value)
+        {
+            case SMC:
+            {
+                n_operator++;
+                RecursiveMakeAsm (program, file_asm, crnt_node->left );
+                n_operator++;
+                RecursiveMakeAsm (program, file_asm, crnt_node->right);
+                break;
+            }
+            case EQU:
+            {
+                RecursiveMakeAsm (program, file_asm, crnt_node->right);
+                fprintf (file_asm, "pop ");
+                RecursiveMakeAsm (program, file_asm, crnt_node->left);
+                break;
+            }
+            case ADD:
+            {
+                RecursiveMakeAsm (program, file_asm, crnt_node->left);
+                RecursiveMakeAsm (program, file_asm, crnt_node->right);
+                fprintf (file_asm, "add\n");
+                break;
+            }
+            default:
+            {
+                printf (RED "ERROR: RecursiveMakeAsm unknown operator" RESET);
+                abort ();
+            }
+        }
+    }
+    else if (crnt_node->type == NUM)
+    {
+        fprintf (file_asm, "push %f\n", crnt_node->value);
         return;
     }
     else if (crnt_node->type == ID)
     {
-        fprintf (file_asm, "%lu\n", (size_t)crnt_node->value);
+        fprintf (file_asm, "[%lu] ;%s\n", (size_t)crnt_node->value, program->nametable[(int)crnt_node->value].name);
         return;
     }
-    // if (crnt_node->type == OP)
-    // {
-    //
-    // }
-    RecursiveMakeAsm (program, file_asm, crnt_node->left, n_operator);
-    RecursiveMakeAsm (program, file_asm, crnt_node->left, n_operator);
 }

@@ -3,5 +3,5 @@
 
     void   MakeAsmCode         (tree_t* program);
 
-    void   RecursiveMakeAsm    (tree_t* program, FILE* file_asm, node_t* crnt_node, size_t n_operator);
+    void   RecursiveMakeAsm    (tree_t* program, FILE* file_asm, node_t* crnt_node);
 #endif

@@ -22,6 +22,8 @@ int main ()
 
     FILE* base_file = fopen ("Program_file.txt", "wt");
 
+    WriteNameTable (&program, base_file);
+
     WriteBase (&program, program.root, base_file, 1);
 
     ProgramDtor (&program);

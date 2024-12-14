@@ -79,10 +79,21 @@ void ProgramDtor (tree_t* program)
     free (program->data);
     program->data = NULL;
 
+    ClearNameTable (program);
+
     free (program->nametable);
     program->nametable = NULL;
 
     program->crnt_node = NULL;
+}
+
+void ClearNameTable (tree_t* program)
+{
+    for (size_t i = 0; i < program->nametable_id; i++)
+    {
+        free (program->nametable[i].name);
+        program->nametable[i].name = NULL;
+    }
 }
 
 void ClearTree (node_t* node)

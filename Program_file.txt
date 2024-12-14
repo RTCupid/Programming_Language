@@ -1,3 +1,6 @@
+size table: 2
+0 delicious
+1 food
 {OP:";"
 	{OP:"="
 		{ID:"0"}

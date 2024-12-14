@@ -6,6 +6,17 @@
 #include "../hdr/WriteProgramFile.h"
 #include "../../hdr/colors.h"
 
+void WriteNameTable (tree_t* program, FILE* file)
+{
+    fprintf (file, "size table: %lu\n", program->nametable_id);
+    for (size_t i = 0; i < program->nametable_id; i++)
+    {
+        char identificator[MAX_LEN_BUF] = {};
+        snprintf (identificator, program->nametable[i].n_symbols + 1, "%s", program->data + program->nametable[i].start_pos);
+        fprintf (file, "%lu %s\n", i, identificator);
+    }
+}
+
 void WriteBase (tree_t* program, node_t* crnt_node, FILE* file, int level)
 {
     WriteTab (level, file);

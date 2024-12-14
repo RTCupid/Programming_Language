@@ -13,6 +13,7 @@
     {
         size_t start_pos;
         size_t n_symbols;
+        char* name;
     } identificator_t;
 
     typedef struct tree_t
@@ -43,6 +44,8 @@
     void        ProgramDtor     (tree_t* expr);
 
     node_t*     NewNode         (size_t type, double value, node_t* left, node_t* right);
+
+    void        ClearNameTable  (tree_t* program);
 
     void        ClearTree       (node_t* node);
 

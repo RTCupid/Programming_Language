@@ -14,7 +14,24 @@
 node_t* MakeProgram (tree_t* program, const char* namefile)
 {
     FILE* base_file = fopen (namefile, "rt");
-    VerifyOpenFile (base_file, "MakeAkinatorBase");
+    VerifyOpenFile (base_file, "MakeProgram");
+
+    char buffer[MAX_LEN_BUF] = {};
+    fscanf (base_file, "%s %s %lu", buffer, buffer, &program->nametable_id);
+
+    for (size_t i = 0; i < program->nametable_id; i++)
+    {
+        size_t addr_RAM = 0;
+        char* name = (char*) calloc (MAX_LEN_BUF, sizeof (*name));
+        fscanf (base_file, "%lu %s", &addr_RAM, name);
+
+        printf ("%lu %s\n", addr_RAM, name);
+        program->nametable[i].start_pos = addr_RAM;
+        program->nametable[i].name      = name;
+
+        printf ("%lu %s\n", program->nametable[i].start_pos,
+                            program->nametable[i].name);
+    }
 
     node_t* new_node = RunProgram (program, base_file);
 

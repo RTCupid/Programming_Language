@@ -17,7 +17,8 @@
 
 
 /*
-{ G  ::= A '&'
+{ G  ::= {St ';'}+ '&'
+{ St ::= A | ... // пока только присваивание
 { A  ::= Id '=' E
 { E  ::= T {['+' '-'] T}*
 { T  ::= P {['*' '/'] P}*
@@ -30,12 +31,32 @@ size_t p = 0;
 node_t* GetG (tree_t* program)
 {
     printf (GRN "Start\n" RESET);
-    node_t* node = GetA (program);
+
+    node_t* node = _ST(NULL, NULL);
+
+    node->left = GetOp (program);
+    node->right = _ST(NULL, NULL);
+
+    node_t* crnt_node = node->right;
+
+    while (program->data[p] == ';')
+    {
+        p++;
+        crnt_node->left = GetOp (program);
+        crnt_node = crnt_node->right;
+    }
+
     if (program->data[p] != '$')
     {
         SintaxError (program);
     }
     p++;
+    return node;
+}
+
+node_t* GetOp (tree_t* program)
+{
+    node_t* node = GetA (program);
     return node;
 }
 

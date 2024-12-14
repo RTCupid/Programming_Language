@@ -30,6 +30,10 @@ void WriteBase (tree_t* program, node_t* crnt_node, FILE* file, int level)
             fprintf (file, "\"%c\"", (int)crnt_node->value);
         }
     }
+    else if (crnt_node->type == ST)
+    {
+        fprintf (file, "OP:\"%c\"", (int)crnt_node->value);
+    }
     else if (crnt_node->type == NUM)
     {
         fprintf (file, "NUM:\"%f\"", crnt_node->value);

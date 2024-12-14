@@ -10,11 +10,16 @@
 
 void ProgramGraphviz (tree_t* expr, modelang_t mode)
 {
+    static int numpng = 111;
     if (mode == FRONTEND)
+    {
         fprintf (expr->log_file, "<FONT SIZE=\"6\"><center>Program: Frontend</center><FONT SIZE=\"5\">\n\n");
+    }
     else if (mode == BACKEND)
+    {
         fprintf (expr->log_file, "<FONT SIZE=\"6\"><center>Program: Backend</center><FONT SIZE=\"5\">\n\n");
-
+        numpng = 222;
+    }
     printf (BLU "<%s>\n" RESET, expr->data);
     fprintf (expr->log_file, "<center>\"%s\"</center>\n", expr->data);
 
@@ -22,9 +27,7 @@ void ProgramGraphviz (tree_t* expr, modelang_t mode)
 
     MakeDotFileGraphviz (expr);
 
-    static int numpng = 111;
-
-    char namepng[4] = {};
+    char namepng[5] = {};
     sprintf (namepng, "%d", numpng);
     numpng++;
     char systemCall[100] = {};
@@ -119,11 +122,15 @@ void PrintNodeDot (FILE* dot_file, node_t* node)
     {
         fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#FFC9A5\"; label =  \"%c \" ];\n", node, (int)node->value);
     }
-    if (node->type == NUM)
+    else if (node->type == ST)
+    {
+        fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#0ec17f\"; label =  \"%c \" ];\n", node, (int)node->value);
+    }
+    else if (node->type == NUM)
     {
         fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#C88DC2\"; label =  \"%f \" ];\n", node, node->value);
     }
-    if (node->type == ID)
+    else if (node->type == ID)
     {
         fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#FF898D\"; label =  \"%d \" ];\n", node, (int)node->value);
     }
@@ -131,13 +138,20 @@ void PrintNodeDot (FILE* dot_file, node_t* node)
 
 //-----------------------------------------------DUMP-------------------------------------------------------------
 
-void DiffDump (tree_t* tree)
+void DiffDump (tree_t* tree, modelang_t mode)
 {
-    fprintf (tree->log_file, "<FONT SIZE=\"6\"><center>Dump program:</center><FONT SIZE=\"5\">\n\n");
+    static int numpng = 1111;
+    if (mode == FRONTEND)
+    {
+        fprintf (tree->log_file, "<FONT SIZE=\"6\"><center>Dump program: Frontend</center><FONT SIZE=\"5\">\n\n");
+    }
+    else if (mode == BACKEND)
+    {
+        fprintf (tree->log_file, "<FONT SIZE=\"6\"><center>Dump program: Frontend</center><FONT SIZE=\"5\">\n\n");
+        numpng = 2222;
+    }
 
     MakeDotFileDump (tree);
-
-    static int numpng = 1111;
 
     char namepng[5] = {};
     sprintf (namepng, "%d", numpng);
@@ -204,7 +218,14 @@ void PrintNodeDumpDot (FILE* dot_file, node_t* node, tree_t tree)
             node, node, (int)node->value,  node->left, node->right);
         //fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#aed6dc\"; label =  \"%c \" ];\n", node, node->value);
     }
-    if (node->type == NUM)
+    else if (node->type == ST)
+    {
+        fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\" #0ec17f\"; "
+            "label =  \"{node: %p | value: %c | type: ST | {<left>left: %p | <right>right: %p}  }\" ];\n",
+            node, node, (int)node->value,  node->left, node->right);
+        //fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#aed6dc\"; label =  \"%c \" ];\n", node, node->value);
+    }
+    else if (node->type == NUM)
     {
         fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#C88DC2\"; "
             "label =  \"{node: %p | value: %f | type: NUM | {<left>left: %p | <right>right: %p}  }\" ];\n",
@@ -212,7 +233,7 @@ void PrintNodeDumpDot (FILE* dot_file, node_t* node, tree_t tree)
 
         //fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#ff9a8d\"; label =  \"%d \" ];\n", node, node->value);
     }
-    if (node->type == ID)
+    else if (node->type == ID)
     {
         fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#FF898D\"; "
             "label =  \"{node: %p | nametable_id: %d | {start_pos: %lu | n_symbols: %lu} | type: ID | {<left>left: %p | <right>right: %p}  }\" ];\n",

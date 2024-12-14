@@ -18,7 +18,7 @@ int main ()
 
     ProgramGraphviz (&program, FRONTEND);
 
-    DiffDump (&program);
+    DiffDump (&program, FRONTEND);
 
     FILE* base_file = fopen ("Program_file.txt", "wt");
 

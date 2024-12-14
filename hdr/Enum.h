@@ -5,10 +5,12 @@
         OP,
         NUM,
         ID ,
+        ST,
     };
 
     enum OP_t
     {
+        SMC = ';',
         EQU = '=',
         ADD = '+',
         SUB = '-',

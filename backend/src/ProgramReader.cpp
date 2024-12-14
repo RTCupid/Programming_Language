@@ -64,7 +64,7 @@ node_t* RunProgram (tree_t* program, FILE* base_file)
             }
             default:
             {
-
+                printf (RED "ERROR: in RunProgram unknown type\n" RESET);
                 abort ();
             }
         }
@@ -107,6 +107,8 @@ size_t NodeType (char* buffer)
 {
     if (strncmp (buffer, "ID:", 3) == 0)
         return ID;
+    if (strncmp (buffer, "ST:", 3) == 0)
+        return ST;
     if (strncmp (buffer, "OP:", 3) == 0)
         return OP;
     if (strncmp (buffer, "NUM:", 4) == 0)

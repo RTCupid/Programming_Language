@@ -1,7 +1,10 @@
-{OP:"="
-	{ID:"delicious"}
-	{OP:"+"
-		{ID:"food"}
-		{NUM:"666.000000"}
+{OP:";"
+	{OP:"="
+		{ID:"delicious"}
+		{OP:"+"
+			{ID:"food"}
+			{NUM:"666.000000"}
+		}
 	}
+	{OP:";"}
 }

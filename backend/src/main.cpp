@@ -10,7 +10,7 @@ int main ()
 
     ProgramCtor (&bprogram, BACKEND);
 
-    FILE* file_asm = RecursiveMakeAsm (&bprogram, bprogram.root);
+    //FILE* file_asm = RecursiveMakeAsm (&bprogram, bprogram.root);
 
     ProgramGraphviz (&bprogram, BACKEND);
 

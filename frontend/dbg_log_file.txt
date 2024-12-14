@@ -7,6 +7,9 @@ delicious=food+666$
 sizeOfFile = <21>
 
 start symbol = <{>
+text = <;>
+end symbol = <{>
+start symbol = <{>
 text = <=>
 end symbol = <{>
 start symbol = <{>
@@ -25,4 +28,9 @@ text = <666.000000>
 end symbol = <}>
 return
 end symbol = <}>
+end symbol = <}>
+start symbol = <{>
+text = <;>
+end symbol = <}>
+return
 end symbol = <}>

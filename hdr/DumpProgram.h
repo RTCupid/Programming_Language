@@ -13,7 +13,7 @@
 
     void    PrintNodeDot            (FILE* dot_file, node_t* node);
 
-    void    DiffDump                (tree_t* tree);
+    void    DiffDump                (tree_t* tree, modelang_t mode);
 
     void    MakeDotFileDump         (tree_t* tree);
 

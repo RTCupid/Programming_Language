@@ -59,7 +59,7 @@ node_t* RunProgram (tree_t* program, FILE* base_file)
             }
             case ID:
             {
-                node = NewNode (ID, atoi (buffer + 2), NULL, NULL);
+                node = NewNode (ID, atoi (buffer), NULL, NULL);
                 break;
             }
             default:

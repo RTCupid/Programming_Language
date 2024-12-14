@@ -40,10 +40,7 @@ void WriteBase (tree_t* program, node_t* crnt_node, FILE* file, int level)
     }
     else if (crnt_node->type == ID)
     {
-        char identificator[MAX_LEN_BUF] = {};
-        snprintf (identificator, program->nametable[(int)crnt_node->value].n_symbols + 1,
-                    "%s", program->data + program->nametable[(int)crnt_node->value].start_pos);
-        fprintf (file, "ID:\"%s\"", identificator);
+        fprintf (file, "ID:\"%d\"", (int)crnt_node->value);
     }
 
     if (crnt_node->left)

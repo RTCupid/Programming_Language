@@ -48,19 +48,26 @@ void MakeNameTableHTM (tree_t* expr, modelang_t mode)
 
     fprintf (expr->log_file, "\t\t<tr>\n"
                                 "\t\t\t<th></th>\n"
-                                "\t\t\t<th>Start position</th>\n"
-                                "\t\t\t<th>Number of symbols</th>\n"
-                                "\t\t\t<th>name</th>\n"
-                             "\t\t</tr>\n");
+                                "\t\t\t<th>Start position</th>\n");
+
+    if (mode == FRONTEND)
+    {
+        fprintf (expr->log_file, "\t\t\t<th>Number of symbols</th>\n");
+    }
+    if (mode == BACKEND)
+    {
+        fprintf (expr->log_file, "\t\t\t<th>name</th>\n");
+    }
+    fprintf (expr->log_file, "\t\t</tr>\n");
 
     fprintf (expr->log_file, "</thead>\n");
 
     fprintf (expr->log_file, "<tbody>\n");
 
-    printf (RED "nametable_id = %lu\n" RESET, expr->nametable_id);
+    //printf (RED "nametable_id = %lu\n" RESET, expr->nametable_id);
     for (size_t i = 0; i < expr->nametable_id; i++)
     {
-        printf (RED "i = %lu\n" RESET, i);
+        //printf (RED "i = %lu\n" RESET, i);
         fprintf (expr->log_file, "<tr>\n");
 
         fprintf (expr->log_file, "<td> %lu </td>\n", i);
@@ -74,7 +81,7 @@ void MakeNameTableHTM (tree_t* expr, modelang_t mode)
 
         if (mode == BACKEND)
         {
-            printf (RED "<%s>\n" RESET, expr->nametable[i].name);
+            //printf (RED "<%s>\n" RESET, expr->nametable[i].name);
             fprintf (expr->log_file, "<td> %s </td>\n", expr->nametable[i].name);
         }
 

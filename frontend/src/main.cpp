@@ -22,7 +22,7 @@ int main ()
 
     FILE* base_file = fopen ("Program_file.txt", "wt");
 
-    WriteBase (program.root, base_file, 1);
+    WriteBase (&program, program.root, base_file, 1);
 
     ProgramDtor (&program);
 

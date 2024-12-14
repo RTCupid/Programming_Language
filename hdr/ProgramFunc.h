@@ -35,6 +35,8 @@
 
     const size_t SIZE_NAMETABLE = 100;
 
+    const size_t MAX_LEN_BUF = 20;
+
     /*-ret-------func----------------------arguments-----------------------------------*/
     bool        ProgramCtor     (tree_t* expr, modelang_t mode);
 

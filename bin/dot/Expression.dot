@@ -8,6 +8,6 @@ digraph G {
 	 node0x5030000000d0 [shape=Mrecord; style=filled; color="#FFC9A5"; label =  "+ " ];
 	 node0x5030000000d0 -> node0x503000000100 [ style=bold; weight=1000; ];
 	 node0x5030000000d0 -> node0x503000000130 [ style=bold; weight=1000; ];
-	 node0x503000000100 [shape=Mrecord; style=filled; color="#FF898D"; label =  "1 " ];
+	 node0x503000000100 [shape=Mrecord; style=filled; color="#FF898D"; label =  "0 " ];
 	 node0x503000000130 [shape=Mrecord; style=filled; color="#C88DC2"; label =  "666.000000 " ];
 }

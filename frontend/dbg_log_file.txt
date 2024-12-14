@@ -8,25 +8,20 @@ sizeOfFile = <21>
 
 start symbol = <{>
 text = <=>
-In NodeType value = =
 end symbol = <{>
 start symbol = <{>
-text = <id0>
-In NodeType value = id0
+text = <delicious>
 end symbol = <}>
 return
 start symbol = <{>
 text = <+>
-In NodeType value = +
 end symbol = <{>
 start symbol = <{>
-text = <id1>
-In NodeType value = id1
+text = <food>
 end symbol = <}>
 return
 start symbol = <{>
 text = <666.000000>
-In NodeType value = 666.000000
 end symbol = <}>
 return
 end symbol = <}>

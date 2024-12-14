@@ -38,11 +38,12 @@ node_t* RunProgram (tree_t* program, FILE* base_file)
 
     if (symbol == '{')
     {
+        fscanf (base_file, "%[^\"]", buffer);
+        size_t type = NodeType (buffer);
+
         size_data = 0;
         fscanf (base_file, "\"%[^\"]\"%n", buffer, &size_data);
         fprintf (program->dbg_log_file, "text = <%s>\n", buffer);
-
-        size_t type = NodeType (program, buffer);
 
         switch (type)
         {
@@ -102,15 +103,15 @@ node_t* RunProgram (tree_t* program, FILE* base_file)
 
 
 
-size_t NodeType (tree_t* expr, char* value)
+size_t NodeType (char* buffer)
 {
-    fprintf (expr->dbg_log_file, "In NodeType value = %s\n", value);
-    if (strncmp (value, "id", 2) == 0)
+    if (strncmp (buffer, "ID:", 3) == 0)
         return ID;
-    if (value[0] == EQU || value[0] == ADD || value[0] == SUB || value[0] == MUL || //TODO: may be other method of find type
-        value[0] == DIV || value[0] == DEG || value[0] == SIN || value[0] == COS ||
-        value[0] == LN)
+    if (strncmp (buffer, "OP:", 3) == 0)
         return OP;
-    else
+    if (strncmp (buffer, "NUM:", 4) == 0)
         return NUM;
+    /*-else-*/
+    printf (RED "ERROR: unknown type <%s>\n" RESET, buffer);
+    abort ();
 }

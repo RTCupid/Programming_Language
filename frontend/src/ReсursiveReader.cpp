@@ -162,7 +162,7 @@ node_t* GetId (tree_t* program)
     printf (MAG "is alpha\n" RESET);
 
     size_t n_symbols = 0;
-    size_t start_pos = p;
+    char* start_pos = &program->data[p];
 
     while (isalpha (program->data[p]))
     {
@@ -171,7 +171,7 @@ node_t* GetId (tree_t* program)
         p++;
     }
 
-    fprintf (program->dbg_log_file, "nt_id = %lu, start_pos = %lu, n_symbols = %lu\n", program->nametable_id, start_pos, n_symbols);
+    fprintf (program->dbg_log_file, "nt_id = %lu, start_pos = %p, n_symbols = %lu\n", program->nametable_id, start_pos, n_symbols);
 
     program->nametable[program->nametable_id].n_symbols = n_symbols;
     program->nametable[program->nametable_id].start_pos = start_pos;

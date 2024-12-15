@@ -11,7 +11,7 @@
 
     typedef struct identificator_t
     {
-        size_t start_pos;
+        char* start_pos;
         size_t n_symbols;
         char* name;
     } identificator_t;
@@ -37,6 +37,8 @@
     const size_t SIZE_NAMETABLE = 100;
 
     const size_t MAX_LEN_BUF = 20;
+
+    const size_t SIZE_SIGNATURE = 20;
 
     /*-ret-------func----------------------arguments-----------------------------------*/
     bool        ProgramCtor     (tree_t* expr, modelang_t mode);

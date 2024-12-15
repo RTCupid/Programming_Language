@@ -20,8 +20,8 @@ run: ./bin/front.exe ./bin/back.exe
 	./processor/Asm.exe Asm_file.txt
 	./processor/Run.exe Programm_code.txt
 
-./bin/front.exe: ./bin/ReсursiveReader.o ./bin/DumpProgram.o ./bin/WriteProgramFile.o ./bin/ProgramFunc.o ./bin/ProgramReader.o ./bin/fmain.o
-	$(CC) ./bin/ReсursiveReader.o ./bin/DumpProgram.o ./bin/WriteProgramFile.o ./bin/ProgramFunc.o ./bin/ProgramReader.o ./bin/fmain.o -o ./bin/front.exe $(FLAGS)
+./bin/front.exe: ./bin/ReсursiveReader.o ./bin/Tokenizer.o ./bin/DumpProgram.o ./bin/WriteProgramFile.o ./bin/ProgramFunc.o ./bin/ProgramReader.o ./bin/fmain.o
+	$(CC) ./bin/ReсursiveReader.o ./bin/Tokenizer.o ./bin/DumpProgram.o ./bin/WriteProgramFile.o ./bin/ProgramFunc.o ./bin/ProgramReader.o ./bin/fmain.o -o ./bin/front.exe $(FLAGS)
 
 ./bin/back.exe: ./bin/ProgramReader.o ./bin/DumpProgram.o ./bin/MakeCodeAsm.o ./bin/bmain.o ./bin/ProgramFunc.o ./bin/ReсursiveReader.o
 	$(CC) ./bin/ProgramReader.o ./bin/DumpProgram.o ./bin/MakeCodeAsm.o ./bin/ProgramFunc.o ./bin/ReсursiveReader.o ./bin/bmain.o -o ./bin/back.exe $(FLAGS)
@@ -31,6 +31,9 @@ run: ./bin/front.exe ./bin/back.exe
 
 ./bin/ReсursiveReader.o: frontend/src/ReсursiveReader.cpp frontend/hdr/RecursiveReader.h hdr/DSL.h hdr/ProgramFunc.h hdr/Enum.h
 	$(CC) -c ./frontend/src/ReсursiveReader.cpp -o ./bin/ReсursiveReader.o $(FLAGS)
+
+./bin/Tokenizer.o: frontend/src/Tokenizer.cpp frontend/hdr/Tokenizer.h hdr/Enum.h
+	$(CC) -c ./frontend/src/Tokenizer.cpp -o ./bin/Tokenizer.o $(FLAGS)
 
 ./bin/WriteProgramFile.o: frontend/src/WriteProgramFile.cpp frontend/hdr/WriteProgramFile.h
 	$(CC) -c ./frontend/src/WriteProgramFile.cpp -o ./bin/WriteProgramFile.o $(FLAGS)

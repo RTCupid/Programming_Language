@@ -26,10 +26,10 @@ node_t* MakeProgram (tree_t* program, const char* namefile)
         fscanf (base_file, "%lu %s", &addr_RAM, name);
 
         printf ("%lu %s\n", addr_RAM, name);
-        program->nametable[i].start_pos = addr_RAM;
+        //program->nametable[i].start_pos = addr_RAM;
         program->nametable[i].name      = name;
 
-        printf ("%lu %s\n", program->nametable[i].start_pos,
+        printf ("%p %s\n", program->nametable[i].start_pos,
                             program->nametable[i].name);
     }
 

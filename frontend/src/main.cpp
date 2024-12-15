@@ -2,6 +2,7 @@
 
 #include "../../hdr/ProgramFunc.h"
 #include "../../hdr/DumpProgram.h"
+#include "../../hdr/Enum.h"
 #include "../hdr/WriteProgramFile.h"
 #include "../../hdr/DSL.h"
 #include "../../hdr/colors.h"

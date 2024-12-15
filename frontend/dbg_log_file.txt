@@ -6,63 +6,65 @@ delicious=food*666;ded=333;tyoma=166$
 
 sizeOfFile = <39>
 
-start symbol = <{>
-text = <;>
-end symbol = <{>
-start symbol = <{>
-text = <=>
-end symbol = <{>
-start symbol = <{>
-text = <0>
-end symbol = <}>
-return
-start symbol = <{>
-text = <*>
-end symbol = <{>
-start symbol = <{>
-text = <1>
-end symbol = <}>
-return
-start symbol = <{>
-text = <666.000000>
-end symbol = <}>
-return
-end symbol = <}>
-end symbol = <}>
-start symbol = <{>
-text = <;>
-end symbol = <{>
-start symbol = <{>
-text = <=>
-end symbol = <{>
-start symbol = <{>
-text = <2>
-end symbol = <}>
-return
-start symbol = <{>
-text = <333.000000>
-end symbol = <}>
-return
-end symbol = <}>
-start symbol = <{>
-text = <;>
-end symbol = <{>
-start symbol = <{>
-text = <=>
-end symbol = <{>
-start symbol = <{>
-text = <3>
-end symbol = <}>
-return
-start symbol = <{>
-text = <166.000000>
-end symbol = <}>
-return
-end symbol = <}>
-start symbol = <{>
-text = <;>
-end symbol = <}>
-return
-end symbol = <}>
-end symbol = <}>
-end symbol = <}>
+p = 0, alpha = <d>
+p = 1, alpha = <e>
+p = 2, alpha = <l>
+p = 3, alpha = <i>
+p = 4, alpha = <c>
+p = 5, alpha = <i>
+p = 6, alpha = <o>
+p = 7, alpha = <u>
+p = 8, alpha = <s>
+nt_id = 0, start_pos = 0x504000000010, n_symbols = 9
+p = 10, alpha = <f>
+p = 11, alpha = <o>
+p = 12, alpha = <o>
+p = 13, alpha = <d>
+nt_id = 1, start_pos = 0x50400000001a, n_symbols = 4
+p = 19, alpha = <d>
+p = 20, alpha = <e>
+p = 21, alpha = <d>
+nt_id = 2, start_pos = 0x504000000023, n_symbols = 3
+p = 27, alpha = <t>
+p = 28, alpha = <y>
+p = 29, alpha = <o>
+p = 30, alpha = <m>
+p = 31, alpha = <a>
+nt_id = 3, start_pos = 0x50400000002b, n_symbols = 5
+
+Start Tokenizer:
+
+name of key   0 = <p>
+name sinonim  0 = <'+'>
+number of key 0 = <1>
+
+name of key   1 = <i>
+name sinonim  1 = <'-'>
+number of key 1 = <2>
+
+name of key   2 = <n>
+name sinonim  2 = <'*'>
+number of key 2 = <3>
+
+name of key   3 = <g>
+name sinonim  3 = <'/'>
+number of key 3 = <4>
+
+name of key   4 = <ping>
+name sinonim  4 = <'='>
+number of key 4 = <5>
+
+name of key   5 = <pong>
+name sinonim  5 = <'if'>
+number of key 5 = <6>
+
+----------------------------------------------------------------
+Dump Keywords:
+p                    '+'                  1
+i                    '-'                  2
+n                    '*'                  3
+g                    '/'                  4
+ping                 '='                  5
+pong                 'if'                 6
+
+---------------------------------------------

@@ -5,7 +5,9 @@
 
     const size_t N_TOKENS = 100;
 
-    const char* KEY_WORDS = "KeyWords.txt";
+    const size_t N_KEYWORDS = 6;
+
+    const char* MY_KEY_WORDS_FILE = "KeyWords.txt";
 
     typedef struct
     {
@@ -15,10 +17,16 @@
 
     typedef struct
     {
-        size_t number_key;
+        int number_key;
+        char*  sinonim;
         char*  name_key;
     } keyword_t;
 
-    token_t* Tokenizer (tree_t* program);
+/*---------------------------------------------------------------------------------------*/
 
+    token_t*    Tokenizer     (tree_t* program);
+
+    keyword_t*  InputKeyWords (tree_t* program, const char* keywords_file);
+
+    void        KeyWordsDump (tree_t* program, keyword_t* keywords);
 #endif

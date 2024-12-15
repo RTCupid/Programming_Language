@@ -41,7 +41,7 @@ run: ./bin/front.exe ./bin/back.exe
 ./bin/fmain.o: frontend/src/main.cpp  frontend/hdr/WriteProgramFile.h hdr/DumpProgram.h hdr/Enum.h hdr/ProgramFunc.h
 	$(CC) -c ./frontend/src/main.cpp -o ./bin/fmain.o $(FLAGS)
 
-./bin/ProgramFunc.o: src/ProgramFunc.cpp hdr/Enum.h hdr/ProgramFunc.h frontend/hdr/RecursiveReader.h backend/hdr/ProgramReader.h
+./bin/ProgramFunc.o: src/ProgramFunc.cpp hdr/Enum.h hdr/ProgramFunc.h frontend/hdr/RecursiveReader.h frontend/hdr/Tokenizer.h backend/hdr/ProgramReader.h
 	$(CC) -c ./src/ProgramFunc.cpp -o ./bin/ProgramFunc.o $(FLAGS)
 
 ./bin/MakeCodeAsm.o: backend/src/MakeCodeAsm.cpp backend/hdr/MakeCodeAsm.h hdr/ProgramFunc.h hdr/Enum.h hdr/colors.h

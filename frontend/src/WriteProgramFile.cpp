@@ -12,7 +12,7 @@ void WriteNameTable (tree_t* program, FILE* file)
     for (size_t i = 0; i < program->nametable_id; i++)
     {
         char identificator[MAX_LEN_BUF] = {};
-        snprintf (identificator, program->nametable[i].n_symbols + 1, "%s", program->data + program->nametable[i].start_pos);
+        snprintf (identificator, program->nametable[i].n_symbols + 1, "%s", program->nametable[i].start_pos);
         fprintf (file, "%lu %s\n", i, identificator);
     }
 }

@@ -13,6 +13,7 @@
 #include "../hdr/Enum.h"
 #include "../hdr/ProgramFunc.h"
 #include "../frontend/hdr/RecursiveReader.h"
+#include "../frontend/hdr/Tokenizer.h"
 #include "../backend/hdr/ProgramReader.h"
 #include "../hdr/colors.h"
 
@@ -52,6 +53,8 @@ bool ProgramCtor (tree_t* program, modelang_t mode)
     {
         program->log_file = fopen ("./bin/png/front_log_file.htm", "wt");
         VerifyOpenFile (program->log_file, "ProgramCtor");
+
+        Tokenizer (program);
 
         program->root = GetG (program);
     }

@@ -72,7 +72,7 @@ void MakeNameTableHTM (tree_t* expr, modelang_t mode)
 
         fprintf (expr->log_file, "<td> %lu </td>\n", i);
 
-        fprintf (expr->log_file, "<td> %lu </td>\n", expr->nametable[i].start_pos);
+        fprintf (expr->log_file, "<td> %p </td>\n", expr->nametable[i].start_pos);
 
         if (mode == FRONTEND)
         {
@@ -255,7 +255,7 @@ void PrintNodeDumpDot (FILE* dot_file, node_t* node, tree_t tree)
     else if (node->type == ID)
     {
         fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#FF898D\"; "
-            "label =  \"{node: %p | nametable_id: %d | {start_pos: %lu | n_symbols: %lu} | type: ID | {<left>left: %p | <right>right: %p}  }\" ];\n",
+            "label =  \"{node: %p | nametable_id: %d | {start_pos: %p | n_symbols: %lu} | type: ID | {<left>left: %p | <right>right: %p}  }\" ];\n",
             node, node, (int)node->value, tree.nametable[(int)node->value].start_pos, tree.nametable[(int)node->value].n_symbols, node->left, node->right);
 
         //fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#4a536b\"; label =  \"%c \" ];\n", node, node->value);

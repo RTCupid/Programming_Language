@@ -27,7 +27,7 @@ token_t* Tokenizer (tree_t* program)
     double number = 0;
     while (program->data[p]!='$') //TODO: OP to tokens, or change all operators to keywords
     {
-        //SkipSpaces (program, &p);
+        /*SkipSpaces (program, &p);*/
 
         if (isdigit (program->data[p]))
         {

@@ -54,7 +54,7 @@ bool ProgramCtor (tree_t* program, modelang_t mode)
         program->log_file = fopen ("./bin/png/front_log_file.htm", "wt");
         VerifyOpenFile (program->log_file, "ProgramCtor");
 
-        Tokenizer (program);
+        program->tokens = Tokenizer (program);
 
         program->root = GetG (program);
     }
@@ -83,10 +83,15 @@ void ProgramDtor (tree_t* program)
     free (program->data);
     program->data = NULL;
 
+    free (program->tokens);
+    program->tokens = NULL;
+
     ClearNameTable (program);
 
     free (program->nametable);
     program->nametable = NULL;
+
+    free (program->tokens);
 
     program->crnt_node = NULL;
 }

@@ -16,12 +16,15 @@
         char* name;
     } identificator_t;
 
+    struct token_t;
+
     typedef struct tree_t
     {
         node_t* root;
         node_t* crnt_node;
         identificator_t* nametable;
         size_t nametable_id;
+        token_t* tokens;
         char* data;
         int size_data;
         FILE* log_file;

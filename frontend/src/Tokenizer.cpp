@@ -27,6 +27,8 @@ token_t* Tokenizer (tree_t* program)
     double number = 0;
     while (program->data[p]!='$') //TODO: OP to tokens, or change all operators to keywords
     {
+        //SkipSpaces (program, &p);
+
         if (isdigit (program->data[p]))
         {
             fprintf (program->dbg_log_file, "first symbol = '%c' is number\n", program->data[p]);
@@ -75,6 +77,9 @@ token_t* Tokenizer (tree_t* program)
                 program->nametable_id++;
                 token_id++;
             }
+
+            free (buffer);
+            buffer = NULL;
         }
         else
         {
@@ -85,11 +90,18 @@ token_t* Tokenizer (tree_t* program)
     TokenizerDump (program, tokens, keywords);
     fprintf (program->dbg_log_file, "Tokenizer completed!\n\n");
 
-    free (keywords);
-    keywords = NULL;
+    ClearKeywords (keywords);
 
     return tokens;
 }
+
+// void SkipSpaces (tree_t* program, size_t* p)
+// {
+//     while (1)
+//     {
+//
+//     }
+// }
 
 char* ReadToken (tree_t* program, types_t mode, size_t* p, int* n_print_symbols)
 {
@@ -239,4 +251,18 @@ void KeyWordsDump (tree_t* program, keyword_t* keywords)
     }
     fprintf (program->dbg_log_file, "\n----------------------------------------------------------------\n");
     fprintf (program->dbg_log_file, "End Dump!\n\n");
+}
+
+void ClearKeywords (keyword_t* keywords)
+{
+    for (size_t i = 0; i < N_KEYWORDS; i++)
+    {
+        free (keywords[i].name_key);
+        keywords[i].name_key = NULL;
+
+        free (keywords[i].sinonim);
+        keywords[i].sinonim = NULL;
+    }
+    free (keywords);
+    keywords = NULL;
 }

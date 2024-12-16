@@ -26,9 +26,13 @@
 
     token_t*    Tokenizer       (tree_t* program);
 
+    void        TokenizerDump   (tree_t* program, token_t* tokens, keyword_t* keywords);
+
+    void        PrintType       (tree_t* program, token_t token);
+
     keyword_t*  InputKeyWords   (tree_t* program, const char* keywords_file);
 
     void        KeyWordsDump    (tree_t* program, keyword_t* keywords);
 
-    char*       ReadToken       (types_t mode);
+    char*       ReadToken       (tree_t* program, types_t mode, size_t* p, int* n_symbols_buffer);
 #endif

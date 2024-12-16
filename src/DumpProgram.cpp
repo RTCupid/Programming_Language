@@ -254,6 +254,7 @@ void PrintNodeDumpDot (FILE* dot_file, node_t* node, tree_t tree)
     }
     else if (node->type == ID)
     {
+        //printf (RED "node->value = <%f>\n" RESET, node->value);
         fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#FF898D\"; "
             "label =  \"{node: %p | nametable_id: %d | {start_pos: %p | n_symbols: %lu} | type: ID | {<left>left: %p | <right>right: %p}  }\" ];\n",
             node, node, (int)node->value, tree.nametable[(int)node->value].start_pos, tree.nametable[(int)node->value].n_symbols, node->left, node->right);

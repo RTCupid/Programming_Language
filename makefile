@@ -14,7 +14,7 @@ FLAGS = -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ \
 	nonnull-attribute,null,object-size,return,returns-nonnull-attribute,shift,$\
 	signed-integer-overflow,undefined,unreachable,vla-bound,vptr
 
-run: ./bin/front.exe ./bin/back.exe
+run: ./bin/front.exe ./bin/back.exe ./processor/Asm.exe ./processor/Run.exe
 	./bin/front.exe
 	./bin/back.exe
 	./processor/Asm.exe Asm_file.txt
@@ -23,8 +23,8 @@ run: ./bin/front.exe ./bin/back.exe
 ./bin/front.exe: ./bin/ReсursiveReader.o ./bin/Tokenizer.o ./bin/DumpProgram.o ./bin/WriteProgramFile.o ./bin/ProgramFunc.o ./bin/ProgramReader.o ./bin/fmain.o
 	$(CC) ./bin/ReсursiveReader.o ./bin/Tokenizer.o ./bin/DumpProgram.o ./bin/WriteProgramFile.o ./bin/ProgramFunc.o ./bin/ProgramReader.o ./bin/fmain.o -o ./bin/front.exe $(FLAGS)
 
-./bin/back.exe: ./bin/ProgramReader.o ./bin/DumpProgram.o ./bin/MakeCodeAsm.o ./bin/bmain.o ./bin/ProgramFunc.o ./bin/ReсursiveReader.o
-	$(CC) ./bin/ProgramReader.o ./bin/DumpProgram.o ./bin/MakeCodeAsm.o ./bin/ProgramFunc.o ./bin/ReсursiveReader.o ./bin/bmain.o -o ./bin/back.exe $(FLAGS)
+./bin/back.exe: ./bin/ProgramReader.o ./bin/Tokenizer.o ./bin/DumpProgram.o ./bin/MakeCodeAsm.o ./bin/bmain.o ./bin/ProgramFunc.o ./bin/ReсursiveReader.o
+	$(CC) ./bin/ProgramReader.o ./bin/Tokenizer.o ./bin/DumpProgram.o ./bin/MakeCodeAsm.o ./bin/ProgramFunc.o ./bin/ReсursiveReader.o ./bin/bmain.o -o ./bin/back.exe $(FLAGS)
 
 ./bin/DumpProgram.o: src/DumpProgram.cpp hdr/DumpProgram.h
 	$(CC) -c ./src/DumpProgram.cpp -o ./bin/DumpProgram.o $(FLAGS)

@@ -6,6 +6,8 @@
 #include "../../hdr/ProgramFunc.h"
 #include "../hdr/Tokenizer.h"
 
+const char* MY_KEY_WORDS_FILE = "KeyWords.txt";
+
 token_t* Tokenizer (tree_t* program)
 {
     fprintf (program->dbg_log_file, "\nStart Tokenizer:\n");
@@ -19,7 +21,7 @@ token_t* Tokenizer (tree_t* program)
 
     KeyWordsDump (program, keywords);
 
-    char buffer[MAX_LEN_BUF] = {};
+    char* buffer = NULL;
     char* endptr = NULL;
 
     double number = 0;
@@ -27,14 +29,16 @@ token_t* Tokenizer (tree_t* program)
     {
         if (isdigit (program->data[p]))
         {
-            fprintf (program->dbg_log_file, "first symbol = '%d' is number\n", program->data[p]);
+            fprintf (program->dbg_log_file, "first symbol = '%c' is number\n", program->data[p]);
 
-            while (isdigit (program->data[p]))
-            {
-                sprintf (buffer, "%d", program->data[p]);
-                p++;
-            }
+            buffer = ReadToken (NUM, &p);
+
             number = strtod (buffer, &endptr);
+
+            free (buffer);
+            buffer = NULL;
+
+            fprintf (program->dbg_log_file, "number is <%f>\n\n", number);
 
             tokens[token_id].type  = NUM;
             tokens[token_id].value = number;
@@ -43,26 +47,57 @@ token_t* Tokenizer (tree_t* program)
         else if (isalpha (program->data[p]))
         {
             fprintf (program->dbg_log_file, "first symbol = '%c' is alpha\n", program->data[p]);
+            char* start_pos = &program->data[p];
 
-            while (isalpha (program->data[p]))
-            {
-                sprintf (buffer, "%c", program->data[p]);
-                p++;
-            }
+            buffer = ReadToken (ID, &p);
+
+            fprintf (program->dbg_log_file, "name = <%s>\n\n", buffer);
+
             size_t number_key = 0;//IsKeyWord (buffer));
             if (number_key)
             {
                 tokens[token_id].type  = OP;
                 tokens[token_id].value = (double)number_key;
+                token_id++;
             }
             else
             {
-                program->nametable[program->nametable_id];
+                program->nametable[program->nametable_id].start_pos = start_pos;
+                program->nametable[program->nametable_id].n_symbols =
             }
         }
+        else
+        {
+            p++;
+        }
     }
-    fprintf (program->dbg_log_file, "Tokenizer completed!\n");
+    fprintf (program->dbg_log_file, "Tokenizer completed!\n\n");
     return tokens;
+}
+
+char* ReadToken (types_t mode, size_t* p)
+{
+    if (mode == NUM)
+    {
+        int n_print_symbols = 0;
+        while (isdigit (program->data[p]))
+        {
+            int offset = sprintf (buffer + n_print_symbols, "%c", program->data[p]);
+            n_print_symbols += offset;
+            *p++;
+        }
+    }
+    if (mode == ID)
+    {
+        int n_print_symbols = 0;
+        while (isalpha (program->data[p]))
+        {
+            int offset = sprintf (buffer + n_print_symbols, "%c", program->data[p]);
+            n_print_symbols += offset;
+            *p++;
+        }
+    }
+    return buffer
 }
 
 keyword_t* InputKeyWords (tree_t* program, const char* keywords_file)
@@ -110,5 +145,5 @@ void KeyWordsDump (tree_t* program, keyword_t* keywords)
         fprintf (program->dbg_log_file, "%-*s %-*s %d\n", (int)MAX_LEN_BUF, keywords[i].name_key, (int)MAX_LEN_BUF, keywords[i].sinonim, keywords[i].number_key);
     }
     fprintf (program->dbg_log_file, "\n----------------------------------------------------------------\n");
-    fprintf (program->dbg_log_file, "End Dump!\n");
+    fprintf (program->dbg_log_file, "End Dump!\n\n");
 }

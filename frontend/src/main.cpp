@@ -11,6 +11,11 @@ int main ()
 {
     printf (MAG "Start program\n" RESET);
 
+    printf (RED "'*' = %d\n"
+                "'=' = %d\n"
+                "';' = %d\n"
+                "'%c' = 54\n" RESET, '*', '=', ';', 54);
+
     tree_t program = {};
 
     ProgramCtor (&program, FRONTEND);

@@ -7,7 +7,7 @@
 
     const size_t N_KEYWORDS = 6;
 
-    const char* MY_KEY_WORDS_FILE = "KeyWords.txt";
+    extern const char* MY_KEY_WORDS_FILE;
 
     typedef struct
     {
@@ -24,9 +24,11 @@
 
 /*---------------------------------------------------------------------------------------*/
 
-    token_t*    Tokenizer     (tree_t* program);
+    token_t*    Tokenizer       (tree_t* program);
 
-    keyword_t*  InputKeyWords (tree_t* program, const char* keywords_file);
+    keyword_t*  InputKeyWords   (tree_t* program, const char* keywords_file);
 
-    void        KeyWordsDump (tree_t* program, keyword_t* keywords);
+    void        KeyWordsDump    (tree_t* program, keyword_t* keywords);
+
+    char*       ReadToken       (types_t mode);
 #endif

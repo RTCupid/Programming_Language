@@ -1,9 +1,9 @@
 #ifndef DIFFDUMP_H
-    #define DIFFDUMP_H
+#define DIFFDUMP_H
 
 //--ret-value---function-------------argument------------------------------------------------------
 
-    void    ProgramGraphviz         (tree_t* expr, modelang_t mode);
+   void    ProgramGraphviz         (tree_t* expr, modelang_t mode);
 
     void    MakeNameTableHTM        (tree_t* expr, modelang_t mode);
 

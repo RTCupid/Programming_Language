@@ -14,7 +14,10 @@ FLAGS = -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ \
 	nonnull-attribute,null,object-size,return,returns-nonnull-attribute,shift,$\
 	signed-integer-overflow,undefined,unreachable,vla-bound,vptr
 
-run: ./bin/front.exe ./bin/back.exe ./processor/Asm.exe ./processor/Run.exe
+OBJ_DIR=./build/obj
+BIN_DIR=./bin
+
+run: ${BIN_DIR}/front.exe ./bin/back.exe ./processor/Asm.exe ./processor/Run.exe
 	./bin/front.exe
 	./bin/back.exe
 	./processor/Asm.exe Asm_file.txt

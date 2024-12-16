@@ -15,14 +15,22 @@
 #include "../../hdr/colors.h"
 #include "../hdr/RecursiveReader.h"
 
-
+bool status = true;
+//+ - 1+ times
 /*
+Main:
 { G  ::= {St ';'}+ '&'
 { St ::= A | ... // пока только присваивание
+Everything
 { A  ::= Id '=' E
+if
+while
+Equation
 { E  ::= T {['+' '-'] T}*
 { T  ::= P {['*' '/'] P}*
 { P  ::= '(' E ')' | N | Id
+> <
+TOkens:
 { N  ::= ['0'-'9']+
 { Id ::= ['a'-'z']+
 */
@@ -196,6 +204,7 @@ node_t* GetN (tree_t* program)
 void SintaxError (tree_t* program)
 {
     fprintf (program->dbg_log_file, "SYNTAX ERROR: %c\n", program->data[p]);
+    fprintf (stderr, "SYNTAX ERROR: %c\n", program->data[p]);
     abort ();
 }
 

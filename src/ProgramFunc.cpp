@@ -38,6 +38,7 @@ node_t* NewNode (size_t type, double value, node_t* left, node_t* right)
     return node;
 }
 
+//TODO: One func for rec descent & Program Ctor & Tree Ctor
 bool ProgramCtor (tree_t* program, modelang_t mode)
 {
     program->dbg_log_file = fopen ("frontend/dbg_log_file.txt", "wt");
@@ -58,6 +59,7 @@ bool ProgramCtor (tree_t* program, modelang_t mode)
 
         program->root = GetG (program);
     }
+
     else if (mode == BACKEND)
     {
         program->log_file = fopen ("./bin/png/back_log_file.htm", "wt");

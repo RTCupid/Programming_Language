@@ -41,19 +41,20 @@ node_t* NewNode (size_t type, double value, node_t* left, node_t* right)
 //TD: One func for rec descent & Program Ctor & Tree Ctor
 bool ProgramCtor (tree_t* program, modelang_t mode)
 {
-    program->dbg_log_file = fopen ("frontend/dbg_log_file.txt", "wt");
-    VerifyOpenFile (program->dbg_log_file, "ProgramCtor");
-
     if (mode == FRONTEND)
     {
         program->log_file = fopen ("./bin/png/front_log_file.htm", "wt");
         VerifyOpenFile (program->log_file, "ProgramCtor");
+        program->dbg_log_file = fopen ("frontend/dbg_log_file.txt", "wt");
+        VerifyOpenFile (program->dbg_log_file, "ProgramCtor");
 
         InputProgram (program);
         printf (BLU "program->data = <%s>\n" RESET, program->data);
     }
     else if (mode == BACKEND)
     {
+        program->dbg_log_file = fopen ("backend/dbg_log_file.txt", "wt");
+        VerifyOpenFile (program->dbg_log_file, "ProgramCtor");
         program->log_file = fopen ("./bin/png/back_log_file.htm", "wt");
         VerifyOpenFile (program->log_file, "ProgramCtor");
     }
@@ -105,6 +106,8 @@ void ProgramDtor (tree_t* program)
     program->nametable = NULL;
 
     free (program->tokens);
+
+    ClearKeywords (program->keywords);
 
     program->crnt_node = NULL;
 }

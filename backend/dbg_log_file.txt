@@ -1,0 +1,60 @@
+start symbol = <{>
+text = <;>
+end symbol = <{>
+start symbol = <{>
+text = <=>
+end symbol = <{>
+start symbol = <{>
+text = <4>
+end symbol = <}>
+return
+start symbol = <{>
+text = <*>
+end symbol = <{>
+start symbol = <{>
+text = <5>
+end symbol = <}>
+return
+start symbol = <{>
+text = <666>
+end symbol = <}>
+return
+end symbol = <}>
+end symbol = <}>
+start symbol = <{>
+text = <;>
+end symbol = <{>
+start symbol = <{>
+text = <=>
+end symbol = <{>
+start symbol = <{>
+text = <6>
+end symbol = <}>
+return
+start symbol = <{>
+text = <333>
+end symbol = <}>
+return
+end symbol = <}>
+start symbol = <{>
+text = <;>
+end symbol = <{>
+start symbol = <{>
+text = <=>
+end symbol = <{>
+start symbol = <{>
+text = <7>
+end symbol = <}>
+return
+start symbol = <{>
+text = <166>
+end symbol = <}>
+return
+end symbol = <}>
+start symbol = <{>
+text = <;>
+end symbol = <}>
+return
+end symbol = <}>
+end symbol = <}>
+end symbol = <}>

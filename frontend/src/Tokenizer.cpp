@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <string.h>
 
 #include "../../hdr/Enum.h"
 #include "../../hdr/colors.h"
@@ -18,9 +19,9 @@ token_t* Tokenizer (tree_t* program)
 
     token_t*   tokens   = (token_t*)   calloc (N_TOKENS, sizeof (*tokens));
 
-    keyword_t* keywords = InputKeyWords (program, MY_KEY_WORDS_FILE);
+    program->keywords = InputKeyWords (program, MY_KEY_WORDS_FILE);
 
-    KeyWordsDump (program, keywords);
+    KeyWordsDump (program, program->keywords);
 
     char* buffer = NULL;
     char* endptr = NULL;
@@ -63,7 +64,7 @@ token_t* Tokenizer (tree_t* program)
 
             fprintf (program->dbg_log_file, "name = <%s>\n\n", buffer);
 
-            size_t number_key = 0;//IsKeyWord (buffer));
+            size_t number_key = IsKeyWord (program, buffer, program->keywords);
             if (number_key)
             {
                 tokens[token_id].type  = OP;
@@ -92,12 +93,40 @@ token_t* Tokenizer (tree_t* program)
         SkipSpaces (program, &p);
     }
 
-    TokenizerDump (program, tokens, keywords);
+    TokenizerDump (program, tokens, program->keywords);
     fprintf (program->dbg_log_file, "Tokenizer completed!\n\n");
 
-    ClearKeywords (keywords);
-
     return tokens;
+}
+
+bool IsOp (tree_t* program, size_t p)
+{
+    if (program->data[p] == '=' || program->data[p] == '*' || program->data[p] == '/' ||
+        program->data[p] == '+' || program->data[p] == '-'   )
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+size_t IsKeyWord (tree_t* program, char* buffer, keyword_t* keywords)
+{
+    size_t number_key = 0;
+
+    for (size_t i = 0; i < N_KEYWORDS; i++)
+    {
+        if (strcmp (buffer, keywords[i].name_key) == 0)
+        {
+            number_key = (size_t)keywords[i].number_key;
+            fprintf (program->dbg_log_file, "<%s> is keyword\n\n", buffer);
+            break;
+        }
+    }
+
+    return number_key;
 }
 
 void SkipSpaces (tree_t* program, size_t* p)

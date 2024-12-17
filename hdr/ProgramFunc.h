@@ -18,6 +18,8 @@ typedef struct identificator_t
 
 struct token_t;
 
+struct keyword_t;
+
 typedef struct tree_t
 {
     node_t* root;
@@ -25,6 +27,7 @@ typedef struct tree_t
     identificator_t* nametable;
     size_t nametable_id;
     token_t* tokens;
+    keyword_t* keywords;
     char* data;
     int size_data;
     FILE* log_file;

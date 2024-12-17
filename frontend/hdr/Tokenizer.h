@@ -15,7 +15,7 @@ typedef struct token_t
     double  value;
 } token_t;
 
-typedef struct
+typedef struct keyword_t
 {
     int number_key;
     char*  sinonim;
@@ -31,6 +31,10 @@ void        TokenizerDump   (tree_t* program, token_t* tokens, keyword_t* keywor
 void        PrintType       (tree_t* program, token_t token);
 
 keyword_t*  InputKeyWords   (tree_t* program, const char* keywords_file);
+
+size_t      IsKeyWord       (tree_t* program, char* buffer, keyword_t* keywords);
+
+bool        IsOp            (tree_t* program, size_t p);
 
 void        KeyWordsDump    (tree_t* program, keyword_t* keywords);
 

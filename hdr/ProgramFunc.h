@@ -46,6 +46,8 @@ const size_t SIZE_SIGNATURE = 20;
 /*-ret-------func----------------------arguments-----------------------------------*/
 bool        ProgramCtor     (tree_t* expr, modelang_t mode);
 
+bool        TreeCtor        (tree_t* program, modelang_t mode);
+
 void        ProgramDtor     (tree_t* expr);
 
 node_t*     NewNode         (size_t type, double value, node_t* left, node_t* right);

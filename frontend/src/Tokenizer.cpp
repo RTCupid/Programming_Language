@@ -3,6 +3,7 @@
 #include <ctype.h>
 
 #include "../../hdr/Enum.h"
+#include "../../hdr/colors.h"
 #include "../../hdr/ProgramFunc.h"
 #include "../hdr/Tokenizer.h"
 
@@ -25,6 +26,9 @@ token_t* Tokenizer (tree_t* program)
     char* endptr = NULL;
 
     double number = 0;
+
+    //printf (RED "program->data in Tokenizer = <%p>\n" RESET, program->data);
+
     while (program->data[p]!='$') //TODO: OP to tokens, or change all operators to keywords
     {
         SkipSpaces (program, &p);

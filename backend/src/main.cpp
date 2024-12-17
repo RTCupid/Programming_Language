@@ -11,6 +11,8 @@ int main ()
 
     ProgramCtor (&bprogram, BACKEND);
 
+    TreeCtor (&bprogram, BACKEND);
+
     MakeAsmCode (&bprogram);
 
     ProgramGraphviz (&bprogram, BACKEND);

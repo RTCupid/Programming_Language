@@ -38,33 +38,44 @@ node_t* NewNode (size_t type, double value, node_t* left, node_t* right)
     return node;
 }
 
-//TODO: One func for rec descent & Program Ctor & Tree Ctor
+//TD: One func for rec descent & Program Ctor & Tree Ctor
 bool ProgramCtor (tree_t* program, modelang_t mode)
 {
     program->dbg_log_file = fopen ("frontend/dbg_log_file.txt", "wt");
     VerifyOpenFile (program->dbg_log_file, "ProgramCtor");
 
-    program->crnt_node = NULL;
-
-    program->nametable = (identificator_t*) calloc (SIZE_NAMETABLE, sizeof (*program->nametable));
-
-    InputProgram (program);
-    printf (BLU "program->data = <%s>\n" RESET, program->data);
     if (mode == FRONTEND)
     {
         program->log_file = fopen ("./bin/png/front_log_file.htm", "wt");
         VerifyOpenFile (program->log_file, "ProgramCtor");
 
-        program->tokens = Tokenizer (program);
-
-        program->root = GetG (program);
+        InputProgram (program);
+        printf (BLU "program->data = <%s>\n" RESET, program->data);
     }
-
     else if (mode == BACKEND)
     {
         program->log_file = fopen ("./bin/png/back_log_file.htm", "wt");
         VerifyOpenFile (program->log_file, "ProgramCtor");
+    }
 
+    program->crnt_node = NULL;
+
+    program->nametable = (identificator_t*) calloc (SIZE_NAMETABLE, sizeof (*program->nametable));
+
+    program->tokens =NULL;
+
+    return true;
+}
+
+bool TreeCtor (tree_t* program, modelang_t mode)
+{
+    if (mode == FRONTEND)
+    {
+        program->tokens = Tokenizer (program);
+    }
+
+    else if (mode == BACKEND)
+    {
         program->root = MakeProgram (program, "Program_file.txt");
     }
 

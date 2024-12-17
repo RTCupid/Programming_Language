@@ -2,6 +2,7 @@
 
 #include "../../hdr/ProgramFunc.h"
 #include "../../hdr/DumpProgram.h"
+#include "../hdr/RecursiveReader.h"
 #include "../../hdr/Enum.h"
 #include "../hdr/WriteProgramFile.h"
 #include "../../hdr/DSL.h"
@@ -19,6 +20,10 @@ int main ()
     tree_t program = {};
 
     ProgramCtor (&program, FRONTEND);
+
+    TreeCtor (&program, FRONTEND);
+
+    program.root = GetG (&program); //rec descent
 
     printf (MAG "expr.root = %p\n" RESET, program.root);
 

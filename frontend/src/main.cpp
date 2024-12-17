@@ -10,7 +10,7 @@
 
 int main ()
 {
-    printf (MAG "Start program\n" RESET);
+    printf (MAG "Start program.\n" RESET);
 
     printf (RED "'*' = %d\n"
                 "'=' = %d\n"

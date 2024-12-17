@@ -13,6 +13,7 @@
 #include "../../hdr/ProgramFunc.h"
 #include "../../hdr/DSL.h"
 #include "../../hdr/colors.h"
+#include "../hdr/Tokenizer.h"
 #include "../hdr/RecursiveReader.h"
 
 bool status = true;

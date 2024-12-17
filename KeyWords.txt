@@ -4,5 +4,6 @@ p           '+'         1
 i           '-'         2
 n           '*'         3
 g           '/'         4
-ping        '='         5
-pong        'if'        6
+loh         ';'         5
+ping        '='         6
+pong        'if'        7

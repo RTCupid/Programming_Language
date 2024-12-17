@@ -5,7 +5,7 @@ enum types_t;
 
 const size_t N_TOKENS = 100;
 
-const size_t N_KEYWORDS = 6;
+const size_t N_KEYWORDS = 7;
 
 extern const char* MY_KEY_WORDS_FILE;
 

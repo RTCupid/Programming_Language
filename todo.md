@@ -1,4 +1,4 @@
-1. %lf -> %g
+1. %lf -> %g (est)
 
 # Code
 
@@ -14,4 +14,4 @@ int main()
 
 user_error(tree_ptr, "huinya",return 0);
 
-3. ProcCtor tyrypyry
+3. ProcCtor tyrypyry (est)

@@ -47,7 +47,7 @@ void WriteBase (tree_t* program, node_t* crnt_node, FILE* file, int level)
     }
     else if (crnt_node->type == NUM)
     {
-        fprintf (file, "NUM:\"%f\"", crnt_node->value);
+        fprintf (file, "NUM:\"%g\"", crnt_node->value);
     }
     else if (crnt_node->type == ID)
     {

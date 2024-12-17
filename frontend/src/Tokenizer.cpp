@@ -42,7 +42,7 @@ token_t* Tokenizer (tree_t* program)
             free (buffer);
             buffer = NULL;
 
-            fprintf (program->dbg_log_file, "number is <%f>\n\n", number);
+            fprintf (program->dbg_log_file, "number is <%g>\n\n", number);
 
             tokens[token_id].type  = NUM;
             tokens[token_id].value = number;
@@ -179,7 +179,7 @@ void TokenizerDump (tree_t* program, token_t* tokens, keyword_t* keywords)
         {
             case NUM:
             {
-                fprintf (program->dbg_log_file, " %f\n", tokens[i].value);
+                fprintf (program->dbg_log_file, " %g\n", tokens[i].value);
                 break;
             }
             case ID:

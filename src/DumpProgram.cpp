@@ -147,7 +147,7 @@ void PrintNodeDot (FILE* dot_file, node_t* node)
     }
     else if (node->type == NUM)
     {
-        fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#C88DC2\"; label =  \"%f \" ];\n", node, node->value);
+        fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#C88DC2\"; label =  \"%g \" ];\n", node, node->value);
     }
     else if (node->type == ID)
     {
@@ -247,7 +247,7 @@ void PrintNodeDumpDot (FILE* dot_file, node_t* node, tree_t tree)
     else if (node->type == NUM)
     {
         fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#C88DC2\"; "
-            "label =  \"{node: %p | value: %f | type: NUM | {<left>left: %p | <right>right: %p}  }\" ];\n",
+            "label =  \"{node: %p | value: %g | type: NUM | {<left>left: %p | <right>right: %p}  }\" ];\n",
             node, node, node->value,  node->left, node->right);
 
         //fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#ff9a8d\"; label =  \"%d \" ];\n", node, node->value);

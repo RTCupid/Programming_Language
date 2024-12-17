@@ -13,3 +13,5 @@ int main()
     myassert(tree_ptr, exit(1)); file line func
 
 user_error(tree_ptr, "huinya",return 0);
+
+3. ProcCtor tyrypyry

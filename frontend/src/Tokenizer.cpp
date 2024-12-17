@@ -27,7 +27,7 @@ token_t* Tokenizer (tree_t* program)
     double number = 0;
     while (program->data[p]!='$') //TODO: OP to tokens, or change all operators to keywords
     {
-        /*SkipSpaces (program, &p);*/
+        SkipSpaces (program, &p);
 
         if (isdigit (program->data[p]))
         {
@@ -85,6 +85,7 @@ token_t* Tokenizer (tree_t* program)
         {
             p++;
         }
+        SkipSpaces (program, &p);
     }
 
     TokenizerDump (program, tokens, keywords);
@@ -95,13 +96,13 @@ token_t* Tokenizer (tree_t* program)
     return tokens;
 }
 
-// void SkipSpaces (tree_t* program, size_t* p)
-// {
-//     while (1)
-//     {
-//
-//     }
-// }
+void SkipSpaces (tree_t* program, size_t* p)
+{
+    while (isspace (program->data[*p]))
+    {
+        *p += 1;
+    }
+}
 
 char* ReadToken (tree_t* program, types_t mode, size_t* p, int* n_print_symbols)
 {

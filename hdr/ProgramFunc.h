@@ -90,4 +90,6 @@ void        ClearNameTable  (tree_t* program);
 void        ClearTree       (node_t* node);
 
 void        VerifyOpenFile  (FILE* file, const char* namefunc);
+
+const char* KeyFromEnum     (int value);
 #endif

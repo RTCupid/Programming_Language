@@ -75,17 +75,3 @@ void WriteTab (int level, FILE* file)
         fprintf (file, "\t");
     }
 }
-
-const char* KeyFromEnum (int value)
-{
-    for (size_t i = 0; i < N_KEYWORDS; i++)
-    {
-        if (value == keywords[i].number_key)
-        {
-            return keywords[i].key_op;
-        }
-    }
-    printf (YEL "ERROR: KeyFromEnum: unknown OP enum %d\n" RESET, value);
-    abort ();
-    return NULL;
-}

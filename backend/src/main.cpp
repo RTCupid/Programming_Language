@@ -13,6 +13,8 @@ int main ()
 
     TreeCtor (&bprogram, BACKEND);
 
+    ProgramGraphviz (&bprogram, BACKEND);
+
     MakeAsmCode (&bprogram);
 
     ProgramGraphviz (&bprogram, BACKEND);

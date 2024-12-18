@@ -8,6 +8,8 @@
 
 void MakeAsmCode (tree_t* program)
 {
+    printf (CYN "MakeAsmCode started\n" RESET);
+
     FILE* file_asm = fopen ("Asm_file.txt", "wt");
     if (file_asm == NULL)
     {
@@ -17,6 +19,8 @@ void MakeAsmCode (tree_t* program)
 
     RecursiveMakeAsm (program, file_asm, program->root);
     fprintf (file_asm, "hlt\n");
+
+    printf (CYN "MakeAsmCode completed\n" RESET);
 }
 
 void RecursiveMakeAsm (tree_t* program, FILE* file_asm, node_t* crnt_node)
@@ -31,12 +35,16 @@ void RecursiveMakeAsm (tree_t* program, FILE* file_asm, node_t* crnt_node)
     if (crnt_node->type == OP)
     {
         fprintf (file_asm, ";%lu\n", n_operator);
+        fprintf (stderr, CYN ";%lu\n" RESET, n_operator);
+
+        fprintf (stderr, CYN "%g\n" RESET, crnt_node->value);
 
         switch ((int)crnt_node->value)
         {
             case SMC:
             {
                 n_operator++;
+                fprintf (stderr, "operator = %s\n", KeyFromEnum ((int)crnt_node->value));
                 RecursiveMakeAsm (program, file_asm, crnt_node->left );
                 RecursiveMakeAsm (program, file_asm, crnt_node->right);
                 break;
@@ -83,7 +91,7 @@ void RecursiveMakeAsm (tree_t* program, FILE* file_asm, node_t* crnt_node)
             }
             default:
             {
-                printf (RED "ERROR: RecursiveMakeAsm unknown operator" RESET);
+                fprintf (stderr, YEL "ERROR: RecursiveMakeAsm unknown operator\n" RESET);
                 abort ();
             }
         }

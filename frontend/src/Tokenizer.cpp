@@ -24,9 +24,11 @@ token_t* Tokenizer (tree_t* program)
 
     double number = 0;
 
+    int next = 1;
+
     //printf (RED "program->data in Tokenizer = <%p>\n" RESET, program->data);
 
-    while (program->data[p]!='$') //TODO: OP to tokens, or change all operators to keywords
+    while (next) //TODO: OP to tokens, or change all operators to keywords
     {
         SkipSpaces (program, &p);
 
@@ -58,15 +60,24 @@ token_t* Tokenizer (tree_t* program)
 
             buffer = ReadToken (program, ID, &p, &n_print_symbols);
 
-            fprintf (program->dbg_log_file, "name = <%s>\n\n", buffer);
+            fprintf (program->dbg_log_file, "name = <%s>\n", buffer);
 
             size_t number_key = IsKeyWord (program, buffer);
+            fprintf (program->dbg_log_file, "number_key = <%lu>\n", number_key);
 
             if (number_key)
             {
                 tokens[token_id].type  = OP;
                 tokens[token_id].value = (double)number_key;
                 token_id++;
+
+                fprintf (program->dbg_log_file, "\n");
+
+                if (keywords[(int)tokens[token_id].value].number_key == END)
+                {
+                    next = 0;
+                    fprintf (program->dbg_log_file, "next = %d\n\n", next);
+                }
             }
             else
             {
@@ -75,6 +86,8 @@ token_t* Tokenizer (tree_t* program)
 
                 tokens[token_id].type  = ID;
                 tokens[token_id].value = (double)program->nametable_id;
+
+                fprintf (program->dbg_log_file, "new token's nametable_id = %lu\n\n", program->nametable_id);
 
                 program->nametable_id++;
                 token_id++;
@@ -114,7 +127,7 @@ size_t IsKeyWord (tree_t* program, char* buffer)
         if (strcmp (buffer, keywords[i].name_key) == 0)
         {
             number_key = i;
-            fprintf (program->dbg_log_file, "<%s> is keyword\n\n", buffer);
+            fprintf (program->dbg_log_file, "<%s> is keyword\n", buffer);
             break;
         }
     }

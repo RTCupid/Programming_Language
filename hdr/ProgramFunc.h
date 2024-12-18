@@ -29,7 +29,7 @@ typedef struct keyword_t
 
 
 
-const size_t N_KEYWORDS = 14;
+const size_t N_KEYWORDS = 16;
 
 const keyword_t keywords[N_KEYWORDS] =      //TODO: only name_key without synonim
 {                                           //TODO: enum for keywords_number
@@ -45,8 +45,10 @@ const keyword_t keywords[N_KEYWORDS] =      //TODO: only name_key without synoni
     {";",     SMC,  ";"}, //10
     {"ping",  EQU,  "="}, //11
     {"=",     EQU,  "="}, //12
-    {"pong",  IF,   "if"},  //13
-    {"if",    IF,   "if"}   //14
+    {"pong",  IF,   "if"},//13
+    {"if",    IF,   "if"},//14
+    {"end",   END,  "$"}, //15
+    {"$",     END,  "$"}  //16
 };
 
 typedef struct tree_t

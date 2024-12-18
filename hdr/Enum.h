@@ -20,5 +20,6 @@ enum OP_t
     SIN = 8,
     COS = 9,
     LN  = 10,
+    END = 11,
 };
 #endif

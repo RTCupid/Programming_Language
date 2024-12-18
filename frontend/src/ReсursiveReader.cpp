@@ -37,7 +37,7 @@ TOkens:
 */
 size_t p = 0;
 
-#define _CMP_OP(operator) (program->tokens[p].type == OP && strcmp(keywords[p].key_op, operator) == 0)
+#define _CMP_OP(operator) (program->tokens[p].type == OP && strcmp(keywords[(int)program->tokens[p].value].key_op, operator) == 0)
 
 node_t* GetG (tree_t* program)
 {
@@ -60,6 +60,7 @@ node_t* GetG (tree_t* program)
 
     if (!_CMP_OP("$"))
     {
+        printf (YEL "in GetG: end token ISN'T '$'\n" RESET);
         SintaxError (program, "GetG");
     }
     p++;
@@ -79,19 +80,23 @@ node_t* GetA (tree_t* program)
     if (program->tokens[p].type == ID)
     {
         new_left_node = _ID (program->tokens[p].value);
+        printf (CYN "in GetA: first token is ID\n" RESET);
         p++;
         if (_CMP_OP("="))
         {
+            printf (CYN "in GetA: there is token '='\n" RESET);
             p++;
         }
         else
         {
+            printf (YEL "in GetA: there ISN'T token '='\n" RESET);
             SintaxError (program, "GetA");
         }
         new_right_node = GetE (program);
     }
     else
     {
+        printf (YEL "in GetA: first token ISN'T ID\n" RESET);
         SintaxError (program, "GetA");
     }
 
@@ -158,11 +163,15 @@ node_t* GetP (tree_t* program)
     }
     if (program->tokens[p].type == ID)
     {
-        return _ID (program->tokens[p].value);
+        double token_value = program->tokens[p].value;
+        p++;
+        return _ID (token_value);
     }
     if (program->tokens[p].type == NUM)
     {
-        return _NUM (program->tokens[p].type);
+        double token_value = program->tokens[p].value;
+        p++;
+        return _NUM (token_value);
     }
 
     /*---else---*/

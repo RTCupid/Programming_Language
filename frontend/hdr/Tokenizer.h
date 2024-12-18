@@ -7,6 +7,17 @@ const size_t N_TOKENS = 100;
 
 const size_t N_KEYWORDS = 7;
 
+/*const keyword_t* keywords
+{
+p           '+'         1
+i           '-'         2
+n           '*'         3
+g           '/'         4
+loh         ';'         5
+ping        '='         6
+pong        'if'        7
+}*/
+
 extern const char* MY_KEY_WORDS_FILE;
 
 typedef struct token_t

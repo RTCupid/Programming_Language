@@ -1,1 +1,1 @@
-delicious ping food n 666;ded ping 333;tyoma ping 166$
+delicious=food*666;ded=333;tyoma=166$

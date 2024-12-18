@@ -289,6 +289,10 @@ void KeyWordsDump (tree_t* program, keyword_t* keywords)
 
 void ClearKeywords (keyword_t* keywords)
 {
+    if (!keywords)
+    {
+        return;
+    }
     for (size_t i = 0; i < N_KEYWORDS; i++)
     {
         free (keywords[i].name_key);

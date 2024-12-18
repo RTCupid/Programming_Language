@@ -18,7 +18,14 @@ typedef struct identificator_t
 
 struct token_t;
 
-struct keyword_t;
+typedef struct keyword_t
+{
+    const char*  name_key;
+    const char*  sinonim;
+    int number_key;
+} keyword_t;
+
+const size_t N_KEYWORDS = 7;
 
 typedef struct tree_t
 {
@@ -27,7 +34,7 @@ typedef struct tree_t
     identificator_t* nametable;
     size_t nametable_id;
     token_t* tokens;
-    keyword_t* keywords;
+    const keyword_t keywords[N_KEYWORDS];
     char* data;
     int size_data;
     FILE* log_file;

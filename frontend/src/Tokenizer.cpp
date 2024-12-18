@@ -19,8 +19,6 @@ token_t* Tokenizer (tree_t* program)
 
     token_t*   tokens   = (token_t*)   calloc (N_TOKENS, sizeof (*tokens));
 
-    program->keywords = InputKeyWords (program, MY_KEY_WORDS_FILE);
-
     KeyWordsDump (program, program->keywords);
 
     char* buffer = NULL;
@@ -112,7 +110,7 @@ bool IsOp (tree_t* program, size_t p)
     }
 }
 
-size_t IsKeyWord (tree_t* program, char* buffer, keyword_t* keywords)
+size_t IsKeyWord (tree_t* program, char* buffer, const keyword_t* keywords)
 {
     size_t number_key = 0;
 
@@ -164,44 +162,7 @@ char* ReadToken (tree_t* program, types_t mode, size_t* p, int* n_print_symbols)
     return buffer;
 }
 
-keyword_t* InputKeyWords (tree_t* program, const char* keywords_file)
-{
-    FILE* k_file = fopen (keywords_file, "rt");
-
-    char signature[SIZE_SIGNATURE] = {};
-
-    keyword_t* keywords = (keyword_t*) calloc (N_KEYWORDS, sizeof (*keywords));
-
-    fscanf (k_file, "%s", signature);
-
-    int keyword_number = 0;
-    size_t keywords_id = 0;
-
-    char buffer[MAX_LEN_BUF] = {};
-
-    fscanf (k_file, "%s %s %s", buffer, buffer, buffer);
-
-    while(keywords_id < N_KEYWORDS)
-    {
-        char* name         = (char*) calloc (MAX_LEN_BUF, sizeof (*buffer));
-        char* sinonim      = (char*) calloc (MAX_LEN_BUF, sizeof (*sinonim));
-
-        fscanf (k_file, "%s %s %d", name, sinonim, &keyword_number);
-
-        keywords[keywords_id].name_key   = name;
-        fprintf (program->dbg_log_file, "\nname of key   %lu = <%s>\n", keywords_id, keywords[keywords_id].name_key);
-        keywords[keywords_id].sinonim    = sinonim;
-        fprintf (program->dbg_log_file, "name sinonim  %lu = <%s>\n", keywords_id, keywords[keywords_id].sinonim);
-        keywords[keywords_id].number_key = keyword_number;
-        fprintf (program->dbg_log_file, "number of key %lu = <%d>\n", keywords_id, keywords[keywords_id].number_key);
-
-        keywords_id++;
-    }
-
-    return keywords;
-}
-
-void TokenizerDump (tree_t* program, token_t* tokens, keyword_t* keywords)
+void TokenizerDump (tree_t* program, token_t* tokens, const keyword_t* keywords)
 {
     fprintf (program->dbg_log_file, "----------------------------------------------------------------\n"
                                     "Dump Tokens:\n");
@@ -275,7 +236,7 @@ void PrintType (tree_t* program, token_t token)
     }
 }
 
-void KeyWordsDump (tree_t* program, keyword_t* keywords)
+void KeyWordsDump (tree_t* program, const keyword_t* keywords)
 {
     fprintf (program->dbg_log_file, "\n----------------------------------------------------------------\n"
                                     "Dump Keywords:\n");
@@ -287,20 +248,20 @@ void KeyWordsDump (tree_t* program, keyword_t* keywords)
     fprintf (program->dbg_log_file, "End Dump!\n\n");
 }
 
-void ClearKeywords (keyword_t* keywords)
-{
-    if (!keywords)
-    {
-        return;
-    }
-    for (size_t i = 0; i < N_KEYWORDS; i++)
-    {
-        free (keywords[i].name_key);
-        keywords[i].name_key = NULL;
-
-        free (keywords[i].sinonim);
-        keywords[i].sinonim = NULL;
-    }
-    free (keywords);
-    keywords = NULL;
-}
+// void ClearKeywords (keyword_t* keywords)
+// {
+//     if (!keywords)
+//     {
+//         return;
+//     }
+//     for (size_t i = 0; i < N_KEYWORDS; i++)
+//     {
+//         free (keywords[i].name_key);
+//         keywords[i].name_key = NULL;
+//
+//         free (keywords[i].sinonim);
+//         keywords[i].sinonim = NULL;
+//     }
+//     free (keywords);
+//     keywords = NULL;
+// }

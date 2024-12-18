@@ -133,7 +133,7 @@ node_t* GetT (tree_t* program)
     node_t* node = GetP (program);
     while (_CMP_OP("*") || _CMP_OP ("/"))
     {
-        const char* op = keywords[p].key_op;
+        const char* op = keywords[(int)program->tokens[p].value].key_op;
         p++;
         node_t* new_node = GetP (program);
         if (strcmp (op, "*"))

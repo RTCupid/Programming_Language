@@ -37,6 +37,8 @@ TOkens:
 */
 size_t p = 0;
 
+#define _CMP_OP(operator) (program->tokens[p].type == OP && keywords[p].key_op == operator)
+
 node_t* GetG (tree_t* program)
 {
     printf (GRN "Start\n" RESET);

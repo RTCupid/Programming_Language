@@ -10,18 +10,18 @@
 
 
 //First version
-//The_Shogun_ordered jojo assign food multiply 666          | jojo  = food * 666
-//The_Shogun_ordered ded  assign 333 add food               | ded   = 333 + food
-//The_Shogun_ordered tyoma assign 166 subtract 2            | tyoma = 166
-//If (night add 5) The_Shogun_ordered to_write_about (ded)  | if (night + 5) print (ded)
-//While_samurai_
+//The_Shogun_ordered jojo assign food multiply 666          | jojo  = food * 666;
+//The_Shogun_ordered ded  assign 333 add food               | ded   = 333 + food;
+//The_Shogun_ordered tyoma assign 166 subtract 2            | tyoma = 166;
+//If (night add 5) The_Shogun_ordered to_write_about (ded)  | if (night + 5) printf ("%d", ded);
+//While_samurai_do (ex) The_Shogun_ordered tyoma assign tyoma add 1
 
 //Second version
-//The Shogun ordered jojo assign food multiply 666                    | jojo  = food * 666
-//The Shogun ordered ded  assign 333 add food                         | ded   = 333 + food
-//The Shogun ordered tyoma assign 166 subtract 2                      | tyoma = 166
-//If (night add 5) happens The Shogun ordered to write about (ded)    | if (night + 5) print (ded)
-//While_
+//The Shogun ordered jojo assign food multiply 666                    | jojo  = food * 666;
+//The Shogun ordered ded  assign 333 add food                         | ded   = 333 + food;
+//The Shogun ordered tyoma assign 166 subtract 2                      | tyoma = 166;
+//If happens (night add 5) The Shogun ordered to write about (ded)    | if (night + 5) printf ("%d", ded);
+//While samurai do (ex) The Shogun ordered tyoma assign tyoma add 1
 
 token_t* Tokenizer (tree_t* program)
 {

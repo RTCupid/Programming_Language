@@ -65,16 +65,6 @@ bool ProgramCtor (tree_t* program, modelang_t mode)
 
     program->tokens =NULL;
 
-    program->keywords[N_KEYWORDS] = {
-        {"p",      "+",     1},
-        {"i",      "-",     2},
-        {"n",      "*",     3},
-        {"g",      "/",     4},
-        {"loh",    ";",     5},
-        {"ping",   "=",     6},
-        {"pong",   "if",    7}
-    };
-
     return true;
 }
 

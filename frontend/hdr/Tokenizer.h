@@ -19,15 +19,15 @@ struct keyword_t;
 
 token_t*    Tokenizer       (tree_t* program);
 
-void        TokenizerDump   (tree_t* program, token_t* tokens, const keyword_t* keywords);
+void        TokenizerDump   (tree_t* program, token_t* tokens);
 
 void        PrintType       (tree_t* program, token_t token);
 
-size_t      IsKeyWord       (tree_t* program, char* buffer, const keyword_t* keywords);
+size_t      IsKeyWord       (tree_t* program, char* buffer);
 
 bool        IsOp            (tree_t* program, size_t p);
 
-void        KeyWordsDump    (tree_t* program, const keyword_t* keywords);
+void        KeyWordsDump    (tree_t* program);
 
 //void        ClearKeywords   (keyword_t* keywords);
 

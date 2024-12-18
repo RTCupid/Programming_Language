@@ -8,8 +8,6 @@
 #include "../../hdr/ProgramFunc.h"
 #include "../hdr/Tokenizer.h"
 
-const char* MY_KEY_WORDS_FILE = "KeyWords.txt";
-
 token_t* Tokenizer (tree_t* program)
 {
     fprintf (program->dbg_log_file, "\nStart Tokenizer:\n");
@@ -19,7 +17,7 @@ token_t* Tokenizer (tree_t* program)
 
     token_t*   tokens   = (token_t*)   calloc (N_TOKENS, sizeof (*tokens));
 
-    KeyWordsDump (program, program->keywords);
+    KeyWordsDump (program);
 
     char* buffer = NULL;
     char* endptr = NULL;
@@ -51,9 +49,9 @@ token_t* Tokenizer (tree_t* program)
             tokens[token_id].value = number;
             token_id++;
         }
-        else if (isalpha (program->data[p]))
+        else
         {
-            fprintf (program->dbg_log_file, "first symbol = '%c' is alpha\n", program->data[p]);
+            fprintf (program->dbg_log_file, "first symbol = <%c> is alpha\n", program->data[p]);
             char* start_pos = &program->data[p];
 
             int n_print_symbols = 0;
@@ -62,7 +60,8 @@ token_t* Tokenizer (tree_t* program)
 
             fprintf (program->dbg_log_file, "name = <%s>\n\n", buffer);
 
-            size_t number_key = IsKeyWord (program, buffer, program->keywords);
+            size_t number_key = IsKeyWord (program, buffer);
+
             if (number_key)
             {
                 tokens[token_id].type  = OP;
@@ -84,14 +83,10 @@ token_t* Tokenizer (tree_t* program)
             free (buffer);
             buffer = NULL;
         }
-        else
-        {
-            p++;
-        }
         SkipSpaces (program, &p);
     }
 
-    TokenizerDump (program, tokens, program->keywords);
+    TokenizerDump (program, tokens);
     fprintf (program->dbg_log_file, "Tokenizer completed!\n\n");
 
     return tokens;
@@ -110,7 +105,7 @@ bool IsOp (tree_t* program, size_t p)
     }
 }
 
-size_t IsKeyWord (tree_t* program, char* buffer, const keyword_t* keywords)
+size_t IsKeyWord (tree_t* program, char* buffer)
 {
     size_t number_key = 0;
 
@@ -118,7 +113,7 @@ size_t IsKeyWord (tree_t* program, char* buffer, const keyword_t* keywords)
     {
         if (strcmp (buffer, keywords[i].name_key) == 0)
         {
-            number_key = (size_t)keywords[i].number_key;
+            number_key = i;
             fprintf (program->dbg_log_file, "<%s> is keyword\n\n", buffer);
             break;
         }
@@ -152,17 +147,26 @@ char* ReadToken (tree_t* program, types_t mode, size_t* p, int* n_print_symbols)
     if (mode == ID)
     {
         *n_print_symbols = 0;
-        while (isalpha (program->data[*p]))
+        if (ispunct (program->data[*p]))
         {
             int offset = sprintf (buffer + *n_print_symbols, "%c", program->data[*p]);
             *n_print_symbols += offset;
             *p += 1;
         }
+        else
+        {
+            while (isalpha (program->data[*p]))         //TODO: ispunct, if ispunct read one char and end of reading
+            {
+                int offset = sprintf (buffer + *n_print_symbols, "%c", program->data[*p]);
+                *n_print_symbols += offset;
+                *p += 1;
+            }
+        }
     }
     return buffer;
 }
 
-void TokenizerDump (tree_t* program, token_t* tokens, const keyword_t* keywords)
+void TokenizerDump (tree_t* program, token_t* tokens)
 {
     fprintf (program->dbg_log_file, "----------------------------------------------------------------\n"
                                     "Dump Tokens:\n");
@@ -187,7 +191,7 @@ void TokenizerDump (tree_t* program, token_t* tokens, const keyword_t* keywords)
             }
             case OP:
             {
-                fprintf (program->dbg_log_file, " %s\n", keywords[(int)tokens[i].value].name_key);
+                fprintf (program->dbg_log_file, " %s\n", keywords[(int)tokens[i].value].key_op);
                 break;
             }
             case ST:
@@ -236,13 +240,13 @@ void PrintType (tree_t* program, token_t token)
     }
 }
 
-void KeyWordsDump (tree_t* program, const keyword_t* keywords)
+void KeyWordsDump (tree_t* program)
 {
     fprintf (program->dbg_log_file, "\n----------------------------------------------------------------\n"
                                     "Dump Keywords:\n");
     for (size_t i = 0; i < N_KEYWORDS; i++)
     {
-        fprintf (program->dbg_log_file, "%-*s %-*s %d\n", (int)MAX_LEN_BUF, keywords[i].name_key, (int)MAX_LEN_BUF, keywords[i].sinonim, keywords[i].number_key);
+        fprintf (program->dbg_log_file, "%-*s %d\n", (int)MAX_LEN_BUF, keywords[i].name_key, keywords[i].number_key);
     }
     fprintf (program->dbg_log_file, "\n----------------------------------------------------------------\n");
     fprintf (program->dbg_log_file, "End Dump!\n\n");

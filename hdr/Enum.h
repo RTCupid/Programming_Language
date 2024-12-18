@@ -10,15 +10,15 @@ enum types_t
 
 enum OP_t
 {
-    SMC = ';',
-    EQU = '=',
-    ADD = '+',
-    SUB = '-',
-    MUL = '*',
-    DIV = '/',
-    DEG = '^',
-    SIN = 's',
-    COS = 'c',
-     LN = 'l',
+    ADD = 1,
+    SUB = 2,
+    MUL = 3,
+    DIV = 4,
+    SMC = 5,
+    EQU = 6,
+    IF  = 7,
+    SIN = 8,
+    COS = 9,
+    LN  = 10,
 };
 #endif

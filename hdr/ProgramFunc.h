@@ -1,6 +1,8 @@
 #ifndef PROGRAMFUNC_H
 #define PROGRAMFUNC_H
 
+#include "./Enum.h"
+
 typedef struct node_t
 {
     size_t type;
@@ -21,11 +23,31 @@ struct token_t;
 typedef struct keyword_t
 {
     const char*  name_key;
-    const char*  sinonim;
     int number_key;
+    const char*  key_op;
 } keyword_t;
 
-const size_t N_KEYWORDS = 7;
+
+
+const size_t N_KEYWORDS = 14;
+
+const keyword_t keywords[N_KEYWORDS] =      //TODO: only name_key without synonim
+{                                           //TODO: enum for keywords_number
+    {"p",     ADD,  "+"}, //1
+    {"+",     ADD,  "+"}, //2
+    {"i",     SUB,  "-"}, //3
+    {"-",     SUB,  "-"}, //4
+    {"n",     MUL,  "*"}, //5
+    {"*",     MUL,  "*"}, //6
+    {"g",     DIV,  "/"}, //7
+    {"/",     DIV,  "/"}, //8
+    {"loh",   SMC,  ";"}, //9
+    {";",     SMC,  ";"}, //10
+    {"ping",  EQU,  "="}, //11
+    {"=",     EQU,  "="}, //12
+    {"pong",  IF,   "if"},  //13
+    {"if",    IF,   "if"}   //14
+};
 
 typedef struct tree_t
 {
@@ -34,7 +56,6 @@ typedef struct tree_t
     identificator_t* nametable;
     size_t nametable_id;
     token_t* tokens;
-    const keyword_t keywords[N_KEYWORDS];
     char* data;
     int size_data;
     FILE* log_file;

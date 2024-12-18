@@ -37,7 +37,7 @@ TOkens:
 */
 size_t p = 0;
 
-#define _CMP_OP(operator) (program->tokens[p].type == OP && keywords[p].key_op == operator)
+#define _CMP_OP(operator) (program->tokens[p].type == OP && strcmp(keywords[p].key_op, operator) == 0)
 
 node_t* GetG (tree_t* program)
 {
@@ -50,7 +50,7 @@ node_t* GetG (tree_t* program)
 
     node_t* crnt_node = node->right;
 
-    while (program->data[p] == ';')
+    while (_CMP_OP(";"))
     {
         p++;
         crnt_node->left = GetOp (program);
@@ -58,9 +58,9 @@ node_t* GetG (tree_t* program)
         crnt_node = crnt_node->right;
     }
 
-    if (program->data[p] != '$')
+    if (!_CMP_OP("$"))
     {
-        SintaxError (program);
+        SintaxError (program, "GetG");
     }
     p++;
     return node;
@@ -76,22 +76,23 @@ node_t* GetA (tree_t* program)
 {
     node_t* new_right_node = NULL;
     node_t* new_left_node  = NULL;
-    if (isalpha (program->data[p]))
+    if (program->tokens[p].type == ID)
     {
-        new_left_node = GetId (program);
-        if (program->data[p] == '=')
+        new_left_node = _ID (program->tokens[p].value);
+        p++;
+        if (_CMP_OP("="))
         {
             p++;
         }
         else
         {
-            SintaxError (program);
+            SintaxError (program, "GetA");
         }
         new_right_node = GetE (program);
     }
     else
     {
-        SintaxError (program);
+        SintaxError (program, "GetA");
     }
 
     return _EQU (new_left_node, new_right_node);
@@ -100,18 +101,19 @@ node_t* GetA (tree_t* program)
 node_t* GetE (tree_t* program)
 {
     node_t* node = GetT (program);
-    while (program->data[p] == '+' || program->data[p] == '-')
+    while (_CMP_OP("+") || _CMP_OP("-"))
     {
-        int op = program->data[p];
+        const char* op = keywords[p].key_op;
+        //int op = program->data[p];
         p++;
         node_t* new_node = GetT (program);
-        if (op == '+')
+        if (strcmp (op, "+"))
         {
             node = _ADD (
                         node,
                         new_node);
         }
-        if (op == '-')
+        if (strcmp (op, "-"))
         {
             node = _SUB (
                         node,
@@ -124,16 +126,16 @@ node_t* GetE (tree_t* program)
 node_t* GetT (tree_t* program)
 {
     node_t* node = GetP (program);
-    while (program->data[p] == '*' || program->data[p] == '/')
+    while (_CMP_OP("*") || _CMP_OP ("/"))
     {
-        int op = program->data[p];
+        const char* op = keywords[p].key_op;
         p++;
         node_t* new_node = GetP (program);
-        if (op == '*')
+        if (strcmp (op, "*"))
         {
             node = _MUL (node, new_node);
         }
-        if (op == '/')
+        if (strcmp (op, "/"))
         {
             node = _DIV (node, new_node);
         }
@@ -143,28 +145,28 @@ node_t* GetT (tree_t* program)
 
 node_t* GetP (tree_t* program)
 {
-    if (program->data[p] == '(')
+    if (_CMP_OP("("))
     {
         p++;
         node_t* node = GetE (program);
-        if (program->data[p] != ')')
+        if (!_CMP_OP(")"))
         {
-            SintaxError (program);
+            SintaxError (program, "GetP");
         }
         p++;
         return node;
     }
-    if (isalpha (program->data[p]))
+    if (program->tokens[p].type == ID)
     {
-        return GetId (program);
+        return _ID (program->tokens[p].value);
     }
-    if (isdigit (program->data[p]))
+    if (program->tokens[p].type == NUM)
     {
-        return GetN (program);
+        return _NUM (program->tokens[p].type);
     }
 
     /*---else---*/
-    SintaxError (program);
+    SintaxError (program, "GetP");
     return NULL;
 }
 
@@ -204,10 +206,14 @@ node_t* GetN (tree_t* program)
     return _NUM (val);
 }
 
-void SintaxError (tree_t* program)
+void SintaxError (tree_t* program, const char* name_func)
 {
-    fprintf (program->dbg_log_file, "SYNTAX ERROR: %c\n", program->data[p]);
-    fprintf (stderr, "SYNTAX ERROR: %c\n", program->data[p]);
+    fprintf (program->dbg_log_file, "SYNTAX ERROR: %s: unknown token: token[%lu].type = ", name_func, p);
+    PrintType (program, program->tokens[p]);
+    fprintf (program->dbg_log_file, " token[%lu].value = %g", p, program->tokens[p].value);
+
+    fprintf (stderr, YEL "SYNTAX ERROR: %s: unknown token: token[%lu].type = %d\n" RESET, name_func, p, program->tokens[p].type);
+    fprintf (stderr, YEL "token[%lu].value = %g\n" RESET, p, program->tokens[p].value);
     abort ();
 }
 

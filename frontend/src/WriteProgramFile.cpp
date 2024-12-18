@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <assert.h>
 
 #include "../../hdr/Enum.h"
@@ -38,12 +39,12 @@ void WriteBase (tree_t* program, node_t* crnt_node, FILE* file, int level)
         }
         else
         {
-            fprintf (file, "\"%s\"", keywords[(int)crnt_node->value].key_op);
+            fprintf (file, "\"%s\"", KeyFromEnum ((int)crnt_node->value));
         }
     }
     else if (crnt_node->type == ST)
     {
-        fprintf (file, "OP:\"%s\"", keywords[(int)crnt_node->value].key_op);
+        fprintf (file, "OP:\"%s\"", KeyFromEnum((int)crnt_node->value));
     }
     else if (crnt_node->type == NUM)
     {
@@ -73,4 +74,18 @@ void WriteTab (int level, FILE* file)
         assert (i < level);
         fprintf (file, "\t");
     }
+}
+
+const char* KeyFromEnum (int value)
+{
+    for (size_t i = 0; i < N_KEYWORDS; i++)
+    {
+        if (value == keywords[i].number_key)
+        {
+            return keywords[i].key_op;
+        }
+    }
+    printf (YEL "ERROR: KeyFromEnum: unknown OP enum %d\n" RESET, value);
+    abort ();
+    return NULL;
 }

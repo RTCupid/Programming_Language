@@ -8,6 +8,21 @@
 #include "../../hdr/ProgramFunc.h"
 #include "../hdr/Tokenizer.h"
 
+
+//First version
+//The_Shogun_ordered jojo assign food multiply 666          | jojo  = food * 666
+//The_Shogun_ordered ded  assign 333 add food               | ded   = 333 + food
+//The_Shogun_ordered tyoma assign 166 subtract 2            | tyoma = 166
+//If (night add 5) The_Shogun_ordered to_write_about (ded)  | if (night + 5) print (ded)
+//While_samurai_
+
+//Second version
+//The Shogun ordered jojo assign food multiply 666                    | jojo  = food * 666
+//The Shogun ordered ded  assign 333 add food                         | ded   = 333 + food
+//The Shogun ordered tyoma assign 166 subtract 2                      | tyoma = 166
+//If (night add 5) happens The Shogun ordered to write about (ded)    | if (night + 5) print (ded)
+//While_
+
 token_t* Tokenizer (tree_t* program)
 {
     fprintf (program->dbg_log_file, "\nStart Tokenizer:\n");
@@ -28,7 +43,7 @@ token_t* Tokenizer (tree_t* program)
 
     //printf (RED "program->data in Tokenizer = <%p>\n" RESET, program->data);
 
-    while (next) //TODO: OP to tokens, or change all operators to keywords
+    while (next) //TD: OP to tokens, or change all operators to keywords (est)
     {
         SkipSpaces (program, &p);
 

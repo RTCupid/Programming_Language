@@ -1,1 +1,3 @@
-delicious=food*666;ded=333;tyoma=166$
+delicious=food*666;
+ded=333;
+tyoma=166$

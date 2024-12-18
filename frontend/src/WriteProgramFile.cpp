@@ -38,12 +38,12 @@ void WriteBase (tree_t* program, node_t* crnt_node, FILE* file, int level)
         }
         else
         {
-            fprintf (file, "\"%c\"", (int)crnt_node->value);
+            fprintf (file, "\"%s\"", keywords[(int)crnt_node->value].key_op);
         }
     }
     else if (crnt_node->type == ST)
     {
-        fprintf (file, "OP:\"%c\"", (int)crnt_node->value);
+        fprintf (file, "OP:\"%s\"", keywords[(int)crnt_node->value].key_op);
     }
     else if (crnt_node->type == NUM)
     {

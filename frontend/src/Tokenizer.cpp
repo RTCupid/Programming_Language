@@ -73,7 +73,9 @@ token_t* Tokenizer (tree_t* program)
 
                 fprintf (program->dbg_log_file, "\n");
 
-                if (keywords[(int)tokens[token_id].value].number_key == END)
+                //fprintf (program->dbg_log_file, "!!! %d\n", keywords[number_key].number_key);
+
+                if (keywords[number_key].number_key == END)
                 {
                     next = 0;
                     fprintf (program->dbg_log_file, "next = %d\n\n", next);

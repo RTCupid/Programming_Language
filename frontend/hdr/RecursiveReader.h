@@ -10,6 +10,8 @@ node_t*     GetOp           (tree_t* program);
 
 node_t*     GetIf           (tree_t* program);
 
+node_t*     GetPrint        (tree_t* program);
+
 node_t*     GetA            (tree_t* program);
 
 node_t*     GetE            (tree_t* program);

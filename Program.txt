@@ -1,4 +1,4 @@
 if_happens (x + 5)
 {
-    ded = 333;
+    write_about {333};
 }$

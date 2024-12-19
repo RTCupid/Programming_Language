@@ -27,31 +27,33 @@ typedef struct keyword_t
     const char*  key_op;
 } keyword_t;
 
-const size_t N_KEYWORDS = 21;
+const size_t N_KEYWORDS = 23;
 
 const keyword_t keywords[N_KEYWORDS] =      //TD: only name_key without synonim
 {                                           //TD: enum for keywords_number
-    {"p",           ADD,  "+"}, //1
-    {"+",           ADD,  "+"}, //2
-    {"i",           SUB,  "-"}, //3
-    {"-",           SUB,  "-"}, //4
-    {"n",           MUL,  "*"}, //5
-    {"*",           MUL,  "*"}, //6
-    {"g",           DIV,  "/"}, //7
-    {"/",           DIV,  "/"}, //8
-    {"loh",         SMC,  ";"}, //9
-    {";",           SMC,  ";"}, //10
-    {"ping",        EQU,  "="}, //11
-    {"=",           EQU,  "="}, //12
-    {"pong",        IF,   "if"},//13
-    {"if",          IF,   "if"},//14
-    {"end",         END,  "$"}, //15
-    {"$",           END,  "$"}, //16
-    {"if_happens",  IF,   "if"}, //17
-    {"(",           LB,   "("},  //18
-    {")",           RB,   ")"},  //19
-    {"{",           RFB,  "{"},  //20
-    {"}",           LFB,  "}"}   //21
+    {"p",           ADD,  "+"},    //1
+    {"+",           ADD,  "+"},    //2
+    {"i",           SUB,  "-"},    //3
+    {"-",           SUB,  "-"},    //4
+    {"n",           MUL,  "*"},    //5
+    {"*",           MUL,  "*"},    //6
+    {"g",           DIV,  "/"},    //7
+    {"/",           DIV,  "/"},    //8
+    {"loh",         SMC,  ";"},    //9
+    {";",           SMC,  ";"},    //10
+    {"ping",        EQU,  "="},    //11
+    {"=",           EQU,  "="},    //12
+    {"pong",        IF,   "if"},   //13
+    {"if",          IF,   "if"},   //14
+    {"end",         END,  "$"},    //15
+    {"$",           END,  "$"},    //16
+    {"if_happens",  IF,   "if"},   //17
+    {"(",           LB,   "("},    //18
+    {")",           RB,   ")"},    //19
+    {"{",           RFB,  "{"},    //20
+    {"}",           LFB,  "}"},    //21
+    {"write_about", PRNT, "print"},//22
+    {"print",       PRNT, "print"} //23
 };
 
 typedef struct tree_t

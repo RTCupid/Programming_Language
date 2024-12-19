@@ -55,12 +55,21 @@ void WriteBase (tree_t* program, node_t* crnt_node, FILE* file, int level)
         fprintf (file, "ID:\"%d\"", (int)crnt_node->value);
     }
 
-    if (crnt_node->left)
+    if (crnt_node->left && crnt_node->right)
     {
         fprintf (file, "\n");
 
         WriteBase (program, crnt_node->left , file, level + 1);
         WriteBase (program, crnt_node->right, file, level + 1);
+        WriteTab (level, file);
+    }
+    else if (crnt_node->left && !crnt_node->right)
+    {
+        fprintf (file, "\n");
+
+        WriteBase (program, crnt_node->left , file, level + 1);
+        // WriteTab (level + 1, file);
+        // fprintf (file, "{}\n");
         WriteTab (level, file);
     }
     fprintf (file, "}\n");

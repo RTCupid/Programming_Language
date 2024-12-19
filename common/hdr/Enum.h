@@ -25,5 +25,6 @@ enum OP_t
     LB,
     RFB,
     LFB,
+    PRNT,
 };
 #endif

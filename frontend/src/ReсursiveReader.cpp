@@ -83,6 +83,11 @@ node_t* GetOp (tree_t* program)
         fprintf (stderr, CYN "Start if\n" RESET);
         node = GetIf (program);
     }
+    else if (_CMP_OP("print"))
+    {
+        fprintf (stderr, CYN "Start if\n" RESET);
+        node = GetPrint (program);
+    }
     else
     {
         fprintf (stderr, CYN "ERROR: in GetOp Unknown operator\n" RESET);
@@ -100,6 +105,41 @@ node_t* GetOp (tree_t* program)
     }
 
     return node;
+}
+
+node_t* GetPrint (tree_t* program)
+{
+    node_t* print_node = NULL;
+    if (_CMP_OP("print"))
+    {
+        p++;
+        if (_CMP_OP("{"))
+        {
+            p++;
+            print_node = GetE (program);
+            if (_CMP_OP("}"))
+            {
+                p++;
+            }
+            else
+            {
+                fprintf (stderr, YEL "in GetPrint: token ISN'T \"}\"\n" RESET);
+                SintaxError (program, "GetPrint");
+            }
+        }
+        else
+        {
+            fprintf (stderr, YEL "in GetPrint: token ISN'T \"{\"\n" RESET);
+            SintaxError (program, "GetPrint");
+        }
+    }
+    else
+    {
+        fprintf (stderr, YEL "in GetPrint: token ISN'T \"print\"\n" RESET);
+        SintaxError (program, "GetPrint");
+    }
+
+    return _PRNT(print_node);
 }
 
 node_t* GetIf (tree_t* program)

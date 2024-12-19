@@ -43,7 +43,7 @@ bool ProgramCtor (tree_t* program, modelang_t mode)
 {
     if (mode == FRONTEND)
     {
-        program->log_file = fopen ("./bin/png/front_log_file.htm", "wt");
+        program->log_file = fopen ("./build/png/front_log_file.htm", "wt");
         VerifyOpenFile (program->log_file, "ProgramCtor");
         program->dbg_log_file = fopen ("frontend/dbg_log_file.txt", "wt");
         VerifyOpenFile (program->dbg_log_file, "ProgramCtor");
@@ -55,7 +55,7 @@ bool ProgramCtor (tree_t* program, modelang_t mode)
     {
         program->dbg_log_file = fopen ("backend/dbg_log_file.txt", "wt");
         VerifyOpenFile (program->dbg_log_file, "ProgramCtor");
-        program->log_file = fopen ("./bin/png/back_log_file.htm", "wt");
+        program->log_file = fopen ("./build/png/back_log_file.htm", "wt");
         VerifyOpenFile (program->log_file, "ProgramCtor");
     }
 

@@ -15,46 +15,46 @@ FLAGS = -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ \
 	signed-integer-overflow,undefined,unreachable,vla-bound,vptr
 
 OBJ_DIR=./build/obj
-BIN_DIR=./bin
+BIN_DIR=./build/bin
 
-run: ${BIN_DIR}/front.exe ./bin/back.exe ./processor/Asm.exe ./processor/Run.exe
-	./bin/front.exe
-	./bin/back.exe
+run: ${BIN_DIR}/front.exe ${BIN_DIR}/back.exe ./processor/Asm.exe ./processor/Run.exe
+	${BIN_DIR}/front.exe
+	${BIN_DIR}/back.exe
 	./processor/Asm.exe Asm_file.txt
 	./processor/Run.exe Programm_code.txt
 
-./bin/front.exe: ./bin/ReсursiveReader.o ./bin/Tokenizer.o ./bin/DumpProgram.o ./bin/WriteProgramFile.o ./bin/ProgramFunc.o ./bin/ProgramReader.o ./bin/fmain.o
-	$(CC) ./bin/ReсursiveReader.o ./bin/Tokenizer.o ./bin/DumpProgram.o ./bin/WriteProgramFile.o ./bin/ProgramFunc.o ./bin/ProgramReader.o ./bin/fmain.o -o ./bin/front.exe $(FLAGS)
+${BIN_DIR}/front.exe: $(OBJ_DIR)/ReсursiveReader.o $(OBJ_DIR)/Tokenizer.o $(OBJ_DIR)/DumpProgram.o $(OBJ_DIR)/WriteProgramFile.o $(OBJ_DIR)/ProgramFunc.o $(OBJ_DIR)/ProgramReader.o $(OBJ_DIR)/fmain.o
+	$(CC) $(OBJ_DIR)/ReсursiveReader.o $(OBJ_DIR)/Tokenizer.o $(OBJ_DIR)/DumpProgram.o $(OBJ_DIR)/WriteProgramFile.o $(OBJ_DIR)/ProgramFunc.o $(OBJ_DIR)/ProgramReader.o $(OBJ_DIR)/fmain.o -o ${BIN_DIR}/front.exe $(FLAGS)
 
-./bin/back.exe: ./bin/ProgramReader.o ./bin/Tokenizer.o ./bin/DumpProgram.o ./bin/MakeCodeAsm.o ./bin/bmain.o ./bin/ProgramFunc.o ./bin/ReсursiveReader.o
-	$(CC) ./bin/ProgramReader.o ./bin/Tokenizer.o ./bin/DumpProgram.o ./bin/MakeCodeAsm.o ./bin/ProgramFunc.o ./bin/ReсursiveReader.o ./bin/bmain.o -o ./bin/back.exe $(FLAGS)
+${BIN_DIR}/back.exe: $(OBJ_DIR)/ProgramReader.o $(OBJ_DIR)/Tokenizer.o $(OBJ_DIR)/DumpProgram.o $(OBJ_DIR)/MakeCodeAsm.o $(OBJ_DIR)/bmain.o $(OBJ_DIR)/ProgramFunc.o $(OBJ_DIR)/ReсursiveReader.o
+	$(CC) $(OBJ_DIR)/ProgramReader.o $(OBJ_DIR)/Tokenizer.o $(OBJ_DIR)/DumpProgram.o $(OBJ_DIR)/MakeCodeAsm.o $(OBJ_DIR)/ProgramFunc.o $(OBJ_DIR)/ReсursiveReader.o $(OBJ_DIR)/bmain.o -o ${BIN_DIR}/back.exe $(FLAGS)
 
-./bin/DumpProgram.o: common/src/DumpProgram.cpp common/hdr/DumpProgram.h
-	$(CC) -c ./common/src/DumpProgram.cpp -o ./bin/DumpProgram.o $(FLAGS)
+$(OBJ_DIR)/DumpProgram.o: common/src/DumpProgram.cpp common/hdr/DumpProgram.h
+	$(CC) -c ./common/src/DumpProgram.cpp -o $(OBJ_DIR)/DumpProgram.o $(FLAGS)
 
-./bin/ReсursiveReader.o: frontend/src/ReсursiveReader.cpp frontend/hdr/RecursiveReader.h common/hdr/DSL.h common/hdr/ProgramFunc.h common/hdr/Enum.h
-	$(CC) -c ./frontend/src/ReсursiveReader.cpp -o ./bin/ReсursiveReader.o $(FLAGS)
+$(OBJ_DIR)/ReсursiveReader.o: frontend/src/ReсursiveReader.cpp frontend/hdr/RecursiveReader.h common/hdr/DSL.h common/hdr/ProgramFunc.h common/hdr/Enum.h
+	$(CC) -c ./frontend/src/ReсursiveReader.cpp -o $(OBJ_DIR)/ReсursiveReader.o $(FLAGS)
 
-./bin/Tokenizer.o: frontend/src/Tokenizer.cpp frontend/hdr/Tokenizer.h common/hdr/Enum.h
-	$(CC) -c ./frontend/src/Tokenizer.cpp -o ./bin/Tokenizer.o $(FLAGS)
+$(OBJ_DIR)/Tokenizer.o: frontend/src/Tokenizer.cpp frontend/hdr/Tokenizer.h common/hdr/Enum.h
+	$(CC) -c ./frontend/src/Tokenizer.cpp -o $(OBJ_DIR)/Tokenizer.o $(FLAGS)
 
-./bin/WriteProgramFile.o: frontend/src/WriteProgramFile.cpp frontend/hdr/WriteProgramFile.h
-	$(CC) -c ./frontend/src/WriteProgramFile.cpp -o ./bin/WriteProgramFile.o $(FLAGS)
+$(OBJ_DIR)/WriteProgramFile.o: frontend/src/WriteProgramFile.cpp frontend/hdr/WriteProgramFile.h
+	$(CC) -c ./frontend/src/WriteProgramFile.cpp -o $(OBJ_DIR)/WriteProgramFile.o $(FLAGS)
 
-./bin/fmain.o: frontend/src/main.cpp  frontend/hdr/WriteProgramFile.h common/hdr/DumpProgram.h common/hdr/Enum.h common/hdr/ProgramFunc.h
-	$(CC) -c ./frontend/src/main.cpp -o ./bin/fmain.o $(FLAGS)
+$(OBJ_DIR)/fmain.o: frontend/src/main.cpp  frontend/hdr/WriteProgramFile.h common/hdr/DumpProgram.h common/hdr/Enum.h common/hdr/ProgramFunc.h
+	$(CC) -c ./frontend/src/main.cpp -o $(OBJ_DIR)/fmain.o $(FLAGS)
 
-./bin/ProgramFunc.o: common/src/ProgramFunc.cpp common/hdr/Enum.h common/hdr/ProgramFunc.h frontend/hdr/RecursiveReader.h frontend/hdr/Tokenizer.h backend/hdr/ProgramReader.h
-	$(CC) -c ./common/src/ProgramFunc.cpp -o ./bin/ProgramFunc.o $(FLAGS)
+$(OBJ_DIR)/ProgramFunc.o: common/src/ProgramFunc.cpp common/hdr/Enum.h common/hdr/ProgramFunc.h frontend/hdr/RecursiveReader.h frontend/hdr/Tokenizer.h backend/hdr/ProgramReader.h
+	$(CC) -c ./common/src/ProgramFunc.cpp -o $(OBJ_DIR)/ProgramFunc.o $(FLAGS)
 
-./bin/MakeCodeAsm.o: backend/src/MakeCodeAsm.cpp backend/hdr/MakeCodeAsm.h common/hdr/ProgramFunc.h common/hdr/Enum.h common/hdr/colors.h
-	$(CC) -c ./backend/src/MakeCodeAsm.cpp -o ./bin/MakeCodeAsm.o $(FLAGS)
+$(OBJ_DIR)/MakeCodeAsm.o: backend/src/MakeCodeAsm.cpp backend/hdr/MakeCodeAsm.h common/hdr/ProgramFunc.h common/hdr/Enum.h common/hdr/colors.h
+	$(CC) -c ./backend/src/MakeCodeAsm.cpp -o $(OBJ_DIR)/MakeCodeAsm.o $(FLAGS)
 
-./bin/ProgramReader.o: backend/src/ProgramReader.cpp backend/hdr/ProgramReader.h
-	$(CC) -c ./backend/src/ProgramReader.cpp -o ./bin/ProgramReader.o $(FLAGS)
+$(OBJ_DIR)/ProgramReader.o: backend/src/ProgramReader.cpp backend/hdr/ProgramReader.h
+	$(CC) -c ./backend/src/ProgramReader.cpp -o $(OBJ_DIR)/ProgramReader.o $(FLAGS)
 
-./bin/bmain.o: backend/src/main.cpp common/hdr/Enum.h common/hdr/ProgramFunc.h common/hdr/DumpProgram.h
-	$(CC) -c ./backend/src/main.cpp -o ./bin/bmain.o $(FLAGS)
+$(OBJ_DIR)/bmain.o: backend/src/main.cpp common/hdr/Enum.h common/hdr/ProgramFunc.h common/hdr/DumpProgram.h
+	$(CC) -c ./backend/src/main.cpp -o $(OBJ_DIR)/bmain.o $(FLAGS)
 
 clean:
-	rm -f main ./bin/*.o ./bin/png/*.png
+	rm -f main $(OBJ_DIR)/*.o $(OBJ_DIR)/png/*.png

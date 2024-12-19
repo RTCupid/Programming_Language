@@ -49,6 +49,14 @@ void RecursiveMakeAsm (tree_t* program, FILE* file_asm, node_t* crnt_node)
                 RecursiveMakeAsm (program, file_asm, crnt_node->right);
                 break;
             }
+            case PRNT:
+            {
+                n_operator++;
+                fprintf (stderr, "operator = %s\n", KeyFromEnum ((int)crnt_node->value));
+                RecursiveMakeAsm (program, file_asm, crnt_node->left );
+                fprintf (file_asm, "out\n");
+                break;
+            }
             case IF:
             {
                 n_operator++;

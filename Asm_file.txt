@@ -1,0 +1,16 @@
+;0
+;1
+;2
+push [0] ;x
+push 5
+add
+; test
+push 0
+je end_if:
+; action
+;3
+push 333
+out
+end_if:
+;4
+hlt

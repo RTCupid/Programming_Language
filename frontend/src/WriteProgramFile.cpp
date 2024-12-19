@@ -68,8 +68,8 @@ void WriteBase (tree_t* program, node_t* crnt_node, FILE* file, int level)
         fprintf (file, "\n");
 
         WriteBase (program, crnt_node->left , file, level + 1);
-        // WriteTab (level + 1, file);
-        // fprintf (file, "{}\n");
+        WriteTab (level + 1, file);
+        fprintf (file, "{ID:\"\"}\n");
         WriteTab (level, file);
     }
     fprintf (file, "}\n");

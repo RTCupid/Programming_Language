@@ -8,6 +8,7 @@ size table: 1
 		}
 		{OP:"print"
 			{NUM:"333"}
+			{ID:""}
 		}
 	}
 	{OP:";"}

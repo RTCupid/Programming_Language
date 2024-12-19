@@ -139,11 +139,11 @@ void PrintNodeDot (FILE* dot_file, node_t* node)
 {
     if (node->type == OP)
     {
-        fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#FFC9A5\"; label =  \"%c \" ];\n", node, (int)node->value);
+        fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#FFC9A5\"; label =  \"%s \" ];\n", node, KeyFromEnum ((int)node->value));
     }
     else if (node->type == ST)
     {
-        fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#0ec17f\"; label =  \"%c \" ];\n", node, (int)node->value);
+        fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#0ec17f\"; label =  \"%s \" ];\n", node, KeyFromEnum((int)node->value));
     }
     else if (node->type == NUM)
     {
@@ -233,15 +233,15 @@ void PrintNodeDumpDot (FILE* dot_file, node_t* node, tree_t tree)
     if (node->type == OP)
     {
         fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\" #FFC9A5\"; "
-            "label =  \"{node: %p | value: %c | type: OP | {<left>left: %p | <right>right: %p}  }\" ];\n",
-            node, node, (int)node->value,  node->left, node->right);
+            "label =  \"{node: %p | value: %s | type: OP | {<left>left: %p | <right>right: %p}  }\" ];\n",
+            node, node, KeyFromEnum((int)node->value),  node->left, node->right);
         //fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#aed6dc\"; label =  \"%c \" ];\n", node, node->value);
     }
     else if (node->type == ST)
     {
         fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\" #0ec17f\"; "
-            "label =  \"{node: %p | value: %c | type: ST | {<left>left: %p | <right>right: %p}  }\" ];\n",
-            node, node, (int)node->value,  node->left, node->right);
+            "label =  \"{node: %p | value: %s | type: ST | {<left>left: %p | <right>right: %p}  }\" ];\n",
+            node, node, KeyFromEnum((int)node->value),  node->left, node->right);
         //fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#aed6dc\"; label =  \"%c \" ];\n", node, node->value);
     }
     else if (node->type == NUM)

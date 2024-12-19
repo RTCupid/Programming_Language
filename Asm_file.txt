@@ -3,7 +3,7 @@
 ;2
 push [1] ;food
 push 666
-div
+mul
 pop [0] ; delicious
 ;3
 ;4

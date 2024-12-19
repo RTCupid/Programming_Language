@@ -136,11 +136,12 @@ node_t* GetT (tree_t* program)
         const char* op = keywords[(int)program->tokens[p].value].key_op;
         p++;
         node_t* new_node = GetP (program);
-        if (strcmp (op, "*"))
+        if (strcmp (op, "*") == 0)
         {
+            //fprintf (stderr, YEL "op = <%s> in MUL\n" RESET, op);
             node = _MUL (node, new_node);
         }
-        if (strcmp (op, "/"))
+        else if (strcmp (op, "/") == 0)
         {
             node = _DIV (node, new_node);
         }

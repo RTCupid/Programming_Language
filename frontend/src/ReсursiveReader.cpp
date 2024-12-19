@@ -9,10 +9,10 @@
 #include <unistd.h>
 #include <errno.h>
 
-#include "../../hdr/Enum.h"
-#include "../../hdr/ProgramFunc.h"
-#include "../../hdr/DSL.h"
-#include "../../hdr/colors.h"
+#include "../../common/hdr/Enum.h"
+#include "../../common/hdr/ProgramFunc.h"
+#include "../../common/hdr/DSL.h"
+#include "../../common/hdr/colors.h"
 #include "../hdr/Tokenizer.h"
 #include "../hdr/RecursiveReader.h"
 

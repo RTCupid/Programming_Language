@@ -12,9 +12,9 @@
 
 #include "../hdr/Enum.h"
 #include "../hdr/ProgramFunc.h"
-#include "../frontend/hdr/RecursiveReader.h"
-#include "../frontend/hdr/Tokenizer.h"
-#include "../backend/hdr/ProgramReader.h"
+#include "../../frontend/hdr/RecursiveReader.h"
+#include "../../frontend/hdr/Tokenizer.h"
+#include "../../backend/hdr/ProgramReader.h"
 #include "../hdr/colors.h"
 
 

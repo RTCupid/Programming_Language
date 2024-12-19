@@ -3,9 +3,9 @@
 #include <ctype.h>
 #include <string.h>
 
-#include "../../hdr/Enum.h"
-#include "../../hdr/colors.h"
-#include "../../hdr/ProgramFunc.h"
+#include "../../common/hdr/Enum.h"
+#include "../../common/hdr/colors.h"
+#include "../../common/hdr/ProgramFunc.h"
 #include "../hdr/Tokenizer.h"
 
 

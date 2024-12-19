@@ -4,12 +4,12 @@
 #include <ctype.h>
 #include <string.h>
 
-#include "../../hdr/Enum.h"
-#include "../../hdr/DSL.h"
-#include "../../hdr/ProgramFunc.h"
+#include "../../common/hdr/Enum.h"
+#include "../../common/hdr/DSL.h"
+#include "../../common/hdr/ProgramFunc.h"
 #include "../hdr/ProgramReader.h"
 #include "../../frontend/hdr/Tokenizer.h"
-#include "../../hdr/colors.h"
+#include "../../common/hdr/colors.h"
 
 
 node_t* MakeProgram (tree_t* program, const char* namefile)

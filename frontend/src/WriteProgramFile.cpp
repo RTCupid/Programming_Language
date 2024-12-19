@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <assert.h>
 
-#include "../../hdr/Enum.h"
-#include "../../hdr/ProgramFunc.h"
+#include "../../common/hdr/Enum.h"
+#include "../../common/hdr/ProgramFunc.h"
 #include "../hdr/WriteProgramFile.h"
-#include "../../hdr/colors.h"
+#include "../../common/hdr/colors.h"
 
 void WriteNameTable (tree_t* program, FILE* file)
 {

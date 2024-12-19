@@ -29,31 +29,31 @@ run: ${BIN_DIR}/front.exe ./bin/back.exe ./processor/Asm.exe ./processor/Run.exe
 ./bin/back.exe: ./bin/ProgramReader.o ./bin/Tokenizer.o ./bin/DumpProgram.o ./bin/MakeCodeAsm.o ./bin/bmain.o ./bin/ProgramFunc.o ./bin/ReсursiveReader.o
 	$(CC) ./bin/ProgramReader.o ./bin/Tokenizer.o ./bin/DumpProgram.o ./bin/MakeCodeAsm.o ./bin/ProgramFunc.o ./bin/ReсursiveReader.o ./bin/bmain.o -o ./bin/back.exe $(FLAGS)
 
-./bin/DumpProgram.o: src/DumpProgram.cpp hdr/DumpProgram.h
-	$(CC) -c ./src/DumpProgram.cpp -o ./bin/DumpProgram.o $(FLAGS)
+./bin/DumpProgram.o: common/src/DumpProgram.cpp common/hdr/DumpProgram.h
+	$(CC) -c ./common/src/DumpProgram.cpp -o ./bin/DumpProgram.o $(FLAGS)
 
-./bin/ReсursiveReader.o: frontend/src/ReсursiveReader.cpp frontend/hdr/RecursiveReader.h hdr/DSL.h hdr/ProgramFunc.h hdr/Enum.h
+./bin/ReсursiveReader.o: frontend/src/ReсursiveReader.cpp frontend/hdr/RecursiveReader.h common/hdr/DSL.h common/hdr/ProgramFunc.h common/hdr/Enum.h
 	$(CC) -c ./frontend/src/ReсursiveReader.cpp -o ./bin/ReсursiveReader.o $(FLAGS)
 
-./bin/Tokenizer.o: frontend/src/Tokenizer.cpp frontend/hdr/Tokenizer.h hdr/Enum.h
+./bin/Tokenizer.o: frontend/src/Tokenizer.cpp frontend/hdr/Tokenizer.h common/hdr/Enum.h
 	$(CC) -c ./frontend/src/Tokenizer.cpp -o ./bin/Tokenizer.o $(FLAGS)
 
 ./bin/WriteProgramFile.o: frontend/src/WriteProgramFile.cpp frontend/hdr/WriteProgramFile.h
 	$(CC) -c ./frontend/src/WriteProgramFile.cpp -o ./bin/WriteProgramFile.o $(FLAGS)
 
-./bin/fmain.o: frontend/src/main.cpp  frontend/hdr/WriteProgramFile.h hdr/DumpProgram.h hdr/Enum.h hdr/ProgramFunc.h
+./bin/fmain.o: frontend/src/main.cpp  frontend/hdr/WriteProgramFile.h common/hdr/DumpProgram.h common/hdr/Enum.h common/hdr/ProgramFunc.h
 	$(CC) -c ./frontend/src/main.cpp -o ./bin/fmain.o $(FLAGS)
 
-./bin/ProgramFunc.o: src/ProgramFunc.cpp hdr/Enum.h hdr/ProgramFunc.h frontend/hdr/RecursiveReader.h frontend/hdr/Tokenizer.h backend/hdr/ProgramReader.h
-	$(CC) -c ./src/ProgramFunc.cpp -o ./bin/ProgramFunc.o $(FLAGS)
+./bin/ProgramFunc.o: common/src/ProgramFunc.cpp common/hdr/Enum.h common/hdr/ProgramFunc.h frontend/hdr/RecursiveReader.h frontend/hdr/Tokenizer.h backend/hdr/ProgramReader.h
+	$(CC) -c ./common/src/ProgramFunc.cpp -o ./bin/ProgramFunc.o $(FLAGS)
 
-./bin/MakeCodeAsm.o: backend/src/MakeCodeAsm.cpp backend/hdr/MakeCodeAsm.h hdr/ProgramFunc.h hdr/Enum.h hdr/colors.h
+./bin/MakeCodeAsm.o: backend/src/MakeCodeAsm.cpp backend/hdr/MakeCodeAsm.h common/hdr/ProgramFunc.h common/hdr/Enum.h common/hdr/colors.h
 	$(CC) -c ./backend/src/MakeCodeAsm.cpp -o ./bin/MakeCodeAsm.o $(FLAGS)
 
 ./bin/ProgramReader.o: backend/src/ProgramReader.cpp backend/hdr/ProgramReader.h
 	$(CC) -c ./backend/src/ProgramReader.cpp -o ./bin/ProgramReader.o $(FLAGS)
 
-./bin/bmain.o: backend/src/main.cpp hdr/Enum.h hdr/ProgramFunc.h hdr/DumpProgram.h
+./bin/bmain.o: backend/src/main.cpp common/hdr/Enum.h common/hdr/ProgramFunc.h common/hdr/DumpProgram.h
 	$(CC) -c ./backend/src/main.cpp -o ./bin/bmain.o $(FLAGS)
 
 clean:

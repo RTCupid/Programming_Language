@@ -71,14 +71,22 @@ node_t* GetG (tree_t* program)
 
 node_t* GetOp (tree_t* program)
 {
+    fprintf (stderr, CYN "Start GetOp\n" RESET);
     node_t* node = NULL;
     if (program->tokens[p].type == ID)
     {
+        fprintf (stderr, CYN "Start Assignment\n" RESET);
         node = GetA (program);
     }
-    else if (_CMP_OP("if_happens"))
+    else if (_CMP_OP("if"))
     {
+        fprintf (stderr, CYN "Start if\n" RESET);
         node = GetIf (program);
+    }
+    else
+    {
+        fprintf (stderr, CYN "ERROR: in GetOp Unknown operator\n" RESET);
+        SintaxError (program, "GetOp");
     }
 
     if (_CMP_OP(";"))
@@ -99,50 +107,57 @@ node_t* GetIf (tree_t* program)
     node_t* new_left_node = NULL;
     node_t* new_right_node = NULL;
 
-    if (_CMP_OP("if_happens"))
+    if (_CMP_OP("if"))
     {
+        fprintf (stderr, CYN "if\n" RESET);
         p++;
         if (_CMP_OP("("))
         {
+            fprintf (stderr, CYN " \"(\"\n" RESET);
             p++;
             new_left_node = GetE (program);
             if (_CMP_OP(")"))
             {
+                p++;
+                fprintf (stderr, CYN " \")\"\n" RESET);
                 if (_CMP_OP("{"))
                 {
+                    p++;
+                    fprintf (stderr, CYN " \"{\"\n" RESET);
                     new_right_node = GetOp (program);
                     //p++;
                     if (_CMP_OP("}"))
                     {
+                        fprintf (stderr, CYN " \"}\"\n" RESET);
                         p++;
                     }
                     else
                     {
-                        printf (YEL "in GetG: token ISN'T \"}\"n" RESET);
-                        SintaxError (program, "GetG");
+                        fprintf (stderr, YEL "in GetIf: token ISN'T \"}\"\n" RESET);
+                        SintaxError (program, "GetIf");
                     }
                 }
                 else
                 {
-                    printf (YEL "in GetG: token ISN'T \"{\"n" RESET);
-                    SintaxError (program, "GetG");
+                    fprintf (stderr, YEL "in GetIf: token ISN'T \"{\"\n" RESET);
+                    SintaxError (program, "GetIf");
                 }
             }
             else
             {
-                printf (YEL "in GetG: token ISN'T \")\"n" RESET);
-                SintaxError (program, "GetG");
+                fprintf (stderr, YEL "in GetIf: token ISN'T \")\"\n" RESET);
+                SintaxError (program, "GetIf");
             }
         }
         else
         {
-            printf (YEL "in GetG: token ISN'T \"(\"\n" RESET);
-            SintaxError (program, "GetG");
+            fprintf (stderr, YEL "in GetIf: token ISN'T \"(\"\n" RESET);
+            SintaxError (program, "GetIf");
         }
     }
     else
     {
-        fprintf (stderr, YEL "in GetG: end token ISN'T '$'\n" RESET);
+        fprintf (stderr, YEL "in GetIf: end token ISN'T '$'\n" RESET);
         SintaxError (program, "GetIf");
     }
     return _IF(new_left_node, new_right_node);

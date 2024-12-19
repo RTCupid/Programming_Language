@@ -14,4 +14,5 @@
 #define _SIN(L)     NewNode(OP, SIN, L, NULL)
 #define _COS(L)     NewNode(OP, COS, L, NULL)
 #define  _LN(L)     NewNode(OP, LN,  L, NULL)
+#define  _IF(L,R)   NewNode(OP, IF,  L, R)
 #endif

@@ -20,22 +20,24 @@ bool status = true;
 //+ - 1+ times
 /*
 Main:
-{ G  ::= {St ';'}+ '&'
-{ St ::= A | ... // пока только присваивание
+{ G  ::= {OP ";"}+ "$"
+{ OP ::= A | IF ... // пока только присваивание
 Everything
-{ A  ::= Id '=' E
-if
+{ A  ::= Id "=" E
+{ IF ::= "if_happen" "(" E ")"  "{" {OP ";"}+ "}"
 while
 Equation
-{ E  ::= T {['+' '-'] T}*
-{ T  ::= P {['*' '/'] P}*
-{ P  ::= '(' E ')' | N | Id
+{ E  ::= T {["+" "-"] T}*
+{ T  ::= P {["*" "/"] P}*
+{ P  ::= "(" E ")" | N | Id
 > <
 TOkens:
-{ N  ::= ['0'-'9']+
-{ Id ::= ['a'-'z']+
+{ N  ::=NUM
+{ Id ::= ID
 */
 size_t p = 0;
+
+/*today purpose add "if" and "while" and make The_Shogun_ordered*/
 
 #define _CMP_OP(operator) (program->tokens[p].type == OP && strcmp(keywords[(int)program->tokens[p].value].key_op, operator) == 0)
 
@@ -69,8 +71,51 @@ node_t* GetG (tree_t* program)
 
 node_t* GetOp (tree_t* program)
 {
-    node_t* node = GetA (program);
+    if (program->tokens[p].type == ID)
+    {
+        node_t* node = GetA (program);
+    }
+    else if (_CMP_OP("if_happens"))
+    {
+        node_t* node = GetIf (program);
+    }
     return node;
+}
+
+node_t* GetIf (tree_t* program)
+{
+    if (_CMP_OP("if_happens"))
+    {
+        p++;
+        if (_CMP_OP("("))
+        {
+            p++;
+            node_t* new_left_node = GetE (program);
+            if (_CMP_OP(")"))
+            {
+                if (_CMP_OP("{"))
+                {
+
+                }
+            }
+            else
+            {
+                printf (YEL "in GetG: token ISN'T \")\"n" RESET);
+                SintaxError (program, "GetG");
+            }
+        }
+        else
+        {
+            printf (YEL "in GetG: token ISN'T \"(\"\n" RESET);
+            SintaxError (program, "GetG");
+        }
+    }
+    else
+    {
+        fprintf (stderr, YEL "in GetG: end token ISN'T '$'\n" RESET);
+        SintaxError (program, "GetIf");
+    }
+    return _IF(
 }
 
 node_t* GetA (tree_t* program)

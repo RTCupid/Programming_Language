@@ -8,6 +8,7 @@
 #include "../../hdr/DSL.h"
 #include "../../hdr/ProgramFunc.h"
 #include "../hdr/ProgramReader.h"
+#include "../../frontend/hdr/Tokenizer.h"
 #include "../../hdr/colors.h"
 
 
@@ -71,7 +72,7 @@ node_t* RunProgram (tree_t* program, FILE* base_file)
             }
             case OP:
             {
-                node = NewNode (OP, buffer[0], NULL, NULL);
+                node = NewNode (OP, (double)keywords[IsKeyWord(program, buffer)].number_key, NULL, NULL);
                 break;
             }
             case ID:

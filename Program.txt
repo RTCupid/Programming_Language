@@ -1,3 +1,4 @@
-delicious=food*666;
-ded=333;
-tyoma=166$
+if_happens (x + 5)
+{
+    ded = 333;
+}$

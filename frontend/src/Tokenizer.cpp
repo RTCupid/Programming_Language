@@ -185,7 +185,7 @@ char* ReadToken (tree_t* program, types_t mode, size_t* p, int* n_print_symbols)
         }
         else
         {
-            while (isalpha (program->data[*p]))         //TODO: ispunct, if ispunct read one char and end of reading
+            while (isalpha (program->data[*p]) || program->data[*p] == '_')         //TD: ispunct, if ispunct read one char and end of reading (est)
             {
                 int offset = sprintf (buffer + *n_print_symbols, "%c", program->data[*p]);
                 *n_print_symbols += offset;

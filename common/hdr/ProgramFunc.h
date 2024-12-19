@@ -27,7 +27,7 @@ typedef struct keyword_t
     const char*  key_op;
 } keyword_t;
 
-const size_t N_KEYWORDS = 16;
+const size_t N_KEYWORDS = 21;
 
 const keyword_t keywords[N_KEYWORDS] =      //TD: only name_key without synonim
 {                                           //TD: enum for keywords_number

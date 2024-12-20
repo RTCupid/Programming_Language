@@ -27,7 +27,7 @@ typedef struct keyword_t
     const char*  key_op;
 } keyword_t;
 
-const size_t N_KEYWORDS = 24;
+const size_t N_KEYWORDS = 25;
 
 const keyword_t keywords[N_KEYWORDS] =      //TD: only name_key without synonim
 {                                           //TD: enum for keywords_number
@@ -54,7 +54,8 @@ const keyword_t keywords[N_KEYWORDS] =      //TD: only name_key without synonim
     {"}",                   LFB,  "}"},    //21
     {"write_about",         PRNT, "print"},//22
     {"print",               PRNT, "print"},//23
-    {"input",               INPT, "input"} //24
+    {"input",               INPT, "input"},//24
+    {"sqrt",                SQRT, "sqrt"}  //25
 };
 
 typedef struct tree_t

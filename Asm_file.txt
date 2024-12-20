@@ -4,54 +4,46 @@ in
 pop [0] ; a
 ;2
 ;3
-push [0] ;a
-out
+in
+pop [1] ; b
 ;4
 ;5
+in
+pop [2] ; c
 ;6
-push [1] ;x
-push 111
-sub
-; test
-push 0
-jne end_if6:
-; action
 ;7
 ;8
-push 333
-out
 ;9
-;10
-push 666
-out
-;11
-;12
-push 111
-pop [2] ; ded
-;13
-;14
-;15
-push [2] ;ded
-push 3
+push [0] ;a
+push [1] ;b
 mul
-out
-;16
-end_if6:
-;17
-;18
-;19
-push [1] ;x
-push 456
-sub
+push [2] ;c
+mul
 ; test
 push 0
-jne end_if19:
+jne end_if8:
 ; action
-;20
-;21
-push 456
-out
-;22
-end_if19:
-;23
+;10
+;11
+;12
+;13
+push [1] ;b
+push [1] ;b
+mul
+;14
+;15
+push 4
+push [0] ;a
+mul
+push [2] ;c
+mul
+add
+pop [3] ; D
+;16
+;17
+push 5
+pop [4] ; first_x
+;18
+end_if8:
+;19
 hlt

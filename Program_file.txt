@@ -1,64 +1,57 @@
-size table: 3
+size table: 5
 0 a
-1 x
-2 ded
+1 b
+2 c
+3 D
+4 first_x
 {OP:";"
 	{OP:"input"
 		{ID:"0"}
 		{ID:""}
 	}
 	{OP:";"
-		{OP:"print"
-			{ID:"0"}
+		{OP:"input"
+			{ID:"1"}
 			{ID:""}
 		}
 		{OP:";"
-			{OP:"if"
-				{OP:"-"
-					{ID:"1"}
-					{NUM:"111"}
-				}
-				{OP:";"
-					{OP:"print"
-						{NUM:"333"}
-						{ID:""}
-					}
-					{OP:";"
-						{OP:"print"
-							{NUM:"666"}
-							{ID:""}
-						}
-						{OP:";"
-							{OP:"="
-								{ID:"2"}
-								{NUM:"111"}
-							}
-							{OP:";"
-								{OP:"print"
-									{OP:"*"
-										{ID:"2"}
-										{NUM:"3"}
-									}
-									{ID:""}
-								}
-								{OP:";"}
-							}
-						}
-					}
-				}
+			{OP:"input"
+				{ID:"2"}
+				{ID:""}
 			}
 			{OP:";"
 				{OP:"if"
-					{OP:"-"
-						{ID:"1"}
-						{NUM:"456"}
+					{OP:"*"
+						{OP:"*"
+							{ID:"0"}
+							{ID:"1"}
+						}
+						{ID:"2"}
 					}
 					{OP:";"
-						{OP:"print"
-							{NUM:"456"}
-							{ID:""}
+						{OP:"="
+							{ID:"3"}
+							{OP:"+"
+								{OP:"*"
+									{ID:"1"}
+									{ID:"1"}
+								}
+								{OP:"*"
+									{OP:"*"
+										{NUM:"4"}
+										{ID:"0"}
+									}
+									{ID:"2"}
+								}
+							}
 						}
-						{OP:";"}
+						{OP:";"
+							{OP:"="
+								{ID:"4"}
+								{NUM:"5"}
+							}
+							{OP:";"}
+						}
 					}
 				}
 				{OP:";"}

@@ -1,14 +1,12 @@
 input (a);
-write_about {a};
+input (b);
+input (c);
 
-if_happens (x add 111)
+if_happens (a * b * c)
 {
-    write_about {333};
-    write_about {666};
-    ded assign 111;
-    write_about {ded multiply 3};
-};
-if_happens (x add 456)
-{
-    write_about {456};
-} then_commit_seppuku
+    D = b * b - 4 * a * c;
+
+    first_x = 5;
+}
+
+then_commit_seppuku

@@ -31,11 +31,12 @@ while
 Equation
 { E  ::= T {["+" "-"] T}*
 { T  ::= P {["*" "/"] P}*
-{ P  ::= "(" E ")" | N | Id
+{ P  ::= "(" E ")" | N | Id | "sqrt" "(" E ")"
 > <
 TOkens:
 { N  ::=NUM
 { Id ::= ID
+{
 */
 size_t p = 0;
 
@@ -220,8 +221,8 @@ node_t* GetIf (tree_t* program)
                 {
                     p++;
                     fprintf (stderr, CYN " \"{\"\n" RESET);
-                    if (program->tokens[p].type == OP)
-                    {
+                    //if (program->tokens[p].type == OP)
+                    //{
                         new_right_node        = _ST(NULL, NULL);
                         new_right_node->left  = GetOp (program);
                         new_right_node->right = _ST(NULL, NULL);
@@ -240,18 +241,12 @@ node_t* GetIf (tree_t* program)
                             crnt_node->right = _ST(NULL, NULL);
                             crnt_node        = crnt_node->right;
                         }
-
-                        // else
-                        // {
-                        //     fprintf (stderr, YEL "in GetIf: token ISN'T \"}\"\n" RESET);
-                        //     SintaxError (program, "GetIf");
-                        // }
-                    }
-                    else
-                    {
-                        fprintf (stderr, YEL "in GetIf: if don't have OP token\n" RESET);
-                        SintaxError (program, "GetIf");
-                    }
+                    //}
+                    // else
+                    // {
+                    //     fprintf (stderr, YEL "in GetIf: if don't have OP token\n" RESET);
+                    //     SintaxError (program, "GetIf");
+                    // }
                 }
                 else
                 {
@@ -367,6 +362,32 @@ node_t* GetP (tree_t* program)
         }
         p++;
         return node;
+    }
+    if (_CMP_OP("sqrt"))
+    {
+        node_t* argument_node = NULL;
+        p++;
+        if (_CMP_OP("("))
+        {
+            p++;
+            argument_node = GetE (program);
+            if (_CMP_OP(")"))
+            {
+                p++;
+            }
+            else
+            {
+                printf (YEL "in GetP sqrt: token ISN'T \")\"\n" RESET);
+                SintaxError (program, "GetP sqrt");
+            }
+        }
+        else
+        {
+            printf (YEL "in GetP sqrt: token ISN'T \"(\"\n" RESET);
+            SintaxError (program, "GetP sqrt");
+        }
+
+        return _SQRT(argument_node);
     }
     if (program->tokens[p].type == ID)
     {

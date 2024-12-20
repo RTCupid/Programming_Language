@@ -27,5 +27,6 @@ enum OP_t
     LFB,
     PRNT,
     INPT,
+    SQRT,
 };
 #endif

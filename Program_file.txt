@@ -5,7 +5,7 @@ size table: 2
 	{OP:"if"
 		{OP:"+"
 			{ID:"0"}
-			{NUM:"5"}
+			{NUM:"111"}
 		}
 		{OP:";"
 			{OP:"print"
@@ -20,7 +20,7 @@ size table: 2
 				{OP:";"
 					{OP:"="
 						{ID:"1"}
-						{NUM:"369"}
+						{NUM:"333"}
 					}
 					{OP:";"
 						{OP:"print"

@@ -95,7 +95,7 @@ node_t* GetOp (tree_t* program)
     }
     else
     {
-        fprintf (stderr, CYN "ERROR: in GetOp Unknown operator\n" RESET);
+        fprintf (stderr, YEL "ERROR: in GetOp Unknown operator\n" RESET);
         SintaxError (program, "GetOp");
     }
 

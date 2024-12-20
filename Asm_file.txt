@@ -2,11 +2,11 @@
 ;1
 ;2
 push [0] ;x
-push 5
+push 111
 add
 ; test
 push 0
-je end_if:
+jne end_if:
 ; action
 ;3
 ;4
@@ -18,7 +18,7 @@ push 666
 out
 ;7
 ;8
-push 369
+push 333
 pop [1] ; ded
 ;9
 ;10

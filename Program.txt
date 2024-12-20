@@ -1,7 +1,7 @@
-if_happens (x + 5)
+if_happens (x + 111)
 {
     write_about {333};
     write_about {666};
-    ded = 369;
+    ded = 333;
     write_about {ded};
 }$

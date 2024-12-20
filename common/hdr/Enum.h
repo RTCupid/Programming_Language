@@ -28,5 +28,7 @@ enum OP_t
     PRNT,
     INPT,
     SQRT,
+    MORE,
+    LESS,
 };
 #endif

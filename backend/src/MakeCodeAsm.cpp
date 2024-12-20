@@ -78,11 +78,27 @@ void RecursiveMakeAsm (tree_t* program, FILE* file_asm, node_t* crnt_node)
                 n_operator++;
                 size_t num_if = n_operator;
                 fprintf (stderr, GRN "operator = %s\n" RESET, KeyFromEnum ((int)crnt_node->value));
-                RecursiveMakeAsm (program, file_asm, crnt_node->left );
-
                 fprintf (file_asm, "; test\n");
-                fprintf (file_asm, "push 0\n");
-                fprintf (file_asm, "jne end_if%lu:\n", num_if);
+
+                if (crnt_node->left->type == OP && crnt_node->left->value == LESS)
+                {
+                    RecursiveMakeAsm (program, file_asm, crnt_node->left->left);
+                    RecursiveMakeAsm (program, file_asm, crnt_node->left->right);
+                    fprintf (file_asm, "ja end_if%lu:\n", num_if);
+                }
+                else if (crnt_node->left->type == OP && crnt_node->left->value == MORE)
+                {
+                    RecursiveMakeAsm (program, file_asm, crnt_node->left->left);
+                    RecursiveMakeAsm (program, file_asm, crnt_node->left->right);
+                    fprintf (file_asm, "jb end_if%lu:\n", num_if);
+                }
+                else
+                {
+                    RecursiveMakeAsm (program, file_asm, crnt_node->left);
+                    fprintf (file_asm, "push 0\n");
+                    fprintf (file_asm, "jne end_if%lu:\n", num_if);
+                }
+
                 fprintf (file_asm, "; action\n");
 
                 RecursiveMakeAsm (program, file_asm, crnt_node->right);

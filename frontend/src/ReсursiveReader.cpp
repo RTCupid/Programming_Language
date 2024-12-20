@@ -24,15 +24,17 @@ Main:
 { OP ::= A | IF | Print | Input..
 Everything
 { A  ::= Id "=" E
-{ IF ::= "if_happen" "(" E ")"  "{" {OP ";"}+ "}"
-{Print ::= ...
+{More ::= E ">" E
+{Less ::= E "<" E
+{ IF ::= "if_happen" "(" MORE | LESS | E ")"  "{" {OP ";"}+ "}"
+{Print ::= "print" ...
 {Input ::= "input" "(" ID ")"
 while
 Equation
 { E  ::= T {["+" "-"] T}*
 { T  ::= P {["*" "/"] P}*
 { P  ::= "(" E ")" | N | Id | "sqrt" "(" E ")"
-> <
+    >   <
 TOkens:
 { N  ::=NUM
 { Id ::= ID
@@ -40,7 +42,7 @@ TOkens:
 */
 size_t p = 0;
 
-/*today purpose add "if" and "while" and make The_Shogun_ordered*/
+////today purpose add "if" and "while" and make The_Shogun_ordered
 
 #define _CMP_OP(operator) (program->tokens[p].type == OP && strcmp(keywords[(int)program->tokens[p].value].key_op, operator) == 0)
 
@@ -201,8 +203,10 @@ node_t* GetPrint (tree_t* program)
 
 node_t* GetIf (tree_t* program)
 {
-    node_t* new_left_node  = NULL;
-    node_t* new_right_node = NULL;
+    node_t* condition_node       = NULL;
+    node_t* left_condition_node  = NULL;
+    node_t* right_condition_node = NULL;
+    node_t* new_right_node       = NULL;
 
     if (_CMP_OP("if"))
     {
@@ -212,7 +216,24 @@ node_t* GetIf (tree_t* program)
         {
             fprintf (stderr, CYN " \"(\"\n" RESET);
             p++;
-            new_left_node = GetE (program);
+            condition_node = GetE (program);
+            if (_CMP_OP("<"))
+            {
+                fprintf (stderr, CYN " \"<\"\n" RESET);
+                p++;
+                left_condition_node = condition_node;
+                right_condition_node = GetE (program);
+                condition_node = _MORE(left_condition_node, right_condition_node);
+            }
+            else if (_CMP_OP(">"))
+            {
+                fprintf (stderr, CYN " \">\"\n" RESET);
+                p++;
+                left_condition_node = condition_node;
+                right_condition_node = GetE (program);
+                condition_node = _LESS(left_condition_node, right_condition_node);
+            }
+
             if (_CMP_OP(")"))
             {
                 p++;
@@ -271,7 +292,7 @@ node_t* GetIf (tree_t* program)
         fprintf (stderr, YEL "in GetIf: end token ISN'T '$'\n" RESET);
         SintaxError (program, "GetIf");
     }
-    return _IF(new_left_node, new_right_node);
+    return _IF(condition_node, new_right_node);
 }
 
 node_t* GetA (tree_t* program)

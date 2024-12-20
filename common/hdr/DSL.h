@@ -18,4 +18,6 @@
 #define _PRNT(L)      NewNode(OP, PRNT, L, NULL)
 #define _INPUT(L)     NewNode(OP, INPT, L, NULL)
 #define _SQRT(L)      NewNode(OP, SQRT, L, NULL)
+#define _MORE(L,R)    NewNode(OP, MORE, L, R)
+#define _LESS(L,R)    NewNode(OP, LESS, L, R)
 #endif

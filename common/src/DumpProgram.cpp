@@ -139,7 +139,14 @@ void PrintNodeDot (FILE* dot_file, node_t* node)
 {
     if (node->type == OP)
     {
-        fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#FFC9A5\"; label =  \"%s \" ];\n", node, KeyFromEnum ((int)node->value));
+        if (node->value == MORE || node->value == LESS)
+        {
+            fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#FFC9A5\"; label =  \"\\%s \" ];\n", node, KeyFromEnum ((int)node->value));
+        }
+        else
+        {
+            fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#FFC9A5\"; label =  \"%s \" ];\n", node, KeyFromEnum ((int)node->value));
+        }
     }
     else if (node->type == ST)
     {
@@ -232,9 +239,18 @@ void PrintNodeDumpDot (FILE* dot_file, node_t* node, tree_t tree)
 {
     if (node->type == OP)
     {
-        fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\" #FFC9A5\"; "
-            "label =  \"{node: %p | value: %s | type: OP | {<left>left: %p | <right>right: %p}  }\" ];\n",
+        if (node->value == MORE || node->value == LESS)
+        {
+            fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\" #FFC9A5\"; "
+            "label =  \"{node: %p | value: \\%s | type: OP | {<left>left: %p | <right>right: %p}  }\" ];\n",
             node, node, KeyFromEnum((int)node->value),  node->left, node->right);
+        }
+        else
+        {
+            fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\" #FFC9A5\"; "
+                "label =  \"{node: %p | value: %s | type: OP | {<left>left: %p | <right>right: %p}  }\" ];\n",
+                node, node, KeyFromEnum((int)node->value),  node->left, node->right);
+        }
         //fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#aed6dc\"; label =  \"%c \" ];\n", node, node->value);
     }
     else if (node->type == ST)

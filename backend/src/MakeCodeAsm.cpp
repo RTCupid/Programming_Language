@@ -102,7 +102,7 @@ void RecursiveMakeAsm (tree_t* program, FILE* file_asm, node_t* crnt_node)
                 {
                     RecursiveMakeAsm (program, file_asm, crnt_node->left);
                     fprintf (file_asm, "push 0\n");
-                    fprintf (file_asm, "jne end_if%lu:\n", num_if);
+                    fprintf (file_asm, "je end_if%lu:\n", num_if);
                 }
 
                 fprintf (file_asm, "; action\n");

@@ -1,26 +1,285 @@
 ;0
 ;1
-push 66
-pop [0] ; x
+in
+pop [0] ; a
 ;2
 ;3
-push 12
-pop [1] ; y
+in
+pop [1] ; b
 ;4
 ;5
-; test
+in
+pop [2] ; c
 ;6
-push [0] ;x
-push 55
-sub
-push [1] ;y
-jb end_if6:
-; action
 ;7
+; test
 ;8
-push 6
-out
 ;9
-end_if6:
+push [0] ;a
+push [1] ;b
+mul
+push [2] ;c
+mul
+push 0
+je end_if8:
+; action
 ;10
+;11
+;12
+;13
+push [1] ;b
+push [1] ;b
+mul
+;14
+;15
+push 4
+push [0] ;a
+mul
+push [2] ;c
+mul
+sub
+pop [3] ; Diskriminant
+;16
+;17
+push [3] ;Diskriminant
+out
+;18
+;19
+; test
+push [3] ;Diskriminant
+push 0
+jb end_if20:
+; action
+;20
+;21
+push 0
+out
+;22
+;23
+hlt
+;24
+end_if20:
+;25
+;26
+;27
+;28
+;29
+;30
+push 0
+push 1
+sub
+push [1] ;b
+mul
+;31
+push [3] ;Diskriminant
+sqrt
+sub
+;32
+push 2
+push [0] ;a
+mul
+div
+pop [4] ; first_answ
+;33
+;34
+;35
+;36
+;37
+;38
+push 0
+push 1
+sub
+push [1] ;b
+mul
+;39
+push [3] ;Diskriminant
+sqrt
+add
+;40
+push 2
+push [0] ;a
+mul
+div
+pop [5] ; second_answ
+;41
+;42
+push 2
+out
+;43
+;44
+push [4] ;first_answ
+out
+;45
+;46
+push [5] ;second_answ
+out
+;47
+;48
+hlt
+;49
+end_if8:
+;50
+;51
+; test
+;52
+push [0] ;a
+push [1] ;b
+mul
+push 0
+je end_if52:
+; action
+;53
+;54
+push 0
+pop [4] ; first_answ
+;55
+;56
+;57
+;58
+;59
+push 0
+push 1
+sub
+push [1] ;b
+mul
+push [0] ;a
+div
+pop [5] ; second_answ
+;60
+;61
+push 2
+out
+;62
+;63
+push [4] ;first_answ
+out
+;64
+;65
+push [5] ;second_answ
+out
+;66
+;67
+hlt
+;68
+end_if52:
+;69
+;70
+; test
+;71
+push [0] ;a
+push [2] ;c
+mul
+push 0
+je end_if71:
+; action
+;72
+;73
+; test
+push [2] ;c
+push 0
+ja end_if74:
+; action
+;74
+;75
+push 0
+out
+;76
+;77
+hlt
+;78
+end_if74:
+;79
+;80
+;81
+;82
+;83
+;84
+push 0
+push 1
+sub
+push [2] ;c
+mul
+push [0] ;a
+div
+sqrt
+pop [4] ; first_answ
+;85
+;86
+;87
+;88
+push 0
+push 1
+sub
+;89
+;90
+;91
+;92
+push 0
+push 1
+sub
+push [2] ;c
+mul
+push [0] ;a
+div
+sqrt
+mul
+pop [5] ; second_answ
+;93
+;94
+push 2
+out
+;95
+;96
+push [4] ;first_answ
+out
+;97
+;98
+push [5] ;second_answ
+out
+;99
+;100
+hlt
+;101
+end_if71:
+;102
+;103
+; test
+;104
+push [1] ;b
+push [2] ;c
+mul
+push 0
+je end_if104:
+; action
+;105
+;106
+;107
+;108
+;109
+push 0
+push 1
+sub
+push [2] ;c
+mul
+push [1] ;b
+div
+pop [4] ; first_answ
+;110
+;111
+push 1
+out
+;112
+;113
+push [4] ;first_answ
+out
+;114
+;115
+hlt
+;116
+end_if104:
+;117
+;118
+push 0
+out
+;119
 hlt

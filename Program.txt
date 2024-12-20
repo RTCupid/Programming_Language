@@ -4,18 +4,65 @@ input (c);
 
 if_happens (a multiply b multiply c)
 {
-    D = b multiply b subtract 4 multiply a multiply c;
-    write_about {D};
+    Diskriminant = b multiply b subtract 4 multiply a multiply c;
+    write_about {Diskriminant};
 
-    if (D < 0)
+    if (Diskriminant < 0)
+    {
+        write_about {0};
+
+        then_commit_seppuku
+    };
+
+    first_answ  = ((0 subtract 1) multiply b subtract sqrt (Diskriminant)) divide (2 multiply a);
+    second_answ = ((0 subtract 1) multiply b add      sqrt (Diskriminant)) divide (2 multiply a);
+    write_about {2};
+    write_about {first_answ};
+    write_about {second_answ};
+
+    then_commit_seppuku
+};
+
+if_happens (a multiply b)
+{
+    first_answ  = 0;
+    second_answ = (0 subtract 1) multiply b divide a;
+
+    write_about {2};
+    write_about {first_answ};
+    write_about {second_answ};
+
+    then_commit_seppuku
+};
+
+if_happens (a multiply c)
+{
+    if_happens (c > 0)
     {
         write_about {0};
         then_commit_seppuku
-    }
+    };
 
-    first_x = ((0 subtract 1) multiply b subtract sqrt (D)) divide (2 multiply a);
+    first_answ  =                         sqrt ((0 subtract 1) multiply c divide a);
+    second_answ = (0 subtract 1) multiply sqrt ((0 subtract 1) multiply c divide a);
+
     write_about {2};
-    write_about {first_x};
-}
+    write_about {first_answ};
+    write_about {second_answ};
+
+    then_commit_seppuku
+};
+
+if_happens (b multiply c)
+{
+    first_answ = (0 subtract 1) multiply c divide b;
+
+    write_about {1};
+    write_about {first_answ};
+
+    then_commit_seppuku
+};
+
+write_about {0};
 
 then_commit_seppuku

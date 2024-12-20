@@ -1,34 +1,44 @@
-size table: 2
-0 x
-1 y
+size table: 5
+0 a
+1 b
+2 c
+3 D
+4 first_x
 {OP:";"
-	{OP:"="
+	{OP:"input"
 		{ID:"0"}
-		{NUM:"66"}
+		{ID:""}
 	}
 	{OP:";"
-		{OP:"="
+		{OP:"input"
 			{ID:"1"}
-			{NUM:"12"}
+			{ID:""}
 		}
 		{OP:";"
-			{OP:"if"
-				{OP:">"
-					{OP:"-"
-						{ID:"0"}
-						{NUM:"55"}
-					}
-					{ID:"1"}
-				}
-				{OP:";"
-					{OP:"print"
-						{NUM:"6"}
-						{ID:""}
-					}
-					{OP:";"}
-				}
+			{OP:"input"
+				{ID:"2"}
+				{ID:""}
 			}
-			{OP:";"}
-		}
-	}
-}
+			{OP:";"
+				{OP:"if"
+					{OP:"*"
+						{OP:"*"
+							{ID:"0"}
+							{ID:"1"}
+						}
+						{ID:"2"}
+					}
+					{OP:";"
+						{OP:"="
+							{ID:"3"}
+							{OP:"-"
+								{OP:"*"
+									{ID:"1"}
+									{ID:"1"}
+								}
+								{OP:"*"
+									{OP:"*"
+										{NUM:"4"}
+										{ID:"0"}
+									}
+						

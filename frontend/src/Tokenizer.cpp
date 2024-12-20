@@ -39,11 +39,9 @@ token_t* Tokenizer (tree_t* program)
 
     double number = 0;
 
-    int next = 1;
-
     //printf (RED "program->data in Tokenizer = <%p>\n" RESET, program->data);
 
-    while (next) //TD: OP to tokens, or change all operators to keywords (est)
+    while (p < (size_t)program->size_data) //TD: OP to tokens, or change all operators to keywords (est)
     {
         SkipSpaces (program, &p);
 
@@ -90,11 +88,11 @@ token_t* Tokenizer (tree_t* program)
 
                 //fprintf (program->dbg_log_file, "!!! %d\n", keywords[number_key].number_key);
 
-                if (keywords[number_key].number_key == END)
-                {
-                    next = 0;
-                    fprintf (program->dbg_log_file, "next = %d\n\n", next);
-                }
+                // if (keywords[number_key].number_key == END)
+                // {
+                //     next = 0;
+                //     fprintf (program->dbg_log_file, "next = %d\n\n", next);
+                // }
             }
             else
             {

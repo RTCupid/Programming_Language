@@ -1,38 +1,31 @@
 <FONT SIZE="6"><center>Program: Frontend</center><FONT SIZE="5">
 
-<center>"x = 66;
-y = 12;
+<center>"input (a);
+input (b);
+input (c);
 
-if_happens (x - 55 < y)
+if_happens (a * b * c)
 {
-    write_about {6};
-}then_commit_seppuku
+    D = b * b - 4 * a * c;
+    write_about {D};
+
+    if (D < 0)
+    {
+        write_about {0};
+        then_commit_seppuku
+    }
+
+    first_x = ((0 - 1) * b - sqrt (D)) / (2 * a);
+    write_about {2};
+    write_about {first_x};
+}
+
+
+then_commit_seppuku
 "</center>
 <center> Nametable </center>
 <center><table border= "1">
 	<thead>
 		<tr>
 			<th></th>
-			<th>Start position</th>
-			<th>Number of symbols</th>
-		</tr>
-</thead>
-<tbody>
-<tr>
-<td> 0 </td>
-<td> 0x508000000020 </td>
-<td> 1 </td>
-</tr>
-<tr>
-<td> 1 </td>
-<td> 0x508000000029 </td>
-<td> 1 </td>
-</tr>
-</tbody>
-</table></center>
-<center><img src = 111.png ></center>
-
-<FONT SIZE="6"><center>Dump program: Frontend</center><FONT SIZE="5">
-
-<center><img src = 1111.png ></center>
-
+			<th>

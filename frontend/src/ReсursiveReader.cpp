@@ -42,8 +42,6 @@ TOkens:
 */
 size_t p = 0;
 
-////today purpose add "if" and "while" and make The_Shogun_ordered
-
 #define _CMP_OP(operator) (program->tokens[p].type == OP && strcmp(keywords[(int)program->tokens[p].value].key_op, operator) == 0)
 
 node_t* GetG (tree_t* program)
@@ -70,11 +68,10 @@ node_t* GetG (tree_t* program)
         crnt_node = crnt_node->right;
     }
 
-    // if (!_CMP_OP("$"))
-    // {
-    //     fprintf (stderr, YEL "in GetG: end token ISN'T '$'\n" RESET);
-    //     SintaxError (program, "GetG");
-    // }
+    free (crnt_node);
+    crnt_node = NULL;
+    crnt_node = _END ();
+
     p++;
     return node;
 }
@@ -102,6 +99,11 @@ node_t* GetOp (tree_t* program)
     {
         fprintf (stderr, CYN "Start input\n" RESET);
         node = GetInput (program);
+    }
+    else if (_CMP_OP("$"))
+    {
+        fprintf (stderr, CYN "Start Seppuku\n" RESET);
+        node = _END();
     }
     else
     {
@@ -256,6 +258,11 @@ node_t* GetIf (tree_t* program)
                         {
                             fprintf (stderr, CYN " \"}\"\n" RESET);
                             p++;
+                            break;
+                        }
+                        if (_CMP_OP("$"))
+                        {
+                            fprintf (stderr, CYN " \"$\"\n" RESET);
                             break;
                         }
                         crnt_node->left  = GetOp (program);

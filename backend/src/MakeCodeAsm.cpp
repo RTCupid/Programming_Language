@@ -57,19 +57,29 @@ void RecursiveMakeAsm (tree_t* program, FILE* file_asm, node_t* crnt_node)
                 fprintf (file_asm, "out\n");
                 break;
             }
+            case INPT:
+            {
+                n_operator++;
+                fprintf (stderr, "operator = %s\n", KeyFromEnum ((int)crnt_node->value));
+                fprintf (file_asm, "in\n");
+                fprintf (file_asm, "pop ");
+                fprintf (file_asm, "[%lu] ; %s\n", (size_t)crnt_node->left->value, program->nametable[(int)crnt_node->left->value].name);
+                break;
+            }
             case IF:
             {
                 n_operator++;
+                size_t num_if = n_operator;
                 fprintf (stderr, GRN "operator = %s\n" RESET, KeyFromEnum ((int)crnt_node->value));
                 RecursiveMakeAsm (program, file_asm, crnt_node->left );
 
                 fprintf (file_asm, "; test\n");
                 fprintf (file_asm, "push 0\n");
-                fprintf (file_asm, "jne end_if:\n");
+                fprintf (file_asm, "jne end_if%lu:\n", num_if);
                 fprintf (file_asm, "; action\n");
 
                 RecursiveMakeAsm (program, file_asm, crnt_node->right);
-                fprintf (file_asm, "end_if:\n");
+                fprintf (file_asm, "end_if%lu:\n", num_if);
                 break;
             }
             case EQU:

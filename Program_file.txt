@@ -1,40 +1,68 @@
-size table: 2
-0 x
-1 ded
+size table: 3
+0 a
+1 x
+2 ded
 {OP:";"
-	{OP:"if"
-		{OP:"+"
+	{OP:"input"
+		{ID:"0"}
+		{ID:""}
+	}
+	{OP:";"
+		{OP:"print"
 			{ID:"0"}
-			{NUM:"111"}
+			{ID:""}
 		}
 		{OP:";"
-			{OP:"print"
-				{NUM:"333"}
-				{ID:""}
-			}
-			{OP:";"
-				{OP:"print"
-					{NUM:"666"}
-					{ID:""}
+			{OP:"if"
+				{OP:"-"
+					{ID:"1"}
+					{NUM:"111"}
 				}
 				{OP:";"
-					{OP:"="
-						{ID:"1"}
-						{NUM:"111"}
+					{OP:"print"
+						{NUM:"333"}
+						{ID:""}
 					}
 					{OP:";"
 						{OP:"print"
-							{OP:"*"
-								{ID:"1"}
-								{NUM:"3"}
+							{NUM:"666"}
+							{ID:""}
+						}
+						{OP:";"
+							{OP:"="
+								{ID:"2"}
+								{NUM:"111"}
 							}
+							{OP:";"
+								{OP:"print"
+									{OP:"*"
+										{ID:"2"}
+										{NUM:"3"}
+									}
+									{ID:""}
+								}
+								{OP:";"}
+							}
+						}
+					}
+				}
+			}
+			{OP:";"
+				{OP:"if"
+					{OP:"-"
+						{ID:"1"}
+						{NUM:"456"}
+					}
+					{OP:";"
+						{OP:"print"
+							{NUM:"456"}
 							{ID:""}
 						}
 						{OP:";"}
 					}
 				}
+				{OP:";"}
 			}
 		}
 	}
-	{OP:";"}
 }

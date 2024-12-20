@@ -21,10 +21,12 @@ bool status = true;
 /*
 Main:
 { G  ::= {OP ";"}+ "$"
-{ OP ::= A | IF ... // пока только присваивание
+{ OP ::= A | IF | Print | Input..
 Everything
 { A  ::= Id "=" E
 { IF ::= "if_happen" "(" E ")"  "{" {OP ";"}+ "}"
+{Print ::= ...
+{Input ::= "input" "(" ID ")"
 while
 Equation
 { E  ::= T {["+" "-"] T}*
@@ -93,6 +95,11 @@ node_t* GetOp (tree_t* program)
         fprintf (stderr, CYN "Start print\n" RESET);
         node = GetPrint (program);
     }
+    else if (_CMP_OP("input"))
+    {
+        fprintf (stderr, CYN "Start input\n" RESET);
+        node = GetInput (program);
+    }
     else
     {
         fprintf (stderr, YEL "ERROR: in GetOp Unknown operator\n" RESET);
@@ -110,6 +117,50 @@ node_t* GetOp (tree_t* program)
     }
 
     return node;
+}
+
+node_t* GetInput (tree_t* program)
+{
+    node_t* input_node = NULL;
+    if (_CMP_OP("input"))
+    {
+        p++;
+        if (_CMP_OP("("))
+        {
+            p++;
+            if (program->tokens[p].type == ID)
+            {
+                input_node = _ID (program->tokens[p].value);
+                p++;
+                if (_CMP_OP(")"))
+                {
+                    p++;
+                }
+                else
+                {
+                    fprintf (stderr, YEL "in GetInput: token ISN'T \")\"\n" RESET);
+                    SintaxError (program, "GetInput");
+                }
+            }
+            else
+            {
+                fprintf (stderr, YEL "in GetInput: token ISN'T ID\n" RESET);
+                SintaxError (program, "GetInput");
+            }
+        }
+        else
+        {
+            fprintf (stderr, YEL "in GetInput: token ISN'T \"input\"\n" RESET);
+            SintaxError (program, "GetInput");
+        }
+    }
+    else
+    {
+        fprintf (stderr, YEL "in GetInput: token ISN'T \"input\"\n" RESET);
+        SintaxError (program, "GetInput");
+    }
+
+    return _INPUT(input_node);
 }
 
 node_t* GetPrint (tree_t* program)
@@ -263,7 +314,7 @@ node_t* GetE (tree_t* program)
     node_t* node = GetT (program);
     while (_CMP_OP("+") || _CMP_OP("-"))
     {
-        const char* op = keywords[p].key_op;
+        const char* op = keywords[(int)program->tokens[p].value].key_op;
         //int op = program->data[p];
         p++;
         node_t* new_node = GetT (program);

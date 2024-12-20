@@ -77,10 +77,10 @@ token_t* Tokenizer (tree_t* program)
 
             fprintf (program->dbg_log_file, "name = <%s>\n", buffer);
 
-            size_t number_key = IsKeyWord (program, buffer);
-            fprintf (program->dbg_log_file, "number_key = <%lu>\n", number_key);
+            int number_key = IsKeyWord (program, buffer);
+            fprintf (program->dbg_log_file, "number_key = <%d>\n", number_key);
 
-            if (number_key)
+            if (number_key != -1)
             {
                 tokens[token_id].type  = OP;
                 tokens[token_id].value = (double)number_key;
@@ -174,15 +174,15 @@ size_t LenBuffer (char* buffer)
     return size;
 }
 
-size_t IsKeyWord (tree_t* program, char* buffer)
+int IsKeyWord (tree_t* program, char* buffer)
 {
-    size_t number_key = 0;
+    int number_key = -1;
 
     for (size_t i = 0; i < N_KEYWORDS; i++)
     {
         if (strcmp (buffer, keywords[i].name_key) == 0)
         {
-            number_key = i;
+            number_key = (int)i;
             fprintf (program->dbg_log_file, "<%s> is keyword\n", buffer);
             break;
         }

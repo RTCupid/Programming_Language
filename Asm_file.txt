@@ -18,13 +18,16 @@ push 666
 out
 ;7
 ;8
-push 333
+push 111
 pop [1] ; ded
 ;9
 ;10
-push [1] ;ded
-out
 ;11
-end_if:
+push [1] ;ded
+push 3
+mul
+out
 ;12
+end_if:
+;13
 hlt

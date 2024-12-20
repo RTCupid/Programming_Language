@@ -1,7 +1,7 @@
-if_happens (x + 111)
+if_happens (x add 111)
 {
     write_about {333};
     write_about {666};
-    ded = 333;
-    write_about {ded};
-}$
+    ded assign 111;
+    write_about {ded multiply 3};
+} then_commit_seppuku

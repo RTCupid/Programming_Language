@@ -3,7 +3,7 @@
 
 enum types_t;
 
-const size_t N_TOKENS = 100;
+const size_t N_TOKENS = 500;
 
 extern const char* MY_KEY_WORDS_FILE;
 
@@ -27,7 +27,7 @@ size_t      LenBuffer       (char* buffer);
 
 int         IsInNametable   (tree_t* program, char* buffer);
 
-size_t      IsKeyWord       (tree_t* program, char* buffer);
+int         IsKeyWord       (tree_t* program, char* buffer);
 
 bool        IsOp            (tree_t* program, size_t p);
 

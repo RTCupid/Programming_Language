@@ -1,7 +1,6 @@
-size table: 3
+size table: 2
 0 x
 1 ded
-2 ded
 {OP:";"
 	{OP:"if"
 		{OP:"+"
@@ -25,7 +24,7 @@ size table: 3
 					}
 					{OP:";"
 						{OP:"print"
-							{ID:"2"}
+							{ID:"1"}
 							{ID:""}
 						}
 						{OP:";"}

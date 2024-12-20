@@ -98,15 +98,23 @@ token_t* Tokenizer (tree_t* program)
             }
             else
             {
-                program->nametable[program->nametable_id].start_pos = start_pos;
-                program->nametable[program->nametable_id].n_symbols = (size_t)n_print_symbols;
+                int number_id = IsInNametable (program, buffer);
+                fprintf (program->dbg_log_file, "number_id = <%d>\n", number_id);
 
-                tokens[token_id].type  = ID;
-                tokens[token_id].value = (double)program->nametable_id;
+                if (number_id == -1)
+                {
+                    program->nametable[program->nametable_id].start_pos = start_pos;
+                    program->nametable[program->nametable_id].n_symbols = (size_t)n_print_symbols;
 
-                fprintf (program->dbg_log_file, "new token's nametable_id = %lu\n\n", program->nametable_id);
-
-                program->nametable_id++;
+                    tokens[token_id].type  = ID;
+                    tokens[token_id].value = (double)program->nametable_id;
+                    program->nametable_id++;
+                }
+                else
+                {
+                    tokens[token_id].type  = ID;
+                    tokens[token_id].value = (double)number_id;
+                }
                 token_id++;
             }
 
@@ -133,6 +141,37 @@ bool IsOp (tree_t* program, size_t p)
     {
         return false;
     }
+}
+
+int IsInNametable (tree_t* program, char* buffer)
+{
+    int number_id = -1;
+    for (size_t i = 0; i < SIZE_NAMETABLE; i++)
+    {
+        if (program->nametable[i].n_symbols == LenBuffer (buffer) &&
+            strncmp (buffer, program->nametable[i].start_pos, program->nametable[i].n_symbols) == 0)
+        {
+            number_id = (int)i;
+            fprintf (program->dbg_log_file, "<%s> is identificator\n", buffer);
+            break;
+        }
+    }
+
+    return number_id;
+}
+
+size_t LenBuffer (char* buffer)
+{
+    size_t size = 0;
+    while (1)
+    {
+        if (buffer[size] == '\0')
+        {
+            break;
+        }
+        size++;
+    }
+    return size;
 }
 
 size_t IsKeyWord (tree_t* program, char* buffer)

@@ -22,7 +22,7 @@ push 369
 pop [1] ; ded
 ;9
 ;10
-push [2] ;ded
+push [1] ;ded
 out
 ;11
 end_if:

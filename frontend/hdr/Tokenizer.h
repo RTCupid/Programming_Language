@@ -23,6 +23,10 @@ void        TokenizerDump   (tree_t* program, token_t* tokens);
 
 void        PrintType       (tree_t* program, token_t token);
 
+size_t      LenBuffer       (char* buffer);
+
+int         IsInNametable   (tree_t* program, char* buffer);
+
 size_t      IsKeyWord       (tree_t* program, char* buffer);
 
 bool        IsOp            (tree_t* program, size_t p);

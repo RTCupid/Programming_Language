@@ -50,8 +50,8 @@ node_t* GetG (tree_t* program)
 
     node_t* node = _ST(NULL, NULL);
 
-    node->left = GetOp (program);
-    node->right = _ST(NULL, NULL);
+    node->left   = GetOp (program);
+    node->right  = _ST(NULL, NULL);
 
     node_t* crnt_node = node->right;
 
@@ -63,15 +63,11 @@ node_t* GetG (tree_t* program)
             p++;
             break;
         }
-        crnt_node->left = GetOp (program);
+        crnt_node->left  = GetOp (program);
         crnt_node->right = _ST(NULL, NULL);
-        crnt_node = crnt_node->right;
+        crnt_node        = crnt_node->right;
     }
-
-    free (crnt_node);
-    crnt_node = NULL;
-    crnt_node = _END ();
-
+    crnt_node = _END();
     p++;
     return node;
 }
@@ -115,12 +111,17 @@ node_t* GetOp (tree_t* program)
     {
         p++;
     }
-    else if (!_CMP_OP("$"))
+    else if (_CMP_OP("$"))
+    {
+        p++;
+    }
+    else
     {
         fprintf (stderr, YEL "in GetOp: end token ISN'T \";\" and ISN'T \"$\"\n" RESET);
         SintaxError (program, "GetOp");
     }
 
+    fprintf (stderr, MAG "End GetOp\n" RESET);
     return node;
 }
 
@@ -223,17 +224,17 @@ node_t* GetIf (tree_t* program)
             {
                 fprintf (stderr, CYN " \"<\"\n" RESET);
                 p++;
-                left_condition_node = condition_node;
+                left_condition_node  = condition_node;
                 right_condition_node = GetE (program);
-                condition_node = _MORE(left_condition_node, right_condition_node);
+                condition_node       = _MORE(left_condition_node, right_condition_node);
             }
             else if (_CMP_OP(">"))
             {
                 fprintf (stderr, CYN " \">\"\n" RESET);
                 p++;
-                left_condition_node = condition_node;
+                left_condition_node  = condition_node;
                 right_condition_node = GetE (program);
-                condition_node = _LESS(left_condition_node, right_condition_node);
+                condition_node       = _LESS(left_condition_node, right_condition_node);
             }
 
             if (_CMP_OP(")"))
@@ -244,8 +245,7 @@ node_t* GetIf (tree_t* program)
                 {
                     p++;
                     fprintf (stderr, CYN " \"{\"\n" RESET);
-                    //if (program->tokens[p].type == OP)
-                    //{
+
                     new_right_node        = _ST(NULL, NULL);
                     new_right_node->left  = GetOp (program);
                     new_right_node->right = _ST(NULL, NULL);
@@ -260,21 +260,10 @@ node_t* GetIf (tree_t* program)
                             p++;
                             break;
                         }
-                        if (_CMP_OP("$"))
-                        {
-                            fprintf (stderr, CYN " \"$\"\n" RESET);
-                            break;
-                        }
                         crnt_node->left  = GetOp (program);
                         crnt_node->right = _ST(NULL, NULL);
                         crnt_node        = crnt_node->right;
                     }
-                    //}
-                    // else
-                    // {
-                    //     fprintf (stderr, YEL "in GetIf: if don't have OP token\n" RESET);
-                    //     SintaxError (program, "GetIf");
-                    // }
                 }
                 else
                 {
@@ -433,42 +422,6 @@ node_t* GetP (tree_t* program)
     /*---else---*/
     SintaxError (program, "GetP");
     return NULL;
-}
-
-node_t* GetId (tree_t* program)
-{
-    printf (MAG "is alpha\n" RESET);
-
-    size_t n_symbols = 0;
-    char* start_pos = &program->data[p];
-
-    while (isalpha (program->data[p]))
-    {
-        fprintf(program->dbg_log_file, "p = %lu, alpha = <%c>\n", p, program->data[p]);
-        n_symbols++;
-        p++;
-    }
-
-    fprintf (program->dbg_log_file, "nt_id = %lu, start_pos = %p, n_symbols = %lu\n", program->nametable_id, start_pos, n_symbols);
-
-    program->nametable[program->nametable_id].n_symbols = n_symbols;
-    program->nametable[program->nametable_id].start_pos = start_pos;
-    size_t index = program->nametable_id;
-
-    program->nametable_id++;
-
-    return _ID ((double)index);
-}
-
-node_t* GetN (tree_t* program)
-{
-    int val = 0;
-    while ('0' <= program->data[p] && program->data[p] <= '9')
-    {
-        val = val * 10 + program->data[p] - '0';
-        p++;
-    }
-    return _NUM (val);
 }
 
 void SintaxError (tree_t* program, const char* name_func)

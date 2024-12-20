@@ -2,9 +2,9 @@ input (a);
 input (b);
 input (c);
 
-if_happens (a * b * c)
+if_happens (a multiply b multiply c)
 {
-    D = b * b - 4 * a * c;
+    D = b multiply b subtract 4 multiply a multiply c;
     write_about {D};
 
     if (D < 0)
@@ -13,10 +13,9 @@ if_happens (a * b * c)
         then_commit_seppuku
     }
 
-    first_x = ((0 - 1) * b - sqrt (D)) / (2 * a);
+    first_x = ((0 subtract 1) multiply b subtract sqrt (D)) divide (2 multiply a);
     write_about {2};
     write_about {first_x};
 }
-
 
 then_commit_seppuku

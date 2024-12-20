@@ -9,8 +9,22 @@ push 0
 je end_if:
 ; action
 ;3
+;4
 push 333
 out
+;5
+;6
+push 666
+out
+;7
+;8
+push 369
+pop [1] ; ded
+;9
+;10
+push [2] ;ded
+out
+;11
 end_if:
-;4
+;12
 hlt

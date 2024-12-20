@@ -52,19 +52,24 @@ node_t* GetG (tree_t* program)
 
     node_t* crnt_node = node->right;
 
-    while (_CMP_OP(";"))
+    while (1)
     {
-        //p++; //TODO: p++ in GetOP
+        if (_CMP_OP("$"))
+        {
+            fprintf (stderr, CYN "End program $\n" RESET);
+            p++;
+            break;
+        }
         crnt_node->left = GetOp (program);
         crnt_node->right = _ST(NULL, NULL);
         crnt_node = crnt_node->right;
     }
 
-    if (!_CMP_OP("$"))
-    {
-        fprintf (stderr, YEL "in GetG: end token ISN'T '$'\n" RESET);
-        SintaxError (program, "GetG");
-    }
+    // if (!_CMP_OP("$"))
+    // {
+    //     fprintf (stderr, YEL "in GetG: end token ISN'T '$'\n" RESET);
+    //     SintaxError (program, "GetG");
+    // }
     p++;
     return node;
 }
@@ -85,7 +90,7 @@ node_t* GetOp (tree_t* program)
     }
     else if (_CMP_OP("print"))
     {
-        fprintf (stderr, CYN "Start if\n" RESET);
+        fprintf (stderr, CYN "Start print\n" RESET);
         node = GetPrint (program);
     }
     else
@@ -144,7 +149,7 @@ node_t* GetPrint (tree_t* program)
 
 node_t* GetIf (tree_t* program)
 {
-    node_t* new_left_node = NULL;
+    node_t* new_left_node  = NULL;
     node_t* new_right_node = NULL;
 
     if (_CMP_OP("if"))
@@ -164,16 +169,36 @@ node_t* GetIf (tree_t* program)
                 {
                     p++;
                     fprintf (stderr, CYN " \"{\"\n" RESET);
-                    new_right_node = GetOp (program);
-                    //p++;
-                    if (_CMP_OP("}"))
+                    if (program->tokens[p].type == OP)
                     {
-                        fprintf (stderr, CYN " \"}\"\n" RESET);
-                        p++;
+                        new_right_node        = _ST(NULL, NULL);
+                        new_right_node->left  = GetOp (program);
+                        new_right_node->right = _ST(NULL, NULL);
+
+                        node_t* crnt_node     = new_right_node->right;
+
+                        while (1)
+                        {
+                            if (_CMP_OP("}"))
+                            {
+                                fprintf (stderr, CYN " \"}\"\n" RESET);
+                                p++;
+                                break;
+                            }
+                            crnt_node->left  = GetOp (program);
+                            crnt_node->right = _ST(NULL, NULL);
+                            crnt_node        = crnt_node->right;
+                        }
+
+                        // else
+                        // {
+                        //     fprintf (stderr, YEL "in GetIf: token ISN'T \"}\"\n" RESET);
+                        //     SintaxError (program, "GetIf");
+                        // }
                     }
                     else
                     {
-                        fprintf (stderr, YEL "in GetIf: token ISN'T \"}\"\n" RESET);
+                        fprintf (stderr, YEL "in GetIf: if don't have OP token\n" RESET);
                         SintaxError (program, "GetIf");
                     }
                 }
@@ -354,6 +379,10 @@ void SintaxError (tree_t* program, const char* name_func)
 
     fprintf (stderr, YEL "SYNTAX ERROR: %s: unknown token: token[%lu].type = %d\n" RESET, name_func, p, program->tokens[p].type);
     fprintf (stderr, YEL "token[%lu].value = %g\n" RESET, p, program->tokens[p].value);
+    if (program->tokens[p].type == ID)
+    {
+        fprintf (stderr, YEL "\"%.20s\"\n", program->nametable[(int)program->tokens[p].value].start_pos);
+    }
     abort ();
 }
 

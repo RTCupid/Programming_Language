@@ -1,14 +1,37 @@
-size table: 1
+size table: 3
 0 x
+1 ded
+2 ded
 {OP:";"
 	{OP:"if"
 		{OP:"+"
 			{ID:"0"}
 			{NUM:"5"}
 		}
-		{OP:"print"
-			{NUM:"333"}
-			{ID:""}
+		{OP:";"
+			{OP:"print"
+				{NUM:"333"}
+				{ID:""}
+			}
+			{OP:";"
+				{OP:"print"
+					{NUM:"666"}
+					{ID:""}
+				}
+				{OP:";"
+					{OP:"="
+						{ID:"1"}
+						{NUM:"369"}
+					}
+					{OP:";"
+						{OP:"print"
+							{ID:"2"}
+							{ID:""}
+						}
+						{OP:";"}
+					}
+				}
+			}
 		}
 	}
 	{OP:";"}

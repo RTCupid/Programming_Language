@@ -66,6 +66,13 @@ void RecursiveMakeAsm (tree_t* program, FILE* file_asm, node_t* crnt_node)
                 fprintf (file_asm, "[%lu] ; %s\n", (size_t)crnt_node->left->value, program->nametable[(int)crnt_node->left->value].name);
                 break;
             }
+            case SQRT:
+            {
+                n_operator++;
+                RecursiveMakeAsm (program, file_asm, crnt_node->left);
+                fprintf (file_asm, "sqrt\n");
+                break;
+            }
             case IF:
             {
                 n_operator++;

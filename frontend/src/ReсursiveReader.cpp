@@ -223,24 +223,24 @@ node_t* GetIf (tree_t* program)
                     fprintf (stderr, CYN " \"{\"\n" RESET);
                     //if (program->tokens[p].type == OP)
                     //{
-                        new_right_node        = _ST(NULL, NULL);
-                        new_right_node->left  = GetOp (program);
-                        new_right_node->right = _ST(NULL, NULL);
+                    new_right_node        = _ST(NULL, NULL);
+                    new_right_node->left  = GetOp (program);
+                    new_right_node->right = _ST(NULL, NULL);
 
-                        node_t* crnt_node     = new_right_node->right;
+                    node_t* crnt_node     = new_right_node->right;
 
-                        while (1)
+                    while (1)
+                    {
+                        if (_CMP_OP("}"))
                         {
-                            if (_CMP_OP("}"))
-                            {
-                                fprintf (stderr, CYN " \"}\"\n" RESET);
-                                p++;
-                                break;
-                            }
-                            crnt_node->left  = GetOp (program);
-                            crnt_node->right = _ST(NULL, NULL);
-                            crnt_node        = crnt_node->right;
+                            fprintf (stderr, CYN " \"}\"\n" RESET);
+                            p++;
+                            break;
                         }
+                        crnt_node->left  = GetOp (program);
+                        crnt_node->right = _ST(NULL, NULL);
+                        crnt_node        = crnt_node->right;
+                    }
                     //}
                     // else
                     // {
@@ -313,13 +313,13 @@ node_t* GetE (tree_t* program)
         //int op = program->data[p];
         p++;
         node_t* new_node = GetT (program);
-        if (strcmp (op, "+"))
+        if (strcmp (op, "+") == 0)
         {
             node = _ADD (
                         node,
                         new_node);
         }
-        if (strcmp (op, "-"))
+        if (strcmp (op, "-") == 0)
         {
             node = _SUB (
                         node,

@@ -4,9 +4,11 @@ input (c);
 
 if_happens (a * b * c)
 {
-    D = b * b - 4 * a * c;
+    D = b * b subtract 4 * a * c;
+    write_about {D};
 
-    first_x = 5;
+    first_x = ((0 - 1) * b - sqrt (D));
+    write_about {first_x};
 }
 
 then_commit_seppuku

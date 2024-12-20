@@ -37,13 +37,32 @@ push [0] ;a
 mul
 push [2] ;c
 mul
-add
+sub
 pop [3] ; D
 ;16
 ;17
-push 5
-pop [4] ; first_x
+push [3] ;D
+out
 ;18
-end_if8:
 ;19
+;20
+;21
+;22
+push 0
+push 1
+sub
+push [1] ;b
+mul
+;23
+push [3] ;D
+sqrt
+sub
+pop [4] ; first_x
+;24
+;25
+push [4] ;first_x
+out
+;26
+end_if8:
+;27
 hlt

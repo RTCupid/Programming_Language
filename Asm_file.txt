@@ -1,24 +1,25 @@
 ;0
 ;1
 in
-pop [0] ; a
+pop [0] 	; a
 ;2
 ;3
 in
-pop [1] ; b
+pop [1] 	; b
 ;4
 ;5
 in
-pop [2] ; c
+pop [2] 	; c
 ;6
 ;7
+; start if.....................................................
 ; test
 ;8
 ;9
-push [0] ;a
-push [1] ;b
+push [0] 	;a
+push [1] 	;b
 mul
-push [2] ;c
+push [2] 	;c
 mul
 push 0
 je end_if8:
@@ -27,26 +28,27 @@ je end_if8:
 ;11
 ;12
 ;13
-push [1] ;b
-push [1] ;b
+push [1] 	;b
+push [1] 	;b
 mul
 ;14
 ;15
 push 4
-push [0] ;a
+push [0] 	;a
 mul
-push [2] ;c
+push [2] 	;c
 mul
 sub
-pop [3] ; Diskriminant
+pop [3] 	; Diskriminant
 ;16
 ;17
-push [3] ;Diskriminant
+push [3] 	;Diskriminant
 out
 ;18
 ;19
+; start if.....................................................
 ; test
-push [3] ;Diskriminant
+push [3] 	;Diskriminant
 push 0
 jb end_if20:
 ; action
@@ -59,6 +61,7 @@ out
 hlt
 ;24
 end_if20:
+end if.........................................................
 ;25
 ;26
 ;27
@@ -68,18 +71,18 @@ end_if20:
 push 0
 push 1
 sub
-push [1] ;b
+push [1] 	;b
 mul
 ;31
-push [3] ;Diskriminant
+push [3] 	;Diskriminant
 sqrt
 sub
 ;32
 push 2
-push [0] ;a
+push [0] 	;a
 mul
 div
-pop [4] ; first_answ
+pop [4] 	; first_answ
 ;33
 ;34
 ;35
@@ -89,41 +92,43 @@ pop [4] ; first_answ
 push 0
 push 1
 sub
-push [1] ;b
+push [1] 	;b
 mul
 ;39
-push [3] ;Diskriminant
+push [3] 	;Diskriminant
 sqrt
 add
 ;40
 push 2
-push [0] ;a
+push [0] 	;a
 mul
 div
-pop [5] ; second_answ
+pop [5] 	; second_answ
 ;41
 ;42
 push 2
 out
 ;43
 ;44
-push [4] ;first_answ
+push [4] 	;first_answ
 out
 ;45
 ;46
-push [5] ;second_answ
+push [5] 	;second_answ
 out
 ;47
 ;48
 hlt
 ;49
 end_if8:
+end if.........................................................
 ;50
 ;51
+; start if.....................................................
 ; test
 ;52
-push [0] ;a
-push [1] ;b
+push [0] 	;a
+push [1] 	;b
 mul
 push 0
 je end_if52:
@@ -131,7 +136,7 @@ je end_if52:
 ;53
 ;54
 push 0
-pop [4] ; first_answ
+pop [4] 	; first_answ
 ;55
 ;56
 ;57
@@ -140,42 +145,45 @@ pop [4] ; first_answ
 push 0
 push 1
 sub
-push [1] ;b
+push [1] 	;b
 mul
-push [0] ;a
+push [0] 	;a
 div
-pop [5] ; second_answ
+pop [5] 	; second_answ
 ;60
 ;61
 push 2
 out
 ;62
 ;63
-push [4] ;first_answ
+push [4] 	;first_answ
 out
 ;64
 ;65
-push [5] ;second_answ
+push [5] 	;second_answ
 out
 ;66
 ;67
 hlt
 ;68
 end_if52:
+end if.........................................................
 ;69
 ;70
+; start if.....................................................
 ; test
 ;71
-push [0] ;a
-push [2] ;c
+push [0] 	;a
+push [2] 	;c
 mul
 push 0
 je end_if71:
 ; action
 ;72
 ;73
+; start if.....................................................
 ; test
-push [2] ;c
+push [2] 	;c
 push 0
 ja end_if74:
 ; action
@@ -188,6 +196,7 @@ out
 hlt
 ;78
 end_if74:
+end if.........................................................
 ;79
 ;80
 ;81
@@ -197,12 +206,12 @@ end_if74:
 push 0
 push 1
 sub
-push [2] ;c
+push [2] 	;c
 mul
-push [0] ;a
+push [0] 	;a
 div
 sqrt
-pop [4] ; first_answ
+pop [4] 	; first_answ
 ;85
 ;86
 ;87
@@ -217,36 +226,38 @@ sub
 push 0
 push 1
 sub
-push [2] ;c
+push [2] 	;c
 mul
-push [0] ;a
+push [0] 	;a
 div
 sqrt
 mul
-pop [5] ; second_answ
+pop [5] 	; second_answ
 ;93
 ;94
 push 2
 out
 ;95
 ;96
-push [4] ;first_answ
+push [4] 	;first_answ
 out
 ;97
 ;98
-push [5] ;second_answ
+push [5] 	;second_answ
 out
 ;99
 ;100
 hlt
 ;101
 end_if71:
+end if.........................................................
 ;102
 ;103
+; start if.....................................................
 ; test
 ;104
-push [1] ;b
-push [2] ;c
+push [1] 	;b
+push [2] 	;c
 mul
 push 0
 je end_if104:
@@ -259,24 +270,25 @@ je end_if104:
 push 0
 push 1
 sub
-push [2] ;c
+push [2] 	;c
 mul
-push [1] ;b
+push [1] 	;b
 div
-pop [4] ; first_answ
+pop [4] 	; first_answ
 ;110
 ;111
 push 1
 out
 ;112
 ;113
-push [4] ;first_answ
+push [4] 	;first_answ
 out
 ;114
 ;115
 hlt
 ;116
 end_if104:
+end if.........................................................
 ;117
 ;118
 push 0

@@ -107,8 +107,6 @@ void ProgramDtor (tree_t* program)
 
     free (program->tokens);
 
-    //ClearKeywords (program->keywords);
-
     program->crnt_node = NULL;
 }
 

@@ -63,6 +63,35 @@ if_happens (b multiply c)
     then_commit_seppuku
 };
 
-write_about {0};
+if_happens (c)
+{
+    first_answ = 0;
+
+    write_about {0};
+
+    then_commit_seppuku
+};
+
+if_happens (a)
+{
+    first_answ = 0;
+
+    write_about {1};
+    write_about {first_answ};
+
+    then_commit_seppuku
+};
+
+if_happens (b)
+{
+    first_answ = 0;
+
+    write_about {1};
+    write_about {first_answ};
+
+    then_commit_seppuku
+};
+
+write_about {8};
 
 then_commit_seppuku

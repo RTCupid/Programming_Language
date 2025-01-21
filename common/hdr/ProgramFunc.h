@@ -86,19 +86,121 @@ const size_t MAX_LEN_BUF = 20;
 const size_t SIZE_SIGNATURE = 20;
 
 /*-ret-------func----------------------arguments-----------------------------------*/
-bool        ProgramCtor     (tree_t* expr, modelang_t mode);
 
+//{
+//! @brief   ProgramCtor    - function open log_files,
+//!                           if mode is FRONTEND:  call func InputProgram to make array of program.
+//!                           Also function call calloc for nametable.
+//!
+//! @param   program        - pointer to struct tree_t
+//! @param   mode           - mode: FRONTEND or BACKEND
+//!
+//! @return
+//!          true           - when construction structure of tree is completed
+//! @code
+//!          ProgramCtor (&program, BACKEND);
+//! @endcode
+//}
+bool        ProgramCtor     (tree_t* program, modelang_t mode);
+
+//{
+//! @brief   TreeCtor       - if mode is FRONTEND:  call func Tokenizer to make array of structs token_t,
+//!                         - if mode is BACKEND:   call func MakeProgram to make tree of program.
+//!
+//! @param   program        - pointer to struct tree_t
+//! @param   mode           - mode: FRONTEND or BACKEND
+//!
+//! @return
+//!          true           - when construction structure of tree is completed
+//! @code
+//!          TreeCtor (&program, BACKEND);
+//! @endcode
+//}
 bool        TreeCtor        (tree_t* program, modelang_t mode);
 
-void        ProgramDtor     (tree_t* expr);
+//{
+//! @brief   ProgramDtor    - func to destroy elements of struct tree_t. Close log_files,
+//!                           call ClearTree and ClearNameTable, free arrays.
+//!
+//! @param   program        - pointer to struct tree_t
+//!
+//! @return
+//!          void
+//! @code
+//!          ProgramDtor (&program);
+//! @endcode
+//}
+void        ProgramDtor     (tree_t* program);
 
+//{
+//! @brief   NewNode        - func to make new node_t node (base on calloc)
+//!
+//! @param   type           - type of new node (may be enum types_t)
+//! @param   value          - new value
+//! @param   left           - pointer to left  branch of new node
+//! @param   right          - pointer to right branch of new node
+//!
+//! @return
+//!          node_t*        - pointer to new node
+//! @code
+//!          NewNode (NUM, 666, NULL, NULL);
+//! @endcode
+//}
 node_t*     NewNode         (size_t type, double value, node_t* left, node_t* right);
 
+//{
+//! @brief   ClearNameTable - func to clear nametable that from struct tree_t,
+//!                           called from func ProgramDtor.
+//!
+//! @param   program        - pointer to struct tree_t
+//!
+//! @return
+//!          void
+//! @code
+//!          ClearNameTable (&program);
+//! @endcode
+//}
 void        ClearNameTable  (tree_t* program);
 
+//{
+//! @brief   ClearTree      - recursive func to clear tree with root in node (base on free)
+//!
+//! @param   node           - pointer to struct node_t
+//!
+//! @return
+//!          void
+//! @code
+//!          ClearTree (&node);
+//! @endcode
+//}
 void        ClearTree       (node_t* node);
 
+//{
+//! @brief   VerifyOpenFile - func to check opened file or not
+//!
+//! @param   file           - FILE* pointer to file
+//! @param   namefunc       - const char* namefunc to write it if file didn't open
+//!
+//! @return
+//!          void           - if file is open
+//!          noreturn (assert) and print "ERROR:..." to consol - if file didn't open
+//! @code
+//!          VerifyOpenFile (base_file, "MakeProgram");
+//! @endcode
+//}
 void        VerifyOpenFile  (FILE* file, const char* namefunc);
 
+//{
+//! @brief   KeyFromEnum    - find name key in keyword_t keywords
+//!
+//! @param   value          - number of key
+//!
+//! @return
+//!          name of key    - if key is found
+//!          NULL           - if it is unknown number of key
+//! @code
+//!          KeyFromEnum ((int)crnt_node->value));
+//! @endcode
+//}
 const char* KeyFromEnum     (int value);
 #endif

@@ -65,7 +65,36 @@ if_happens (b multiply c)
     then_commit_seppuku
 };
 
-write_about {0};
+if_happens (c)
+{
+    first_answ = 0;
+
+    write_about {0};
+
+    then_commit_seppuku
+};
+
+if_happens (a)
+{
+    first_answ = 0;
+
+    write_about {1};
+    write_about {first_answ};
+
+    then_commit_seppuku
+};
+
+if_happens (b)
+{
+    first_answ = 0;
+
+    write_about {1};
+    write_about {first_answ};
+
+    then_commit_seppuku
+};
+
+write_about {8};
 
 then_commit_seppuku
 "</center>
@@ -81,32 +110,32 @@ then_commit_seppuku
 <tbody>
 <tr>
 <td> 0 </td>
-<td> 0x51b000000087 </td>
+<td> 0x51c000000087 </td>
 <td> 1 </td>
 </tr>
 <tr>
 <td> 1 </td>
-<td> 0x51b000000093 </td>
+<td> 0x51c000000093 </td>
 <td> 1 </td>
 </tr>
 <tr>
 <td> 2 </td>
-<td> 0x51b00000009f </td>
+<td> 0x51c00000009f </td>
 <td> 1 </td>
 </tr>
 <tr>
 <td> 3 </td>
-<td> 0x51b0000000d3 </td>
+<td> 0x51c0000000d3 </td>
 <td> 12 </td>
 </tr>
 <tr>
 <td> 4 </td>
-<td> 0x51b00000019e </td>
+<td> 0x51c00000019e </td>
 <td> 10 </td>
 </tr>
 <tr>
 <td> 5 </td>
-<td> 0x51b000000201 </td>
+<td> 0x51c000000201 </td>
 <td> 11 </td>
 </tr>
 </tbody>

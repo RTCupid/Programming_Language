@@ -8,7 +8,7 @@
 - [4. Syntax](#syntax)
 
 ## Introduction
-I make my programming language. It based on recursive descent and include frontend and backend parts, and run in my processor.
+I made my programming language. It based on recursive descent and include frontend and backend parts, and run in my processor.
 
 ## Frontend
 Frontend has Tokenizer (you can see it in file Tokenizer.cpp) that make array of tokens from .txt file, it skip spaces (function SkipSpaces) and check keywords (function IsKeyWord) . Then RecursiveReader (you can see it in file RecursiveReader.cpp) perfoms a recursive descent over the token array and make tree of program. This tree write to file.

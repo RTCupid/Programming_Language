@@ -19,9 +19,13 @@ Backend has reader (file ProgramReader.cpp) that read file from frontend and mak
 ## Tools
 In this project I used graphics methods of debug. For example I used Graphviz to draw trees and check the accuracy of program. You can see example of this tree in Figure 1.
 
- <img src="/img/TREE.png">
-  <div align="center"> Fig. 3.Tree of my program solver square.</div><br>
+ <img src="Tree.png">
+ <div align="center"> Fig. 3.Tree of my program solver square. Green nodes it is nodes with type statement, beige nodes have type operator, red nodes - identificator, and purple - number</div><br>
 
-
+Also it use Makefile to process program, and use other my project - "Processor" to run program in my programming language.
 
 ## Syntax
+
+<img src="Syntax.png">
+ <div align="center"> Fig. 3.Tree of my program solver square. Green nodes it is nodes with type statement, beige nodes have type operator, red nodes - identificator, and purple - number</div><br>
+

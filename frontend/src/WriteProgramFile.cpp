@@ -33,15 +33,15 @@ void WriteBase (tree_t* program, node_t* crnt_node, FILE* file, int level)
     {
         fprintf (file, "OP:");
 
-        if (crnt_node->value == SIN)
+        if ((int)crnt_node->value == SIN)
         {
             fprintf (file, "\"sin\"");
         }
-        if (crnt_node->value == COS)
+        if ((int)crnt_node->value == COS)
         {
             fprintf (file, "\"cos\"");
         }
-        if (crnt_node->value == LN)
+        if ((int)crnt_node->value == LN)
         {
             fprintf (file, "\"ln\"");
         }

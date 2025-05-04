@@ -518,6 +518,7 @@ node_t* GetP (tree_t* program)
     return NULL;
 }
 
+[[noreturn]]
 void SintaxError (tree_t* program, const char* name_func)
 {
     fprintf   (program->dbg_log_file, "SYNTAX ERROR: %s: unknown token: token[%lu].type = ", name_func, p);

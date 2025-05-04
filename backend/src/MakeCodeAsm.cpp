@@ -109,11 +109,11 @@ void RecursiveMakeAsm (tree_t* program, FILE* file_asm, node_t* crnt_node)
 
                 fprintf (stderr, GRN "operator = %s\n" RESET, KeyFromEnum ((int)crnt_node->value));
 
-                fprintf (file_asm, "; -------start-if-%d-----------------------\n", num_if);
+                fprintf (file_asm, "; -------start-if-%lu-----------------------\n", num_if);
 
-                fprintf (file_asm, "; -------start-test-%d---------------------\n", num_if);
+                fprintf (file_asm, "; -------start-test-%lu---------------------\n", num_if);
 
-                if (crnt_node->left->type == OP && crnt_node->left->value == LESS)
+                if (crnt_node->left->type == OP && (int)crnt_node->left->value == LESS)
                 {
                     RecursiveMakeAsm (program, file_asm, crnt_node->left->left);
 
@@ -121,7 +121,7 @@ void RecursiveMakeAsm (tree_t* program, FILE* file_asm, node_t* crnt_node)
 
                     fprintf (file_asm, "\nja end_if%lu:\n", num_if);
                 }
-                else if (crnt_node->left->type == OP && crnt_node->left->value == MORE)
+                else if (crnt_node->left->type == OP && (int)crnt_node->left->value == MORE)
                 {
                     RecursiveMakeAsm (program, file_asm, crnt_node->left->left);
 

@@ -33,6 +33,7 @@ INCLUDES = -I./frontend/hdr -I./common/hdr -I./backend/hdr
 .PHONY: all build clean
 
 all: build
+	@echo -e "\033[33mCompilation complete. Run the programs using './build/bin/frontend' and './build/bin/backend'.\033[0m"
 
 build: ./build/bin/frontend ./build/bin/backend
 
@@ -46,18 +47,16 @@ build: ./build/bin/frontend ./build/bin/backend
 
 ./build/obj/%.o: frontend/src/%.cpp
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 ./build/obj/%.o: backend/src/%.cpp
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 ./build/obj/%.o: common/src/%.cpp
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
 	@rm -rf ./build/bin/* ./build/obj/*.o
 	@echo "Build files removed"
-
-	@echo -e "\033[33mCompilation complete. Run the programs using './build/bin/frontend' and './build/bin/backend'.\033[0m"

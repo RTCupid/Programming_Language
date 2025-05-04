@@ -139,7 +139,7 @@ void PrintNodeDot (FILE* dot_file, node_t* node)
 {
     if (node->type == OP)
     {
-        if (node->value == MORE || node->value == LESS)
+        if ((int)node->value == MORE || (int)node->value == LESS)
         {
             fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\"#FFC9A5\"; label =  \"\\%s \" ];\n", node, KeyFromEnum ((int)node->value));
         }
@@ -239,7 +239,7 @@ void PrintNodeDumpDot (FILE* dot_file, node_t* node, tree_t tree)
 {
     if (node->type == OP)
     {
-        if (node->value == MORE || node->value == LESS)
+        if ((int)node->value == MORE || (int)node->value == LESS)
         {
             fprintf (dot_file, "\t node%p [shape=Mrecord; style=filled; color=\" #FFC9A5\"; "
             "label =  \"{node: %p | value: \\%s | type: OP | {<left>left: %p | <right>right: %p}  }\" ];\n",

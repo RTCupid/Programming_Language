@@ -43,10 +43,10 @@ bool ProgramCtor (tree_t* program, modelang_t mode)
 {
     if (mode == FRONTEND)
     {
-        program->log_file = fopen ("./build/png/front_log_file.htm", "wt");
-        VerifyOpenFile (program->log_file, "ProgramCtor");
+        program->log_file = fopen ("build/png/front_log_file.htm", "wt");
+        VerifyOpenFile (program->log_file, "ProgramCtor-log_file.htm");
         program->dbg_log_file = fopen ("frontend/dbg_log_file.txt", "wt");
-        VerifyOpenFile (program->dbg_log_file, "ProgramCtor");
+        VerifyOpenFile (program->dbg_log_file, "ProgramCtor-dbg_log_file.txt");
 
         InputProgram (program);
         printf (BLU "program->data = <%s>\n" RESET, program->data);

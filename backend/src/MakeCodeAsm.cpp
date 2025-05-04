@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "../../common/hdr/Config.h"
 #include "../../common/hdr/colors.h"
 #include "../../common/hdr/Enum.h"
 #include "../../common/hdr/ProgramFunc.h"
@@ -8,13 +9,13 @@
 
 void MakeAsmCode (tree_t* program)
 {
-    printf (CYN "MakeAsmCode started\n" RESET);
+    printf (GRN "MakeAsmCode started\n" RESET);
 
     FILE* file_asm = fopen ("Asm_file.txt", "wt");
 
     if (file_asm == NULL)
     {
-        printf ("ERROR: MakeAsm can't open Asm_file to write code\n");
+        fprintf (stderr, "ERROR: MakeAsm can't open Asm_file to write code\n");
 
         exit (0);
     }
@@ -23,7 +24,7 @@ void MakeAsmCode (tree_t* program)
 
     fprintf (file_asm, "\nhlt\n");
 
-    printf (CYN "MakeAsmCode completed\n" RESET);
+    printf (GRN "MakeAsmCode completed\n" RESET);
 }
 
 void RecursiveMakeAsm (tree_t* program, FILE* file_asm, node_t* crnt_node)
@@ -39,9 +40,9 @@ void RecursiveMakeAsm (tree_t* program, FILE* file_asm, node_t* crnt_node)
     {
         fprintf (file_asm, ";number operator = %lu ", n_operator);
 
-        fprintf (stderr, CYN ";%lu\n" RESET, n_operator);
+        BACK_DBG fprintf (stderr, CYN ";%lu\n" RESET, n_operator);
 
-        fprintf (stderr, CYN "%g\n" RESET, crnt_node->value);
+        BACK_DBG fprintf (stderr, CYN "%g\n" RESET, crnt_node->value);
 
         switch ((int)crnt_node->value)
         {
@@ -49,7 +50,7 @@ void RecursiveMakeAsm (tree_t* program, FILE* file_asm, node_t* crnt_node)
             {
                 n_operator++;
 
-                fprintf (stderr, "operator = %s\n", KeyFromEnum ((int)crnt_node->value));
+                BACK_DBG fprintf (stderr, "operator = %s\n", KeyFromEnum ((int)crnt_node->value));
 
                 RecursiveMakeAsm (program, file_asm, crnt_node->left );
 
@@ -69,7 +70,7 @@ void RecursiveMakeAsm (tree_t* program, FILE* file_asm, node_t* crnt_node)
             {
                 n_operator++;
 
-                fprintf (stderr, "operator = %s\n", KeyFromEnum ((int)crnt_node->value));
+                BACK_DBG fprintf (stderr, "operator = %s\n", KeyFromEnum ((int)crnt_node->value));
 
                 RecursiveMakeAsm (program, file_asm, crnt_node->left );
 
@@ -81,7 +82,7 @@ void RecursiveMakeAsm (tree_t* program, FILE* file_asm, node_t* crnt_node)
             {
                 n_operator++;
 
-                fprintf (stderr, "operator = %s\n", KeyFromEnum ((int)crnt_node->value));
+                BACK_DBG fprintf (stderr, "operator = %s\n", KeyFromEnum ((int)crnt_node->value));
 
                 fprintf (file_asm, "\nin\n");
 
@@ -107,7 +108,7 @@ void RecursiveMakeAsm (tree_t* program, FILE* file_asm, node_t* crnt_node)
 
                 size_t num_if = n_operator;
 
-                fprintf (stderr, GRN "operator = %s\n" RESET, KeyFromEnum ((int)crnt_node->value));
+                BACK_DBG fprintf (stderr, GRN "operator = %s\n" RESET, KeyFromEnum ((int)crnt_node->value));
 
                 fprintf (file_asm, "; -------start-if-%lu-----------------------\n", num_if);
 

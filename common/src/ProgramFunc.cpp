@@ -72,7 +72,7 @@ bool ProgramCtor (tree_t* program, modelang_t mode)
 
     program->nametable = (identificator_t*) calloc (SIZE_NAMETABLE, sizeof (*program->nametable));
 
-    program->tokens =NULL;
+    program->tokens    = NULL;
 
     return true;
 }
@@ -82,16 +82,20 @@ bool TreeCtor (tree_t* program, modelang_t mode)
     if (mode == FRONTEND)
     {
         program->tokens = Tokenizer (program);
+
+        fprintf (stderr, GRN "Finish expression construction in frontend \n" RESET);
+
+        FRONT_DBG fprintf (stderr, GRN "expr->root = %p\n" RESET, program->root);
     }
 
     else if (mode == BACKEND)
     {
         program->root = MakeProgram (program, "Program_file.txt");
+
+        fprintf (stderr, GRN "Finish expression construction in backend\n" RESET);
+
+        BACK_DBG fprintf (stderr, GRN "expr->root = %p\n" RESET, program->root);
     }
-
-    fprintf (stderr, GRN "Finish expression construction \n" RESET);
-
-    FRONT_DBG fprintf (stderr, GRN "expr->root = %p\n" RESET, program->root);
 
     return true;
 }

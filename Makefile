@@ -47,7 +47,7 @@ build: ./build/bin/frontend ./build/bin/backend
 	@mkdir -p $(@D) ./build/dep
 	$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@
 
-./build/bin/backend: $(BACKEND_OBJECTS) $(COMMON_OBJECTS) ./build/obj/Tokenizer.o ./build/obj/ReсursiveReader.o
+./build/bin/backend: $(BACKEND_OBJECTS) $(COMMON_OBJECTS) ./build/obj/Tokenizer.o ./build/obj/RecursiveReader.o
 	@mkdir -p $(@D) ./build/dep
 	$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@
 
@@ -72,5 +72,5 @@ build: ./build/bin/frontend ./build/bin/backend
 -include $(wildcard $(FRONTEND_DEPENDS)) $(wildcard $(BACKEND_DEPENDS)) $(wildcard $(COMMON_DEPENDS))
 
 clean:
-	@rm -rf ./build/bin/* ./build/obj/* ./build/dep/*
+	@rm -rf ./build/bin/* ./build/obj/* ./build/dep/* ./build/png/* ./build/dot/*
 	@echo "Build files and dependencies removed"

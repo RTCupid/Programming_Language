@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+#include "../../common/hdr/Config.h"
 #include "../../common/hdr/Enum.h"
 #include "../../common/hdr/ProgramFunc.h"
 #include "../../common/hdr/DumpProgram.h"
@@ -13,11 +14,11 @@ int main ()
 
     TreeCtor        (&bprogram, BACKEND);
 
-    ProgramGraphviz (&bprogram, BACKEND);
+    BACK_DBG ProgramGraphviz (&bprogram, BACKEND);
 
     MakeAsmCode     (&bprogram);
 
-    ProgramGraphviz (&bprogram, BACKEND);
+    BACK_DBG ProgramGraphviz (&bprogram, BACKEND);
 
     ProgramDtor     (&bprogram);
 

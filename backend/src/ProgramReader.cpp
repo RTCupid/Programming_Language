@@ -4,6 +4,7 @@
 #include <ctype.h>
 #include <string.h>
 
+#include "../../common/hdr/Config.h"
 #include "../../common/hdr/Enum.h"
 #include "../../common/hdr/DSL.h"
 #include "../../common/hdr/ProgramFunc.h"
@@ -30,11 +31,11 @@ node_t* MakeProgram (tree_t* program, const char* namefile)
 
         fscanf (base_file, "%lu %s", &addr_RAM, name);
 
-        printf ("%lu %s\n", addr_RAM, name);
+        BACK_DBG fprintf (stderr, "%lu %s\n", addr_RAM, name);
 
         program->nametable[i].name = name;
 
-        printf ("%p %s\n", program->nametable[i].start_pos,
+        BACK_DBG fprintf (stderr, "%p %s\n", program->nametable[i].start_pos,
                             program->nametable[i].name);
     }
 

@@ -1,18 +1,18 @@
-;0 ;1 
+;number operator = 0 ;number operator = 1 
 in
 
 pop [0] 	; a
-;2 ;3 
+;number operator = 2 ;number operator = 3 
 in
 
 pop [1] 	; b
-;4 ;5 
+;number operator = 4 ;number operator = 5 
 in
 
 pop [2] 	; c
-;6 ;7 ; start if.....................................................
-; test
-;8 ;9 
+;number operator = 6 ;number operator = 7 ; -------start-if-8-----------------------
+; -------start-test-8---------------------
+;number operator = 8 ;number operator = 9 
 push [0] 	;a
 
 push [1] 	;b
@@ -27,13 +27,13 @@ push 0
 
 je end_if8:
 ; action
-;10 ;11 ;12 ;13 
+;number operator = 10 ;number operator = 11 ;number operator = 12 ;number operator = 13 
 push [1] 	;b
 
 push [1] 	;b
 
 mul
-;14 ;15 
+;number operator = 14 ;number operator = 15 
 push 4
 
 push [0] 	;a
@@ -47,12 +47,12 @@ mul
 sub
 
 pop [3] 	; Diskriminant
-;16 ;17 
+;number operator = 16 ;number operator = 17 
 push [3] 	;Diskriminant
 
 out
-;18 ;19 ; start if.....................................................
-; test
+;number operator = 18 ;number operator = 19 ; -------start-if-20-----------------------
+; -------start-test-20---------------------
 
 push [3] 	;Diskriminant
 
@@ -60,16 +60,16 @@ push 0
 
 jb end_if20:
 ; action
-;20 ;21 
+;number operator = 20 ;number operator = 21 
 push 0
 
 out
-;22 ;23 
+;number operator = 22 ;number operator = 23 
 hlt
-;24 
+;number operator = 24 
 end_if20:
-; end if.........................................................
-;25 ;26 ;27 ;28 ;29 ;30 
+; -------end-if-------------------------
+;number operator = 25 ;number operator = 26 ;number operator = 27 ;number operator = 28 ;number operator = 29 ;number operator = 30 
 push 0
 
 push 1
@@ -79,13 +79,13 @@ sub
 push [1] 	;b
 
 mul
-;31 
+;number operator = 31 
 push [3] 	;Diskriminant
 
 sqrt
 
 sub
-;32 
+;number operator = 32 
 push 2
 
 push [0] 	;a
@@ -95,7 +95,7 @@ mul
 div
 
 pop [4] 	; first_answ
-;33 ;34 ;35 ;36 ;37 ;38 
+;number operator = 33 ;number operator = 34 ;number operator = 35 ;number operator = 36 ;number operator = 37 ;number operator = 38 
 push 0
 
 push 1
@@ -105,13 +105,13 @@ sub
 push [1] 	;b
 
 mul
-;39 
+;number operator = 39 
 push [3] 	;Diskriminant
 
 sqrt
 
 add
-;40 
+;number operator = 40 
 push 2
 
 push [0] 	;a
@@ -121,26 +121,26 @@ mul
 div
 
 pop [5] 	; second_answ
-;41 ;42 
+;number operator = 41 ;number operator = 42 
 push 2
 
 out
-;43 ;44 
+;number operator = 43 ;number operator = 44 
 push [4] 	;first_answ
 
 out
-;45 ;46 
+;number operator = 45 ;number operator = 46 
 push [5] 	;second_answ
 
 out
-;47 ;48 
+;number operator = 47 ;number operator = 48 
 hlt
-;49 
+;number operator = 49 
 end_if8:
-; end if.........................................................
-;50 ;51 ; start if.....................................................
-; test
-;52 
+; -------end-if-------------------------
+;number operator = 50 ;number operator = 51 ; -------start-if-52-----------------------
+; -------start-test-52---------------------
+;number operator = 52 
 push [0] 	;a
 
 push [1] 	;b
@@ -151,11 +151,11 @@ push 0
 
 je end_if52:
 ; action
-;53 ;54 
+;number operator = 53 ;number operator = 54 
 push 0
 
 pop [4] 	; first_answ
-;55 ;56 ;57 ;58 ;59 
+;number operator = 55 ;number operator = 56 ;number operator = 57 ;number operator = 58 ;number operator = 59 
 push 0
 
 push 1
@@ -171,26 +171,26 @@ push [0] 	;a
 div
 
 pop [5] 	; second_answ
-;60 ;61 
+;number operator = 60 ;number operator = 61 
 push 2
 
 out
-;62 ;63 
+;number operator = 62 ;number operator = 63 
 push [4] 	;first_answ
 
 out
-;64 ;65 
+;number operator = 64 ;number operator = 65 
 push [5] 	;second_answ
 
 out
-;66 ;67 
+;number operator = 66 ;number operator = 67 
 hlt
-;68 
+;number operator = 68 
 end_if52:
-; end if.........................................................
-;69 ;70 ; start if.....................................................
-; test
-;71 
+; -------end-if-------------------------
+;number operator = 69 ;number operator = 70 ; -------start-if-71-----------------------
+; -------start-test-71---------------------
+;number operator = 71 
 push [0] 	;a
 
 push [2] 	;c
@@ -201,8 +201,8 @@ push 0
 
 je end_if71:
 ; action
-;72 ;73 ; start if.....................................................
-; test
+;number operator = 72 ;number operator = 73 ; -------start-if-74-----------------------
+; -------start-test-74---------------------
 
 push [2] 	;c
 
@@ -210,16 +210,16 @@ push 0
 
 ja end_if74:
 ; action
-;74 ;75 
+;number operator = 74 ;number operator = 75 
 push 0
 
 out
-;76 ;77 
+;number operator = 76 ;number operator = 77 
 hlt
-;78 
+;number operator = 78 
 end_if74:
-; end if.........................................................
-;79 ;80 ;81 ;82 ;83 ;84 
+; -------end-if-------------------------
+;number operator = 79 ;number operator = 80 ;number operator = 81 ;number operator = 82 ;number operator = 83 ;number operator = 84 
 push 0
 
 push 1
@@ -237,13 +237,13 @@ div
 sqrt
 
 pop [4] 	; first_answ
-;85 ;86 ;87 ;88 
+;number operator = 85 ;number operator = 86 ;number operator = 87 ;number operator = 88 
 push 0
 
 push 1
 
 sub
-;89 ;90 ;91 ;92 
+;number operator = 89 ;number operator = 90 ;number operator = 91 ;number operator = 92 
 push 0
 
 push 1
@@ -263,26 +263,26 @@ sqrt
 mul
 
 pop [5] 	; second_answ
-;93 ;94 
+;number operator = 93 ;number operator = 94 
 push 2
 
 out
-;95 ;96 
+;number operator = 95 ;number operator = 96 
 push [4] 	;first_answ
 
 out
-;97 ;98 
+;number operator = 97 ;number operator = 98 
 push [5] 	;second_answ
 
 out
-;99 ;100 
+;number operator = 99 ;number operator = 100 
 hlt
-;101 
+;number operator = 101 
 end_if71:
-; end if.........................................................
-;102 ;103 ; start if.....................................................
-; test
-;104 
+; -------end-if-------------------------
+;number operator = 102 ;number operator = 103 ; -------start-if-104-----------------------
+; -------start-test-104---------------------
+;number operator = 104 
 push [1] 	;b
 
 push [2] 	;c
@@ -293,7 +293,7 @@ push 0
 
 je end_if104:
 ; action
-;105 ;106 ;107 ;108 ;109 
+;number operator = 105 ;number operator = 106 ;number operator = 107 ;number operator = 108 ;number operator = 109 
 push 0
 
 push 1
@@ -309,21 +309,21 @@ push [1] 	;b
 div
 
 pop [4] 	; first_answ
-;110 ;111 
+;number operator = 110 ;number operator = 111 
 push 1
 
 out
-;112 ;113 
+;number operator = 112 ;number operator = 113 
 push [4] 	;first_answ
 
 out
-;114 ;115 
+;number operator = 114 ;number operator = 115 
 hlt
-;116 
+;number operator = 116 
 end_if104:
-; end if.........................................................
-;117 ;118 ; start if.....................................................
-; test
+; -------end-if-------------------------
+;number operator = 117 ;number operator = 118 ; -------start-if-119-----------------------
+; -------start-test-119---------------------
 
 push [2] 	;c
 
@@ -331,21 +331,21 @@ push 0
 
 je end_if119:
 ; action
-;119 ;120 
+;number operator = 119 ;number operator = 120 
 push 0
 
 pop [4] 	; first_answ
-;121 ;122 
+;number operator = 121 ;number operator = 122 
 push 0
 
 out
-;123 ;124 
+;number operator = 123 ;number operator = 124 
 hlt
-;125 
+;number operator = 125 
 end_if119:
-; end if.........................................................
-;126 ;127 ; start if.....................................................
-; test
+; -------end-if-------------------------
+;number operator = 126 ;number operator = 127 ; -------start-if-128-----------------------
+; -------start-test-128---------------------
 
 push [0] 	;a
 
@@ -353,25 +353,25 @@ push 0
 
 je end_if128:
 ; action
-;128 ;129 
+;number operator = 128 ;number operator = 129 
 push 0
 
 pop [4] 	; first_answ
-;130 ;131 
+;number operator = 130 ;number operator = 131 
 push 1
 
 out
-;132 ;133 
+;number operator = 132 ;number operator = 133 
 push [4] 	;first_answ
 
 out
-;134 ;135 
+;number operator = 134 ;number operator = 135 
 hlt
-;136 
+;number operator = 136 
 end_if128:
-; end if.........................................................
-;137 ;138 ; start if.....................................................
-; test
+; -------end-if-------------------------
+;number operator = 137 ;number operator = 138 ; -------start-if-139-----------------------
+; -------start-test-139---------------------
 
 push [1] 	;b
 
@@ -379,26 +379,26 @@ push 0
 
 je end_if139:
 ; action
-;139 ;140 
+;number operator = 139 ;number operator = 140 
 push 0
 
 pop [4] 	; first_answ
-;141 ;142 
+;number operator = 141 ;number operator = 142 
 push 1
 
 out
-;143 ;144 
+;number operator = 143 ;number operator = 144 
 push [4] 	;first_answ
 
 out
-;145 ;146 
+;number operator = 145 ;number operator = 146 
 hlt
-;147 
+;number operator = 147 
 end_if139:
-; end if.........................................................
-;148 ;149 
+; -------end-if-------------------------
+;number operator = 148 ;number operator = 149 
 push 8
 
 out
-;150 
+;number operator = 150 
 hlt

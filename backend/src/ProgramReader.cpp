@@ -15,20 +15,24 @@
 node_t* MakeProgram (tree_t* program, const char* namefile)
 {
     FILE* base_file = fopen (namefile, "rt");
+
     VerifyOpenFile (base_file, "MakeProgram");
 
     char buffer[MAX_LEN_BUF] = {};
+
     fscanf (base_file, "%s %s %lu", buffer, buffer, &program->nametable_id);
 
     for (size_t i = 0; i < program->nametable_id; i++)
     {
         size_t addr_RAM = 0;
+
         char* name = (char*) calloc (MAX_LEN_BUF, sizeof (*name));
+
         fscanf (base_file, "%lu %s", &addr_RAM, name);
 
         printf ("%lu %s\n", addr_RAM, name);
-        //program->nametable[i].start_pos = addr_RAM;
-        program->nametable[i].name      = name;
+
+        program->nametable[i].name = name;
 
         printf ("%p %s\n", program->nametable[i].start_pos,
                             program->nametable[i].name);
@@ -36,31 +40,37 @@ node_t* MakeProgram (tree_t* program, const char* namefile)
 
     node_t* new_node = RunProgram (program, base_file);
 
-    // program->deep = FindDeepTree (program, program->root, 1);
-    // fprintf (program->dbg_log_file, "deep of tree = <%lu>\n", program->deep);
-
     fclose (base_file);
+
     return new_node;
 }
 
 node_t* RunProgram (tree_t* program, FILE* base_file)
 {
     char symbol = '\0';
+
     fscanf (base_file, " %c", &symbol);
+
     fprintf (program->dbg_log_file, "start symbol = <%c>\n", symbol);
 
     char buffer[MAX_LEN_BUF] = {};
-    int size_data = 0;
-    char* endptr = NULL;
-    node_t* node = NULL;
+
+    int size_data            = 0;
+
+    char* endptr             = NULL;
+
+    node_t* node             = NULL;
 
     if (symbol == '{')
     {
         fscanf (base_file, "%[^\"]", buffer);
+
         size_t type = NodeType (buffer);
 
         size_data = 0;
+
         fscanf (base_file, "\"%[^\"]\"%n", buffer, &size_data);
+
         fprintf (program->dbg_log_file, "text = <%s>\n", buffer);
 
         switch (type)
@@ -68,42 +78,52 @@ node_t* RunProgram (tree_t* program, FILE* base_file)
             case NUM:
             {
                 node = _NUM (strtod (buffer, &endptr));
+
                 break;
             }
             case OP:
             {
                 node = NewNode (OP, (double)keywords[IsKeyWord(program, buffer)].number_key, NULL, NULL);
+
                 break;
             }
             case ID:
             {
                 node = NewNode (ID, atoi (buffer), NULL, NULL);
+
                 break;
             }
             default:
             {
                 printf (RED "ERROR: in RunProgram unknown type\n" RESET);
-                abort ();
+
+                exit (0);
             }
         }
 
         fscanf (base_file, " %c", &symbol);
+
         fprintf (program->dbg_log_file, "end symbol = <%c>\n", symbol);
 
         if (symbol == '}')
         {
             fprintf (program->dbg_log_file, "return\n");
+
             return node;
         }
         else if (symbol == '{')
         {
             ungetc (symbol, base_file);
+
             /*......LEFT......*/
             node->left  = RunProgram (program, base_file);
+
             /*......RIGHT.....*/
             node->right = RunProgram (program, base_file);
         }
+
         fscanf (base_file, " %c", &symbol);
+
         fprintf (program->dbg_log_file, "end symbol = <%c>\n", symbol);
 
         if (symbol == '}')
@@ -115,7 +135,9 @@ node_t* RunProgram (tree_t* program, FILE* base_file)
             fprintf (program->dbg_log_file, "ERROR: unknown symbol \" not a { or }\"\n");
         }
     }
+
     fprintf (program->dbg_log_file, "ERROR: uncorrect file of base\n");
+
     return NULL;
 }
 
@@ -124,14 +146,23 @@ node_t* RunProgram (tree_t* program, FILE* base_file)
 size_t NodeType (char* buffer)
 {
     if (strncmp (buffer, "ID:", 3) == 0)
+    {
         return ID;
+    }
     if (strncmp (buffer, "ST:", 3) == 0)
+    {
         return ST;
+    }
     if (strncmp (buffer, "OP:", 3) == 0)
+    {
         return OP;
+    }
     if (strncmp (buffer, "NUM:", 4) == 0)
+    {
         return NUM;
+    }
     /*-else-*/
     printf (RED "ERROR: unknown type <%s>\n" RESET, buffer);
-    abort ();
+
+    exit (0);
 }

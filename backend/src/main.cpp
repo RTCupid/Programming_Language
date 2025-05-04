@@ -9,16 +9,17 @@ int main ()
 {
     tree_t bprogram = {};
 
-    ProgramCtor (&bprogram, BACKEND);
+    ProgramCtor     (&bprogram, BACKEND);
 
-    TreeCtor (&bprogram, BACKEND);
-
-    ProgramGraphviz (&bprogram, BACKEND);
-
-    MakeAsmCode (&bprogram);
+    TreeCtor        (&bprogram, BACKEND);
 
     ProgramGraphviz (&bprogram, BACKEND);
 
-    ProgramDtor (&bprogram);
+    MakeAsmCode     (&bprogram);
+
+    ProgramGraphviz (&bprogram, BACKEND);
+
+    ProgramDtor     (&bprogram);
+
     return 0;
 }

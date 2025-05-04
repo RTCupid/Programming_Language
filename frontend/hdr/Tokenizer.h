@@ -33,8 +33,6 @@ bool        IsOp            (tree_t* program, size_t p);
 
 void        KeyWordsDump    (tree_t* program);
 
-//void        ClearKeywords   (keyword_t* keywords);
-
 char*       ReadToken       (tree_t* program, types_t mode, size_t* p, int* n_symbols_buffer);
 
 void        SkipSpaces      (tree_t* program, size_t* p);

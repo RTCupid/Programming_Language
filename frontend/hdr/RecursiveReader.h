@@ -1,5 +1,6 @@
 #ifndef RECURSIVEREADER_H
 #define RECURSIVEREADER_H
+
 void        InputProgram    (tree_t* expr);
 
 void        SintaxError     (tree_t* program, const char* name_func);

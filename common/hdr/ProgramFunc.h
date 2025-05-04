@@ -5,17 +5,17 @@
 
 typedef struct node_t
 {
-    size_t type;
-    double value;
+    size_t  type;
+    double  value;
     node_t* left;
     node_t* right;
 } node_t;
 
 typedef struct identificator_t
 {
-    char* start_pos;
+    char*  start_pos;
     size_t n_symbols;
-    char* name;
+    char*  name;
 } identificator_t;
 
 struct token_t;
@@ -23,14 +23,14 @@ struct token_t;
 typedef struct keyword_t
 {
     const char*  name_key;
-    int number_key;
+    int          number_key;
     const char*  key_op;
 } keyword_t;
 
 const size_t N_KEYWORDS = 27;
 
-const keyword_t keywords[N_KEYWORDS] =     //TD: only name_key without synonim
-{                                          //TD: enum for keywords_number
+const keyword_t keywords[N_KEYWORDS] =
+{
     {"add",                 ADD,  "+"},    //1
     {"+",                   ADD,  "+"},    //2
     {"subtract",            SUB,  "-"},    //3
@@ -62,15 +62,19 @@ const keyword_t keywords[N_KEYWORDS] =     //TD: only name_key without synonim
 
 typedef struct tree_t
 {
-    node_t* root;
-    node_t* crnt_node;
-    identificator_t* nametable;
-    size_t nametable_id;
-    token_t* tokens;
-    char* data;
-    int size_data;
-    FILE* log_file;
-    FILE* dbg_log_file;
+    node_t*             root;
+    node_t*             crnt_node;
+
+    identificator_t*    nametable;
+    size_t              nametable_id;
+
+    token_t*            tokens;
+    char*               data;
+
+    int                 size_data;
+
+    FILE*               log_file;
+    FILE*               dbg_log_file;
 } tree_t;
 
 enum modelang_t

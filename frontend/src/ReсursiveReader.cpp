@@ -17,7 +17,7 @@
 #include "../hdr/RecursiveReader.h"
 
 bool status = true;
-//+ - 1+ times
+
 /*
 Main:
 { G  ::= {OP ";"}+ "$"
@@ -38,8 +38,8 @@ Equation
 Tokens:
 { N  ::= NUM
 { Id ::= ID
-{
 */
+
 size_t p = 0;
 
 #define _CMP_OP(operator) (program->tokens[p].type == OP && strcmp(keywords[(int)program->tokens[p].value].key_op, operator) == 0)
@@ -61,7 +61,9 @@ node_t* GetG (tree_t* program)
         if (_CMP_OP("$"))
         {
             fprintf (stderr, CYN "End program $\n" RESET);
+
             p++;
+
             break;
         }
 
@@ -73,6 +75,7 @@ node_t* GetG (tree_t* program)
     }
 
     p++;
+
     return node;
 }
 

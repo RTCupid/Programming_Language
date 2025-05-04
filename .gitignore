@@ -1,5 +1,9 @@
+/build/dep/*.d
+/build/dot/*.dot
 
-/build/obj/*
-/build/dot/*
-/build/bin/*
-/build/obj/*
+/build/bin/frontend
+/build/bin/backend
+
+/build/obj/*.o
+/build/png/*.png
+/build/png/*.htm

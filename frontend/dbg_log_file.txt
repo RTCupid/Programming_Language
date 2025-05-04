@@ -1,6 +1,6 @@
 
-1809
-count of char = 1809
+1712
+count of char = 1712
 
 input (a);
 input (b);
@@ -100,7 +100,7 @@ write_about {8};
 
 then_commit_seppuku
 
-sizeOfFile = <1809>
+sizeOfFile = <1712>
 
 
 Start Tokenizer:

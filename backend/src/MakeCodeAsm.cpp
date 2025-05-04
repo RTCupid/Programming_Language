@@ -18,7 +18,7 @@ void MakeAsmCode (tree_t* program)
     }
 
     RecursiveMakeAsm (program, file_asm, program->root);
-    fprintf (file_asm, "hlt\n");
+    fprintf (file_asm, "\nhlt\n");
 
     printf (CYN "MakeAsmCode completed\n" RESET);
 }
@@ -91,25 +91,25 @@ void RecursiveMakeAsm (tree_t* program, FILE* file_asm, node_t* crnt_node)
                 {
                     RecursiveMakeAsm (program, file_asm, crnt_node->left->left);
                     RecursiveMakeAsm (program, file_asm, crnt_node->left->right);
-                    fprintf (file_asm, "ja end_if%lu:\n", num_if);
+                    fprintf (file_asm, "\nja end_if%lu:\n", num_if);
                 }
                 else if (crnt_node->left->type == OP && crnt_node->left->value == MORE)
                 {
                     RecursiveMakeAsm (program, file_asm, crnt_node->left->left);
                     RecursiveMakeAsm (program, file_asm, crnt_node->left->right);
-                    fprintf (file_asm, "jb end_if%lu:\n", num_if);
+                    fprintf (file_asm, "\njb end_if%lu:\n", num_if);
                 }
                 else
                 {
                     RecursiveMakeAsm (program, file_asm, crnt_node->left);
                     fprintf (file_asm, "\npush 0\n");
-                    fprintf (file_asm, "je end_if%lu:\n", num_if);
+                    fprintf (file_asm, "\nje end_if%lu:\n", num_if);
                 }
 
                 fprintf (file_asm, "; action\n");
 
                 RecursiveMakeAsm (program, file_asm, crnt_node->right);
-                fprintf (file_asm, "end_if%lu:\n", num_if);
+                fprintf (file_asm, "\nend_if%lu:\n", num_if);
                 fprintf (file_asm, "; end if.........................................................\n");
                 break;
             }

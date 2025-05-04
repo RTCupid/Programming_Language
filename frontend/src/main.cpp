@@ -21,23 +21,23 @@ int main ()
 
     ProgramCtor (&program, FRONTEND);
 
-    TreeCtor (&program, FRONTEND);
+    TreeCtor    (&program, FRONTEND);
 
     program.root = GetG (&program); //rec descent
 
-    printf (MAG "expr.root = %p\n" RESET, program.root);
+    printf          (MAG "expr.root = %p\n" RESET, program.root);
 
     ProgramGraphviz (&program, FRONTEND);
 
-    DiffDump (&program, FRONTEND);
+    DiffDump        (&program, FRONTEND);
 
     FILE* base_file = fopen ("Program_file.txt", "wb");
 
-    WriteNameTable (&program, base_file);
+    WriteNameTable  (&program, base_file);
 
-    WriteBase (&program, program.root, base_file, 1);
+    WriteBase       (&program, program.root, base_file, 1);
 
-    ProgramDtor (&program);
+    ProgramDtor     (&program);
 
     return 0;
 }

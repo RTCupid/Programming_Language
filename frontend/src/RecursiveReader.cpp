@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include <errno.h>
 
+#include "../../common/hdr/Config.h"
 #include "../../common/hdr/Enum.h"
 #include "../../common/hdr/ProgramFunc.h"
 #include "../../common/hdr/DSL.h"
@@ -46,7 +47,7 @@ size_t p = 0;
 
 node_t* GetG (tree_t* program)
 {
-    printf (GRN "Start\n" RESET);
+    printf (GRN "Start recursive descent\n" RESET);
 
     node_t* node      = _ST(NULL, NULL);
 
@@ -60,7 +61,7 @@ node_t* GetG (tree_t* program)
     {
         if (_CMP_OP("$"))
         {
-            fprintf (stderr, CYN "End program $\n" RESET);
+            fprintf (stderr, GRN "End recursive descent $\n" RESET);
 
             p++;
 
@@ -81,37 +82,37 @@ node_t* GetG (tree_t* program)
 
 node_t* GetOp (tree_t* program)
 {
-    fprintf (stderr, CYN "Start GetOp\n" RESET);
+    FRONT_DBG fprintf (stderr, CYN "Start GetOp\n" RESET);
 
     node_t* node = NULL;
 
     if (program->tokens[p].type == ID)
     {
-        fprintf (stderr, CYN "Start Assignment\n" RESET);
+        FRONT_DBG fprintf (stderr, CYN "Start Assignment\n" RESET);
 
         node = GetA (program);
     }
     else if (_CMP_OP("if"))
     {
-        fprintf (stderr, CYN "Start if\n" RESET);
+        FRONT_DBG fprintf (stderr, CYN "Start if\n" RESET);
 
         node = GetIf (program);
     }
     else if (_CMP_OP("print"))
     {
-        fprintf (stderr, CYN "Start print\n" RESET);
+        FRONT_DBG fprintf (stderr, CYN "Start print\n" RESET);
 
         node = GetPrint (program);
     }
     else if (_CMP_OP("input"))
     {
-        fprintf (stderr, CYN "Start input\n" RESET);
+        FRONT_DBG fprintf (stderr, CYN "Start input\n" RESET);
 
         node = GetInput (program);
     }
     else if (_CMP_OP("$"))
     {
-        fprintf (stderr, CYN "Start Seppuku\n" RESET);
+        FRONT_DBG fprintf (stderr, CYN "Start Seppuku\n" RESET);
 
         node = _END();
     }
@@ -137,7 +138,7 @@ node_t* GetOp (tree_t* program)
         SintaxError (program, "GetOp");
     }
 
-    fprintf (stderr, MAG "End GetOp\n" RESET);
+    FRONT_DBG fprintf (stderr, MAG "End GetOp\n" RESET);
 
     return node;
 }
@@ -249,13 +250,13 @@ node_t* GetIf (tree_t* program)
 
     if (_CMP_OP("if"))
     {
-        fprintf (stderr, CYN "if\n" RESET);
+        FRONT_DBG fprintf (stderr, CYN "if\n" RESET);
 
         p++;
 
         if (_CMP_OP("("))
         {
-            fprintf (stderr, CYN " \"(\"\n" RESET);
+            FRONT_DBG fprintf (stderr, CYN " \"(\"\n" RESET);
 
             p++;
 
@@ -263,7 +264,7 @@ node_t* GetIf (tree_t* program)
 
             if (_CMP_OP("<"))
             {
-                fprintf (stderr, CYN " \"<\"\n" RESET);
+                FRONT_DBG fprintf (stderr, CYN " \"<\"\n" RESET);
 
                 p++;
 
@@ -275,7 +276,7 @@ node_t* GetIf (tree_t* program)
             }
             else if (_CMP_OP(">"))
             {
-                fprintf (stderr, CYN " \">\"\n" RESET);
+                FRONT_DBG fprintf (stderr, CYN " \">\"\n" RESET);
 
                 p++;
 
@@ -290,13 +291,13 @@ node_t* GetIf (tree_t* program)
             {
                 p++;
 
-                fprintf (stderr, CYN " \")\"\n" RESET);
+                FRONT_DBG fprintf (stderr, CYN " \")\"\n" RESET);
 
                 if (_CMP_OP("{"))
                 {
                     p++;
 
-                    fprintf (stderr, CYN " \"{\"\n" RESET);
+                    FRONT_DBG fprintf (stderr, CYN " \"{\"\n" RESET);
 
                     new_right_node        = _ST(NULL, NULL);
 
@@ -310,7 +311,7 @@ node_t* GetIf (tree_t* program)
                     {
                         if (_CMP_OP("}"))
                         {
-                            fprintf (stderr, CYN " \"}\"\n" RESET);
+                            FRONT_DBG fprintf (stderr, CYN " \"}\"\n" RESET);
 
                             p++;
 
@@ -365,19 +366,19 @@ node_t* GetA (tree_t* program)
     {
         new_left_node = _ID (program->tokens[p].value);
 
-        printf (CYN "in GetA: first token is ID\n" RESET);
+        FRONT_DBG fprintf (stderr, CYN "in GetA: first token is ID\n" RESET);
 
         p++;
 
         if (_CMP_OP("="))
         {
-            printf (CYN "in GetA: there is token '='\n" RESET);
+            FRONT_DBG fprintf (stderr, CYN "in GetA: there is token '='\n" RESET);
 
             p++;
         }
         else
         {
-            printf (YEL "in GetA: there ISN'T token '='\n" RESET);
+            fprintf (stderr, YEL "in GetA: there ISN'T token '='\n" RESET);
 
             SintaxError (program, "GetA");
         }
@@ -386,7 +387,7 @@ node_t* GetA (tree_t* program)
     }
     else
     {
-        printf (YEL "in GetA: first token ISN'T ID\n" RESET);
+        fprintf (stderr, YEL "in GetA: first token ISN'T ID\n" RESET);
 
         SintaxError (program, "GetA");
     }

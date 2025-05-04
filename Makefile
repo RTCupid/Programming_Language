@@ -12,8 +12,10 @@ LINUXFLAGSDEBUG = -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ -Waggre
 
 CFLAGS = $(LINUXFLAGSDEBUG)
 
+DEPFLAGS = -MT $@ -MMD -MP -MF ./build/dep/$*.d
+
 FRONTEND_SOURCES = frontend/src/fmain.cpp \
-                   frontend/src/ReсursiveReader.cpp \
+                   frontend/src/RecursiveReader.cpp \
                    frontend/src/Tokenizer.cpp \
                    frontend/src/WriteProgramFile.cpp
 
@@ -24,9 +26,13 @@ BACKEND_SOURCES = backend/src/bmain.cpp \
 COMMON_SOURCES = common/src/DumpProgram.cpp \
                  common/src/ProgramFunc.cpp
 
-FRONTEND_OBJECTS = $(FRONTEND_SOURCES:frontend/src/%.cpp=./build/obj/%.o)
-BACKEND_OBJECTS = $(BACKEND_SOURCES:backend/src/%.cpp=./build/obj/%.o)
-COMMON_OBJECTS = $(COMMON_SOURCES:common/src/%.cpp=./build/obj/%.o)
+FRONTEND_OBJECTS = $(FRONTEND_SOURCES:frontend/src/%.cpp=build/obj/%.o)
+BACKEND_OBJECTS = $(BACKEND_SOURCES:backend/src/%.cpp=build/obj/%.o)
+COMMON_OBJECTS = $(COMMON_SOURCES:common/src/%.cpp=build/obj/%.o)
+
+FRONTEND_DEPENDS = $(FRONTEND_OBJECTS:build/obj/%.o=build/dep/%.d)
+BACKEND_DEPENDS = $(BACKEND_OBJECTS:build/obj/%.o=build/dep/%.d)
+COMMON_DEPENDS = $(COMMON_OBJECTS:build/obj/%.o=build/dep/%.d)
 
 INCLUDES = -I./frontend/hdr -I./common/hdr -I./backend/hdr
 
@@ -38,25 +44,33 @@ all: build
 build: ./build/bin/frontend ./build/bin/backend
 
 ./build/bin/frontend: $(FRONTEND_OBJECTS) $(COMMON_OBJECTS) ./build/obj/ProgramReader.o
-	@mkdir -p $(@D)
+	@mkdir -p $(@D) ./build/dep
 	$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@
 
 ./build/bin/backend: $(BACKEND_OBJECTS) $(COMMON_OBJECTS) ./build/obj/Tokenizer.o ./build/obj/ReсursiveReader.o
-	@mkdir -p $(@D)
+	@mkdir -p $(@D) ./build/dep
 	$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@
 
 ./build/obj/%.o: frontend/src/%.cpp
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@mkdir -p $(@D) ./build/dep
+	@if ! $(CC) $(CFLAGS) $(INCLUDES) $(DEPFLAGS) -c $< -o $@; then \
+		rm -f $@; exit 1; \
+	fi
 
 ./build/obj/%.o: backend/src/%.cpp
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@mkdir -p $(@D) ./build/dep
+	@if ! $(CC) $(CFLAGS) $(INCLUDES) $(DEPFLAGS) -c $< -o $@; then \
+		rm -f $@; exit 1; \
+	fi
 
 ./build/obj/%.o: common/src/%.cpp
-	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@mkdir -p $(@D) ./build/dep
+	@if ! $(CC) $(CFLAGS) $(INCLUDES) $(DEPFLAGS) -c $< -o $@; then \
+		rm -f $@; exit 1; \
+	fi
+
+-include $(wildcard $(FRONTEND_DEPENDS)) $(wildcard $(BACKEND_DEPENDS)) $(wildcard $(COMMON_DEPENDS))
 
 clean:
-	@rm -rf ./build/bin/* ./build/obj/*.o
-	@echo "Build files removed"
+	@rm -rf ./build/bin/* ./build/obj/* ./build/dep/*
+	@echo "Build files and dependencies removed"

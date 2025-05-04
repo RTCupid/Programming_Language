@@ -4,18 +4,14 @@
 #include "../../common/hdr/DumpProgram.h"
 #include "../hdr/RecursiveReader.h"
 #include "../../common/hdr/Enum.h"
+#include "../../common/hdr/Config.h"
 #include "../hdr/WriteProgramFile.h"
 #include "../../common/hdr/DSL.h"
 #include "../../common/hdr/colors.h"
 
 int main ()
 {
-    printf (MAG "Start program.\n" RESET);
-
-    printf (RED "'*' = %d\n"
-                "'=' = %d\n"
-                "';' = %d\n"
-                "'%c' = 54\n" RESET, '*', '=', ';', 54);
+    printf (GRN "### Samurai Programming Language\n" RESET);
 
     tree_t program = {};
 
@@ -23,13 +19,9 @@ int main ()
 
     TreeCtor    (&program, FRONTEND);
 
-    program.root = GetG (&program); //rec descent
+    program.root = GetG (&program);
 
-    printf          (MAG "expr.root = %p\n" RESET, program.root);
-
-    ProgramGraphviz (&program, FRONTEND);
-
-    DiffDump        (&program, FRONTEND);
+    FRONT_DBG ProgramGraphviz (&program, FRONTEND);
 
     FILE* base_file = fopen ("Program_file.txt", "wb");
 

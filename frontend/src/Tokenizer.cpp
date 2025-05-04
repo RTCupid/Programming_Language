@@ -141,7 +141,9 @@ int IsInNametable (tree_t* program, char* buffer)
             strncmp (buffer, program->nametable[i].start_pos, program->nametable[i].n_symbols) == 0)
         {
             number_id = (int)i;
+
             fprintf (program->dbg_log_file, "<%s> is identificator\n", buffer);
+
             break;
         }
     }

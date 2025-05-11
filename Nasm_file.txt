@@ -1,0 +1,426 @@
+;--------------------------------------------------------------------------------------------------
+;                           Programming language
+;                         (c) 2025 Muratov Artyom
+;--------------------------------------------------------------------------------------------------
+;number operator = 0 ;number operator = 1 
+in
+
+pop [0] 	; a
+;number operator = 2 ;number operator = 3 
+in
+
+pop [1] 	; b
+;number operator = 4 ;number operator = 5 
+in
+
+pop [2] 	; c
+;number operator = 6 ;number operator = 7 
+; -------start-if-8-----------------------
+
+; -------start-test-8---------------------
+;number operator = 8 ;number operator = 9 
+push [0] 	;a
+
+push [1] 	;b
+
+mul
+
+push [2] 	;c
+
+mul
+
+push 0
+
+je end_if8:
+; action
+;number operator = 10 ;number operator = 11 ;number operator = 12 ;number operator = 13 
+push [1] 	;b
+
+push [1] 	;b
+
+mul
+;number operator = 14 ;number operator = 15 
+push 4
+
+push [0] 	;a
+
+mul
+
+push [2] 	;c
+
+mul
+
+sub
+
+pop [3] 	; Diskriminant
+;number operator = 16 ;number operator = 17 
+push [3] 	;Diskriminant
+
+out
+;number operator = 18 ;number operator = 19 
+; -------start-if-20-----------------------
+
+; -------start-test-20---------------------
+
+push [3] 	;Diskriminant
+
+push 0
+
+jb end_if20:
+; action
+;number operator = 20 ;number operator = 21 
+push 0
+
+out
+;number operator = 22 ;number operator = 23 
+hlt
+;number operator = 24 
+end_if20:
+; -------end-if-------------------------
+;number operator = 25 ;number operator = 26 ;number operator = 27 ;number operator = 28 ;number operator = 29 ;number operator = 30 
+push 0
+
+push 1
+
+sub
+
+push [1] 	;b
+
+mul
+;number operator = 31 
+push [3] 	;Diskriminant
+
+sqrt
+
+sub
+;number operator = 32 
+push 2
+
+push [0] 	;a
+
+mul
+
+div
+
+pop [4] 	; first_answ
+;number operator = 33 ;number operator = 34 ;number operator = 35 ;number operator = 36 ;number operator = 37 ;number operator = 38 
+push 0
+
+push 1
+
+sub
+
+push [1] 	;b
+
+mul
+;number operator = 39 
+push [3] 	;Diskriminant
+
+sqrt
+
+add
+;number operator = 40 
+push 2
+
+push [0] 	;a
+
+mul
+
+div
+
+pop [5] 	; second_answ
+;number operator = 41 ;number operator = 42 
+push 2
+
+out
+;number operator = 43 ;number operator = 44 
+push [4] 	;first_answ
+
+out
+;number operator = 45 ;number operator = 46 
+push [5] 	;second_answ
+
+out
+;number operator = 47 ;number operator = 48 
+hlt
+;number operator = 49 
+end_if8:
+; -------end-if-------------------------
+;number operator = 50 ;number operator = 51 
+; -------start-if-52-----------------------
+
+; -------start-test-52---------------------
+;number operator = 52 
+push [0] 	;a
+
+push [1] 	;b
+
+mul
+
+push 0
+
+je end_if52:
+; action
+;number operator = 53 ;number operator = 54 
+push 0
+
+pop [4] 	; first_answ
+;number operator = 55 ;number operator = 56 ;number operator = 57 ;number operator = 58 ;number operator = 59 
+push 0
+
+push 1
+
+sub
+
+push [1] 	;b
+
+mul
+
+push [0] 	;a
+
+div
+
+pop [5] 	; second_answ
+;number operator = 60 ;number operator = 61 
+push 2
+
+out
+;number operator = 62 ;number operator = 63 
+push [4] 	;first_answ
+
+out
+;number operator = 64 ;number operator = 65 
+push [5] 	;second_answ
+
+out
+;number operator = 66 ;number operator = 67 
+hlt
+;number operator = 68 
+end_if52:
+; -------end-if-------------------------
+;number operator = 69 ;number operator = 70 
+; -------start-if-71-----------------------
+
+; -------start-test-71---------------------
+;number operator = 71 
+push [0] 	;a
+
+push [2] 	;c
+
+mul
+
+push 0
+
+je end_if71:
+; action
+;number operator = 72 ;number operator = 73 
+; -------start-if-74-----------------------
+
+; -------start-test-74---------------------
+
+push [2] 	;c
+
+push 0
+
+ja end_if74:
+; action
+;number operator = 74 ;number operator = 75 
+push 0
+
+out
+;number operator = 76 ;number operator = 77 
+hlt
+;number operator = 78 
+end_if74:
+; -------end-if-------------------------
+;number operator = 79 ;number operator = 80 ;number operator = 81 ;number operator = 82 ;number operator = 83 ;number operator = 84 
+push 0
+
+push 1
+
+sub
+
+push [2] 	;c
+
+mul
+
+push [0] 	;a
+
+div
+
+sqrt
+
+pop [4] 	; first_answ
+;number operator = 85 ;number operator = 86 ;number operator = 87 ;number operator = 88 
+push 0
+
+push 1
+
+sub
+;number operator = 89 ;number operator = 90 ;number operator = 91 ;number operator = 92 
+push 0
+
+push 1
+
+sub
+
+push [2] 	;c
+
+mul
+
+push [0] 	;a
+
+div
+
+sqrt
+
+mul
+
+pop [5] 	; second_answ
+;number operator = 93 ;number operator = 94 
+push 2
+
+out
+;number operator = 95 ;number operator = 96 
+push [4] 	;first_answ
+
+out
+;number operator = 97 ;number operator = 98 
+push [5] 	;second_answ
+
+out
+;number operator = 99 ;number operator = 100 
+hlt
+;number operator = 101 
+end_if71:
+; -------end-if-------------------------
+;number operator = 102 ;number operator = 103 
+; -------start-if-104-----------------------
+
+; -------start-test-104---------------------
+;number operator = 104 
+push [1] 	;b
+
+push [2] 	;c
+
+mul
+
+push 0
+
+je end_if104:
+; action
+;number operator = 105 ;number operator = 106 ;number operator = 107 ;number operator = 108 ;number operator = 109 
+push 0
+
+push 1
+
+sub
+
+push [2] 	;c
+
+mul
+
+push [1] 	;b
+
+div
+
+pop [4] 	; first_answ
+;number operator = 110 ;number operator = 111 
+push 1
+
+out
+;number operator = 112 ;number operator = 113 
+push [4] 	;first_answ
+
+out
+;number operator = 114 ;number operator = 115 
+hlt
+;number operator = 116 
+end_if104:
+; -------end-if-------------------------
+;number operator = 117 ;number operator = 118 
+; -------start-if-119-----------------------
+
+; -------start-test-119---------------------
+
+push [2] 	;c
+
+push 0
+
+je end_if119:
+; action
+;number operator = 119 ;number operator = 120 
+push 0
+
+pop [4] 	; first_answ
+;number operator = 121 ;number operator = 122 
+push 0
+
+out
+;number operator = 123 ;number operator = 124 
+hlt
+;number operator = 125 
+end_if119:
+; -------end-if-------------------------
+;number operator = 126 ;number operator = 127 
+; -------start-if-128-----------------------
+
+; -------start-test-128---------------------
+
+push [0] 	;a
+
+push 0
+
+je end_if128:
+; action
+;number operator = 128 ;number operator = 129 
+push 0
+
+pop [4] 	; first_answ
+;number operator = 130 ;number operator = 131 
+push 1
+
+out
+;number operator = 132 ;number operator = 133 
+push [4] 	;first_answ
+
+out
+;number operator = 134 ;number operator = 135 
+hlt
+;number operator = 136 
+end_if128:
+; -------end-if-------------------------
+;number operator = 137 ;number operator = 138 
+; -------start-if-139-----------------------
+
+; -------start-test-139---------------------
+
+push [1] 	;b
+
+push 0
+
+je end_if139:
+; action
+;number operator = 139 ;number operator = 140 
+push 0
+
+pop [4] 	; first_answ
+;number operator = 141 ;number operator = 142 
+push 1
+
+out
+;number operator = 143 ;number operator = 144 
+push [4] 	;first_answ
+
+out
+;number operator = 145 ;number operator = 146 
+hlt
+;number operator = 147 
+end_if139:
+; -------end-if-------------------------
+;number operator = 148 ;number operator = 149 
+push 8
+
+out
+;number operator = 150 
+hlt

@@ -1,10 +1,13 @@
 #include <stdio.h>
+#include <string.h>
 
 #include "../../common/hdr/Config.h"
 #include "../../common/hdr/Enum.h"
+#include "../../common/hdr/colors.h"
 #include "../../common/hdr/ProgramFunc.h"
 #include "../../common/hdr/DumpProgram.h"
 #include "../hdr/MakeCodeAsm.h"
+#include "../hdr/MakeCodeNasm.h"
 
 int main (int argc, char* argv[])
 {
@@ -15,10 +18,16 @@ int main (int argc, char* argv[])
     TreeCtor        (&bprogram, BACKEND);
 
     BACK_DBG ProgramGraphviz (&bprogram, BACKEND);
-
-    if (strcmp (argv[1], "NASM") == 0)
+    if (argc > 1)
     {
-        MakeNasmCode (&bprogram);
+        if (strcmp (argv[1], "NASM") == 0)
+        {
+            MakeNasmCode (&bprogram);
+        }
+        else
+        {
+            fprintf (stderr, RED "unknown mode\n" RESET );
+        }
     }
     else
     {

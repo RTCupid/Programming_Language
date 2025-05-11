@@ -22,6 +22,7 @@ FRONTEND_SOURCES = frontend/src/fmain.cpp \
 
 BACKEND_SOURCES = backend/src/bmain.cpp \
                   backend/src/MakeCodeAsm.cpp \
+				  backend/src/MakeCodeNasm.cpp \
                   backend/src/ProgramReader.cpp
 
 COMMON_SOURCES = common/src/DumpProgram.cpp \

@@ -110,9 +110,9 @@ void RecursiveMakeAsm (tree_t* program, FILE* file_asm, node_t* crnt_node)
 
                 BACK_DBG fprintf (stderr, GRN "operator = %s\n" RESET, KeyFromEnum ((int)crnt_node->value));
 
-                fprintf (file_asm, "; -------start-if-%lu-----------------------\n", num_if);
+                fprintf (file_asm, "\n; -------start-if-%lu-----------------------\n", num_if);
 
-                fprintf (file_asm, "; -------start-test-%lu---------------------\n", num_if);
+                fprintf (file_asm, "\n; -------start-test-%lu---------------------\n", num_if);
 
                 if (crnt_node->left->type == OP && (int)crnt_node->left->value == LESS)
                 {

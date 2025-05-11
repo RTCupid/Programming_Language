@@ -27,7 +27,7 @@ typedef struct keyword_t
     const char*  key_op;
 } keyword_t;
 
-const size_t N_KEYWORDS = 27;
+const size_t N_KEYWORDS = 28;
 
 const keyword_t keywords[N_KEYWORDS] =
 {
@@ -57,7 +57,8 @@ const keyword_t keywords[N_KEYWORDS] =
     {"input",               INPT, "input"},//24
     {"sqrt",                SQRT, "sqrt"}, //25
     {">",                   MORE, ">"},    //26
-    {"<",                   LESS, "<"}     //27
+    {"<",                   LESS, "<"},    //27
+    {"while",               WHILE,"while"} //28
 };
 
 typedef struct tree_t

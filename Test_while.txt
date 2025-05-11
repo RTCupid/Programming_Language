@@ -1,0 +1,7 @@
+input (a);
+
+while (a < 20)
+{
+    write_about {20};
+};
+then_commit_seppuku

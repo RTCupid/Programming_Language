@@ -171,7 +171,7 @@ void InputProgram (tree_t* expr, const char* name_file_for_frontend)
 
     char* expression = (char*)calloc ((size_t)fileInf.st_size + 1, sizeof(char));
 
-    FILE* expr_file  = fopen ("Program.txt", "rt");
+    FILE* expr_file  = fopen (name_file_for_frontend, "rt");
 
     if (expr_file == NULL)
     {
@@ -179,7 +179,7 @@ void InputProgram (tree_t* expr, const char* name_file_for_frontend)
 
         fprintf (expr->dbg_log_file, "errno = <%d>\n", errno);
 
-        perror("Program.txt\n");
+        perror(name_file_for_frontend);
     }
 
     expr->size_data = (int) fread (expression, sizeof (char), (size_t)fileInf.st_size, expr_file);
@@ -188,7 +188,7 @@ void InputProgram (tree_t* expr, const char* name_file_for_frontend)
     {
         fprintf (expr->dbg_log_file, "errno = <%d>\n", errno);
 
-        perror ("Program.txt");
+        perror (name_file_for_frontend);
     }
 
     fprintf (expr->dbg_log_file, "\n%s\n", expression);

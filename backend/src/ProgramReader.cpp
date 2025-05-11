@@ -142,8 +142,6 @@ node_t* RunProgram (tree_t* program, FILE* base_file)
     return NULL;
 }
 
-
-
 size_t NodeType (char* buffer)
 {
     if (strncmp (buffer, "ID:", 3) == 0)

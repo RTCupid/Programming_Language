@@ -6,7 +6,7 @@
 #include "../../common/hdr/DumpProgram.h"
 #include "../hdr/MakeCodeAsm.h"
 
-int main ()
+int main (int argc, char* argv[])
 {
     tree_t bprogram = {};
 
@@ -16,11 +16,18 @@ int main ()
 
     BACK_DBG ProgramGraphviz (&bprogram, BACKEND);
 
-    MakeAsmCode     (&bprogram);
+    if (strcmp (argv[1], "NASM") == 0)
+    {
+        MakeNasmCode (&bprogram);
+    }
+    else
+    {
+        MakeAsmCode  (&bprogram);
+    }
 
     BACK_DBG ProgramGraphviz (&bprogram, BACKEND);
 
-    ProgramDtor     (&bprogram);
+    ProgramDtor              (&bprogram);
 
     return 0;
 }

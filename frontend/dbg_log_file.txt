@@ -121,19 +121,19 @@ assign               6
 =                    6
 pong                 7
 if                   7
-then_commit_seppuku  11
-$                    11
+then_commit_seppuku  12
+$                    12
 if_happens           7
-(                    13
-)                    12
-{                    14
-}                    15
-write_about          16
-print                16
-input                17
-sqrt                 18
->                    19
-<                    20
+(                    14
+)                    13
+{                    15
+}                    16
+write_about          17
+print                17
+input                18
+sqrt                 19
+>                    20
+<                    21
 
 ----------------------------------------------------------------
 End Dump!

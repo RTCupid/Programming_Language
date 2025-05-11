@@ -105,7 +105,7 @@ const size_t SIZE_SIGNATURE = 20;
 //!          ProgramCtor (&program, BACKEND);
 //! @endcode
 //}
-bool        ProgramCtor     (tree_t* program, modelang_t mode);
+bool        ProgramCtor     (tree_t* program, modelang_t mode, const char* name_file_for_frontend = NULL);
 
 //{
 //! @brief   TreeCtor       - if mode is FRONTEND:  call func Tokenizer to make array of structs token_t,

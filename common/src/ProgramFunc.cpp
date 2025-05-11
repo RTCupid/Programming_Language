@@ -41,7 +41,7 @@ node_t* NewNode (size_t type, double value, node_t* left, node_t* right)
     return node;
 }
 
-bool ProgramCtor (tree_t* program, modelang_t mode)
+bool ProgramCtor (tree_t* program, modelang_t mode, const char* name_file_for_frontend)
 {
     if (mode == FRONTEND)
     {
@@ -53,7 +53,7 @@ bool ProgramCtor (tree_t* program, modelang_t mode)
 
         VerifyOpenFile (program->dbg_log_file, "ProgramCtor-dbg_log_file.txt");
 
-        InputProgram   (program);
+        InputProgram   (program, name_file_for_frontend);
 
         FRONT_DBG fprintf (stderr, BLU "program->data = <%s>\n" RESET, program->data);
     }
@@ -154,11 +154,11 @@ void ClearTree (node_t* node)
     node = NULL;
 }
 
-void InputProgram (tree_t* expr)
+void InputProgram (tree_t* expr, const char* name_file_for_frontend)
 {
     struct stat fileInf = {};
 
-    int err = stat ("Program.txt", &fileInf);
+    int err = stat (name_file_for_frontend, &fileInf);
 
     if (err != 0)
     {

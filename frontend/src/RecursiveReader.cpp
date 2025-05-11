@@ -98,6 +98,12 @@ node_t* GetOp (tree_t* program)
 
         node = GetIf (program);
     }
+    else if (_CMP_OP("while"))
+    {
+        FRONT_DBG fprintf (stderr, CYN "Start while\n" RESET);
+
+        node = GetWhile (program);
+    }
     else if (_CMP_OP("print"))
     {
         FRONT_DBG fprintf (stderr, CYN "Start print\n" RESET);
@@ -354,6 +360,124 @@ node_t* GetIf (tree_t* program)
     }
 
     return _IF(condition_node, new_right_node);
+}
+
+node_t* GetWhile (tree_t* program)
+{
+    node_t* condition_node       = NULL;
+
+    node_t* left_condition_node  = NULL;
+
+    node_t* right_condition_node = NULL;
+
+    node_t* new_right_node       = NULL;
+
+    if (_CMP_OP("while"))
+    {
+        FRONT_DBG fprintf (stderr, CYN "while\n" RESET);
+
+        p++;
+
+        if (_CMP_OP("("))
+        {
+            FRONT_DBG fprintf (stderr, CYN " \"(\"\n" RESET);
+
+            p++;
+
+            condition_node = GetE (program);
+
+            if (_CMP_OP("<"))
+            {
+                FRONT_DBG fprintf (stderr, CYN " \"<\"\n" RESET);
+
+                p++;
+
+                left_condition_node  = condition_node;
+
+                right_condition_node = GetE (program);
+
+                condition_node       = _MORE(left_condition_node, right_condition_node);
+            }
+            else if (_CMP_OP(">"))
+            {
+                FRONT_DBG fprintf (stderr, CYN " \">\"\n" RESET);
+
+                p++;
+
+                left_condition_node  = condition_node;
+
+                right_condition_node = GetE (program);
+
+                condition_node       = _LESS(left_condition_node, right_condition_node);
+            }
+
+            if (_CMP_OP(")"))
+            {
+                p++;
+
+                FRONT_DBG fprintf (stderr, CYN " \")\"\n" RESET);
+
+                if (_CMP_OP("{"))
+                {
+                    p++;
+
+                    FRONT_DBG fprintf (stderr, CYN " \"{\"\n" RESET);
+
+                    new_right_node        = _ST(NULL, NULL);
+
+                    new_right_node->left  = GetOp (program);
+
+                    new_right_node->right = _ST(NULL, NULL);
+
+                    node_t* crnt_node     = new_right_node->right;
+
+                    while (1)
+                    {
+                        if (_CMP_OP("}"))
+                        {
+                            FRONT_DBG fprintf (stderr, CYN " \"}\"\n" RESET);
+
+                            p++;
+
+                            break;
+                        }
+
+                        crnt_node->left  = GetOp (program);
+
+                        crnt_node->right = _ST(NULL, NULL);
+
+                        crnt_node        = crnt_node->right;
+                    }
+                }
+                else
+                {
+                    fprintf (stderr, YEL "in GetWhile: token ISN'T \"{\"\n" RESET);
+
+                    SintaxError (program, "GetWhile");
+                }
+            }
+            else
+            {
+                fprintf (stderr, YEL "in GetWhile: token ISN'T \")\"\n" RESET);
+
+                SintaxError (program, "GetWhile");
+            }
+        }
+        else
+        {
+            fprintf (stderr, YEL "in GetWhile: token ISN'T \"(\"\n" RESET);
+
+            SintaxError (program, "GetWhile");
+        }
+    }
+    else
+    {
+        fprintf (stderr, YEL "in GetWhile: end token ISN'T '$'\n" RESET);
+
+        SintaxError (program, "GetWhile");
+    }
+
+    return _WHILE(condition_node, new_right_node);
 }
 
 node_t* GetA (tree_t* program)

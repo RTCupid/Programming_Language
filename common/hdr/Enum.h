@@ -17,6 +17,7 @@ enum OP_t
     SMC,
     EQU,
     IF,
+    WHILE,
     SIN,
     COS,
     LN,

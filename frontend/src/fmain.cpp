@@ -9,27 +9,34 @@
 #include "../../common/hdr/DSL.h"
 #include "../../common/hdr/colors.h"
 
-int main ()
+int main (int argc, char* argv[])
 {
     printf (GRN "### Samurai Programming Language\n" RESET);
 
-    tree_t program = {};
+    if (argc > 1)
+    {
+        tree_t program = {};
 
-    ProgramCtor (&program, FRONTEND);
+        ProgramCtor (&program, FRONTEND, argv[1]);
 
-    TreeCtor    (&program, FRONTEND);
+        TreeCtor    (&program, FRONTEND);
 
-    program.root = GetG (&program);
+        program.root = GetG (&program);
 
-    FRONT_DBG ProgramGraphviz (&program, FRONTEND);
+        FRONT_DBG ProgramGraphviz (&program, FRONTEND);
 
-    FILE* base_file = fopen ("Program_file.txt", "wb");
+        FILE* base_file = fopen ("Program_file.txt", "wb");
 
-    WriteNameTable  (&program, base_file);
+        WriteNameTable  (&program, base_file);
 
-    WriteBase       (&program, program.root, base_file, 1);
+        WriteBase       (&program, program.root, base_file, 1);
 
-    ProgramDtor     (&program);
+        ProgramDtor     (&program);
+    }
+    else
+    {
+        fprintf (stderr, RED "Enter file with program .txt \n" RESET);
+    }
 
     return 0;
 }

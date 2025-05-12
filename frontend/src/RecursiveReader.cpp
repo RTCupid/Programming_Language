@@ -21,24 +21,25 @@ bool status = true;
 
 /*
 Main:
-{ G  ::= {OP ";"}+ "$"
-{ OP ::= A | IF | Print | Input..
+{ G    ::= {OP ";"}+ "$"
+{ OP   ::= A | IF | Print | Input..
 Everything
-{ A  ::= Id "=" E
-{More ::= E ">" E
-{Less ::= E "<" E
-{ IF ::= "if_happen" "(" MORE | LESS | E ")"  "{" {OP ";"}+ "}"
+{ A    ::= Id "=" E
+{More  ::= E ">" E
+{Less  ::= E "<" E
+{ IF   ::= "if_happen" "(" MORE | LESS | E ")"  "{" {OP ";"}+ "}"
 {Print ::= "print" ...
 {Input ::= "input" "(" ID ")"
-while
+{While ::= "while" "(" MORE | LESS | E ")" "{" {OP ";"}+ "}"
+
 Equation
-{ E  ::= T {["+" "-"] T}*
-{ T  ::= P {["*" "/"] P}*
-{ P  ::= "(" E ")" | N | Id | "sqrt" "(" E ")"
+{ E    ::= T {["+" "-"] T}*
+{ T    ::= P {["*" "/"] P}*
+{ P    ::= "(" E ")" | N | Id | "sqrt" "(" E ")"
     >   <
 Tokens:
-{ N  ::= NUM
-{ Id ::= ID
+{ N    ::= NUM
+{ Id   ::= ID
 */
 
 size_t p = 0;

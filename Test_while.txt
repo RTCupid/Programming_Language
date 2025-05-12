@@ -1,7 +1,8 @@
-input (a);
+input (utyutyu);
 
-while (a < 20)
+while (utyutyu < 20)
 {
-    write_about {20};
+    write_about {utyutyu};
+    utyutyu = utyutyu + 1;
 };
 then_commit_seppuku

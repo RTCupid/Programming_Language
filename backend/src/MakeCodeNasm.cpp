@@ -7,11 +7,15 @@
 #include "../../common/hdr/ProgramFunc.h"
 #include "../hdr/MakeCodeNasm.h"
 
+#define PrintTabsForComments fprintf(file_nasm, "\t\t\t\t\t\t\t\t\t\t")
+#define PrintTabsForCommentsPop fprintf(file_nasm, "   \t\t\t\t\t\t\t\t")
+#define PrintTabsForCommentsPush fprintf(file_nasm, "  \t\t\t\t\t\t\t\t")
+
 void MakeNasmCode (tree_t* program)
 {
     printf (GRN "MakeNasmCode started\n" RESET);
 
-    FILE* file_nasm = fopen ("Nasm_file.txt", "wt");
+    FILE* file_nasm = fopen ("Nasm_file.s", "wt");
 
     if (file_nasm == NULL)
     {
@@ -24,9 +28,15 @@ void MakeNasmCode (tree_t* program)
     fprintf (file_nasm, ";                         (c) 2025 Muratov Artyom\n");
     fprintf (file_nasm, ";--------------------------------------------------------------------------------------------------\n");
 
+    fprintf (file_nasm, "section .text\n\n");
+
+    fprintf (file_nasm, "start:\n");
+
     RecursiveMakeNasm (program, file_nasm, program->root);
 
-    fprintf (file_nasm, "\nhlt\n");
+    fprintf (file_nasm, "\n\thlt\n");
+
+    fprintf (file_nasm, "\nsection .note.GNU-stack\n");
 
     printf (GRN "MakeNasmCode completed\n" RESET);
 }
@@ -42,8 +52,6 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
     if (crnt_node->type == OP)
     {
-        fprintf (file_nasm, ";number operator = %lu ", n_operator);
-
         BACK_DBG fprintf (stderr, CYN ";%lu\n" RESET, n_operator);
 
         BACK_DBG fprintf (stderr, CYN "%g\n" RESET, crnt_node->value);
@@ -66,7 +74,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node)
             {
                 n_operator++;
 
-                fprintf (file_nasm, "\nhlt\n");
+                fprintf (file_nasm, "\n\thlt");
 
                 break;
             }
@@ -78,7 +86,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
                 RecursiveMakeNasm (program, file_nasm, crnt_node->left );
 
-                fprintf (file_nasm, "\nout\n");
+                fprintf (file_nasm, "\n\tout");
 
                 break;
             }
@@ -88,11 +96,14 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
                 BACK_DBG fprintf (stderr, "operator = %s\n", KeyFromEnum ((int)crnt_node->value));
 
-                fprintf (file_nasm, "\nin\n");
+                fprintf (file_nasm, "\n\tin");
 
-                fprintf (file_nasm, "\npop ");
+                fprintf (file_nasm, "\n\tpop ");
 
-                fprintf (file_nasm, "[%lu] \t; %s\n", (size_t)crnt_node->left->value, program->nametable[(int)crnt_node->left->value].name);
+                fprintf (file_nasm, "[%lu]", (size_t)crnt_node->left->value);
+
+                PrintTabsForCommentsPop;
+                fprintf (file_nasm, "; %s\n", program->nametable[(int)crnt_node->left->value].name);
 
                 break;
             }
@@ -102,7 +113,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
                 RecursiveMakeNasm (program, file_nasm, crnt_node->left);
 
-                fprintf (file_nasm, "\nsqrt\n");
+                fprintf (file_nasm, "\n\tsqrt");
 
                 break;
             }
@@ -116,7 +127,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
                 fprintf (file_nasm, "\n; -------start-if-%lu-----------------------\n", num_if);
 
-                fprintf (file_nasm, "\n; -------start-test-%lu---------------------\n", num_if);
+                fprintf (file_nasm, "\n; test-%lu\n", num_if);
 
                 if (crnt_node->left->type == OP && (int)crnt_node->left->value == LESS)
                 {
@@ -124,7 +135,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
                     RecursiveMakeNasm (program, file_nasm, crnt_node->left->right);
 
-                    fprintf (file_nasm, "\nja end_if%lu:\n", num_if);
+                    fprintf (file_nasm, "\n\tja end_if%lu:", num_if);
                 }
                 else if (crnt_node->left->type == OP && (int)crnt_node->left->value == MORE)
                 {
@@ -132,24 +143,71 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
                     RecursiveMakeNasm (program, file_nasm, crnt_node->left->right);
 
-                    fprintf (file_nasm, "\njb end_if%lu:\n", num_if);
+                    fprintf (file_nasm, "\n\tjb end_if%lu:", num_if);
                 }
                 else
                 {
                     RecursiveMakeNasm (program, file_nasm, crnt_node->left);
 
-                    fprintf (file_nasm, "\npush 0\n");
+                    fprintf (file_nasm, "\n\tpush 0");
 
-                    fprintf (file_nasm, "\nje end_if%lu:\n", num_if);
+                    fprintf (file_nasm, "\nje end_if%lu:", num_if);
                 }
 
-                fprintf (file_nasm, "; action\n");
+                fprintf (file_nasm, "\n; action-%lu\n", num_if);
 
                 RecursiveMakeNasm (program, file_nasm, crnt_node->right);
 
-                fprintf (file_nasm, "\nend_if%lu:\n", num_if);
+                fprintf (file_nasm, "\n\tend_if%lu:", num_if);
 
-                fprintf (file_nasm, "; -------end-if-------------------------\n");
+                fprintf (file_nasm, "\n; -------end-if-%lu-------------------------\n", num_if);
+
+                break;
+            }
+            case WHILE:
+            {
+                n_operator++;
+
+                size_t num_while = n_operator;
+
+                BACK_DBG fprintf (stderr, GRN "operator = %s\n" RESET, KeyFromEnum ((int)crnt_node->value));
+
+                fprintf (file_nasm, "\n; -------start-while-%lu-----------------------\n", num_while);
+
+                fprintf (file_nasm, "\n; test-%lu\n", num_while);
+
+                if (crnt_node->left->type == OP && (int)crnt_node->left->value == LESS)
+                {
+                    RecursiveMakeNasm (program, file_nasm, crnt_node->left->left);
+
+                    RecursiveMakeNasm (program, file_nasm, crnt_node->left->right);
+
+                    fprintf (file_nasm, "\n\tja end_while%lu:", num_while);
+                }
+                else if (crnt_node->left->type == OP && (int)crnt_node->left->value == MORE)
+                {
+                    RecursiveMakeNasm (program, file_nasm, crnt_node->left->left);
+
+                    RecursiveMakeNasm (program, file_nasm, crnt_node->left->right);
+
+                    fprintf (file_nasm, "\n\tjb end_while%lu:", num_while);
+                }
+                else
+                {
+                    RecursiveMakeNasm (program, file_nasm, crnt_node->left);
+
+                    fprintf (file_nasm, "\n\tpush 0");
+
+                    fprintf (file_nasm, "\n\tje end_while%lu:", num_while);
+                }
+
+                fprintf (file_nasm, "\n; action-%lu\n", num_while);
+
+                RecursiveMakeNasm (program, file_nasm, crnt_node->right);
+
+                fprintf (file_nasm, "\nend_while%lu:", num_while);
+
+                fprintf (file_nasm, "\n; -------end-while-%lu------------------------\n", num_while);
 
                 break;
             }
@@ -159,9 +217,12 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
                 RecursiveMakeNasm (program, file_nasm, crnt_node->right);
 
-                fprintf (file_nasm, "\npop ");
+                fprintf (file_nasm, "\n\tpop ");
 
-                fprintf (file_nasm, "[%lu] \t; %s\n", (size_t)crnt_node->left->value, program->nametable[(int)crnt_node->left->value].name);
+                fprintf (file_nasm, "[%lu]", (size_t)crnt_node->left->value);
+
+                PrintTabsForCommentsPop;
+                fprintf (file_nasm, "; %s\n", program->nametable[(int)crnt_node->left->value].name);
 
                 break;
             }
@@ -173,7 +234,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
                 RecursiveMakeNasm (program, file_nasm, crnt_node->right);
 
-                fprintf (file_nasm, "\nadd\n");
+                fprintf (file_nasm, "\n\tadd");
 
                 break;
             }
@@ -185,7 +246,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
                 RecursiveMakeNasm (program, file_nasm, crnt_node->right);
 
-                fprintf (file_nasm, "\nsub\n");
+                fprintf (file_nasm, "\n\tsub");
 
                 break;
             }
@@ -197,7 +258,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
                 RecursiveMakeNasm (program, file_nasm, crnt_node->right);
 
-                fprintf (file_nasm, "\nmul\n");
+                fprintf (file_nasm, "\n\tmul");
 
                 break;
             }
@@ -209,7 +270,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
                 RecursiveMakeNasm (program, file_nasm, crnt_node->right);
 
-                fprintf (file_nasm, "\ndiv\n");
+                fprintf (file_nasm, "\n\tdiv");
 
                 break;
             }
@@ -220,17 +281,24 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node)
                 exit (0);
             }
         }
+
+        PrintTabsForComments;
+        fprintf (file_nasm, ";number operator %lu ", n_operator);
     }
     else if (crnt_node->type == NUM)
     {
-        fprintf (file_nasm, "\npush %d\n", (int)crnt_node->value);
+        fprintf (file_nasm, "%d", (int)crnt_node->value);
 
         return;
     }
     else if (crnt_node->type == ID)
     {
-        fprintf (file_nasm, "\npush [%lu] \t;%s\n", (size_t)crnt_node->value, program->nametable[(int)crnt_node->value].name);
+        fprintf (file_nasm, "mov rax, [%lu]", (size_t)crnt_node->value);
+
+        PrintTabsForCommentsPush;
+        fprintf (file_nasm, "; %s\n", program->nametable[(int)crnt_node->value].name);
 
         return;
     }
 }
+

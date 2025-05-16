@@ -1,5 +1,1 @@
 ;number operator = 0 ;number operator = 1 
-in
-
-pop [0] 	; utyutyu
-;number operator = 2 ;number operator = 3 

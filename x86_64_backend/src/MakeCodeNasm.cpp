@@ -9,6 +9,14 @@
 
 //---------------------------------------------------------------------------------------
 
+static err_t ProcessFUNC (tree_t* program, FILE* file_nasm, node_t* crnt_node);
+
+static err_t ProcessDEF (tree_t* program, FILE* file_nasm, node_t* crnt_node);
+
+static err_t ProcessRET (tree_t* program, FILE* file_nasm, node_t* crnt_node);
+
+static err_t ProcessCALL (tree_t* program, FILE* file_nasm, node_t* crnt_node);
+
 static err_t ProcessNUM     (FILE* file_nasm, node_t* crnt_node, order_t variable_order);
 
 static err_t ProcessID      (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order);
@@ -107,6 +115,38 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node, ord
                 n_operator++;
 
                 ProcessEND (file_nasm);
+
+                break;
+            }
+            case FUNC:
+            {
+                n_operator++;
+
+                ProcessFUNC (program, file_nasm, crnt_node);
+
+                break;
+            }
+            case DEF:
+            {
+                n_operator++;
+
+                ProcessDEF (program, file_nasm, crnt_node);
+
+                break;
+            }
+            case RET:
+            {
+                n_operator++;
+
+                ProcessRET (program, file_nasm, crnt_node);
+
+                break;
+            }
+            case CALL:
+            {
+                n_operator++;
+
+                ProcessCALL (program, file_nasm, crnt_node);
 
                 break;
             }
@@ -212,6 +252,39 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node, ord
 
         return;
     }
+}
+
+//---------------------------------------------------------------------------------------
+
+static err_t ProcessFUNC (tree_t* program, FILE* file_nasm, node_t* crnt_node)
+{
+}
+
+//---------------------------------------------------------------------------------------
+
+static err_t ProcessDEF (tree_t* program, FILE* file_nasm, node_t* crnt_node)
+{
+
+}
+
+//---------------------------------------------------------------------------------------
+
+static err_t ProcessRET (tree_t* program, FILE* file_nasm, node_t* crnt_node)
+{
+    RecursiveMakeNasm (program, file_nasm, crnt_node->left, FIRST_EXPR);
+
+    fprintf (file_nasm, "\n\tret");
+
+    return OK;
+}
+
+//---------------------------------------------------------------------------------------
+
+static err_t ProcessCALL (tree_t* program, FILE* file_nasm, node_t* crnt_node)
+{
+    fprintf (file_nasm, "\n\tcall %lu", (size_t) crnt_node->value);
+
+    return OK;
 }
 
 //---------------------------------------------------------------------------------------

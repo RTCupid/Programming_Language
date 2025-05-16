@@ -20,21 +20,21 @@ int main (int argc, char* argv[])
     BACK_DBG ProgramGraphviz (&bprogram, BACKEND);
     BACK_DBG DiffDump (&bprogram, BACKEND);
 
-    // if (argc > 1)
-    // {
-    //     if (strcmp (argv[1], "NASM") == 0)
-    //     {
-    //         MakeNasmCode (&bprogram);
-    //     }
-    //     else
-    //     {
-    //         fprintf (stderr, RED "unknown mode\n" RESET );
-    //     }
-    // }
-    // else
-    // {
-    //     MakeAsmCode  (&bprogram);
-    // }
+    if (argc > 1)
+    {
+        if (strcmp (argv[1], "NASM") == 0)
+        {
+            MakeNasmCode (&bprogram);
+        }
+        else
+        {
+            fprintf (stderr, RED "unknown mode\n" RESET );
+        }
+    }
+    else
+    {
+        MakeAsmCode  (&bprogram);
+    }
 
     ProgramDtor              (&bprogram);
 

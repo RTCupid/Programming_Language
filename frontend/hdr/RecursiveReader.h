@@ -11,6 +11,8 @@ node_t*     GetOp           (tree_t* program);
 
 node_t*     GetFunc         (tree_t* program);
 
+node_t*     GetReturn       (tree_t* program);
+
 node_t*     GetIf           (tree_t* program);
 
 node_t*     GetWhile        (tree_t* program);

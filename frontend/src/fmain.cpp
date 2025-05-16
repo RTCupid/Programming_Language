@@ -25,6 +25,8 @@ int main (int argc, char* argv[])
 
         FRONT_DBG ProgramGraphviz (&program, FRONTEND);
 
+        FRONT_DBG DiffDump (&program, FRONTEND);
+
         //FILE* base_file = fopen ("Program_file.txt", "wb");
 
         //WriteNameTable  (&program, base_file);

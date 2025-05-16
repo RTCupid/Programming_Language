@@ -5,6 +5,8 @@ then_commit_seppuku
 Factorial ()
 {
     write_about {8};
+
+    return 0;
 };
 
 then_commit_seppuku

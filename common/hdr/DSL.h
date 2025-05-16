@@ -25,5 +25,6 @@
 #define _DEF(L,R)     NewNode(OP, DEF,   L, R)
 #define _FUNC(L,R)    NewNode(OP, FUNC,  L, R)
 #define _CALL(L,R)    NewNode(OP, CALL,  L, R)
+#define _RET(L)       NewNode(OP, RET,   L, NULL)
 
 #endif

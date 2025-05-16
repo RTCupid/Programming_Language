@@ -34,5 +34,6 @@ enum OP_t
     DEF,
     FUNC,
     CALL,
+    RET,
 };
 #endif

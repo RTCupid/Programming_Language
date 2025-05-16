@@ -32,6 +32,7 @@ Everything
 {Input ::= "input" "(" ID ")"
 {While ::= "while" "(" MORE | LESS | E ")" "{" {OP ";"}+ "}"
 {Func  ::= "Id "(" ")" "{" {OP ";"}+ "}"
+{Ret   ::= "return" E
 
 Equation
 { E    ::= T {["+" "-"] T}*
@@ -113,6 +114,12 @@ node_t* GetOp (tree_t* program)
             node = GetFunc (program);
         }
     }
+    else if (_CMP_OP("return"))
+    {
+        FRONT_DBG fprintf (stderr, CYN "Start return\n" RESET);
+
+        node = GetReturn (program);
+    }
     else if (_CMP_OP("if"))
     {
         FRONT_DBG fprintf (stderr, CYN "Start if\n" RESET);
@@ -168,6 +175,28 @@ node_t* GetOp (tree_t* program)
     FRONT_DBG fprintf (stderr, MAG "End GetOp\n" RESET);
 
     return node;
+}
+
+//---------------------------------------------------------------------------------------
+
+node_t* GetReturn (tree_t* program)
+{
+    node_t* return_node = NULL;
+
+    if (_CMP_OP("return"))
+    {
+        p++;
+
+        return_node = GetE (program);
+    }
+    else
+    {
+        fprintf (stderr, YEL "in GetReturn: token ISN'T \"return\"\n" RESET);
+
+        SintaxError (program, "GetReturn");
+    }
+
+    return _RET(return_node);
 }
 
 //---------------------------------------------------------------------------------------

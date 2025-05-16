@@ -1,0 +1,3 @@
+write_about {8};
+
+then_commit_seppuku

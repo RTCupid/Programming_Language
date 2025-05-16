@@ -9,11 +9,21 @@ LINUXFLAGSDEBUG = -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ -Waggre
          -flto-odr-type-merging -fno-omit-frame-pointer -Wstack-usage=8192 -pie -fPIE -Werror=vla \
          -fsanitize=address,alignment,bool,bounds,enum,float-cast-overflow,float-divide-by-zero,integer-divide-by-zero,leak,nonnull-attribute,null,object-size,return,returns-nonnull-attribute,shift,signed-integer-overflow,undefined,unreachable,vla-bound,vptr
 
-LINUXFLAGSRELEASE = -std=c++17 -Wall -mavx2 -O3
+LINUXFLAGSRELEASE = -D NDEBUG -std=c++17 -Wall -mavx2 -O3
 
 CFLAGS = $(LINUXFLAGSDEBUG)
 
 DEPFLAGS = -MT $@ -MMD -MP -MF ./build/dep/$*.d
+
+NASM = nasm
+
+NASMFLAGSDEBUG = -f elf64 -g -F dwarf
+
+NASMFLAGSRELEASE = -f elf64 -g -F dwarf -O3
+
+NASMFLAGS = $(NASMFLAGSDEBUG)
+
+LDFLAGS = -no-pie -nostartfiles
 
 FRONTEND_SOURCES = frontend/src/fmain.cpp \
                    frontend/src/RecursiveReader.cpp \
@@ -39,14 +49,16 @@ BACKEND_DEPENDS = $(BACKEND_OBJECTS:build/obj/%.o=build/dep/%.d)
 X8664_DEPENDS = $(x8664_OBJECTS:build/obj/%.o=build/dep/%.d)
 COMMON_DEPENDS = $(COMMON_OBJECTS:build/obj/%.o=build/dep/%.d)
 
-INCLUDES = -I./frontend/hdr -I./common/hdr -I./backend/hdr "-I./x86_64_backend/hdr"
+INCLUDES = -I./frontend/hdr -I./common/hdr -I./backend/hdr "-I./x86_64_backend/hdr" -I./common/lib
 
-.PHONY: all build clean
+.PHONY: all build clean nasm
 
 all: build
 	@echo -e "\033[33mCompilation complete. Run the programs using './build/bin/frontend' and './build/bin/backend'.\033[0m"
 
 build: ./build/bin/frontend ./build/bin/backend
+
+nasm: ./build/bin/nasm
 
 ./build/bin/frontend: $(FRONTEND_OBJECTS) $(COMMON_OBJECTS) ./build/obj/ProgramReader.o
 	@mkdir -p $(@D) ./build/dep
@@ -55,6 +67,14 @@ build: ./build/bin/frontend ./build/bin/backend
 ./build/bin/backend: $(BACKEND_OBJECTS) $(COMMON_OBJECTS) $(X8664_OBJECTS) ./build/obj/Tokenizer.o ./build/obj/RecursiveReader.o
 	@mkdir -p $(@D) ./build/dep
 	$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@
+
+./build/bin/nasm: ./build/obj/Nasm_file.o
+	@mkdir -p $(@D)
+	$(CC) $(LDFLAGS) $^ -o $@
+
+./build/obj/Nasm_file.o: Nasm_file.s
+	@mkdir -p $(@D)
+	$(NASM) $(NASMFLAGS) -I./common/lib $< -o $@
 
 ./build/obj/%.o: frontend/src/%.cpp
 	@mkdir -p $(@D) ./build/dep

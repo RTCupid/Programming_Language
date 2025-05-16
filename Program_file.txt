@@ -1,39 +1,8 @@
-size table: 1
-0 utyutyu
+size table: 0
 {OP:";"
-	{OP:"input"
-		{ID:"0"}
+	{OP:"print"
+		{NUM:"8"}
 		{ID:""}
 	}
-	{OP:";"
-		{OP:"while"
-			{OP:">"
-				{ID:"0"}
-				{NUM:"20"}
-			}
-			{OP:";"
-				{OP:"print"
-					{ID:"0"}
-					{ID:""}
-				}
-				{OP:";"
-					{OP:"print"
-						{NUM:"8"}
-						{ID:""}
-					}
-					{OP:";"
-						{OP:"="
-							{ID:"0"}
-							{OP:"+"
-								{ID:"0"}
-								{NUM:"1"}
-							}
-						}
-						{OP:";"}
-					}
-				}
-			}
-		}
-		{OP:";"}
-	}
+	{OP:";"}
 }

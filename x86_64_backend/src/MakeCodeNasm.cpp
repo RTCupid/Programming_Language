@@ -72,7 +72,7 @@ void MakeNasmCode (tree_t* program)
 
     fprintf (file_nasm, "\nsection .note.GNU-stack\n");
 
-    printf (GRN "MakeNasmCode completed\n" RESET);
+    printf (GRN "MakeNasmCode completed \n" RESET);
 }
 
 //---------------------------------------------------------------------------------------

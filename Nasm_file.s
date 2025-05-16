@@ -12,20 +12,15 @@ start:
 ; -------start-while-4-----------------------
 
 ; test-4
-
-	push [0]  								; utyutyu
-
-	push 20
+mov r8, [0]  								; utyutyu
+20
 	jb end_while4:
 ; action-4
+mov r8, [0]  								; utyutyu
 
-	push [0]  								; utyutyu
-
-	out										;number operator 6 
-	push [0]  								; utyutyu
-
-	push 1
-	add										;number operator 9 
+	out										;number operator 6 mov r8, [0]  								; utyutyu
+1
+	add r8, r9										;number operator 9 
 	pop [0]   								; utyutyu
 										;number operator 9 										;number operator 10 										;number operator 10 										;number operator 10 
 end_while4:

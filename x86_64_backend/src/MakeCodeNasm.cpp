@@ -293,7 +293,14 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node, ord
     }
     else if (crnt_node->type == ID)
     {
-        fprintf (file_nasm, "mov r8, [%lu]", (size_t)crnt_node->value);
+        if (variable_order == FIRST_ID)
+        {
+            fprintf (file_nasm, "mov r8, [%lu]", (size_t)crnt_node->value);
+        }
+        else if (variable_order == SECOND_ID)
+        {
+            fprintf (file_nasm, "mov r9, [%lu]", (size_t)crnt_node->value);
+        }
 
         PrintTabsForCommentsPush;
         fprintf (file_nasm, "; %s\n", program->nametable[(int)crnt_node->value].name);

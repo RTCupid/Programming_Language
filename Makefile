@@ -22,21 +22,24 @@ FRONTEND_SOURCES = frontend/src/fmain.cpp \
 
 BACKEND_SOURCES = backend/src/bmain.cpp \
                   backend/src/MakeCodeAsm.cpp \
-				  backend/src/MakeCodeNasm.cpp \
                   backend/src/ProgramReader.cpp
+
+X8664_SOURCES = x86_64_backend/src/MakeCodeNasm.cpp
 
 COMMON_SOURCES = common/src/DumpProgram.cpp \
                  common/src/ProgramFunc.cpp
 
 FRONTEND_OBJECTS = $(FRONTEND_SOURCES:frontend/src/%.cpp=build/obj/%.o)
 BACKEND_OBJECTS = $(BACKEND_SOURCES:backend/src/%.cpp=build/obj/%.o)
+X8664_OBJECTS = $(X8664_SOURCES:x86_64_backend/src/%.cpp=build/obj/%.o)
 COMMON_OBJECTS = $(COMMON_SOURCES:common/src/%.cpp=build/obj/%.o)
 
 FRONTEND_DEPENDS = $(FRONTEND_OBJECTS:build/obj/%.o=build/dep/%.d)
 BACKEND_DEPENDS = $(BACKEND_OBJECTS:build/obj/%.o=build/dep/%.d)
+X8664_DEPENDS = $(x8664_OBJECTS:build/obj/%.o=build/dep/%.d)
 COMMON_DEPENDS = $(COMMON_OBJECTS:build/obj/%.o=build/dep/%.d)
 
-INCLUDES = -I./frontend/hdr -I./common/hdr -I./backend/hdr
+INCLUDES = -I./frontend/hdr -I./common/hdr -I./backend/hdr "-I./x86_64_backend/hdr"
 
 .PHONY: all build clean
 
@@ -49,7 +52,7 @@ build: ./build/bin/frontend ./build/bin/backend
 	@mkdir -p $(@D) ./build/dep
 	$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@
 
-./build/bin/backend: $(BACKEND_OBJECTS) $(COMMON_OBJECTS) ./build/obj/Tokenizer.o ./build/obj/RecursiveReader.o
+./build/bin/backend: $(BACKEND_OBJECTS) $(COMMON_OBJECTS) $(X8664_OBJECTS) ./build/obj/Tokenizer.o ./build/obj/RecursiveReader.o
 	@mkdir -p $(@D) ./build/dep
 	$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@
 
@@ -60,6 +63,12 @@ build: ./build/bin/frontend ./build/bin/backend
 	fi
 
 ./build/obj/%.o: backend/src/%.cpp
+	@mkdir -p $(@D) ./build/dep
+	@if ! $(CC) $(CFLAGS) $(INCLUDES) $(DEPFLAGS) -c $< -o $@; then \
+		rm -f $@; exit 1; \
+	fi
+
+./build/obj/%.o: x86_64_backend/src/%.cpp
 	@mkdir -p $(@D) ./build/dep
 	@if ! $(CC) $(CFLAGS) $(INCLUDES) $(DEPFLAGS) -c $< -o $@; then \
 		rm -f $@; exit 1; \

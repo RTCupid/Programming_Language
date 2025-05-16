@@ -41,7 +41,7 @@ void MakeNasmCode (tree_t* program)
     printf (GRN "MakeNasmCode completed\n" RESET);
 }
 
-void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node)
+void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order)
 {
     static size_t n_operator = 0;
 
@@ -234,7 +234,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
                 RecursiveMakeNasm (program, file_nasm, crnt_node->right);
 
-                fprintf (file_nasm, "\n\tadd");
+                fprintf (file_nasm, "\n\tadd r8, r9");
 
                 break;
             }
@@ -293,7 +293,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node)
     }
     else if (crnt_node->type == ID)
     {
-        fprintf (file_nasm, "mov rax, [%lu]", (size_t)crnt_node->value);
+        fprintf (file_nasm, "mov r8, [%lu]", (size_t)crnt_node->value);
 
         PrintTabsForCommentsPush;
         fprintf (file_nasm, "; %s\n", program->nametable[(int)crnt_node->value].name);

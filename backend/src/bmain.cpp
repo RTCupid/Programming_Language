@@ -7,7 +7,7 @@
 #include "../../common/hdr/ProgramFunc.h"
 #include "../../common/hdr/DumpProgram.h"
 #include "../hdr/MakeCodeAsm.h"
-#include "../hdr/MakeCodeNasm.h"
+#include "../../x86_64_backend/hdr/MakeCodeNasm.h"
 
 int main (int argc, char* argv[])
 {

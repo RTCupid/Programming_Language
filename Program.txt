@@ -7,7 +7,7 @@ if_happens (a multiply b multiply c)
     Diskriminant = b multiply b subtract 4 multiply a multiply c;
     write_about {Diskriminant};
 
-    if (Diskriminant < 0)
+    if_happens (Diskriminant < 0)
     {
         write_about {0};
 

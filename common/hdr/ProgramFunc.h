@@ -3,6 +3,12 @@
 
 #include "./Enum.h"
 
+enum err_t
+{
+    OK,
+    ERROR,
+};
+
 typedef struct node_t
 {
     size_t  type;

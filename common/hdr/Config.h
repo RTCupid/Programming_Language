@@ -2,6 +2,6 @@
 #define CONFIG_H
 
 #define FRONT_DBG if(1)
-#define BACK_DBG if(0)
+#define BACK_DBG if(1)
 
 #endif

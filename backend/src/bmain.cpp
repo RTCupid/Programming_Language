@@ -18,23 +18,23 @@ int main (int argc, char* argv[])
     TreeCtor        (&bprogram, BACKEND);
 
     BACK_DBG ProgramGraphviz (&bprogram, BACKEND);
-    if (argc > 1)
-    {
-        if (strcmp (argv[1], "NASM") == 0)
-        {
-            MakeNasmCode (&bprogram);
-        }
-        else
-        {
-            fprintf (stderr, RED "unknown mode\n" RESET );
-        }
-    }
-    else
-    {
-        MakeAsmCode  (&bprogram);
-    }
+    BACK_DBG DiffDump (&bprogram, BACKEND);
 
-    BACK_DBG ProgramGraphviz (&bprogram, BACKEND);
+    // if (argc > 1)
+    // {
+    //     if (strcmp (argv[1], "NASM") == 0)
+    //     {
+    //         MakeNasmCode (&bprogram);
+    //     }
+    //     else
+    //     {
+    //         fprintf (stderr, RED "unknown mode\n" RESET );
+    //     }
+    // }
+    // else
+    // {
+    //     MakeAsmCode  (&bprogram);
+    // }
 
     ProgramDtor              (&bprogram);
 

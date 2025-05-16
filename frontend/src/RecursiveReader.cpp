@@ -31,6 +31,7 @@ Everything
 {Print ::= "print" ...
 {Input ::= "input" "(" ID ")"
 {While ::= "while" "(" MORE | LESS | E ")" "{" {OP ";"}+ "}"
+{Func  ::= "Id "(" ")" "{" {OP ";"}+ "}"
 
 Equation
 { E    ::= T {["+" "-"] T}*
@@ -42,9 +43,11 @@ Tokens:
 { Id   ::= ID
 */
 
-size_t p = 0;
+static size_t p = 0;
 
 #define _CMP_OP(operator) (program->tokens[p].type == OP && strcmp(keywords[(int)program->tokens[p].value].key_op, operator) == 0)
+
+//---------------------------------------------------------------------------------------
 
 node_t* GetG (tree_t* program)
 {
@@ -81,6 +84,8 @@ node_t* GetG (tree_t* program)
     return node;
 }
 
+//---------------------------------------------------------------------------------------
+
 node_t* GetOp (tree_t* program)
 {
     FRONT_DBG fprintf (stderr, CYN "Start GetOp\n" RESET);
@@ -89,9 +94,24 @@ node_t* GetOp (tree_t* program)
 
     if (program->tokens[p].type == ID)
     {
-        FRONT_DBG fprintf (stderr, CYN "Start Assignment\n" RESET);
+        p++;
 
-        node = GetA (program);
+        if (_CMP_OP("="))
+        {
+            p--;
+
+            FRONT_DBG fprintf (stderr, CYN "Start Assignment\n" RESET);
+
+            node = GetA (program);
+        }
+        else if (_CMP_OP("("))
+        {
+            p--;
+
+            FRONT_DBG fprintf (stderr, CYN "Start Function\n" RESET);
+
+            node = GetFunc (program);
+        }
     }
     else if (_CMP_OP("if"))
     {
@@ -149,6 +169,98 @@ node_t* GetOp (tree_t* program)
 
     return node;
 }
+
+//---------------------------------------------------------------------------------------
+
+node_t* GetFunc (tree_t* program)
+{
+    node_t* new_right_node = NULL;
+
+    if (program->tokens[p].type == ID)
+    {
+        p++;
+
+        if (_CMP_OP("("))
+        {
+            FRONT_DBG fprintf (stderr, CYN " \"(\"\n" RESET);
+            p++;
+
+            if (_CMP_OP(")"))
+            {
+                FRONT_DBG fprintf (stderr, CYN " \")\"\n" RESET);
+                p++;
+
+                if (_CMP_OP(";"))
+                {
+                    FRONT_DBG fprintf (stderr, CYN " \";\"- It is function declaration\n" RESET);
+
+                    p++;
+
+                    return _FUNCDEF(new_right_node);
+                }
+                else if (_CMP_OP("{"))
+                {
+                    FRONT_DBG fprintf (stderr, CYN " \"{\" - It is function definition\n" RESET);
+                    p++;
+
+                    new_right_node        = _ST(NULL, NULL);
+
+                    new_right_node->left  = GetOp (program);
+
+                    new_right_node->right = _ST(NULL, NULL);
+
+                    node_t* crnt_node     = new_right_node->right;
+
+                    while (1)
+                    {
+                        if (_CMP_OP("}"))
+                        {
+                            FRONT_DBG fprintf (stderr, CYN " \"}\"\n" RESET);
+
+                            p++;
+
+                            break;
+                        }
+
+                        crnt_node->left  = GetOp (program);
+
+                        crnt_node->right = _ST(NULL, NULL);
+
+                        crnt_node        = crnt_node->right;
+                    }
+                }
+                else
+                {
+                    fprintf (stderr, YEL "in GetFunc: token ISN'T \"{\" and ISN'T \";\"\n" RESET);
+
+                    SintaxError (program, "GetFunc");
+                }
+            }
+            else
+            {
+                fprintf (stderr, YEL "in GetFunc: token ISN'T \")\"\n" RESET);
+
+                SintaxError (program, "GetFunc");
+            }
+        }
+        else
+        {
+            fprintf (stderr, YEL "in GetFunc: token ISN'T \"(\"\n" RESET);
+
+            SintaxError (program, "GetFunc");
+        }
+    }
+    else
+    {
+        fprintf (stderr, YEL "in GetFunc: token ISN'T \"ID\"\n" RESET);
+
+        SintaxError (program, "GetFunc");
+    }
+
+    return _FUNC(new_right_node);
+}
+
+//---------------------------------------------------------------------------------------
 
 node_t* GetInput (tree_t* program)
 {
@@ -244,6 +356,8 @@ node_t* GetPrint (tree_t* program)
 
     return _PRNT(print_node);
 }
+
+//---------------------------------------------------------------------------------------
 
 node_t* GetIf (tree_t* program)
 {
@@ -363,6 +477,8 @@ node_t* GetIf (tree_t* program)
     return _IF(condition_node, new_right_node);
 }
 
+//---------------------------------------------------------------------------------------
+
 node_t* GetWhile (tree_t* program)
 {
     node_t* condition_node       = NULL;
@@ -481,6 +597,8 @@ node_t* GetWhile (tree_t* program)
     return _WHILE(condition_node, new_right_node);
 }
 
+//---------------------------------------------------------------------------------------
+
 node_t* GetA (tree_t* program)
 {
     node_t* new_right_node = NULL;
@@ -520,6 +638,8 @@ node_t* GetA (tree_t* program)
     return _EQU (new_left_node, new_right_node);
 }
 
+//---------------------------------------------------------------------------------------
+
 node_t* GetE (tree_t* program)
 {
     node_t* node = GetT (program);
@@ -548,6 +668,8 @@ node_t* GetE (tree_t* program)
     return node;
 }
 
+//---------------------------------------------------------------------------------------
+
 node_t* GetT (tree_t* program)
 {
     node_t* node = GetP (program);
@@ -572,6 +694,8 @@ node_t* GetT (tree_t* program)
 
     return node;
 }
+
+//---------------------------------------------------------------------------------------
 
 node_t* GetP (tree_t* program)
 {
@@ -643,6 +767,8 @@ node_t* GetP (tree_t* program)
     SintaxError (program, "GetP");
     return NULL;
 }
+
+//---------------------------------------------------------------------------------------
 
 [[noreturn]]
 void SintaxError (tree_t* program, const char* name_func)

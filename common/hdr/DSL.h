@@ -22,4 +22,6 @@
 #define _MORE(L,R)    NewNode(OP, MORE, L, R)
 #define _LESS(L,R)    NewNode(OP, LESS, L, R)
 #define _END()        NewNode(OP, END, NULL, NULL)
+#define _FUNCDEF(R)   NewNode(OP,
+
 #endif

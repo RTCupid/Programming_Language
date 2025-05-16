@@ -58,6 +58,23 @@ text = <;>
 <;> is keyword
 end symbol = <{>
 start symbol = <{>
+text = <print>
+<print> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <8>
+end symbol = <}>
+return
+start symbol = <{>
+text = <ID:>
+end symbol = <">
+end symbol = <}>
+end symbol = <}>
+start symbol = <{>
+text = <;>
+<;> is keyword
+end symbol = <{>
+start symbol = <{>
 text = <=>
 <=> is keyword
 end symbol = <{>
@@ -84,6 +101,7 @@ text = <;>
 <;> is keyword
 end symbol = <}>
 return
+end symbol = <}>
 end symbol = <}>
 end symbol = <}>
 end symbol = <}>

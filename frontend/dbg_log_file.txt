@@ -1,17 +1,18 @@
 
-118
-count of char = 118
+139
+count of char = 139
 
 input (utyutyu);
 
 while (utyutyu < 20)
 {
     write_about {utyutyu};
+    write_about {8};
     utyutyu = utyutyu + 1;
 };
 then_commit_seppuku
 
-sizeOfFile = <118>
+sizeOfFile = <139>
 
 
 Start Tokenizer:
@@ -132,6 +133,29 @@ name = <;>
 <;> is keyword
 number_key = <9>
 
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = '8' is number
+number is <8>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
 first symbol = <u> is alpha
 name = <utyutyu>
 number_key = <-1>
@@ -192,6 +216,11 @@ OP {
 OP print
 OP {
 ID utyutyu
+OP }
+OP ;
+OP print
+OP {
+NUM 8
 OP }
 OP ;
 ID utyutyu

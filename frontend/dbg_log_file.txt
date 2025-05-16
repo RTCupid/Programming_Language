@@ -1,12 +1,19 @@
 
-38
-count of char = 38
+96
+count of char = 96
 
-write_about {8};
+
+Factorial ();
+then_commit_seppuku
+
+Factorial ()
+{
+    write_about {8};
+};
 
 then_commit_seppuku
 
-sizeOfFile = <38>
+sizeOfFile = <96>
 
 
 Start Tokenizer:
@@ -41,9 +48,56 @@ sqrt                 19
 >                    20
 <                    21
 while                8
+call                 24
+def                  22
+func                 23
 
 ----------------------------------------------------------------
 End Dump!
+
+first symbol = <F> is alpha
+name = <Factorial>
+number_key = <-1>
+number_id = <-1>
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <t> is alpha
+name = <then_commit_seppuku>
+<then_commit_seppuku> is keyword
+number_key = <14>
+
+first symbol = <F> is alpha
+name = <Factorial>
+number_key = <-1>
+<Factorial> is identificator
+number_id = <0>
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
 
 first symbol = <w> is alpha
 name = <write_about>
@@ -68,6 +122,16 @@ name = <;>
 <;> is keyword
 number_key = <9>
 
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
 first symbol = <t> is alpha
 name = <then_commit_seppuku>
 <then_commit_seppuku> is keyword
@@ -75,9 +139,20 @@ number_key = <14>
 
 ----------------------------------------------------------------
 Dump Tokens:
+ID Factorial
+OP (
+OP )
+OP ;
+OP $
+ID Factorial
+OP (
+OP )
+OP {
 OP print
 OP {
 NUM 8
+OP }
+OP ;
 OP }
 OP ;
 OP $

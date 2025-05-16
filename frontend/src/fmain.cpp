@@ -25,11 +25,11 @@ int main (int argc, char* argv[])
 
         FRONT_DBG ProgramGraphviz (&program, FRONTEND);
 
-        FILE* base_file = fopen ("Program_file.txt", "wb");
+        //FILE* base_file = fopen ("Program_file.txt", "wb");
 
-        WriteNameTable  (&program, base_file);
+        //WriteNameTable  (&program, base_file);
 
-        WriteBase       (&program, program.root, base_file, 1);
+        //WriteBase       (&program, program.root, base_file, 1);
 
         ProgramDtor     (&program);
     }

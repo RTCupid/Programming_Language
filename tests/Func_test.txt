@@ -1,0 +1,10 @@
+
+Factorial ();
+then_commit_seppuku
+
+Factorial ()
+{
+    write_about {8};
+};
+
+then_commit_seppuku

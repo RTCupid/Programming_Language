@@ -31,5 +31,8 @@ enum OP_t
     SQRT,
     MORE,
     LESS,
+    DEF,
+    FUNC,
+    CALL,
 };
 #endif

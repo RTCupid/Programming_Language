@@ -177,9 +177,13 @@ void InputProgram (tree_t* expr, const char* name_file_for_frontend)
     {
         fprintf (expr->dbg_log_file, "File opening error\n");
 
+        fprintf (stderr, RED "File opening error\n" RESET);
+
         fprintf (expr->dbg_log_file, "errno = <%d>\n", errno);
 
         perror(name_file_for_frontend);
+
+        exit (0);
     }
 
     expr->size_data = (int) fread (expression, sizeof (char), (size_t)fileInf.st_size, expr_file);

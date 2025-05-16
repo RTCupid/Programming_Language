@@ -174,10 +174,21 @@ node_t* GetOp (tree_t* program)
 
 node_t* GetFunc (tree_t* program)
 {
-    node_t* new_right_node = NULL;
+    node_t* new_left_node_def   = NULL;
+    node_t* new_right_node_def  = NULL;
+
+    node_t* new_left_node_func  = NULL;
+    node_t* new_right_node_func = NULL;
+
+    node_t* new_left_node_call  = NULL;
+    node_t* new_right_node_call = NULL;
 
     if (program->tokens[p].type == ID)
     {
+        new_left_node_func = _ID (program->tokens[p].value);
+
+        new_left_node_call = _ID (program->tokens[p].value);
+
         p++;
 
         if (_CMP_OP("("))
@@ -192,24 +203,23 @@ node_t* GetFunc (tree_t* program)
 
                 if (_CMP_OP(";"))
                 {
-                    FRONT_DBG fprintf (stderr, CYN " \";\"- It is function declaration\n" RESET);
-
+                    FRONT_DBG fprintf (stderr, CYN " \";\" - It is call function\n" RESET);
                     p++;
 
-                    return _FUNCDEF(new_right_node);
+                    return _CALL(new_left_node_call, new_right_node_call);
                 }
                 else if (_CMP_OP("{"))
                 {
                     FRONT_DBG fprintf (stderr, CYN " \"{\" - It is function definition\n" RESET);
                     p++;
 
-                    new_right_node        = _ST(NULL, NULL);
+                    new_right_node_def        = _ST(NULL, NULL);
 
-                    new_right_node->left  = GetOp (program);
+                    new_right_node_def->left  = GetOp (program);
 
-                    new_right_node->right = _ST(NULL, NULL);
+                    new_right_node_def->right = _ST(NULL, NULL);
 
-                    node_t* crnt_node     = new_right_node->right;
+                    node_t* crnt_node         = new_right_node_def->right;
 
                     while (1)
                     {
@@ -231,7 +241,7 @@ node_t* GetFunc (tree_t* program)
                 }
                 else
                 {
-                    fprintf (stderr, YEL "in GetFunc: token ISN'T \"{\" and ISN'T \";\"\n" RESET);
+                    fprintf (stderr, YEL "in GetFunc: token ISN'T \"{\"\n" RESET);
 
                     SintaxError (program, "GetFunc");
                 }
@@ -257,7 +267,9 @@ node_t* GetFunc (tree_t* program)
         SintaxError (program, "GetFunc");
     }
 
-    return _FUNC(new_right_node);
+    new_left_node_def = _FUNC(new_left_node_func, new_right_node_func);
+
+    return _DEF(new_left_node_def, new_right_node_def);
 }
 
 //---------------------------------------------------------------------------------------

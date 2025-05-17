@@ -56,7 +56,12 @@ _my_input:
     cmp cl, 0                                       ; if (cl == '\0') {
     je  .EndDexNumber                               ;   goto end of dex number; }
 
-;---Check-Type-Digit---------------------------------------------------------------------
+;---Check-negative-----------------------------------------------------------------------
+
+    cmp cl, '-'                                     ; if (cl != '-') {
+    je  .NegativeNumber                             ;   goto .NegativeNumber; }
+
+;---Check-Type-Char----------------------------------------------------------------------
 
     cmp cl, '0'                                     ; if (cl <   '0') {
     jb  .InvalidChar                                ;   goto .InvalidChar; }
@@ -76,6 +81,10 @@ _my_input:
     add rax, rcx                                    ; rax += rcx
 
     jmp short .NewDexDigit                          ; goto .NewDexDigit
+
+.NegativeNumber:
+
+    or rax, qword 0x8000000000000000                ; set sign bit
 
 .InvalidChar:
 

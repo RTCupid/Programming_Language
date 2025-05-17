@@ -18,7 +18,8 @@ _start:
 
 my_main:                                              ; it is definition of my_main  ; number operator 3 
 
-	call _my_input                                    ; a  ; number operator 5 
+	call _my_input                                    ; input(a); rax = input 
+	mov [a], rax                                      ; [a] = rax  ; number operator 5 
 
 	mov rax, [a]                                      ; rax = a 
 
@@ -29,7 +30,7 @@ call _my_hlt                                          ; exit (0)
 
 section .data
 
-a: TIMES 64 db 0
+a: dd 0
 ;--------------------------------------------------------------------------------------------------
 
 section .note.GNU-stack

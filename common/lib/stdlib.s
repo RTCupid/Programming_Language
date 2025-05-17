@@ -32,22 +32,25 @@ _my_input:
     mov rsi, InputBuffer                            ; buffer to input from stdin
     mov rdx, InputBufferLen                         ; rdx = size InputBuffer
     syscall
-                                                    ; eax = number of input bytes
+
+    mov  rsi, InputBuffer                           ; rsi = Buffer
+
+    mov  rax, 0x01                                  ; write64 (rdi, rsi, rdx)
+    mov  rdi, 1                                     ; stdout
+
     xor rdx, rdx                                    ; rdx = 0
     xor rcx, rcx                                    ; rcx = 0
-
-    mov rdi, rax                                    ; rdi = number of input bytes
 
 ;---Atoih:-------------------------------------------------------------------------------
 
 NewHexDigit:
 
-    mov cl, byte ptr [InputBuffer + rdx]            ; cl = crnt digit
+    mov cl, byte [InputBuffer + rdx]                ; cl = crnt digit
 
     inc  rdx                                        ; rdx++
 
     cmp  cl, 68h                                    ; if (si == 'h'){
-    jne  NewHexDigit                                ;   goto end of hex number; }
+    jne  EndHexNumber                               ;   goto end of hex number; }
 
     sub  cx, 60h                                    ; if (cx > 60h){
     ja   HexDigit                                   ;   goto HexDigit; } <---(cx > 9)
@@ -62,6 +65,8 @@ HexDigit:
 
     cmp rdx, InputBufferLen                         ; if (rdx < InputBufferLen) {
     jb  NewHexDigit                                 ;   goto NewHexDigit; }
+
+EndHexNumber:
 
     ret
 
@@ -158,10 +163,13 @@ BufferOverflow:
 
 ;---data---------------------------------------------------------------------------------
 
-section     .data
+section .data
 
-Buffer:     TIMES 256 db 0
-BufferLen:  equ 256
+InputBuffer:     TIMES 32 db 0
+InputBufferLen:  equ 32
+
+Buffer:     TIMES 32 db 0
+BufferLen:  equ 32
 
 section     .note.GNU-stack
 

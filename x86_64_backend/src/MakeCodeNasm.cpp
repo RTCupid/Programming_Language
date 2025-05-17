@@ -99,7 +99,7 @@ void MakeSectionData (tree_t* program, FILE* file_nasm)
     {
         if (program->nametable[index].type_id == TYPE_GLOBAL)
         {
-            fprintf (file_nasm, "\n%s: TIMES 64 db 0", program->nametable[index].name);
+            fprintf (file_nasm, "\n%s: dd 0", program->nametable[index].name);
         }
     }
 }
@@ -412,9 +412,15 @@ static err_t ProcessPRNT (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
 static err_t ProcessINPT (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 {
+    char buffer[100] = {};
+
     BACK_DBG fprintf (stderr, "operator = %s\n", KeyFromEnum ((int)crnt_node->value));
 
-    fprintf (file_nasm, "\n\n\t%-50s; %s ", "call _my_input", program->nametable[(int)crnt_node->left->value].name);
+    fprintf (file_nasm, "\n\n\t%-50s; input(%s); rax = input ", "call _my_input", program->nametable[(int)crnt_node->left->value].name);
+
+    snprintf (buffer, sizeof(buffer), "mov [%s], rax", program->nametable[(int)crnt_node->left->value].name);
+
+    fprintf(file_nasm, "\n\t%-50s; [%s] = rax ", buffer, program->nametable[(int)crnt_node->left->value].name);
 
     return OK;
 }

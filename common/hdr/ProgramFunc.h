@@ -22,6 +22,7 @@ typedef struct identificator_t
     char*  start_pos;
     size_t n_symbols;
     char*  name;
+    type_id_t type_id;
 } identificator_t;
 
 struct token_t;

@@ -56,8 +56,11 @@ void MakeNameTableHTM (tree_t* expr, modelang_t mode)
     }
     if (mode == BACKEND)
     {
-        fprintf (expr->log_file, "\t\t\t<th>name</th>\n");
+        fprintf (expr->log_file, "\t\t\t<th>Name</th>\n");
     }
+
+    fprintf (expr->log_file, "\t\t\t<th>Identificator's type</th>\n");
+
     fprintf (expr->log_file, "\t\t</tr>\n");
 
     fprintf (expr->log_file, "</thead>\n");
@@ -84,6 +87,8 @@ void MakeNameTableHTM (tree_t* expr, modelang_t mode)
             //printf (RED "<%s>\n" RESET, expr->nametable[i].name);
             fprintf (expr->log_file, "<td> %s </td>\n", expr->nametable[i].name);
         }
+
+        fprintf (expr->log_file, "<td> %lu </td>\n", (size_t)(expr->nametable[i].type_id));
 
         fprintf (expr->log_file, "</tr>\n");
     }

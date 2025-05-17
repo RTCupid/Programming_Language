@@ -25,15 +25,18 @@ node_t* MakeProgram (tree_t* program, const char* namefile)
 
     for (size_t i = 0; i < program->nametable_id; i++)
     {
-        size_t addr_RAM = 0;
+        size_t addr_RAM   = 0;
+        type_id_t type_id = TYPE_NONE;
 
         char* name = (char*) calloc (MAX_LEN_BUF, sizeof (*name));
 
-        fscanf (base_file, "%lu %s", &addr_RAM, name);
+        fscanf (base_file, "%lu %s %d", &addr_RAM, name, (int*)(&type_id));
 
-        BACK_DBG fprintf (stderr, "%lu %s\n", addr_RAM, name);
+        BACK_DBG fprintf (stderr, "%lu %s %d\n", addr_RAM, name, type_id);
 
         program->nametable[i].name = name;
+
+        program->nametable[i].type_id = type_id;
 
         BACK_DBG fprintf (stderr, "%p %s\n", program->nametable[i].start_pos,
                             program->nametable[i].name);

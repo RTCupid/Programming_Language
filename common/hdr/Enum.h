@@ -8,6 +8,14 @@ enum types_t
     ST  = 4,
 };
 
+enum type_id_t
+{
+    TYPE_NONE   = 0,
+    TYPE_LOCAL  = 1,
+    TYPE_FUNC   = 2,
+    TYPE_GLOBAL = 3,
+};
+
 enum OP_t
 {
     ADD = 1,

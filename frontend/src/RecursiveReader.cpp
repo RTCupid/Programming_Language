@@ -216,6 +216,8 @@ node_t* GetFunc (tree_t* program)
     {
         identificator_func_node = _ID (program->tokens[p].value);
 
+        program->nametable[(size_t) (program->tokens[p].value)].type_id = TYPE_FUNC;
+
         p++;
 
         if (_CMP_OP("("))

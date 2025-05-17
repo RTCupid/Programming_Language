@@ -19,7 +19,7 @@ void WriteNameTable (tree_t* program, FILE* file)
 
         snprintf (identificator, program->nametable[i].n_symbols + 1, "%s", program->nametable[i].start_pos);
 
-        fprintf (file, "%lu %s\n", i, identificator);
+        fprintf (file, "%lu %s %d\n", i, identificator, program->nametable[i].type_id);
     }
 }
 

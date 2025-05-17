@@ -1,11 +1,11 @@
 size table: 7
-0 my_main
-1 x
-2 y
-3 z
-4 sum
-5 mult
-6 divi
+0 my_main 2
+1 x 3
+2 y 3
+3 z 3
+4 sum 3
+5 mult 3
+6 divi 3
 {OP:";"
 	{OP:"def"
 		{OP:"func"

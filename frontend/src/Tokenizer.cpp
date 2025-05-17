@@ -88,6 +88,8 @@ token_t* Tokenizer (tree_t* program)
 
                     program->nametable[program->nametable_id].n_symbols = (size_t)n_print_symbols;
 
+                    program->nametable[program->nametable_id].type_id   = TYPE_GLOBAL;
+
                     tokens[token_id].type  = ID;
 
                     tokens[token_id].value = (double)program->nametable_id;

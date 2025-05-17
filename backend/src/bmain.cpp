@@ -18,6 +18,7 @@ int main (int argc, char* argv[])
     TreeCtor        (&bprogram, BACKEND);
 
     BACK_DBG ProgramGraphviz (&bprogram, BACKEND);
+
     BACK_DBG DiffDump (&bprogram, BACKEND);
 
     if (argc > 1)

@@ -1,26 +1,17 @@
 
-161
-count of char = 161
+74
+count of char = 74
 
 my_main ()
 {
-    NoFactorial ();
+    input (a);
 
-    write_about {7};
-
-    then_commit_seppuku
-};
-
-NoFactorial ()
-{
-    write_about {8};
-
-    return 0;
+    write_about {a};
 };
 
 then_commit_seppuku
 
-sizeOfFile = <161>
+sizeOfFile = <74>
 
 
 Start Tokenizer:
@@ -83,15 +74,20 @@ name = <{>
 <{> is keyword
 number_key = <19>
 
-first symbol = <N> is alpha
-name = <NoFactorial>
+first symbol = <i> is alpha
+name = <input>
+<input> is keyword
+number_key = <23>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <a> is alpha
+name = <a>
 number_key = <-1>
 number_id = <-1>
-first symbol = <(> is alpha
-name = <(>
-<(> is keyword
-number_key = <17>
-
 first symbol = <)> is alpha
 name = <)>
 <)> is keyword
@@ -112,84 +108,15 @@ name = <{>
 <{> is keyword
 number_key = <19>
 
-first symbol = '7' is number
-number is <7>
-
-first symbol = <}> is alpha
-name = <}>
-<}> is keyword
-number_key = <20>
-
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
-first symbol = <t> is alpha
-name = <then_commit_seppuku>
-<then_commit_seppuku> is keyword
-number_key = <14>
-
-first symbol = <}> is alpha
-name = <}>
-<}> is keyword
-number_key = <20>
-
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
-first symbol = <N> is alpha
-name = <NoFactorial>
+first symbol = <a> is alpha
+name = <a>
 number_key = <-1>
-<NoFactorial> is identificator
+<a> is identificator
 number_id = <1>
-first symbol = <(> is alpha
-name = <(>
-<(> is keyword
-number_key = <17>
-
-first symbol = <)> is alpha
-name = <)>
-<)> is keyword
-number_key = <18>
-
-first symbol = <{> is alpha
-name = <{>
-<{> is keyword
-number_key = <19>
-
-first symbol = <w> is alpha
-name = <write_about>
-<write_about> is keyword
-number_key = <21>
-
-first symbol = <{> is alpha
-name = <{>
-<{> is keyword
-number_key = <19>
-
-first symbol = '8' is number
-number is <8>
-
 first symbol = <}> is alpha
 name = <}>
 <}> is keyword
 number_key = <20>
-
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
-first symbol = <r> is alpha
-name = <return>
-<return> is keyword
-number_key = <31>
-
-first symbol = '0' is number
-number is <0>
 
 first symbol = <;> is alpha
 name = <;>
@@ -217,29 +144,15 @@ ID my_main
 OP (
 OP )
 OP {
-ID NoFactorial
+OP input
 OP (
+ID a
 OP )
 OP ;
 OP print
 OP {
-NUM 7
+ID a
 OP }
-OP ;
-OP $
-OP }
-OP ;
-ID NoFactorial
-OP (
-OP )
-OP {
-OP print
-OP {
-NUM 8
-OP }
-OP ;
-OP return
-NUM 0
 OP ;
 OP }
 OP ;

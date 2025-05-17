@@ -1,0 +1,8 @@
+my_main ()
+{
+    input (a);
+
+    write_about {a};
+};
+
+then_commit_seppuku

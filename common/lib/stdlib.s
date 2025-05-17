@@ -22,10 +22,46 @@ _my_hlt:
 ;----------------------------------------------------------------------------------------
 ; _my_input - my function input for NASM
 ; Entry:    NONE
-; Exit:     NONE
-; Destroy:  NONE
+; Exit:     rax = input number from stdin
+; Destroy:  rax, rdi, rsi, rdx, rcx
 ;----------------------------------------------------------------------------------------
 _my_input:
+
+    mov rax, 0                                      ; sys_read
+    mov rdi, 0                                      ; stdin
+    mov rsi, InputBuffer                            ; buffer to input from stdin
+    mov rdx, InputBufferLen                         ; rdx = size InputBuffer
+    syscall
+                                                    ; eax = number of input bytes
+    xor rdx, rdx                                    ; rdx = 0
+    xor rcx, rcx                                    ; rcx = 0
+
+    mov rdi, rax                                    ; rdi = number of input bytes
+
+;---Atoih:-------------------------------------------------------------------------------
+
+NewHexDigit:
+
+    mov cl, byte ptr [InputBuffer + rdx]            ; cl = crnt digit
+
+    inc  rdx                                        ; rdx++
+
+    cmp  cl, 68h                                    ; if (si == 'h'){
+    jne  NewHexDigit                                ;   goto end of hex number; }
+
+    sub  cx, 60h                                    ; if (cx > 60h){
+    ja   HexDigit                                   ;   goto HexDigit; } <---(cx > 9)
+
+    add  cx, 30h                                    ; else { cx += 30h}
+
+HexDigit:
+
+    shl rax, 4                                      ; rax *= 16
+
+    add rax, rcx                                    ; rax += rcx
+
+    cmp rdx, InputBufferLen                         ; if (rdx < InputBufferLen) {
+    jb  NewHexDigit                                 ;   goto NewHexDigit; }
 
     ret
 

@@ -281,11 +281,11 @@ static err_t ProcessFUNC (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 {
     char buffer[100] = {};
 
-    fprintf (file_nasm, "\n\n;----------------------------------------------------------------------------------------");
+    fprintf (file_nasm, "\n\n;--------------------------------------------------------------------------------------------------");
 
     fprintf (file_nasm, "\n;\t%s:", program->nametable[(size_t) crnt_node->left->value].name);
 
-    fprintf (file_nasm, "\n;----------------------------------------------------------------------------------------");
+    fprintf (file_nasm, "\n;--------------------------------------------------------------------------------------------------");
 
     snprintf (buffer, sizeof(buffer), "%s:", program->nametable[(size_t) crnt_node->left->value].name);
 
@@ -414,9 +414,7 @@ static err_t ProcessINPT (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 {
     BACK_DBG fprintf (stderr, "operator = %s\n", KeyFromEnum ((int)crnt_node->value));
 
-    fprintf (file_nasm, "\n\tcall _my_input");
-
-    fprintf (file_nasm, "; %s\n", program->nametable[(int)crnt_node->left->value].name);
+    fprintf (file_nasm, "\n\n\t%-50s; %s ", "call _my_input", program->nametable[(int)crnt_node->left->value].name);
 
     return OK;
 }

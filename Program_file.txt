@@ -1,6 +1,6 @@
 size table: 2
 0 my_main 2
-1 NoFactorial 2
+1 a 3
 {OP:";"
 	{OP:"def"
 		{OP:"func"
@@ -8,42 +8,18 @@ size table: 2
 			{ID:""}
 		}
 		{OP:";"
-			{OP:"call"
+			{OP:"input"
 				{ID:"1"}
 				{ID:""}
 			}
 			{OP:";"
 				{OP:"print"
-					{NUM:"7"}
+					{ID:"1"}
 					{ID:""}
 				}
-				{OP:";"
-					{OP:"$"}
-					{OP:";"}
-				}
+				{OP:";"}
 			}
 		}
 	}
-	{OP:";"
-		{OP:"def"
-			{OP:"func"
-				{ID:"1"}
-				{ID:""}
-			}
-			{OP:";"
-				{OP:"print"
-					{NUM:"8"}
-					{ID:""}
-				}
-				{OP:";"
-					{OP:"return"
-						{NUM:"0"}
-						{ID:""}
-					}
-					{OP:";"}
-				}
-			}
-		}
-		{OP:";"}
-	}
+	{OP:";"}
 }

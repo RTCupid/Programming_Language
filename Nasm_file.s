@@ -17,20 +17,20 @@ _start:
 ;----------------------------------------------------------------------------------------
 my_main:;number operator 3 
 	mov rax, 10
-	pop [1]; x
+	mov [1], rax; x = rax
 ;number operator 5 
 	mov rax, 20
-	pop [2]; y
+	mov [2], rax; y = rax
 ;number operator 7 
 	mov rax, 3
-	pop [3]; z
+	mov [3], rax; z = rax
 ;number operator 9 
 	mov rax, [1]; x
 
 	mov rdx, [2]; y
 
 	add rax, rdx;number operator 12 
-	pop [4]; sum
+	mov [4], rax; sum = rax
 ;number operator 12 
 	mov rax, [4]; sum
 
@@ -41,7 +41,7 @@ my_main:;number operator 3
 	mov rdx, [3]; z
 
 	mul rax, rdx;number operator 17 
-	pop [5]; mult
+	mov [5], rax; mult = rax
 ;number operator 17 
 	mov rax, [5]; mult
 
@@ -52,7 +52,7 @@ my_main:;number operator 3
 	mov rdx, [3]; z
 
 	div rax, rdx;number operator 22 
-	pop [6]; divi
+	mov [6], rax; divi = rax
 ;number operator 22 
 	mov rax, [6]; divi
 

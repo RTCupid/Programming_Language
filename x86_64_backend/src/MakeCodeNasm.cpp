@@ -491,11 +491,7 @@ static err_t ProcessEQU (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 {
     RecursiveMakeNasm (program, file_nasm, crnt_node->right);
 
-    fprintf (file_nasm, "\n\tpop ");
-
-    fprintf (file_nasm, "[%lu]", (size_t)crnt_node->left->value);
-
-    fprintf (file_nasm, "; %s\n", program->nametable[(int)crnt_node->left->value].name);
+    fprintf (file_nasm, "\n\tmov [%lu], rax; %s = rax\n", (size_t)crnt_node->left->value, program->nametable[(int)crnt_node->left->value].name);
 
     return OK;
 }

@@ -1,6 +1,11 @@
-size table: 2
+size table: 7
 0 my_main
-1 Factorial
+1 x
+2 y
+3 z
+4 sum
+5 mult
+6 divi
 {OP:";"
 	{OP:"def"
 		{OP:"func"
@@ -8,42 +13,69 @@ size table: 2
 			{ID:""}
 		}
 		{OP:";"
-			{OP:"call"
+			{OP:"="
 				{ID:"1"}
-				{ID:""}
+				{NUM:"10"}
 			}
 			{OP:";"
-				{OP:"print"
-					{NUM:"7"}
-					{ID:""}
+				{OP:"="
+					{ID:"2"}
+					{NUM:"20"}
 				}
 				{OP:";"
-					{OP:"$"}
-					{OP:";"}
-				}
-			}
-		}
-	}
-	{OP:";"
-		{OP:"def"
-			{OP:"func"
-				{ID:"1"}
-				{ID:""}
-			}
-			{OP:";"
-				{OP:"print"
-					{NUM:"8"}
-					{ID:""}
-				}
-				{OP:";"
-					{OP:"return"
-						{NUM:"0"}
-						{ID:""}
+					{OP:"="
+						{ID:"3"}
+						{NUM:"3"}
 					}
-					{OP:";"}
+					{OP:";"
+						{OP:"="
+							{ID:"4"}
+							{OP:"+"
+								{ID:"1"}
+								{ID:"2"}
+							}
+						}
+						{OP:";"
+							{OP:"print"
+								{ID:"4"}
+								{ID:""}
+							}
+							{OP:";"
+								{OP:"="
+									{ID:"5"}
+									{OP:"*"
+										{ID:"1"}
+										{ID:"3"}
+									}
+								}
+								{OP:";"
+									{OP:"print"
+										{ID:"5"}
+										{ID:""}
+									}
+									{OP:";"
+										{OP:"="
+											{ID:"6"}
+											{OP:"/"
+												{ID:"4"}
+												{ID:"3"}
+											}
+										}
+										{OP:";"
+											{OP:"print"
+												{ID:"6"}
+												{ID:""}
+											}
+											{OP:";"}
+										}
+									}
+								}
+							}
+						}
+					}
 				}
 			}
 		}
-		{OP:";"}
 	}
+	{OP:";"}
 }

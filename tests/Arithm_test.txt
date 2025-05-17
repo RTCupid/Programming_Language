@@ -1,0 +1,19 @@
+my_main ()
+{
+    x = 10;
+    y = 20;
+    z = 3;
+    sum = x + y;
+
+    write_about {sum};
+
+    mult = x * z;
+
+    write_about {mult};
+
+    divi = sum divide z;
+
+    write_about {divi};
+};
+
+then_commit_seppuku

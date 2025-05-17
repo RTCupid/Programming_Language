@@ -16,24 +16,48 @@ _start:
 ;	my_main:
 ;----------------------------------------------------------------------------------------
 my_main:;number operator 3 
+	mov rax, 10
+	pop [1]; x
+;number operator 5 
+	mov rax, 20
+	pop [2]; y
+;number operator 7 
+	mov rax, 3
+	pop [3]; z
+;number operator 9 
+	mov rax, [1]; x
 
-	call Factorial;number operator 5 
-	mov rax, 7
+	mov rdx, [2]; y
 
-	call _my_print;number operator 7 
+	add rax, rdx;number operator 12 
+	pop [4]; sum
+;number operator 12 
+	mov rax, [4]; sum
 
-	call _my_hlt;number operator 9 ;number operator 10 ;number operator 10 ;number operator 10 ;number operator 10 ;number operator 10 
 
-;----------------------------------------------------------------------------------------
-;	Factorial:
-;----------------------------------------------------------------------------------------
-Factorial:;number operator 13 
-	mov rax, 8
+	call _my_print;number operator 14 
+	mov rax, [1]; x
 
-	call _my_print;number operator 15 
-	mov rax, 0
+	mov rdx, [3]; z
 
-	ret;number operator 17 ;number operator 18 ;number operator 18 ;number operator 18 ;number operator 18 ;number operator 19 ;number operator 19 ;number operator 19 
+	mul rax, rdx;number operator 17 
+	pop [5]; mult
+;number operator 17 
+	mov rax, [5]; mult
+
+
+	call _my_print;number operator 19 
+	mov rax, [4]; sum
+
+	mov rdx, [3]; z
+
+	div rax, rdx;number operator 22 
+	pop [6]; divi
+;number operator 22 
+	mov rax, [6]; divi
+
+
+	call _my_print;number operator 24 ;number operator 25 ;number operator 25 ;number operator 25 ;number operator 25 ;number operator 25 ;number operator 25 ;number operator 25 ;number operator 25 ;number operator 25 ;number operator 25 ;number operator 25 ;number operator 26 ;number operator 26 
 	call _my_hlt
 
 section .note.GNU-stack

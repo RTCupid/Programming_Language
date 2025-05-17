@@ -1,6 +1,11 @@
+my_main ()
+{
+    Factorial ();
 
-Factorial ();
-then_commit_seppuku
+    write_about {7};
+
+    then_commit_seppuku
+};
 
 Factorial ()
 {

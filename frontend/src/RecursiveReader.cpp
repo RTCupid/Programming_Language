@@ -231,7 +231,6 @@ node_t* GetFunc (tree_t* program)
                 if (_CMP_OP(";"))
                 {
                     FRONT_DBG fprintf (stderr, CYN " \";\" - It is call function\n" RESET);
-                    p++;
 
                     return _CALL(identificator_func_node, new_right_node_call);
                 }

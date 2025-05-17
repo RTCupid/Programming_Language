@@ -1,14 +1,33 @@
-size table: 1
-0 Factorial
+size table: 2
+0 my_main
+1 Factorial
 {OP:";"
-	{OP:"call"
-		{ID:"0"}
-		{ID:""}
+	{OP:"def"
+		{OP:"func"
+			{ID:"0"}
+			{ID:""}
+		}
+		{OP:";"
+			{OP:"call"
+				{ID:"1"}
+				{ID:""}
+			}
+			{OP:";"
+				{OP:"print"
+					{NUM:"7"}
+					{ID:""}
+				}
+				{OP:";"
+					{OP:"$"}
+					{OP:";"}
+				}
+			}
+		}
 	}
 	{OP:";"
 		{OP:"def"
 			{OP:"func"
-				{ID:"0"}
+				{ID:"1"}
 				{ID:""}
 			}
 			{OP:";"

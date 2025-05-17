@@ -72,7 +72,7 @@ void MakeNasmCode (tree_t* program)
 
     fprintf (file_nasm, "_start:\n");
 
-    fprintf (file_nasm, "\n\tand rsp, -16\n");
+    fprintf (file_nasm, "\n\tand rsp, -16");
 
     RecursiveMakeNasm (program, file_nasm, program->root);
 
@@ -258,13 +258,26 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node, ord
 
 static err_t ProcessFUNC (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 {
+    fprintf (file_nasm, "\n\n;----------------------------------------------------------------------------------------");
+
+    fprintf (file_nasm, "\n;\t%s:", program->nametable[(size_t) crnt_node->left->value].name);
+
+    fprintf (file_nasm, "\n;----------------------------------------------------------------------------------------");
+
+    fprintf (file_nasm, "\n%s:", program->nametable[(size_t) crnt_node->left->value].name);
+
+    return OK;
 }
 
 //---------------------------------------------------------------------------------------
 
 static err_t ProcessDEF (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 {
+    RecursiveMakeNasm (program, file_nasm, crnt_node->left);
 
+    RecursiveMakeNasm (program, file_nasm, crnt_node->right);
+
+    return OK;
 }
 
 //---------------------------------------------------------------------------------------
@@ -273,7 +286,7 @@ static err_t ProcessRET (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 {
     RecursiveMakeNasm (program, file_nasm, crnt_node->left, FIRST_EXPR);
 
-    fprintf (file_nasm, "\n\tret");
+    fprintf (file_nasm, "\n\n\tret");
 
     return OK;
 }
@@ -282,7 +295,7 @@ static err_t ProcessRET (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
 static err_t ProcessCALL (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 {
-    fprintf (file_nasm, "\n\tcall %lu", (size_t) crnt_node->value);
+    fprintf (file_nasm, "\n\n\tcall %s", program->nametable[(size_t) crnt_node->left->value].name);
 
     return OK;
 }
@@ -338,7 +351,7 @@ static err_t ProcessSMC (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
 static err_t ProcessEND (FILE* file_nasm)
 {
-    fprintf (file_nasm, "\n\tcall _my_hlt");
+    fprintf (file_nasm, "\n\n\tcall _my_hlt");
 
     return OK;
 }

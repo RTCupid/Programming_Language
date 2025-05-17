@@ -1,7 +1,6 @@
-size table: 3
+size table: 2
 0 my_main 2
-1 number 3
-2 answer 3
+1 utyutyu 3
 {OP:";"
 	{OP:"def"
 		{OP:"func"
@@ -14,20 +13,26 @@ size table: 3
 				{ID:""}
 			}
 			{OP:";"
-				{OP:"="
-					{ID:"2"}
-					{OP:"sqrt"
+				{OP:"if"
+					{OP:"<"
 						{ID:"1"}
-						{ID:""}
+						{NUM:"20"}
+					}
+					{OP:";"
+						{OP:"print"
+							{ID:"1"}
+							{ID:""}
+						}
+						{OP:";"
+							{OP:"print"
+								{NUM:"8"}
+								{ID:""}
+							}
+							{OP:";"}
+						}
 					}
 				}
-				{OP:";"
-					{OP:"print"
-						{ID:"2"}
-						{ID:""}
-					}
-					{OP:";"}
-				}
+				{OP:";"}
 			}
 		}
 	}

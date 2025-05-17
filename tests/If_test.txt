@@ -1,0 +1,11 @@
+my_main ()
+{
+    input (utyutyu);
+
+    if (utyutyu < 20)
+    {
+        write_about {utyutyu};
+        write_about {8};
+    };
+};
+then_commit_seppuku

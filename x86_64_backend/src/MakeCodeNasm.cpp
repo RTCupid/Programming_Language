@@ -347,6 +347,10 @@ static err_t ProcessNUM (FILE* file_nasm, node_t* crnt_node, order_t variable_or
 
         fprintf(file_nasm, "\n\t%-50s; rdx = %d ", buffer, (int)crnt_node->value);
     }
+    else
+    {
+        fprintf (stderr, RED "unknown variable_order in ProcessNUM" RESET);
+    }
 
     return OK;
 }
@@ -429,13 +433,13 @@ static err_t ProcessINPT (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
 static err_t ProcessSQRT (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 {
-    RecursiveMakeNasm (program, file_nasm, crnt_node->left);
+    RecursiveMakeNasm (program, file_nasm, crnt_node->left, FIRST_EXPR);
 
     fprintf (file_nasm, "\n\n\t%-50s; xmm0 = (double) rax", "cvtsi2sd xmm0, rax");
 
-    fprintf (file_nasm, "\n\n\t%-50s; xmm1 = sqrt (xmm0)", "sqrtsd xmm1, xmm0");
+    fprintf (file_nasm, "\n\t%-50s; xmm1 = sqrt (xmm0)", "sqrtsd xmm1, xmm0");
 
-    fprintf (file_nasm, "\n\n\t%-50s; rax  = xmm1", "cvtsd2si rax, xmm1");
+    fprintf (file_nasm, "\n\t%-50s; rax  = xmm1", "cvtsd2si rax, xmm1");
 
     return OK;
 }
@@ -454,23 +458,27 @@ static err_t ProcessIF (tree_t* program, FILE* file_nasm, node_t* crnt_node, siz
 
     if (crnt_node->left->type == OP && (int)crnt_node->left->value == LESS)
     {
-        RecursiveMakeNasm (program, file_nasm, crnt_node->left->left);
+        RecursiveMakeNasm (program, file_nasm, crnt_node->left->left, FIRST_EXPR);
 
-        RecursiveMakeNasm (program, file_nasm, crnt_node->left->right);
+        RecursiveMakeNasm (program, file_nasm, crnt_node->left->right, SECOND_EXPR);
 
-        snprintf (buffer, sizeof(buffer), "ja  end_if%lu", num_if);
+        fprintf(file_nasm, "\n\t%-50s; if (rax < rdx)", "cmp rax, rdx");
 
-        fprintf(file_nasm, "\n\t%-50s;  goto end_if%lu", buffer, num_if);
+        snprintf (buffer, sizeof(buffer), "ja  .end_if%lu", num_if);
+
+        fprintf(file_nasm, "\n\t%-50s;  goto .end_if%lu", buffer, num_if);
     }
     else if (crnt_node->left->type == OP && (int)crnt_node->left->value == MORE)
     {
-        RecursiveMakeNasm (program, file_nasm, crnt_node->left->left);
+        RecursiveMakeNasm (program, file_nasm, crnt_node->left->left, FIRST_EXPR);
 
-        RecursiveMakeNasm (program, file_nasm, crnt_node->left->right);
+        RecursiveMakeNasm (program, file_nasm, crnt_node->left->right, SECOND_EXPR);
 
-        snprintf (buffer, sizeof(buffer), "jb  end_if%lu", num_if);
+        fprintf(file_nasm, "\n\t%-50s; if (rax > rdx)", "cmp rax, rdx");
 
-        fprintf(file_nasm, "\n\t%-50s;  goto end_if%lu", buffer, num_if);
+        snprintf (buffer, sizeof(buffer), "jb  .end_if%lu", num_if);
+
+        fprintf(file_nasm, "\n\t%-50s;  goto .end_if%lu", buffer, num_if);
     }
     else
     {
@@ -478,16 +486,16 @@ static err_t ProcessIF (tree_t* program, FILE* file_nasm, node_t* crnt_node, siz
 
         fprintf(file_nasm, "\n\t%-50s;  if (rax = 0)", "test rax, rax");
 
-        snprintf (buffer, sizeof(buffer), "je  end_if%lu", num_if);
+        snprintf (buffer, sizeof(buffer), "je  .end_if%lu", num_if);
 
-        fprintf(file_nasm, "\n\t%-50s;  goto end_if%lu", buffer, num_if);
+        fprintf(file_nasm, "\n\t%-50s;  goto .end_if%lu", buffer, num_if);
     }
 
     fprintf (file_nasm, "\n;   action-%lu", num_if);
 
     RecursiveMakeNasm (program, file_nasm, crnt_node->right);
 
-    fprintf (file_nasm, "\nend_if%lu:", num_if);
+    fprintf (file_nasm, "\n\n.end_if%lu:\n", num_if);
 
     fprintf (file_nasm, "\n;---end-if-%lu-------------------------------------------------------------------------------------", num_if);
 
@@ -498,44 +506,62 @@ static err_t ProcessIF (tree_t* program, FILE* file_nasm, node_t* crnt_node, siz
 
 static err_t ProcessWHILE (tree_t* program, FILE* file_nasm, node_t* crnt_node, size_t num_while)
 {
+    char buffer[100] = {};
+
     BACK_DBG fprintf (stderr, GRN "operator = %s\n" RESET, KeyFromEnum ((int)crnt_node->value));
 
-    fprintf (file_nasm, "\n; -------start-while-%lu-----------------------\n", num_while);
+    fprintf (file_nasm, "\n;---start-while-%lu--------------------------------------------------------------------------------", num_while);
 
-    fprintf (file_nasm, "\n; test-%lu\n", num_while);
+    fprintf (file_nasm, "\n.start_while%lu:", num_while);
+
+    fprintf (file_nasm, "\n;   test-%lu", num_while);
 
     if (crnt_node->left->type == OP && (int)crnt_node->left->value == LESS)
     {
-        RecursiveMakeNasm (program, file_nasm, crnt_node->left->left);
+        RecursiveMakeNasm (program, file_nasm, crnt_node->left->left, FIRST_EXPR);
 
-        RecursiveMakeNasm (program, file_nasm, crnt_node->left->right);
+        RecursiveMakeNasm (program, file_nasm, crnt_node->left->right, SECOND_EXPR);
 
-        fprintf (file_nasm, "\n\tja end_while%lu:", num_while);
+        fprintf(file_nasm, "\n\t%-50s; if (rax < rdx)", "cmp rax, rdx");
+
+        snprintf (buffer, sizeof(buffer), "jb  .end_while%lu", num_while);
+
+        fprintf(file_nasm, "\n\t%-50s;  goto .end_while%lu", buffer, num_while);
     }
     else if (crnt_node->left->type == OP && (int)crnt_node->left->value == MORE)
     {
-        RecursiveMakeNasm (program, file_nasm, crnt_node->left->left);
+        RecursiveMakeNasm (program, file_nasm, crnt_node->left->left, FIRST_EXPR);
 
-        RecursiveMakeNasm (program, file_nasm, crnt_node->left->right);
+        RecursiveMakeNasm (program, file_nasm, crnt_node->left->right, SECOND_EXPR);
 
-        fprintf (file_nasm, "\n\tjb end_while%lu:", num_while);
+        fprintf(file_nasm, "\n\t%-50s; if (rax > rdx)", "cmp rax, rdx");
+
+        snprintf (buffer, sizeof(buffer), "ja  .end_while%lu", num_while);
+
+        fprintf(file_nasm, "\n\t%-50s;  goto .end_while%lu", buffer, num_while);
     }
     else
     {
-        RecursiveMakeNasm (program, file_nasm, crnt_node->left);
+        RecursiveMakeNasm (program, file_nasm, crnt_node->left, FIRST_EXPR);
 
-        fprintf (file_nasm, "\n\tpush 0");
+        fprintf(file_nasm, "\n\t%-50s;  if (rax = 0)", "test rax, rax");
 
-        fprintf (file_nasm, "\n\tje end_while%lu:", num_while);
+        snprintf (buffer, sizeof(buffer), "je  .end_while%lu", num_while);
+
+        fprintf(file_nasm, "\n\t%-50s;  goto .end_while%lu", buffer, num_while);
     }
 
-    fprintf (file_nasm, "\n; action-%lu\n", num_while);
+    fprintf (file_nasm, "\n;   action-%lu", num_while);
 
     RecursiveMakeNasm (program, file_nasm, crnt_node->right);
 
-    fprintf (file_nasm, "\nend_while%lu:", num_while);
+    snprintf (buffer, sizeof(buffer), "jmp short .start_while%lu", num_while);
 
-    fprintf (file_nasm, "\n; -------end-while-%lu------------------------\n", num_while);
+    fprintf(file_nasm, "\n\t%-50s;  goto .start_while%lu", buffer, num_while);
+
+    fprintf (file_nasm, "\n\n.end_while%lu:\n", num_while);
+
+    fprintf (file_nasm, "\n;---end-while-%lu----------------------------------------------------------------------------------", num_while);
 
     return OK;
 }

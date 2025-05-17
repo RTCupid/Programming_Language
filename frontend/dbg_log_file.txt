@@ -1,19 +1,20 @@
 
-113
-count of char = 113
+149
+count of char = 149
 
 my_main ()
 {
-    input (number);
+    input (utyutyu);
 
-    answer = sqrt (number);
-
-    write_about {answer};
+    if (utyutyu < 20)
+    {
+        write_about {utyutyu};
+        write_about {8};
+    };
 };
-
 then_commit_seppuku
 
-sizeOfFile = <113>
+sizeOfFile = <149>
 
 
 Start Tokenizer:
@@ -86,8 +87,8 @@ name = <(>
 <(> is keyword
 number_key = <17>
 
-first symbol = <n> is alpha
-name = <number>
+first symbol = <u> is alpha
+name = <utyutyu>
 number_key = <-1>
 number_id = <-1>
 first symbol = <)> is alpha
@@ -100,34 +101,58 @@ name = <;>
 <;> is keyword
 number_key = <9>
 
-first symbol = <a> is alpha
-name = <answer>
-number_key = <-1>
-number_id = <-1>
-first symbol = <=> is alpha
-name = <=>
-<=> is keyword
-number_key = <11>
-
-first symbol = <s> is alpha
-name = <sqrt>
-<sqrt> is keyword
-number_key = <24>
+first symbol = <i> is alpha
+name = <if>
+<if> is keyword
+number_key = <13>
 
 first symbol = <(> is alpha
 name = <(>
 <(> is keyword
 number_key = <17>
 
-first symbol = <n> is alpha
-name = <number>
+first symbol = <u> is alpha
+name = <utyutyu>
 number_key = <-1>
-<number> is identificator
+<utyutyu> is identificator
 number_id = <1>
+first symbol = <<> is alpha
+name = <<>
+<<> is keyword
+number_key = <26>
+
+first symbol = '2' is number
+number is <20>
+
 first symbol = <)> is alpha
 name = <)>
 <)> is keyword
 number_key = <18>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <u> is alpha
+name = <utyutyu>
+number_key = <-1>
+<utyutyu> is identificator
+number_id = <1>
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
 
 first symbol = <;> is alpha
 name = <;>
@@ -144,11 +169,19 @@ name = <{>
 <{> is keyword
 number_key = <19>
 
-first symbol = <a> is alpha
-name = <answer>
-number_key = <-1>
-<answer> is identificator
-number_id = <2>
+first symbol = '8' is number
+number is <8>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
 first symbol = <}> is alpha
 name = <}>
 <}> is keyword
@@ -182,19 +215,26 @@ OP )
 OP {
 OP input
 OP (
-ID number
+ID utyutyu
 OP )
 OP ;
-ID answer
-OP =
-OP sqrt
+OP if
 OP (
-ID number
+ID utyutyu
+OP <
+NUM 20
 OP )
+OP {
+OP print
+OP {
+ID utyutyu
+OP }
 OP ;
 OP print
 OP {
-ID answer
+NUM 8
+OP }
+OP ;
 OP }
 OP ;
 OP }

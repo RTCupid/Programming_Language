@@ -433,7 +433,7 @@ node_t* GetIf (tree_t* program)
 
                 right_condition_node = GetE (program);
 
-                condition_node       = _MORE(left_condition_node, right_condition_node);
+                condition_node       = _LESS(left_condition_node, right_condition_node);
             }
             else if (_CMP_OP(">"))
             {
@@ -445,7 +445,7 @@ node_t* GetIf (tree_t* program)
 
                 right_condition_node = GetE (program);
 
-                condition_node       = _LESS(left_condition_node, right_condition_node);
+                condition_node       = _MORE(left_condition_node, right_condition_node);
             }
 
             if (_CMP_OP(")"))

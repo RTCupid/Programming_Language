@@ -1,9 +1,0 @@
-input (utyutyu);
-
-while (utyutyu < 20)
-{
-    write_about {utyutyu};
-    write_about {8};
-    utyutyu = utyutyu + 1;
-};
-then_commit_seppuku

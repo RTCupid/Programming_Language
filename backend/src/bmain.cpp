@@ -27,6 +27,10 @@ int main (int argc, char* argv[])
         {
             MakeNasmCode (&bprogram);
         }
+        else if (strcmp (argv[1], "CPU") == 0)
+        {
+            MakeAsmCode  (&bprogram);
+        }
         else
         {
             fprintf (stderr, RED "unknown mode\n" RESET );
@@ -34,7 +38,7 @@ int main (int argc, char* argv[])
     }
     else
     {
-        MakeAsmCode  (&bprogram);
+        fprintf (stderr, RED "Enter mode\n" RESET );
     }
 
     ProgramDtor              (&bprogram);

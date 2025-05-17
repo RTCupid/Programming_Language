@@ -91,7 +91,7 @@ void MakeSectionData (tree_t* program, FILE* file_nasm)
 {
     for (size_t index = 0; index < program->nametable_id; index++)
     {
-        fprintf (file_nasm, "\n%s: equ 64", program->nametable[index].name);
+        fprintf (file_nasm, "\n%s: TIMES 64 db 0", program->nametable[index].name);
     }
 }
 

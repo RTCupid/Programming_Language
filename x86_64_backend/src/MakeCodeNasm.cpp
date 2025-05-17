@@ -431,7 +431,7 @@ static err_t ProcessSQRT (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 {
     RecursiveMakeNasm (program, file_nasm, crnt_node->left);
 
-    fprintf (file_nasm, "\n\n\t%-50s; xmm0 = rax", "movq xmm0, rax");
+    fprintf (file_nasm, "\n\n\t%-50s; xmm0 = (double) rax", "cvtsi2sd xmm0, rax");
 
     fprintf (file_nasm, "\n\n\t%-50s; xmm1 = sqrt (xmm0)", "sqrtsd xmm1, xmm0");
 

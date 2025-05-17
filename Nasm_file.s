@@ -23,7 +23,7 @@ my_main:                                              ; it is definition of my_m
 
 	mov rax, [number]                                 ; rax = number 
 
-	movq xmm0, rax                                    ; xmm0 = rax
+	cvtsi2sd xmm0, rax                                ; xmm0 = (double) rax
 
 	sqrtsd xmm1, xmm0                                 ; xmm1 = sqrt (xmm0)
 

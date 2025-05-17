@@ -9,13 +9,13 @@
 
 //---------------------------------------------------------------------------------------
 
-static err_t ProcessFUNC (tree_t* program, FILE* file_nasm, node_t* crnt_node);
+static err_t ProcessFUNC    (tree_t* program, FILE* file_nasm, node_t* crnt_node);
 
-static err_t ProcessDEF (tree_t* program, FILE* file_nasm, node_t* crnt_node);
+static err_t ProcessDEF     (tree_t* program, FILE* file_nasm, node_t* crnt_node);
 
-static err_t ProcessRET (tree_t* program, FILE* file_nasm, node_t* crnt_node);
+static err_t ProcessRET     (tree_t* program, FILE* file_nasm, node_t* crnt_node);
 
-static err_t ProcessCALL (tree_t* program, FILE* file_nasm, node_t* crnt_node);
+static err_t ProcessCALL    (tree_t* program, FILE* file_nasm, node_t* crnt_node);
 
 static err_t ProcessNUM     (FILE* file_nasm, node_t* crnt_node, order_t variable_order);
 
@@ -99,7 +99,7 @@ void MakeSectionData (tree_t* program, FILE* file_nasm)
     {
         if (program->nametable[index].type_id == TYPE_GLOBAL)
         {
-            fprintf (file_nasm, "\n%s: dd 0", program->nametable[index].name);
+            fprintf (file_nasm, "\n%s: dq 0", program->nametable[index].name);
         }
     }
 }

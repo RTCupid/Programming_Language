@@ -31,42 +31,57 @@ _my_input:
     mov rdi, 0                                      ; stdin
     mov rsi, InputBuffer                            ; buffer to input from stdin
     mov rdx, InputBufferLen                         ; rdx = size InputBuffer
+
     syscall
 
-    mov  rsi, InputBuffer                           ; rsi = Buffer
-
-    mov  rax, 0x01                                  ; write64 (rdi, rsi, rdx)
-    mov  rdi, 1                                     ; stdout
-
-    xor rdx, rdx                                    ; rdx = 0
+    xor rax, rax                                    ; rax = 0
     xor rcx, rcx                                    ; rcx = 0
+    mov rdi, 10                                     ; rdi = 10 (dex factor)
+
+    mov rsi, InputBuffer                            ; rsi = InputBuffer
 
 ;---Atoih:-------------------------------------------------------------------------------
 
-NewHexDigit:
+.NewDexDigit:
 
-    mov cl, byte [InputBuffer + rdx]                ; cl = crnt digit
+    mov cl, byte [rsi]                              ; cl = crnt digit
 
-    inc  rdx                                        ; rdx++
+    inc rsi                                         ; rsi++, next byte
 
-    cmp  cl, 68h                                    ; if (si == 'h'){
-    jne  EndHexNumber                               ;   goto end of hex number; }
+;---Check-end----------------------------------------------------------------------------
 
-    sub  cx, 60h                                    ; if (cx > 60h){
-    ja   HexDigit                                   ;   goto HexDigit; } <---(cx > 9)
+    cmp cl, 0x0A                                    ; if (cl == '\n' (Enter)) {
+    je  .EndDexNumber                               ;   goto end of dex number; }
 
-    add  cx, 30h                                    ; else { cx += 30h}
+    cmp cl, 0                                       ; if (cl == '\0') {
+    je  .EndDexNumber                               ;   goto end of dex number; }
 
-HexDigit:
+;---Check-Type-Digit---------------------------------------------------------------------
 
-    shl rax, 4                                      ; rax *= 16
+    cmp cl, '0'                                     ; if (cl <   '0') {
+    jb  .InvalidChar                                ;   goto .InvalidChar; }
 
+    cmp cl, '9'                                     ; if (cl <=  '9') {
+    jbe .DexDigit                                   ;   goto .DexDigit; }
+
+    jmp  short .InvalidChar                         ; goto .InvalidChar
+
+;---Add-digit-to-rax---------------------------------------------------------------------
+
+.DexDigit:
+
+    sub cl, '0'                                     ; cl -= '0'
+
+    mul rdi                                         ; rax *= rdi <=> rax *= 10
     add rax, rcx                                    ; rax += rcx
 
-    cmp rdx, InputBufferLen                         ; if (rdx < InputBufferLen) {
-    jb  NewHexDigit                                 ;   goto NewHexDigit; }
+    jmp short .NewDexDigit                          ; goto .NewDexDigit
 
-EndHexNumber:
+.InvalidChar:
+
+    jmp short .NewDexDigit
+
+.EndDexNumber:
 
     ret
 
@@ -90,7 +105,7 @@ _my_print:
     xor  rdx, rdx                                   ; rdx = 0, rdx = index in buffer
 
     cmp  eax, 0                                     ; if (eax > 0) {
-    jg   DexPositiveParam                           ;     goto DexPositiveParam }
+    jg   .DexPositiveParam                          ;     goto .DexPositiveParam }
 
     neg  eax                                        ; eax = -eax, find positive value of eax
 
@@ -98,7 +113,7 @@ _my_print:
     mov  [Buffer], bl                               ; Buffer[rdx] = '-'
     inc  rdx                                        ; rdx++
 
-DexPositiveParam:
+.DexPositiveParam:
 
     mov  r14, rdx                                   ; save old value rdx in r14
 
@@ -106,7 +121,7 @@ DexPositiveParam:
 
     xor  r13, r13                                   ; r13 = 0, r13 = counter of dex digits
 
-NewDigitDex:
+.NewDigitDex:
 
     xor  rdx, rdx                                   ; rdx = 0              -------------
                                                     ;             number - | rdx : rax |
@@ -119,29 +134,29 @@ NewDigitDex:
 
     cmp  eax, 0                                     ; if (edx != 0) {
 
-    jne  NewDigitDex                                ;   goto NewDigitDex }
+    jne  .NewDigitDex                               ;   goto .NewDigitDex }
 
 ;---Output-dex-number-from stack-to-buffer-----------------------------------------------
 
     mov  rdx, r14                                   ; rdx = r14, back old value of rdx
     xor  eax, eax                                   ; rax = 0
 
-NewDigitsInDexOutput:
+.NewDigitsInDexOutput:
 
     pop  rax                                        ; take rax from stack
                                                     ; rax = some digit of dex number
     add  eax, 30h                                   ; rax += 30h to find ASCII code of number
 
     cmp  rdx, BufferLen                             ; if (rdx >= BufferLen) {
-    jnb  BufferOverflow                             ;   goto BufferOverflow }
+    jnb  .BufferOverflow                            ;   goto .BufferOverflow }
 
     mov  [Buffer + rdx], al                         ; Buffer[rdx] = al
     inc  rdx                                        ; rdx++
 
-BufferOverflow:
+.BufferOverflow:
 
     dec  r13                                        ; if (!--r13) {
-    jne  NewDigitsInDexOutput                       ;   goto NewDigitsInDexOutput }
+    jne  .NewDigitsInDexOutput                      ;   goto .NewDigitsInDexOutput }
 
 ;---Write-Buffer-------------------------------------------------------------------------
 

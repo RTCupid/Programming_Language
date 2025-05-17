@@ -1,3 +1,7 @@
-write_about {8};
+my_main ()
+{
+    write_about {8};
+
+};
 
 then_commit_seppuku

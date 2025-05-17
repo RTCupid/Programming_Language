@@ -22,8 +22,8 @@ _my_hlt:
 ;----------------------------------------------------------------------------------------
 ; _my_input - my function input for NASM
 ; Entry:    NONE
-; Exit:     rax = input number
-; Destroy:  rax
+; Exit:     NONE
+; Destroy:  NONE
 ;----------------------------------------------------------------------------------------
 _my_input:
 
@@ -33,7 +33,7 @@ _my_input:
 ; _my_print - my function to print dex number for NASM
 ; Entry:    rax = number to print
 ; Exit:     NONE
-; Destroy: rdx, rax, rbx, r12, r13, r14, rsi, rdi
+; Destroy: rdx, rax, rsi, rdi
 ;----------------------------------------------------------------------------------------
 _my_print:
 
@@ -42,7 +42,7 @@ _my_print:
     push r12                                        ;    Save                           |
     push r13                                        ;       Callee saved registers      |
     push r14                                        ;                                   |
-    push r15                                        ;------------------------------------
+                                                    ;------------------------------------
 
 ;-----------handler-dex-number-----------------------------------------------------------
 
@@ -111,7 +111,7 @@ BufferOverflow:
 
     syscall
 
-    pop  r15                                        ;------------------------------------
+                                                    ;------------------------------------
     pop  r14                                        ;                                   |
     pop  r13                                        ;    Take saved values of Callee    |
     pop  r12                                        ;    saved registers from stack     |

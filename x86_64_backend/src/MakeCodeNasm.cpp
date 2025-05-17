@@ -66,9 +66,9 @@ void MakeNasmCode (tree_t* program)
 
     fprintf (file_nasm, "global  _start\n\n");
 
-	fprintf (file_nasm, "section .text\n\n");
+	fprintf (file_nasm, "%%INCLUDE \"stdlib.s\"\n\n");
 
-    fprintf (file_nasm, "%%INCLUDE \"stdlib.s\"\n\n");
+    fprintf (file_nasm, "section .text\n\n");
 
     fprintf (file_nasm, "_start:\n");
 

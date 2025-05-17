@@ -23,7 +23,7 @@ _my_hlt:
 ; _my_input - my function input for NASM
 ; Entry:    NONE
 ; Exit:     rax = input number from stdin
-; Destroy:  rax, rdi, rsi, rdx, rcx
+; Destroy:  rax, rdi, rsi, rdx, rcx, r8
 ;----------------------------------------------------------------------------------------
 _my_input:
 
@@ -34,6 +34,7 @@ _my_input:
 
     syscall
 
+    xor r8,  r8                                     ; r8  = negative flag
     xor rax, rax                                    ; rax = 0
     xor rcx, rcx                                    ; rcx = 0
     mov rdi, 10                                     ; rdi = 10 (dex factor)
@@ -84,13 +85,20 @@ _my_input:
 
 .NegativeNumber:
 
-    or rax, qword 0x8000000000000000                ; set sign bit
+    mov r8, 1                                       ; r8 = 1, r8 - negative flag
 
 .InvalidChar:
 
     jmp short .NewDexDigit
 
 .EndDexNumber:
+
+    test r8, r8                                     ; if (r8 == 0) { //r8 = negative flag
+    jz   .PositiveNumber                            ;   goto .PositiveNumber; }
+
+    neg  rax                                        ; rax = -rax
+
+.PositiveNumber:
 
     ret
 
@@ -113,10 +121,10 @@ _my_print:
 
     xor  rdx, rdx                                   ; rdx = 0, rdx = index in buffer
 
-    cmp  eax, 0                                     ; if (eax > 0) {
-    jg   .DexPositiveParam                          ;     goto .DexPositiveParam }
+    test rax, rax                                   ; if (eax > 0) {
+    jns  .DexPositiveParam                          ;     goto .DexPositiveParam }
 
-    neg  eax                                        ; eax = -eax, find positive value of eax
+    neg  rax                                        ; rax = -rax, find positive value of rax
 
     mov  rbx, '-'                                   ; rbx         = '-'
     mov  [Buffer], bl                               ; Buffer[rdx] = '-'
@@ -141,20 +149,20 @@ _my_print:
 
     inc  r13                                        ; r13++, r13 = counter of dex digits
 
-    cmp  eax, 0                                     ; if (edx != 0) {
+    cmp  rax, 0                                     ; if (rax != 0) {
 
     jne  .NewDigitDex                               ;   goto .NewDigitDex }
 
 ;---Output-dex-number-from stack-to-buffer-----------------------------------------------
 
     mov  rdx, r14                                   ; rdx = r14, back old value of rdx
-    xor  eax, eax                                   ; rax = 0
+    xor  rax, rax                                   ; rax = 0
 
 .NewDigitsInDexOutput:
 
     pop  rax                                        ; take rax from stack
                                                     ; rax = some digit of dex number
-    add  eax, 30h                                   ; rax += 30h to find ASCII code of number
+    add  rax, 30h                                   ; rax += 30h to find ASCII code of number
 
     cmp  rdx, BufferLen                             ; if (rdx >= BufferLen) {
     jnb  .BufferOverflow                            ;   goto .BufferOverflow }

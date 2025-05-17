@@ -1,0 +1,10 @@
+my_main ()
+{
+    input (number);
+
+    answer = sqrt (number);
+
+    write_about {answer};
+};
+
+then_commit_seppuku

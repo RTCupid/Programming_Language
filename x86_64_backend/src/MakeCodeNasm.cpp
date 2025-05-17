@@ -80,7 +80,19 @@ void MakeNasmCode (tree_t* program)
 
     fprintf (file_nasm, "\nsection .note.GNU-stack\n");
 
+    MakeSectionData (program, file_nasm);
+
     printf (GRN "MakeNasmCode completed \n" RESET);
+}
+
+//---------------------------------------------------------------------------------------
+
+void MakeSectionData (tree_t* program, FILE* file_nasm)
+{
+    for (size_t index = 0; index < program->nametable_id; index++)
+    {
+        fprintf (file_nasm, "\n%s: equ 64", program->nametable[index].name);
+    }
 }
 
 //---------------------------------------------------------------------------------------

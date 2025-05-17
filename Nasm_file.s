@@ -61,3 +61,11 @@ my_main:;number operator 3
 	call _my_hlt
 
 section .note.GNU-stack
+
+my_main: equ 64
+x: equ 64
+y: equ 64
+z: equ 64
+sum: equ 64
+mult: equ 64
+divi: equ 64

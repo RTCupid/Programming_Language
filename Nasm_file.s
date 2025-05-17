@@ -20,8 +20,7 @@ my_main:;number operator 3
 	call Factorial;number operator 5 
 	mov rax, 7
 
-	call _my_print
-;number operator 7 
+	call _my_print;number operator 7 
 
 	call _my_hlt;number operator 9 ;number operator 10 ;number operator 10 ;number operator 10 ;number operator 10 ;number operator 10 
 
@@ -31,8 +30,7 @@ my_main:;number operator 3
 Factorial:;number operator 13 
 	mov rax, 8
 
-	call _my_print
-;number operator 15 
+	call _my_print;number operator 15 
 	mov rax, 0
 
 	ret;number operator 17 ;number operator 18 ;number operator 18 ;number operator 18 ;number operator 18 ;number operator 19 ;number operator 19 ;number operator 19 

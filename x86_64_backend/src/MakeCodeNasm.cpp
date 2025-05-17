@@ -364,7 +364,7 @@ static err_t ProcessPRNT (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
     RecursiveMakeNasm (program, file_nasm, crnt_node->left, FIRST_EXPR);
 
-    fprintf (file_nasm, "\n\n\tcall _my_print\n");
+    fprintf (file_nasm, "\n\n\tcall _my_print");
 
     return OK;
 }

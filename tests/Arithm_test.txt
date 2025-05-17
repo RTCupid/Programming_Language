@@ -5,7 +5,11 @@ my_main ()
     z = 3;
     sum = x + y;
 
+    sub = y - z;
+
     write_about {sum};
+
+    write_about {sub};
 
     mult = x * z;
 

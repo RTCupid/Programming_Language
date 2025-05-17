@@ -15,63 +15,36 @@ _start:
 ;----------------------------------------------------------------------------------------
 ;	my_main:
 ;----------------------------------------------------------------------------------------
-my_main:;number operator 3 
-	mov rax, 10
-	mov [x], rax; x = rax
-;number operator 5 
-	mov rax, 20
-	mov [y], rax; y = rax
-;number operator 7 
-	mov rax, 3
-	mov [z], rax; z = rax
-;number operator 9 
-	mov rax, [x]; x
 
-	mov rdx, [y]; y
+my_main:                                              ; it is definition of my_main  ; number operator 3 
 
-	add rax, rdx;number operator 12 
-	mov [sum], rax; sum = rax
-;number operator 12 
-	mov rax, [sum]; sum
+	call NoFactorial                                  ; NoFactorial (); ; number operator 5 
 
+	mov rax, 7                                        ; rax = 7 
 
-	call _my_print;number operator 14 
-	mov rax, [x]; x
+	call _my_print                                    ; print (eax) ; number operator 7 
 
-	mov rdx, [z]; z
+	call _my_hlt                                      ; exit (0) ; number operator 9  ; number operator 10  ; number operator 10  ; number operator 10  ; number operator 10  ; number operator 10 
 
-	mov rdi, rdx; rdi = rdx
-	mul edi;number operator 17 
-	mov [mult], rax; mult = rax
-;number operator 17 
-	mov rax, [mult]; mult
+;----------------------------------------------------------------------------------------
+;	NoFactorial:
+;----------------------------------------------------------------------------------------
 
+NoFactorial:                                          ; it is definition of NoFactorial  ; number operator 13 
 
-	call _my_print;number operator 19 
-	mov rax, [sum]; sum
+	mov rax, 8                                        ; rax = 8 
 
-	mov rdx, [z]; z
+	call _my_print                                    ; print (eax) ; number operator 15 
 
-	mov rdi, rdx; rdi = rdx
-	xor rdx, rdx; rdx = 0
-	div edi;number operator 22 
-	mov [divi], rax; divi = rax
-;number operator 22 
-	mov rax, [divi]; divi
+	mov rax, 0                                        ; rax = 0 
 
+	ret                                               ; return; ; number operator 17  ; number operator 18  ; number operator 18  ; number operator 18  ; number operator 18  ; number operator 19  ; number operator 19  ; number operator 19 
 
-	call _my_print;number operator 24 ;number operator 25 ;number operator 25 ;number operator 25 ;number operator 25 ;number operator 25 ;number operator 25 ;number operator 25 ;number operator 25 ;number operator 25 ;number operator 25 ;number operator 25 ;number operator 26 ;number operator 26 
-	call _my_hlt
+call _my_hlt                                          ; exit (0)
 ;--------------------------------------------------------------------------------------------------
 
 section .data
 
-x: TIMES 64 db 0
-y: TIMES 64 db 0
-z: TIMES 64 db 0
-sum: TIMES 64 db 0
-mult: TIMES 64 db 0
-divi: TIMES 64 db 0
 ;--------------------------------------------------------------------------------------------------
 
 section .note.GNU-stack

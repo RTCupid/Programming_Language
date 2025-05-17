@@ -1,11 +1,6 @@
-size table: 7
+size table: 2
 0 my_main 2
-1 x 3
-2 y 3
-3 z 3
-4 sum 3
-5 mult 3
-6 divi 3
+1 NoFactorial 2
 {OP:";"
 	{OP:"def"
 		{OP:"func"
@@ -13,69 +8,42 @@ size table: 7
 			{ID:""}
 		}
 		{OP:";"
-			{OP:"="
+			{OP:"call"
 				{ID:"1"}
-				{NUM:"10"}
+				{ID:""}
 			}
 			{OP:";"
-				{OP:"="
-					{ID:"2"}
-					{NUM:"20"}
+				{OP:"print"
+					{NUM:"7"}
+					{ID:""}
 				}
 				{OP:";"
-					{OP:"="
-						{ID:"3"}
-						{NUM:"3"}
-					}
-					{OP:";"
-						{OP:"="
-							{ID:"4"}
-							{OP:"+"
-								{ID:"1"}
-								{ID:"2"}
-							}
-						}
-						{OP:";"
-							{OP:"print"
-								{ID:"4"}
-								{ID:""}
-							}
-							{OP:";"
-								{OP:"="
-									{ID:"5"}
-									{OP:"*"
-										{ID:"1"}
-										{ID:"3"}
-									}
-								}
-								{OP:";"
-									{OP:"print"
-										{ID:"5"}
-										{ID:""}
-									}
-									{OP:";"
-										{OP:"="
-											{ID:"6"}
-											{OP:"/"
-												{ID:"4"}
-												{ID:"3"}
-											}
-										}
-										{OP:";"
-											{OP:"print"
-												{ID:"6"}
-												{ID:""}
-											}
-											{OP:";"}
-										}
-									}
-								}
-							}
-						}
-					}
+					{OP:"$"}
+					{OP:";"}
 				}
 			}
 		}
 	}
-	{OP:";"}
+	{OP:";"
+		{OP:"def"
+			{OP:"func"
+				{ID:"1"}
+				{ID:""}
+			}
+			{OP:";"
+				{OP:"print"
+					{NUM:"8"}
+					{ID:""}
+				}
+				{OP:";"
+					{OP:"return"
+						{NUM:"0"}
+						{ID:""}
+					}
+					{OP:";"}
+				}
+			}
+		}
+		{OP:";"}
+	}
 }

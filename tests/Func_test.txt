@@ -1,13 +1,13 @@
 my_main ()
 {
-    Factorial ();
+    NoFactorial ();
 
     write_about {7};
 
     then_commit_seppuku
 };
 
-Factorial ()
+NoFactorial ()
 {
     write_about {8};
 

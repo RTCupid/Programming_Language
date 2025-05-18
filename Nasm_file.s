@@ -28,12 +28,12 @@ _start:
 	mov rdx, [b]                                      ; rdx = b 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	mul rdi                                           ; rdx:rax = rax * rdi ; number operator 10 
+	imul rdi                                          ; rdx:rax = rax * rdi ; number operator 10 
 	push rax                                          ; rax => stack
 	mov rdx, [c]                                      ; rdx = c 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	mul rdi                                           ; rdx:rax = rax * rdi ; number operator 10 
+	imul rdi                                          ; rdx:rax = rax * rdi ; number operator 10 
 	test rax, rax                                     ;  if (rax = 0)
 	je  .end_if8                                      ;  goto .end_if8
 ;   action-8
@@ -43,7 +43,7 @@ _start:
 	mov rdx, [b]                                      ; rdx = b 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	mul rdi                                           ; rdx:rax = rax * rdi ; number operator 14 
+	imul rdi                                          ; rdx:rax = rax * rdi ; number operator 14 
 	push rax                                          ; rax => stack
 
 	mov rax, 4                                        ; rax = 4 
@@ -51,12 +51,12 @@ _start:
 	mov rdx, [a]                                      ; rdx = a 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	mul rdi                                           ; rdx:rax = rax * rdi ; number operator 16 
+	imul rdi                                          ; rdx:rax = rax * rdi ; number operator 16 
 	push rax                                          ; rax => stack
 	mov rdx, [c]                                      ; rdx = c 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	mul rdi                                           ; rdx:rax = rax * rdi
+	imul rdi                                          ; rdx:rax = rax * rdi
 	mov rdx, rax                                      ; rdx = rax ; number operator 16 
 	pop rax                                           ; rax <= stack
 	sub rax, rdx                                      ; rax -= rdx ; number operator 16 
@@ -93,7 +93,7 @@ _start:
 	mov rdx, [b]                                      ; rdx = b 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	mul rdi                                           ; rdx:rax = rax * rdi ; number operator 31 
+	imul rdi                                          ; rdx:rax = rax * rdi ; number operator 31 
 	push rax                                          ; rax => stack
 
 	mov rax, [Diskriminant]                           ; rax = Diskriminant 
@@ -110,12 +110,12 @@ _start:
 	mov rdx, [a]                                      ; rdx = a 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	mul rdi                                           ; rdx:rax = rax * rdi
+	imul rdi                                          ; rdx:rax = rax * rdi
 	mov rdx, rax                                      ; rdx = rax ; number operator 33 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	xor rdx, rdx                                      ; rdx = 0
-	div rdi                                           ; rax = rax:rdx / rdi, rdx = rax:rdx / rdi ; number operator 33 
+	cqo                                               ; rdx = 0
+	idiv rdi                                          ; rax = rax:rdx / rdi, rdx = rax:rdx / rdi ; number operator 33 
 	mov [first_answ], rax                             ; first_answ = rax  ; number operator 33 
 
 	mov rax, 0                                        ; rax = 0 
@@ -127,7 +127,7 @@ _start:
 	mov rdx, [b]                                      ; rdx = b 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	mul rdi                                           ; rdx:rax = rax * rdi ; number operator 39 
+	imul rdi                                          ; rdx:rax = rax * rdi ; number operator 39 
 	push rax                                          ; rax => stack
 
 	mov rax, [Diskriminant]                           ; rax = Diskriminant 
@@ -144,12 +144,12 @@ _start:
 	mov rdx, [a]                                      ; rdx = a 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	mul rdi                                           ; rdx:rax = rax * rdi
+	imul rdi                                          ; rdx:rax = rax * rdi
 	mov rdx, rax                                      ; rdx = rax ; number operator 41 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	xor rdx, rdx                                      ; rdx = 0
-	div rdi                                           ; rax = rax:rdx / rdi, rdx = rax:rdx / rdi ; number operator 41 
+	cqo                                               ; rdx = 0
+	idiv rdi                                          ; rax = rax:rdx / rdi, rdx = rax:rdx / rdi ; number operator 41 
 	mov [second_answ], rax                            ; second_answ = rax  ; number operator 41 
 
 	mov rax, 2                                        ; rax = 2 
@@ -177,7 +177,7 @@ _start:
 	mov rdx, [b]                                      ; rdx = b 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	mul rdi                                           ; rdx:rax = rax * rdi ; number operator 53 
+	imul rdi                                          ; rdx:rax = rax * rdi ; number operator 53 
 	test rax, rax                                     ;  if (rax = 0)
 	je  .end_if52                                     ;  goto .end_if52
 ;   action-52
@@ -194,13 +194,13 @@ _start:
 	mov rdx, [b]                                      ; rdx = b 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	mul rdi                                           ; rdx:rax = rax * rdi ; number operator 60 
+	imul rdi                                          ; rdx:rax = rax * rdi ; number operator 60 
 	push rax                                          ; rax => stack
 	mov rdx, [a]                                      ; rdx = a 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	xor rdx, rdx                                      ; rdx = 0
-	div rdi                                           ; rax = rax:rdx / rdi, rdx = rax:rdx / rdi ; number operator 60 
+	cqo                                               ; rdx = 0
+	idiv rdi                                          ; rax = rax:rdx / rdi, rdx = rax:rdx / rdi ; number operator 60 
 	mov [second_answ], rax                            ; second_answ = rax  ; number operator 60 
 
 	mov rax, 2                                        ; rax = 2 
@@ -228,7 +228,7 @@ _start:
 	mov rdx, [c]                                      ; rdx = c 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	mul rdi                                           ; rdx:rax = rax * rdi ; number operator 72 
+	imul rdi                                          ; rdx:rax = rax * rdi ; number operator 72 
 	test rax, rax                                     ;  if (rax = 0)
 	je  .end_if71                                     ;  goto .end_if71
 ;   action-71
@@ -260,13 +260,13 @@ _start:
 	mov rdx, [c]                                      ; rdx = c 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	mul rdi                                           ; rdx:rax = rax * rdi ; number operator 85 
+	imul rdi                                          ; rdx:rax = rax * rdi ; number operator 85 
 	push rax                                          ; rax => stack
 	mov rdx, [a]                                      ; rdx = a 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	xor rdx, rdx                                      ; rdx = 0
-	div rdi                                           ; rax = rax:rdx / rdi, rdx = rax:rdx / rdi ; number operator 85 
+	cqo                                               ; rdx = 0
+	idiv rdi                                          ; rax = rax:rdx / rdi, rdx = rax:rdx / rdi ; number operator 85 
 
 	cvtsi2sd xmm0, rax                                ; xmm0 = (double) rax
 	sqrtsd xmm1, xmm0                                 ; xmm1 = sqrt (xmm0)
@@ -289,20 +289,20 @@ _start:
 	mov rdx, [c]                                      ; rdx = c 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	mul rdi                                           ; rdx:rax = rax * rdi ; number operator 93 
+	imul rdi                                          ; rdx:rax = rax * rdi ; number operator 93 
 	push rax                                          ; rax => stack
 	mov rdx, [a]                                      ; rdx = a 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	xor rdx, rdx                                      ; rdx = 0
-	div rdi                                           ; rax = rax:rdx / rdi, rdx = rax:rdx / rdi ; number operator 93 
+	cqo                                               ; rdx = 0
+	idiv rdi                                          ; rax = rax:rdx / rdi, rdx = rax:rdx / rdi ; number operator 93 
 
 	cvtsi2sd xmm0, rax                                ; xmm0 = (double) rax
 	sqrtsd xmm1, xmm0                                 ; xmm1 = sqrt (xmm0)
 	cvtsd2si rdx, xmm1                                ; rdx  = xmm1 ; number operator 93 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	mul rdi                                           ; rdx:rax = rax * rdi ; number operator 93 
+	imul rdi                                          ; rdx:rax = rax * rdi ; number operator 93 
 	mov [second_answ], rax                            ; second_answ = rax  ; number operator 93 
 
 	mov rax, 2                                        ; rax = 2 
@@ -330,7 +330,7 @@ _start:
 	mov rdx, [c]                                      ; rdx = c 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	mul rdi                                           ; rdx:rax = rax * rdi ; number operator 105 
+	imul rdi                                          ; rdx:rax = rax * rdi ; number operator 105 
 	test rax, rax                                     ;  if (rax = 0)
 	je  .end_if104                                    ;  goto .end_if104
 ;   action-104
@@ -344,13 +344,13 @@ _start:
 	mov rdx, [c]                                      ; rdx = c 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	mul rdi                                           ; rdx:rax = rax * rdi ; number operator 110 
+	imul rdi                                          ; rdx:rax = rax * rdi ; number operator 110 
 	push rax                                          ; rax => stack
 	mov rdx, [b]                                      ; rdx = b 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	xor rdx, rdx                                      ; rdx = 0
-	div rdi                                           ; rax = rax:rdx / rdi, rdx = rax:rdx / rdi ; number operator 110 
+	cqo                                               ; rdx = 0
+	idiv rdi                                          ; rax = rax:rdx / rdi, rdx = rax:rdx / rdi ; number operator 110 
 	mov [first_answ], rax                             ; first_answ = rax  ; number operator 110 
 
 	mov rax, 1                                        ; rax = 1 

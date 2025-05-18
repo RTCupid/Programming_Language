@@ -10,7 +10,7 @@ my_main ()
 
     a = 16;
 
-    advanced_sqrt = (x + a) + z + a;
+    advanced_sqrt = (x + a) + z + sqrt(a);
 
     write_about {advanced_sqrt};
 };

@@ -654,7 +654,7 @@ static err_t ProcessMUL (tree_t* program, FILE* file_nasm, node_t* crnt_node, or
 
     fprintf (file_nasm, "\n\t%-50s; rdi = rdx", "mov rdi, rdx");
 
-    fprintf (file_nasm, "\n\t%-50s; rdx:rax = rax * rdi", "mul rdi");
+    fprintf (file_nasm, "\n\t%-50s; rdx:rax = rax * rdi", "imul rdi");
 
     if (variable_order == SECOND_EXPR)
     {
@@ -678,9 +678,9 @@ static err_t ProcessDIV (tree_t* program, FILE* file_nasm, node_t* crnt_node, or
 
     fprintf (file_nasm, "\n\t%-50s; rdi = rdx", "mov rdi, rdx");
 
-    fprintf (file_nasm, "\n\t%-50s; rdx = 0", "xor rdx, rdx");
+    fprintf (file_nasm, "\n\t%-50s; rdx = 0", "cqo");
 
-    fprintf (file_nasm, "\n\t%-50s; rax = rax:rdx / rdi, rdx = rax:rdx / rdi", "div rdi");
+    fprintf (file_nasm, "\n\t%-50s; rax = rax:rdx / rdi, rdx = rax:rdx / rdi", "idiv rdi");
 
     if (variable_order == SECOND_EXPR)
     {

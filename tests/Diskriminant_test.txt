@@ -1,0 +1,14 @@
+my_main ()
+{
+    a = 1;
+    b = 4;
+    c = 3;
+
+    first_answ  = ((0 - 1) * b - 2);
+    second_answ = ((0 - 1) * b + 2) / (2 * a);
+    write_about {2};
+    write_about {first_answ};
+    write_about {second_answ};
+};
+
+then_commit_seppuku

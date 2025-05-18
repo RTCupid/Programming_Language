@@ -1,0 +1,28 @@
+my_main ()
+{
+    x = 4;
+    y = 7;
+    z = (0 - 90);
+
+    advanced_sum = x * (4 + y) + z;
+
+    write_about {advanced_sum};
+
+    a = 16;
+
+    advanced_expr = (0 - 1) * x + sqrt (a);
+
+    write_about {advanced_expr};
+
+    b = 25;
+
+    positive_expr = (0 - 1) * x + sqrt (b);
+
+    negative_expr = (0 - 1) * x - sqrt (b);
+
+    write_about {positive_expr};
+
+    write_about {negative_expr};
+};
+
+then_commit_seppuku

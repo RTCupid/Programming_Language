@@ -121,8 +121,10 @@ _my_print:
 
     xor  rdx, rdx                                   ; rdx = 0, rdx = index in buffer
 
-    test rax, rax                                   ; if (eax > 0) {
-    jns  .DexPositiveParam                          ;     goto .DexPositiveParam }
+    mov  rcx, rax                                   ; rcx = rax, save rax
+    sar  rcx, 63                                    ; if (rax >= 0) rcx = 0; if (rax < 0) rcx = -1
+    test rcx, rcx                                   ; if (rcx == 0) {
+    jz   .DexPositiveParam                          ;     goto .DexPositiveParam; }
 
     neg  rax                                        ; rax = -rax, find positive value of rax
 

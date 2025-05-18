@@ -29,7 +29,7 @@ static err_t ProcessPRNT    (tree_t* program, FILE* file_nasm, node_t* crnt_node
 
 static err_t ProcessINPT    (tree_t* program, FILE* file_nasm, node_t* crnt_node);
 
-static err_t ProcessSQRT    (tree_t* program, FILE* file_nasm, node_t* crnt_node);
+static err_t ProcessSQRT    (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order);
 
 static err_t ProcessIF      (tree_t* program, FILE* file_nasm, node_t* crnt_node, size_t num_if);
 
@@ -191,7 +191,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node, ord
             {
                 n_operator++;
 
-                ProcessSQRT (program, file_nasm, crnt_node);
+                ProcessSQRT (program, file_nasm, crnt_node, variable_order);
 
                 break;
             }
@@ -373,6 +373,10 @@ static err_t ProcessID (tree_t* program, FILE* file_nasm, node_t* crnt_node, ord
 
         fprintf(file_nasm, "\n\t%-50s; rdx = %s ", buffer, program->nametable[(int)crnt_node->value].name);
     }
+    else
+    {
+        fprintf (stderr, RED "unknown variable_order in ProcessID" RESET);
+    }
 
     return OK;
 }
@@ -431,7 +435,7 @@ static err_t ProcessINPT (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
 //---------------------------------------------------------------------------------------
 
-static err_t ProcessSQRT (tree_t* program, FILE* file_nasm, node_t* crnt_node)
+static err_t ProcessSQRT (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order)
 {
     RecursiveMakeNasm (program, file_nasm, crnt_node->left, FIRST_EXPR);
 
@@ -439,7 +443,18 @@ static err_t ProcessSQRT (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
     fprintf (file_nasm, "\n\t%-50s; xmm1 = sqrt (xmm0)", "sqrtsd xmm1, xmm0");
 
-    fprintf (file_nasm, "\n\t%-50s; rax  = xmm1", "cvtsd2si rax, xmm1");
+    if (variable_order == FIRST_EXPR)
+    {
+        fprintf (file_nasm, "\n\t%-50s; rax  = xmm1", "cvtsd2si rax, xmm1");
+    }
+    else if (variable_order == SECOND_EXPR)
+    {
+        fprintf (file_nasm, "\n\t%-50s; rdx  = xmm1", "cvtsd2si rdx, xmm1");
+    }
+    else
+    {
+        fprintf (stderr, RED "unknown variable_order in ProcessSQRT" RESET);
+    }
 
     return OK;
 }
@@ -462,9 +477,9 @@ static err_t ProcessIF (tree_t* program, FILE* file_nasm, node_t* crnt_node, siz
 
         RecursiveMakeNasm (program, file_nasm, crnt_node->left->right, SECOND_EXPR);
 
-        fprintf(file_nasm, "\n\t%-50s; if (rax < rdx)", "cmp rax, rdx");
+        fprintf(file_nasm, "\n\t%-50s; if (rax >= rdx)", "cmp rax, rdx");
 
-        snprintf (buffer, sizeof(buffer), "ja  .end_if%lu", num_if);
+        snprintf (buffer, sizeof(buffer), "jge  .end_if%lu", num_if);
 
         fprintf(file_nasm, "\n\t%-50s;  goto .end_if%lu", buffer, num_if);
     }
@@ -474,9 +489,9 @@ static err_t ProcessIF (tree_t* program, FILE* file_nasm, node_t* crnt_node, siz
 
         RecursiveMakeNasm (program, file_nasm, crnt_node->left->right, SECOND_EXPR);
 
-        fprintf(file_nasm, "\n\t%-50s; if (rax > rdx)", "cmp rax, rdx");
+        fprintf(file_nasm, "\n\t%-50s; if (rax <= rdx)", "cmp rax, rdx");
 
-        snprintf (buffer, sizeof(buffer), "jb  .end_if%lu", num_if);
+        snprintf (buffer, sizeof(buffer), "jle  .end_if%lu", num_if);
 
         fprintf(file_nasm, "\n\t%-50s;  goto .end_if%lu", buffer, num_if);
     }
@@ -524,7 +539,7 @@ static err_t ProcessWHILE (tree_t* program, FILE* file_nasm, node_t* crnt_node, 
 
         fprintf(file_nasm, "\n\t%-50s; if (rax < rdx)", "cmp rax, rdx");
 
-        snprintf (buffer, sizeof(buffer), "jb  .end_while%lu", num_while);
+        snprintf (buffer, sizeof(buffer), "jl  .end_while%lu", num_while);
 
         fprintf(file_nasm, "\n\t%-50s;  goto .end_while%lu", buffer, num_while);
     }
@@ -536,7 +551,7 @@ static err_t ProcessWHILE (tree_t* program, FILE* file_nasm, node_t* crnt_node, 
 
         fprintf(file_nasm, "\n\t%-50s; if (rax > rdx)", "cmp rax, rdx");
 
-        snprintf (buffer, sizeof(buffer), "ja  .end_while%lu", num_while);
+        snprintf (buffer, sizeof(buffer), "jg  .end_while%lu", num_while);
 
         fprintf(file_nasm, "\n\t%-50s;  goto .end_while%lu", buffer, num_while);
     }
@@ -639,7 +654,7 @@ static err_t ProcessMUL (tree_t* program, FILE* file_nasm, node_t* crnt_node, or
 
     fprintf (file_nasm, "\n\t%-50s; rdi = rdx", "mov rdi, rdx");
 
-    fprintf (file_nasm, "\n\t%-50s; edx:eax = eax * edi", "mul edi");
+    fprintf (file_nasm, "\n\t%-50s; rdx:rax = rax * rdi", "mul rdi");
 
     if (variable_order == SECOND_EXPR)
     {
@@ -665,7 +680,7 @@ static err_t ProcessDIV (tree_t* program, FILE* file_nasm, node_t* crnt_node, or
 
     fprintf (file_nasm, "\n\t%-50s; rdx = 0", "xor rdx, rdx");
 
-    fprintf (file_nasm, "\n\t%-50s; eax = eax:edx / edi, edx = eax:edx / edi", "div edi");
+    fprintf (file_nasm, "\n\t%-50s; rax = rax:rdx / rdi, rdx = rax:rdx / rdi", "div rdi");
 
     if (variable_order == SECOND_EXPR)
     {

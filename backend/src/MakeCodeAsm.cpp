@@ -120,7 +120,7 @@ void RecursiveMakeAsm (tree_t* program, FILE* file_asm, node_t* crnt_node)
 
                     RecursiveMakeAsm (program, file_asm, crnt_node->left->right);
 
-                    fprintf (file_asm, "\nja end_if%lu:\n", num_if);
+                    fprintf (file_asm, "\njb end_if%lu:\n", num_if);
                 }
                 else if (crnt_node->left->type == OP && (int)crnt_node->left->value == MORE)
                 {
@@ -128,7 +128,7 @@ void RecursiveMakeAsm (tree_t* program, FILE* file_asm, node_t* crnt_node)
 
                     RecursiveMakeAsm (program, file_asm, crnt_node->left->right);
 
-                    fprintf (file_asm, "\njb end_if%lu:\n", num_if);
+                    fprintf (file_asm, "\nja end_if%lu:\n", num_if);
                 }
                 else
                 {

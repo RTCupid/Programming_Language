@@ -24,16 +24,94 @@ text = <;>
 <;> is keyword
 end symbol = <{>
 start symbol = <{>
-text = <input>
-<input> is keyword
+text = <=>
+<=> is keyword
 end symbol = <{>
 start symbol = <{>
 text = <1>
 end symbol = <}>
 return
 start symbol = <{>
-text = <ID:>
-end symbol = <">
+text = <4>
+end symbol = <}>
+return
+end symbol = <}>
+start symbol = <{>
+text = <;>
+<;> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <=>
+<=> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <2>
+end symbol = <}>
+return
+start symbol = <{>
+text = <7>
+end symbol = <}>
+return
+end symbol = <}>
+start symbol = <{>
+text = <;>
+<;> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <=>
+<=> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <3>
+end symbol = <}>
+return
+start symbol = <{>
+text = <90>
+end symbol = <}>
+return
+end symbol = <}>
+start symbol = <{>
+text = <;>
+<;> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <=>
+<=> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <4>
+end symbol = <}>
+return
+start symbol = <{>
+text = <+>
+<+> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <*>
+<*> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <1>
+end symbol = <}>
+return
+start symbol = <{>
+text = <+>
+<+> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <4>
+end symbol = <}>
+return
+start symbol = <{>
+text = <2>
+end symbol = <}>
+return
+end symbol = <}>
+end symbol = <}>
+start symbol = <{>
+text = <3>
+end symbol = <}>
+return
 end symbol = <}>
 end symbol = <}>
 start symbol = <{>
@@ -45,7 +123,85 @@ text = <print>
 <print> is keyword
 end symbol = <{>
 start symbol = <{>
+text = <4>
+end symbol = <}>
+return
+start symbol = <{>
+text = <ID:>
+end symbol = <">
+end symbol = <}>
+end symbol = <}>
+start symbol = <{>
+text = <;>
+<;> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <=>
+<=> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <5>
+end symbol = <}>
+return
+start symbol = <{>
+text = <16>
+end symbol = <}>
+return
+end symbol = <}>
+start symbol = <{>
+text = <;>
+<;> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <=>
+<=> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <6>
+end symbol = <}>
+return
+start symbol = <{>
+text = <+>
+<+> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <+>
+<+> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <+>
+<+> is keyword
+end symbol = <{>
+start symbol = <{>
 text = <1>
+end symbol = <}>
+return
+start symbol = <{>
+text = <5>
+end symbol = <}>
+return
+end symbol = <}>
+start symbol = <{>
+text = <3>
+end symbol = <}>
+return
+end symbol = <}>
+start symbol = <{>
+text = <5>
+end symbol = <}>
+return
+end symbol = <}>
+end symbol = <}>
+start symbol = <{>
+text = <;>
+<;> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <print>
+<print> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <6>
 end symbol = <}>
 return
 start symbol = <{>
@@ -58,6 +214,12 @@ text = <;>
 <;> is keyword
 end symbol = <}>
 return
+end symbol = <}>
+end symbol = <}>
+end symbol = <}>
+end symbol = <}>
+end symbol = <}>
+end symbol = <}>
 end symbol = <}>
 end symbol = <}>
 end symbol = <}>

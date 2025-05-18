@@ -1,6 +1,11 @@
-size table: 2
+size table: 7
 0 my_main 2
-1 a 3
+1 x 3
+2 y 3
+3 z 3
+4 advanced_sum 3
+5 a 3
+6 advanced_sqrt 3
 {OP:";"
 	{OP:"def"
 		{OP:"func"
@@ -8,16 +13,70 @@ size table: 2
 			{ID:""}
 		}
 		{OP:";"
-			{OP:"input"
+			{OP:"="
 				{ID:"1"}
-				{ID:""}
+				{NUM:"4"}
 			}
 			{OP:";"
-				{OP:"print"
-					{ID:"1"}
-					{ID:""}
+				{OP:"="
+					{ID:"2"}
+					{NUM:"7"}
 				}
-				{OP:";"}
+				{OP:";"
+					{OP:"="
+						{ID:"3"}
+						{NUM:"90"}
+					}
+					{OP:";"
+						{OP:"="
+							{ID:"4"}
+							{OP:"+"
+								{OP:"*"
+									{ID:"1"}
+									{OP:"+"
+										{NUM:"4"}
+										{ID:"2"}
+									}
+								}
+								{ID:"3"}
+							}
+						}
+						{OP:";"
+							{OP:"print"
+								{ID:"4"}
+								{ID:""}
+							}
+							{OP:";"
+								{OP:"="
+									{ID:"5"}
+									{NUM:"16"}
+								}
+								{OP:";"
+									{OP:"="
+										{ID:"6"}
+										{OP:"+"
+											{OP:"+"
+												{OP:"+"
+													{ID:"1"}
+													{ID:"5"}
+												}
+												{ID:"3"}
+											}
+											{ID:"5"}
+										}
+									}
+									{OP:";"
+										{OP:"print"
+											{ID:"6"}
+											{ID:""}
+										}
+										{OP:";"}
+									}
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 	}

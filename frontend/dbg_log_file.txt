@@ -1,17 +1,27 @@
 
-74
-count of char = 74
+226
+count of char = 226
 
 my_main ()
 {
-    input (a);
+    x = 4;
+    y = 7;
+    z = 90;
 
-    write_about {a};
+    advanced_sum = x * (4 + y) + z;
+
+    write_about {advanced_sum};
+
+    a = 16;
+
+    advanced_sqrt = (x + a) + z + a;
+
+    write_about {advanced_sqrt};
 };
 
 then_commit_seppuku
 
-sizeOfFile = <74>
+sizeOfFile = <226>
 
 
 Start Tokenizer:
@@ -74,25 +84,109 @@ name = <{>
 <{> is keyword
 number_key = <19>
 
-first symbol = <i> is alpha
-name = <input>
-<input> is keyword
-number_key = <23>
+first symbol = <x> is alpha
+name = <x>
+number_key = <-1>
+number_id = <-1>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = '4' is number
+number is <4>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <y> is alpha
+name = <y>
+number_key = <-1>
+number_id = <-1>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = '7' is number
+number is <7>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <z> is alpha
+name = <z>
+number_key = <-1>
+number_id = <-1>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = '9' is number
+number is <90>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <a> is alpha
+name = <advanced_sum>
+number_key = <-1>
+number_id = <-1>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = <x> is alpha
+name = <x>
+number_key = <-1>
+<x> is identificator
+number_id = <1>
+first symbol = <*> is alpha
+name = <*>
+<*> is keyword
+number_key = <5>
 
 first symbol = <(> is alpha
 name = <(>
 <(> is keyword
 number_key = <17>
 
-first symbol = <a> is alpha
-name = <a>
+first symbol = '4' is number
+number is <4>
+
+first symbol = <+> is alpha
+name = <+>
+<+> is keyword
+number_key = <1>
+
+first symbol = <y> is alpha
+name = <y>
 number_key = <-1>
-number_id = <-1>
+<y> is identificator
+number_id = <2>
 first symbol = <)> is alpha
 name = <)>
 <)> is keyword
 number_key = <18>
 
+first symbol = <+> is alpha
+name = <+>
+<+> is keyword
+number_key = <1>
+
+first symbol = <z> is alpha
+name = <z>
+number_key = <-1>
+<z> is identificator
+number_id = <3>
 first symbol = <;> is alpha
 name = <;>
 <;> is keyword
@@ -109,10 +203,111 @@ name = <{>
 number_key = <19>
 
 first symbol = <a> is alpha
+name = <advanced_sum>
+number_key = <-1>
+<advanced_sum> is identificator
+number_id = <4>
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <a> is alpha
+name = <a>
+number_key = <-1>
+number_id = <-1>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = '1' is number
+number is <16>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <a> is alpha
+name = <advanced_sqrt>
+number_key = <-1>
+number_id = <-1>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <x> is alpha
+name = <x>
+number_key = <-1>
+<x> is identificator
+number_id = <1>
+first symbol = <+> is alpha
+name = <+>
+<+> is keyword
+number_key = <1>
+
+first symbol = <a> is alpha
 name = <a>
 number_key = <-1>
 <a> is identificator
-number_id = <1>
+number_id = <5>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <+> is alpha
+name = <+>
+<+> is keyword
+number_key = <1>
+
+first symbol = <z> is alpha
+name = <z>
+number_key = <-1>
+<z> is identificator
+number_id = <3>
+first symbol = <+> is alpha
+name = <+>
+<+> is keyword
+number_key = <1>
+
+first symbol = <a> is alpha
+name = <a>
+number_key = <-1>
+<a> is identificator
+number_id = <5>
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <a> is alpha
+name = <advanced_sqrt>
+number_key = <-1>
+<advanced_sqrt> is identificator
+number_id = <6>
 first symbol = <}> is alpha
 name = <}>
 <}> is keyword
@@ -144,14 +339,54 @@ ID my_main
 OP (
 OP )
 OP {
-OP input
+ID x
+OP =
+NUM 4
+OP ;
+ID y
+OP =
+NUM 7
+OP ;
+ID z
+OP =
+NUM 90
+OP ;
+ID advanced_sum
+OP =
+ID x
+OP *
 OP (
-ID a
+NUM 4
+OP +
+ID y
 OP )
+OP +
+ID z
 OP ;
 OP print
 OP {
+ID advanced_sum
+OP }
+OP ;
 ID a
+OP =
+NUM 16
+OP ;
+ID advanced_sqrt
+OP =
+OP (
+ID x
+OP +
+ID a
+OP )
+OP +
+ID z
+OP +
+ID a
+OP ;
+OP print
+OP {
+ID advanced_sqrt
 OP }
 OP ;
 OP }

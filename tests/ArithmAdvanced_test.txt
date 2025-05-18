@@ -1,10 +1,18 @@
 my_main ()
 {
-    x = 4
-    y = 7
-    z = 90
+    x = 4;
+    y = 7;
+    z = 90;
 
-    advanced_sum = x + y + z;
+    advanced_sum = x * (4 + y) + z;
 
-    write_about (advanced_sum);
+    write_about {advanced_sum};
+
+    a = 16;
+
+    advanced_sqrt = (x + a) + z + a;
+
+    write_about {advanced_sqrt};
 };
+
+then_commit_seppuku

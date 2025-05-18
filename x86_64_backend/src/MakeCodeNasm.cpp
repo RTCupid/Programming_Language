@@ -37,13 +37,13 @@ static err_t ProcessWHILE   (tree_t* program, FILE* file_nasm, node_t* crnt_node
 
 static err_t ProcessEQU     (tree_t* program, FILE* file_nasm, node_t* crnt_node);
 
-static err_t ProcessADD     (tree_t* program, FILE* file_nasm, node_t* crnt_node);
+static err_t ProcessADD     (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order);
 
-static err_t ProcessSUB     (tree_t* program, FILE* file_nasm, node_t* crnt_node);
+static err_t ProcessSUB     (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order);
 
-static err_t ProcessMUL     (tree_t* program, FILE* file_nasm, node_t* crnt_node);
+static err_t ProcessMUL     (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order);
 
-static err_t ProcessDIV     (tree_t* program, FILE* file_nasm, node_t* crnt_node);
+static err_t ProcessDIV     (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order);
 
 //---------------------------------------------------------------------------------------
 
@@ -223,7 +223,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node, ord
             {
                 n_operator++;
 
-                ProcessADD (program, file_nasm, crnt_node);
+                ProcessADD (program, file_nasm, crnt_node, variable_order);
 
                 break;
             }
@@ -231,7 +231,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node, ord
             {
                 n_operator++;
 
-                ProcessSUB (program, file_nasm, crnt_node);
+                ProcessSUB (program, file_nasm, crnt_node, variable_order);
 
                 break;
             }
@@ -239,7 +239,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node, ord
             {
                 n_operator++;
 
-                ProcessMUL (program, file_nasm, crnt_node);
+                ProcessMUL (program, file_nasm, crnt_node, variable_order);
 
                 break;
             }
@@ -247,7 +247,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node, ord
             {
                 n_operator++;
 
-                ProcessDIV (program, file_nasm, crnt_node);
+                ProcessDIV (program, file_nasm, crnt_node, variable_order);
 
                 break;
             }
@@ -583,58 +583,94 @@ static err_t ProcessEQU (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
 //---------------------------------------------------------------------------------------
 
-static err_t ProcessADD (tree_t* program, FILE* file_nasm, node_t* crnt_node)
+static err_t ProcessADD (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order)
 {
     RecursiveMakeNasm (program, file_nasm, crnt_node->left, FIRST_EXPR);
 
+    fprintf (file_nasm, "\n\t%-50s; rax => stack", "push rax");
+
     RecursiveMakeNasm (program, file_nasm, crnt_node->right, SECOND_EXPR);
+
+    fprintf (file_nasm, "\n\t%-50s; rax <= stack", "pop rax");
 
     fprintf (file_nasm, "\n\t%-50s; rax += rdx", "add rax, rdx");
 
+    if (variable_order == SECOND_EXPR)
+    {
+        fprintf (file_nasm, "\n\t%-50s; rdx = rax", "mov rdx, rax");
+    }
+
     return OK;
 }
 
 //---------------------------------------------------------------------------------------
 
-static err_t ProcessSUB (tree_t* program, FILE* file_nasm, node_t* crnt_node)
+static err_t ProcessSUB (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order)
 {
     RecursiveMakeNasm (program, file_nasm, crnt_node->left, FIRST_EXPR);
 
+    fprintf (file_nasm, "\n\t%-50s; rax => stack", "push rax");
+
     RecursiveMakeNasm (program, file_nasm, crnt_node->right, SECOND_EXPR);
+
+    fprintf (file_nasm, "\n\t%-50s; rax <= stack", "pop rax");
 
     fprintf (file_nasm, "\n\t%-50s; rax -= rdx", "sub rax, rdx");
 
+    if (variable_order == SECOND_EXPR)
+    {
+        fprintf (file_nasm, "\n\t%-50s; rdx = rax", "mov rdx, rax");
+    }
+
     return OK;
 }
 
 //---------------------------------------------------------------------------------------
 
-static err_t ProcessMUL (tree_t* program, FILE* file_nasm, node_t* crnt_node)
+static err_t ProcessMUL (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order)
 {
     RecursiveMakeNasm (program, file_nasm, crnt_node->left, FIRST_EXPR);
 
+    fprintf (file_nasm, "\n\t%-50s; rax => stack", "push rax");
+
     RecursiveMakeNasm (program, file_nasm, crnt_node->right, SECOND_EXPR);
+
+    fprintf (file_nasm, "\n\t%-50s; rax <= stack", "pop rax");
 
     fprintf (file_nasm, "\n\t%-50s; rdi = rdx", "mov rdi, rdx");
 
     fprintf (file_nasm, "\n\t%-50s; edx:eax = eax * edi", "mul edi");
 
+    if (variable_order == SECOND_EXPR)
+    {
+        fprintf (file_nasm, "\n\t%-50s; rdx = rax", "mov rdx, rax");
+    }
+
     return OK;
 }
 
 //---------------------------------------------------------------------------------------
 
-static err_t ProcessDIV (tree_t* program, FILE* file_nasm, node_t* crnt_node)
+static err_t ProcessDIV (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order)
 {
     RecursiveMakeNasm (program, file_nasm, crnt_node->left, FIRST_EXPR);
 
+    fprintf (file_nasm, "\n\t%-50s; rax => stack", "push rax");
+
     RecursiveMakeNasm (program, file_nasm, crnt_node->right, SECOND_EXPR);
+
+    fprintf (file_nasm, "\n\t%-50s; rax <= stack", "pop rax");
 
     fprintf (file_nasm, "\n\t%-50s; rdi = rdx", "mov rdi, rdx");
 
     fprintf (file_nasm, "\n\t%-50s; rdx = 0", "xor rdx, rdx");
 
     fprintf (file_nasm, "\n\t%-50s; eax = eax:edx / edi, edx = eax:edx / edi", "div edi");
+
+    if (variable_order == SECOND_EXPR)
+    {
+        fprintf (file_nasm, "\n\t%-50s; rdx = rax", "mov rdx, rax");
+    }
 
     return OK;
 }

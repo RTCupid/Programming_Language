@@ -113,6 +113,12 @@ node_t* GetOp (tree_t* program)
 
             node = GetFunc (program);
         }
+        else
+        {
+            fprintf (stderr, YEL "ERROR:  in GetOp free ID\n" RESET);
+
+            SintaxError (program, "GetOp");
+        }
     }
     else if (_CMP_OP("return"))
     {

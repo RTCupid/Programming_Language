@@ -1,0 +1,12 @@
+my_main ()
+{
+    sum = abc;
+
+    write_about {sum};
+
+    write_about {utyutyu};
+
+    write_about {mash};
+};
+
+then_commit_seppuku

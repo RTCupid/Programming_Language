@@ -19,10 +19,11 @@ typedef struct node_t
 
 typedef struct identificator_t
 {
-    char*  start_pos;
-    size_t n_symbols;
-    char*  name;
-    type_id_t type_id;
+    char*       start_pos;
+    size_t      n_symbols;
+    char*       name;
+    type_id_t   type_id;
+    int         number_func_for_local_id;
 } identificator_t;
 
 struct token_t;

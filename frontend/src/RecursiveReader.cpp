@@ -87,7 +87,7 @@ node_t* GetG (tree_t* program)
 
 //---------------------------------------------------------------------------------------
 
-node_t* GetOp (tree_t* program)
+node_t* GetOp (tree_t* program, int number_func_for_local_id)
 {
     FRONT_DBG fprintf (stderr, CYN "Start GetOp\n" RESET);
 

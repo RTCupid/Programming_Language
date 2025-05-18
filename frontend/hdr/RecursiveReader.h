@@ -7,7 +7,7 @@ void        InputProgram    (tree_t* expr, const char* name_file_for_frontend);
 
 node_t*     GetG            (tree_t* program);
 
-node_t*     GetOp           (tree_t* program);
+node_t*     GetOp           (tree_t* program, int number_func_for_local_id = -1);
 
 node_t*     GetFunc         (tree_t* program);
 

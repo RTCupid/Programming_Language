@@ -164,7 +164,7 @@ _my_print:
                                                     ; rax = some digit of dex number
     add  rax, 30h                                   ; rax += 30h to find ASCII code of number
 
-    cmp  rdx, BufferLen                             ; if (rdx >= BufferLen) {
+    cmp  rdx, BufferLen - 1                         ; if (rdx >= BufferLen - 1) {
     jnb  .BufferOverflow                            ;   goto .BufferOverflow }
 
     mov  [Buffer + rdx], al                         ; Buffer[rdx] = al
@@ -176,6 +176,11 @@ _my_print:
     jne  .NewDigitsInDexOutput                      ;   goto .NewDigitsInDexOutput }
 
 ;---Write-Buffer-------------------------------------------------------------------------
+
+    mov  al, 0x0a                                   ; al = '\n'
+
+    mov  [Buffer + rdx], al                         ; Buffer[rdx] = al
+    inc  rdx                                        ; rdx++
 
     mov  rsi, Buffer                                ; rsi = Buffer
 

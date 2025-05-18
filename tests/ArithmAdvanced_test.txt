@@ -1,0 +1,10 @@
+my_main ()
+{
+    x = 4
+    y = 7
+    z = 90
+
+    advanced_sum = x + y + z;
+
+    write_about (advanced_sum);
+};

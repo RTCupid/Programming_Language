@@ -1,89 +1,9 @@
-my_main ()
-{
-    input (a);
-    input (b);
-    input (c);
 
-    if_happens (a multiply b multiply c)
-    {
-        CountDiskriminant ();
+input (a);
+input (b);
+input (c);
 
-        then_commit_seppuku
-    };
-
-    if_happens (a multiply b)
-    {
-        first_answ  = 0;
-        second_answ = (0 subtract 1) multiply b divide a;
-
-        write_about {2};
-        write_about {first_answ};
-        write_about {second_answ};
-
-        then_commit_seppuku
-    };
-
-    if_happens (a multiply c)
-    {
-        if_happens (c > 0)
-        {
-            write_about {0};
-            then_commit_seppuku
-        };
-
-        first_answ  =                         sqrt ((0 subtract 1) multiply c divide a);
-        second_answ = (0 subtract 1) multiply sqrt ((0 subtract 1) multiply c divide a);
-
-        write_about {2};
-        write_about {first_answ};
-        write_about {second_answ};
-
-        then_commit_seppuku
-    };
-
-    if_happens (b multiply c)
-    {
-        first_answ = (0 subtract 1) multiply c divide b;
-
-        write_about {1};
-        write_about {first_answ};
-
-        then_commit_seppuku
-    };
-
-    if_happens (c)
-    {
-        first_answ = 0;
-
-        write_about {0};
-
-        then_commit_seppuku
-    };
-
-    if_happens (a)
-    {
-        first_answ = 0;
-
-        write_about {1};
-        write_about {first_answ};
-
-        then_commit_seppuku
-    };
-
-    if_happens (b)
-    {
-        first_answ = 0;
-
-        write_about {1};
-        write_about {first_answ};
-
-        then_commit_seppuku
-    };
-
-    write_about {8};
-};
-
-CountDiskriminant ()
+if_happens (a multiply b multiply c)
 {
     Diskriminant = b multiply b subtract 4 multiply a multiply c;
     write_about {Diskriminant};
@@ -100,6 +20,79 @@ CountDiskriminant ()
     write_about {2};
     write_about {first_answ};
     write_about {second_answ};
+
+    then_commit_seppuku
 };
+
+if_happens (a multiply b)
+{
+    first_answ  = 0;
+    second_answ = (0 subtract 1) multiply b divide a;
+
+    write_about {2};
+    write_about {first_answ};
+    write_about {second_answ};
+
+    then_commit_seppuku
+};
+
+if_happens (a multiply c)
+{
+    if_happens (c > 0)
+    {
+        write_about {0};
+        then_commit_seppuku
+    };
+
+    first_answ  =                         sqrt ((0 subtract 1) multiply c divide a);
+    second_answ = (0 subtract 1) multiply sqrt ((0 subtract 1) multiply c divide a);
+
+    write_about {2};
+    write_about {first_answ};
+    write_about {second_answ};
+
+    then_commit_seppuku
+};
+
+if_happens (b multiply c)
+{
+    first_answ = (0 subtract 1) multiply c divide b;
+
+    write_about {1};
+    write_about {first_answ};
+
+    then_commit_seppuku
+};
+
+if_happens (c)
+{
+    first_answ = 0;
+
+    write_about {0};
+
+    then_commit_seppuku
+};
+
+if_happens (a)
+{
+    first_answ = 0;
+
+    write_about {1};
+    write_about {first_answ};
+
+    then_commit_seppuku
+};
+
+if_happens (b)
+{
+    first_answ = 0;
+
+    write_about {1};
+    write_about {first_answ};
+
+    then_commit_seppuku
+};
+
+write_about {8};
 
 then_commit_seppuku

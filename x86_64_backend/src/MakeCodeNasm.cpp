@@ -322,9 +322,15 @@ static err_t ProcessCALL (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 {
     char buffer[100] = {};
 
+    RecursiveMakeNasm (program, file_nasm, crnt_node->left, FIRST_EXPR);
+
+    fprintf(file_nasm, "\n\n\t%-50s; rax => stack, make stack frame;", "push rax");
+
     snprintf (buffer, sizeof(buffer), "call %s", program->nametable[(size_t) crnt_node->left->value].name);
 
-    fprintf(file_nasm, "\n\n\t%-50s; %s ();", buffer, program->nametable[(size_t) crnt_node->left->value].name);
+    fprintf(file_nasm, "\n\n\t%-50s; %s (rax);", buffer, program->nametable[(size_t) crnt_node->left->value].name);
+
+    fprintf(file_nasm, "\n\n\t%-50s; clean stack frame;", "add rsp, 8");
 
     return OK;
 }

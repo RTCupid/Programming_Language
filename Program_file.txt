@@ -1,8 +1,9 @@
-size table: 4
+size table: 5
 0 my_main 2
 1 argument 3
 2 not_argument 3
 3 Process 2
+4 NoFactorial 2
 {OP:";"
 	{OP:"def"
 		{OP:"func"
@@ -25,13 +26,19 @@ size table: 4
 						{ID:"1"}
 					}
 					{OP:";"
-						{OP:"print"
-							{NUM:"7"}
+						{OP:"call"
+							{ID:"4"}
 							{ID:""}
 						}
 						{OP:";"
-							{OP:"$"}
-							{OP:";"}
+							{OP:"print"
+								{NUM:"7"}
+								{ID:""}
+							}
+							{OP:";"
+								{OP:"$"}
+								{OP:";"}
+							}
 						}
 					}
 				}
@@ -41,12 +48,12 @@ size table: 4
 	{OP:";"
 		{OP:"def"
 			{OP:"func"
-				{ID:"3"}
-				{ID:"1"}
+				{ID:"4"}
+				{ID:""}
 			}
 			{OP:";"
 				{OP:"print"
-					{NUM:"8"}
+					{NUM:"334"}
 					{ID:""}
 				}
 				{OP:";"
@@ -58,6 +65,27 @@ size table: 4
 				}
 			}
 		}
-		{OP:";"}
+		{OP:";"
+			{OP:"def"
+				{OP:"func"
+					{ID:"3"}
+					{ID:"1"}
+				}
+				{OP:";"
+					{OP:"print"
+						{NUM:"8"}
+						{ID:""}
+					}
+					{OP:";"
+						{OP:"return"
+							{NUM:"0"}
+							{ID:""}
+						}
+						{OP:";"}
+					}
+				}
+			}
+			{OP:";"}
+		}
 	}
 }

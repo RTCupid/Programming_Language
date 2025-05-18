@@ -6,9 +6,18 @@ my_main ()
 
     Process (argument);
 
+    NoFactorial ();
+
     write_about {7};
 
     then_commit_seppuku
+};
+
+NoFactorial ()
+{
+    write_about {334};
+
+    return 0;
 };
 
 Process (argument)

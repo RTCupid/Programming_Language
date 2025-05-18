@@ -1,6 +1,6 @@
 
-214
-count of char = 214
+294
+count of char = 294
 
 my_main ()
 {
@@ -10,9 +10,18 @@ my_main ()
 
     Process (argument);
 
+    NoFactorial ();
+
     write_about {7};
 
     then_commit_seppuku
+};
+
+NoFactorial ()
+{
+    write_about {334};
+
+    return 0;
 };
 
 Process (argument)
@@ -24,7 +33,7 @@ Process (argument)
 
 then_commit_seppuku
 
-sizeOfFile = <214>
+sizeOfFile = <294>
 
 
 Start Tokenizer:
@@ -145,6 +154,25 @@ name = <;>
 <;> is keyword
 number_key = <9>
 
+first symbol = <N> is alpha
+name = <NoFactorial>
+number_key = <-1>
+number_id = <-1>
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
 first symbol = <w> is alpha
 name = <write_about>
 <write_about> is keyword
@@ -172,6 +200,72 @@ first symbol = <t> is alpha
 name = <then_commit_seppuku>
 <then_commit_seppuku> is keyword
 number_key = <14>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <N> is alpha
+name = <NoFactorial>
+number_key = <-1>
+<NoFactorial> is identificator
+number_id = <4>
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = '3' is number
+number is <334>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <r> is alpha
+name = <return>
+<return> is keyword
+number_key = <31>
+
+first symbol = '0' is number
+number is <0>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
 
 first symbol = <}> is alpha
 name = <}>
@@ -278,12 +372,30 @@ OP (
 ID argument
 OP )
 OP ;
+ID NoFactorial
+OP (
+OP )
+OP ;
 OP print
 OP {
 NUM 7
 OP }
 OP ;
 OP $
+OP }
+OP ;
+ID NoFactorial
+OP (
+OP )
+OP {
+OP print
+OP {
+NUM 334
+OP }
+OP ;
+OP return
+NUM 0
+OP ;
 OP }
 OP ;
 ID Process

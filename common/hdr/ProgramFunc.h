@@ -98,7 +98,7 @@ enum modelang_t
 
 const size_t SIZE_NAMETABLE = 100;
 
-const size_t MAX_LEN_BUF = 20;
+const size_t MAX_LEN_BUF = 32;
 
 const size_t SIZE_SIGNATURE = 20;
 

@@ -209,12 +209,11 @@ node_t* GetReturn (tree_t* program)
 
 node_t* GetFunc (tree_t* program)
 {
-    node_t* new_left_node_def   = NULL;
-    node_t* new_right_node_def  = NULL;
+    node_t* new_left_node_def       = NULL;
 
-    node_t* new_right_node_func = NULL;
+    node_t* new_right_node_def      = NULL;
 
-    node_t* new_right_node_call = NULL;
+    node_t* argument_func_node      = NULL;
 
     node_t* identificator_func_node = NULL;
 
@@ -231,6 +230,15 @@ node_t* GetFunc (tree_t* program)
             FRONT_DBG fprintf (stderr, CYN " \"(\"\n" RESET);
             p++;
 
+            if (program->tokens[p].type == ID)
+            {
+                FRONT_DBG fprintf (stderr, CYN " function's argument = \"%s\"\n" RESET, program->nametable[(size_t) (program->tokens[p].value)].name);
+
+                argument_func_node = _ID(program->tokens[p].value);
+
+                p++;
+            }
+
             if (_CMP_OP(")"))
             {
                 FRONT_DBG fprintf (stderr, CYN " \")\"\n" RESET);
@@ -240,7 +248,7 @@ node_t* GetFunc (tree_t* program)
                 {
                     FRONT_DBG fprintf (stderr, CYN " \";\" - It is call function\n" RESET);
 
-                    return _CALL(identificator_func_node, new_right_node_call);
+                    return _CALL(identificator_func_node, argument_func_node);
                 }
                 else if (_CMP_OP("{"))
                 {
@@ -301,7 +309,7 @@ node_t* GetFunc (tree_t* program)
         SintaxError (program, "GetFunc");
     }
 
-    new_left_node_def = _FUNC(identificator_func_node, new_right_node_func);
+    new_left_node_def = _FUNC(identificator_func_node, argument_func_node);
 
     return _DEF(new_left_node_def, new_right_node_def);
 }

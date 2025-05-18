@@ -1,60 +1,69 @@
 
-129
-count of char = 129
+214
+count of char = 214
 
 my_main ()
 {
-    sum = abc;
+    argument = 19;
 
-    write_about {sum};
+    not_argument = 222;
 
-    write_about {utyutyu};
+    Process (argument);
 
-    write_about {mash};
+    write_about {7};
+
+    then_commit_seppuku
+};
+
+Process (argument)
+{
+    write_about {8};
+
+    return 0;
 };
 
 then_commit_seppuku
 
-sizeOfFile = <129>
+sizeOfFile = <214>
 
 
 Start Tokenizer:
 
 ----------------------------------------------------------------
 Dump Keywords:
-add                  1
-+                    1
-subtract             2
--                    2
-multiply             3
-*                    3
-divide               4
-/                    4
-next                 5
-;                    5
-assign               6
-=                    6
-pong                 7
-if                   7
-then_commit_seppuku  12
-$                    12
-if_happens           7
-(                    14
-)                    13
-{                    15
-}                    16
-write_about          17
-print                17
-input                18
-sqrt                 19
->                    20
-<                    21
-while                8
-call                 24
-def                  22
-func                 23
-return               25
-give                 25
+add                              1
++                                1
+subtract                         2
+-                                2
+multiply                         3
+*                                3
+divide                           4
+/                                4
+next                             5
+;                                5
+assign                           6
+=                                6
+pong                             7
+if                               7
+then_commit_seppuku              12
+$                                12
+if_happens                       7
+(                                14
+)                                13
+{                                15
+}                                16
+write_about                      17
+print                            17
+input                            18
+sqrt                             19
+>                                20
+<                                21
+while                            8
+call                             24
+def                              22
+func                             23
+return                           25
+give                             25
 
 ----------------------------------------------------------------
 End Dump!
@@ -78,8 +87,8 @@ name = <{>
 <{> is keyword
 number_key = <19>
 
-first symbol = <s> is alpha
-name = <sum>
+first symbol = <a> is alpha
+name = <argument>
 number_key = <-1>
 number_id = <-1>
 first symbol = <=> is alpha
@@ -87,34 +96,49 @@ name = <=>
 <=> is keyword
 number_key = <11>
 
+first symbol = '1' is number
+number is <19>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <n> is alpha
+name = <not_argument>
+number_key = <-1>
+number_id = <-1>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = '2' is number
+number is <222>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <P> is alpha
+name = <Process>
+number_key = <-1>
+number_id = <-1>
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
 first symbol = <a> is alpha
-name = <abc>
+name = <argument>
 number_key = <-1>
-number_id = <-1>
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
-first symbol = <w> is alpha
-name = <write_about>
-<write_about> is keyword
-number_key = <21>
-
-first symbol = <{> is alpha
-name = <{>
-<{> is keyword
-number_key = <19>
-
-first symbol = <s> is alpha
-name = <sum>
-number_key = <-1>
-<sum> is identificator
+<argument> is identificator
 number_id = <1>
-first symbol = <}> is alpha
-name = <}>
-<}> is keyword
-number_key = <20>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
 
 first symbol = <;> is alpha
 name = <;>
@@ -131,10 +155,9 @@ name = <{>
 <{> is keyword
 number_key = <19>
 
-first symbol = <u> is alpha
-name = <utyutyu>
-number_key = <-1>
-number_id = <-1>
+first symbol = '7' is number
+number is <7>
+
 first symbol = <}> is alpha
 name = <}>
 <}> is keyword
@@ -144,6 +167,46 @@ first symbol = <;> is alpha
 name = <;>
 <;> is keyword
 number_key = <9>
+
+first symbol = <t> is alpha
+name = <then_commit_seppuku>
+<then_commit_seppuku> is keyword
+number_key = <14>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <P> is alpha
+name = <Process>
+number_key = <-1>
+<Process> is identificator
+number_id = <3>
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <a> is alpha
+name = <argument>
+number_key = <-1>
+<argument> is identificator
+number_id = <1>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
 
 first symbol = <w> is alpha
 name = <write_about>
@@ -155,14 +218,26 @@ name = <{>
 <{> is keyword
 number_key = <19>
 
-first symbol = <m> is alpha
-name = <mash>
-number_key = <-1>
-number_id = <-1>
+first symbol = '8' is number
+number is <8>
+
 first symbol = <}> is alpha
 name = <}>
 <}> is keyword
 number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <r> is alpha
+name = <return>
+<return> is keyword
+number_key = <31>
+
+first symbol = '0' is number
+number is <0>
 
 first symbol = <;> is alpha
 name = <;>
@@ -190,24 +265,39 @@ ID my_main
 OP (
 OP )
 OP {
-ID sum
+ID argument
 OP =
-ID abc
+NUM 19
+OP ;
+ID not_argument
+OP =
+NUM 222
+OP ;
+ID Process
+OP (
+ID argument
+OP )
 OP ;
 OP print
 OP {
-ID sum
+NUM 7
 OP }
 OP ;
-OP print
-OP {
-ID utyutyu
+OP $
 OP }
 OP ;
+ID Process
+OP (
+ID argument
+OP )
+OP {
 OP print
 OP {
-ID mash
+NUM 8
 OP }
+OP ;
+OP return
+NUM 0
 OP ;
 OP }
 OP ;

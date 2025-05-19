@@ -326,6 +326,8 @@ static err_t ProcessRET (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 {
     RecursiveMakeNasm (program, file_nasm, crnt_node->left, FIRST_EXPR);
 
+    fprintf (file_nasm, "\n\n\t%-50s; rsp = rbp; back old value rsp;", "mov rsp, rbp");
+
     fprintf (file_nasm, "\n\n\t%-50s; return;", "ret");
 
     return OK;
@@ -649,9 +651,7 @@ static err_t ProcessEQU (tree_t* program, FILE* file_nasm, node_t* crnt_node)
     }
     else if (program->nametable[(int)crnt_node->left->value].type_id == TYPE_LOCAL)
     {
-        snprintf (buffer, sizeof(buffer), "mov [%s], rax", program->nametable[(int)crnt_node->left->value].name);
-
-        fprintf  (file_nasm, "\n\t%-50s; %s = rax ", buffer, program->nametable[(int)crnt_node->left->value].name);
+        fprintf  (file_nasm, "\n\t%-50s; %s = rax ", "mov [rbp + 8], rax", program->nametable[(int)crnt_node->left->value].name);
     }
 
     return OK;

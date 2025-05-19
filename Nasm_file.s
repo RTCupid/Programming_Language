@@ -58,13 +58,15 @@ Function:                                             ; it is definition of Func
 	mov rdx, 1000                                     ; rdx = 1000 
 	pop rax                                           ; rax <= stack
 	add rax, rdx                                      ; rax += rdx ; number operator 16 
-	mov [arg], rax                                    ; arg = rax  ; number operator 16 
+	mov [rbp + 8], rax                                ; arg = rax  ; number operator 16 
 
 	mov rax, [rbp + 8]                                ; rax = arg 
 
 	call _my_print                                    ; print (eax) ; number operator 18 
 
 	mov rax, 0                                        ; rax = 0 
+
+	mov rsp, rbp                                      ; rsp = rbp; back old value rsp;
 
 	ret                                               ; return; ; number operator 20  ; number operator 21  ; number operator 21  ; number operator 21  ; number operator 21  ; number operator 21  ; number operator 22  ; number operator 22  ; number operator 22 
 

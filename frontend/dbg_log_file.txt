@@ -1,28 +1,19 @@
 
-200
-count of char = 200
+136
+count of char = 136
 
-my_main ()
+utyutyu = 0;
+
+while (utyutyu < 20)
 {
-    first_argument = 1;
-
-    Function (first_argument);
-
-    then_commit_seppuku
-};
-
-Function (arg)
-{
-    arg = arg + 1000;
-
-    write_about {arg};
-
-    return 0;
+    write_about {utyutyu};
+    write_about {8};
+    utyutyu = utyutyu + 1;
 };
 
 then_commit_seppuku
 
-sizeOfFile = <200>
+sizeOfFile = <136>
 
 
 Start Tokenizer:
@@ -66,14 +57,45 @@ give                             25
 ----------------------------------------------------------------
 End Dump!
 
-first symbol = <m> is alpha
-name = <my_main>
+first symbol = <u> is alpha
+name = <utyutyu>
 number_key = <-1>
 number_id = <-1>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = '0' is number
+number is <0>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <w> is alpha
+name = <while>
+<while> is keyword
+number_key = <27>
+
 first symbol = <(> is alpha
 name = <(>
 <(> is keyword
 number_key = <17>
+
+first symbol = <u> is alpha
+name = <utyutyu>
+number_key = <-1>
+<utyutyu> is identificator
+number_id = <0>
+first symbol = <<> is alpha
+name = <<>
+<<> is keyword
+number_key = <26>
+
+first symbol = '2' is number
+number is <20>
 
 first symbol = <)> is alpha
 name = <)>
@@ -85,108 +107,25 @@ name = <{>
 <{> is keyword
 number_key = <19>
 
-first symbol = <f> is alpha
-name = <first_argument>
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <u> is alpha
+name = <utyutyu>
 number_key = <-1>
-number_id = <-1>
-first symbol = <=> is alpha
-name = <=>
-<=> is keyword
-number_key = <11>
-
-first symbol = '1' is number
-number is <1>
-
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
-first symbol = <F> is alpha
-name = <Function>
-number_key = <-1>
-number_id = <-1>
-first symbol = <(> is alpha
-name = <(>
-<(> is keyword
-number_key = <17>
-
-first symbol = <f> is alpha
-name = <first_argument>
-number_key = <-1>
-<first_argument> is identificator
-number_id = <1>
-first symbol = <)> is alpha
-name = <)>
-<)> is keyword
-number_key = <18>
-
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
-first symbol = <t> is alpha
-name = <then_commit_seppuku>
-<then_commit_seppuku> is keyword
-number_key = <14>
-
+<utyutyu> is identificator
+number_id = <0>
 first symbol = <}> is alpha
 name = <}>
 <}> is keyword
 number_key = <20>
-
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
-first symbol = <F> is alpha
-name = <Function>
-number_key = <-1>
-<Function> is identificator
-number_id = <2>
-first symbol = <(> is alpha
-name = <(>
-<(> is keyword
-number_key = <17>
-
-first symbol = <a> is alpha
-name = <arg>
-number_key = <-1>
-number_id = <-1>
-first symbol = <)> is alpha
-name = <)>
-<)> is keyword
-number_key = <18>
-
-first symbol = <{> is alpha
-name = <{>
-<{> is keyword
-number_key = <19>
-
-first symbol = <a> is alpha
-name = <arg>
-number_key = <-1>
-<arg> is identificator
-number_id = <3>
-first symbol = <=> is alpha
-name = <=>
-<=> is keyword
-number_key = <11>
-
-first symbol = <a> is alpha
-name = <arg>
-number_key = <-1>
-<arg> is identificator
-number_id = <3>
-first symbol = <+> is alpha
-name = <+>
-<+> is keyword
-number_key = <1>
-
-first symbol = '1' is number
-number is <1000>
 
 first symbol = <;> is alpha
 name = <;>
@@ -203,11 +142,9 @@ name = <{>
 <{> is keyword
 number_key = <19>
 
-first symbol = <a> is alpha
-name = <arg>
-number_key = <-1>
-<arg> is identificator
-number_id = <3>
+first symbol = '8' is number
+number is <8>
+
 first symbol = <}> is alpha
 name = <}>
 <}> is keyword
@@ -218,13 +155,28 @@ name = <;>
 <;> is keyword
 number_key = <9>
 
-first symbol = <r> is alpha
-name = <return>
-<return> is keyword
-number_key = <31>
+first symbol = <u> is alpha
+name = <utyutyu>
+number_key = <-1>
+<utyutyu> is identificator
+number_id = <0>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
 
-first symbol = '0' is number
-number is <0>
+first symbol = <u> is alpha
+name = <utyutyu>
+number_key = <-1>
+<utyutyu> is identificator
+number_id = <0>
+first symbol = <+> is alpha
+name = <+>
+<+> is keyword
+number_key = <1>
+
+first symbol = '1' is number
+number is <1>
 
 first symbol = <;> is alpha
 name = <;>
@@ -248,40 +200,32 @@ number_key = <14>
 
 ----------------------------------------------------------------
 Dump Tokens:
-ID my_main
+ID utyutyu
+OP =
+NUM 0
+OP ;
+OP while
 OP (
+ID utyutyu
+OP <
+NUM 20
 OP )
 OP {
-ID first_argument
-OP =
-NUM 1
-OP ;
-ID Function
-OP (
-ID first_argument
-OP )
-OP ;
-OP $
+OP print
+OP {
+ID utyutyu
 OP }
-OP ;
-ID Function
-OP (
-ID arg
-OP )
-OP {
-ID arg
-OP =
-ID arg
-OP +
-NUM 1000
 OP ;
 OP print
 OP {
-ID arg
+NUM 8
 OP }
 OP ;
-OP return
-NUM 0
+ID utyutyu
+OP =
+ID utyutyu
+OP +
+NUM 1
 OP ;
 OP }
 OP ;

@@ -1,54 +1,33 @@
-size table: 4
-0 my_main 2 0 
-1 first_argument 3 0 
-2 Function 2 1 
-3 arg 3 0 
+size table: 1
+0 utyutyu 3 0 
 {OP:";"
-	{OP:"def"
-		{OP:"func"
-			{ID:"0"}
-			{ID:""}
-		}
-		{OP:";"
-			{OP:"="
-				{ID:"1"}
-				{NUM:"1"}
-			}
-			{OP:";"
-				{OP:"call"
-					{ID:"2"}
-					{ID:"1"}
-				}
-				{OP:";"
-					{OP:"$"}
-					{OP:";"}
-				}
-			}
-		}
+	{OP:"="
+		{ID:"0"}
+		{NUM:"0"}
 	}
 	{OP:";"
-		{OP:"def"
-			{OP:"func"
-				{ID:"2"}
-				{ID:"3"}
+		{OP:"while"
+			{OP:">"
+				{ID:"0"}
+				{NUM:"20"}
 			}
 			{OP:";"
-				{OP:"="
-					{ID:"3"}
-					{OP:"+"
-						{ID:"3"}
-						{NUM:"1000"}
-					}
+				{OP:"print"
+					{ID:"0"}
+					{ID:""}
 				}
 				{OP:";"
 					{OP:"print"
-						{ID:"3"}
+						{NUM:"8"}
 						{ID:""}
 					}
 					{OP:";"
-						{OP:"return"
-							{NUM:"0"}
-							{ID:""}
+						{OP:"="
+							{ID:"0"}
+							{OP:"+"
+								{ID:"0"}
+								{NUM:"1"}
+							}
 						}
 						{OP:";"}
 					}

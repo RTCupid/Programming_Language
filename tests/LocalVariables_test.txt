@@ -4,6 +4,8 @@ my_main ()
 
     Function (first_argument);
 
+    write_about {first_argument};
+
     then_commit_seppuku
 };
 

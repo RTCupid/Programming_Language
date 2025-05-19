@@ -25,11 +25,11 @@ my_main:                                              ; it is definition of my_m
 	mov rax, 0                                        ; rax = 0 
 	mov [first_argument], rax                         ; first_argument = rax  ; number operator 5 
 
-	mov rax, [first_argument]                         ; rax = first_argument 
+	mov rcx, 8 * 0                                    ; rcx = 8 * 0 
+
+	mov rax, [ebp + rcx]                              ; rax = first_argument 
 
 	call _my_print                                    ; print (eax) ; number operator 7 
-
-	mov rax, [my_main]                                ; rax = my_main 
 
 	sub rsp, 8                                        ; reserved 8 byte for argument
 
@@ -39,7 +39,9 @@ my_main:                                              ; it is definition of my_m
 
 	add rsp, 8                                        ; clean stack frame; ; number operator 9 
 
-	mov rax, [first_argument]                         ; rax = first_argument 
+	mov rcx, 8 * 0                                    ; rcx = 8 * 0 
+
+	mov rax, [ebp + rcx]                              ; rax = first_argument 
 
 	call _my_print                                    ; print (eax) ; number operator 11 
 

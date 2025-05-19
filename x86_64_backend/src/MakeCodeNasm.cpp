@@ -338,17 +338,26 @@ static err_t ProcessCALL (tree_t* program, FILE* file_nasm, node_t* crnt_node, o
 {
     char buffer[100] = {};
 
-    RecursiveMakeNasm (program, file_nasm, crnt_node->right, FIRST_EXPR);
+    if (program->nametable[(size_t) crnt_node->left->value].argument == WITH_ARGUMENT)
+    {
+        RecursiveMakeNasm (program, file_nasm, crnt_node->right, FIRST_EXPR);
 
-    fprintf(file_nasm, "\n\n\t%-50s; reserved 8 byte for argument", "sub rsp, 8");
+        fprintf(file_nasm, "\n\n\t%-50s; reserved 8 byte for argument", "sub rsp, 8");
 
-    fprintf(file_nasm, "\n\n\t%-50s; rax => [rsp], make stack frame;", "mov [rsp], rax");
+        fprintf(file_nasm, "\n\n\t%-50s; rax => [rsp], make stack frame;", "mov [rsp], rax");
 
-    snprintf (buffer, sizeof(buffer), "call %s", program->nametable[(size_t) crnt_node->left->value].name);
+        snprintf (buffer, sizeof(buffer), "call %s", program->nametable[(size_t) crnt_node->left->value].name);
 
-    fprintf(file_nasm, "\n\n\t%-50s; %s (rax);", buffer, program->nametable[(size_t) crnt_node->left->value].name);
+        fprintf(file_nasm, "\n\n\t%-50s; %s (rax);", buffer, program->nametable[(size_t) crnt_node->left->value].name);
 
-    fprintf(file_nasm, "\n\n\t%-50s; clean stack frame;", "add rsp, 8");
+        fprintf(file_nasm, "\n\n\t%-50s; clean stack frame;", "add rsp, 8");
+    }
+    else
+    {
+        snprintf (buffer, sizeof(buffer), "call %s", program->nametable[(size_t) crnt_node->left->value].name);
+
+        fprintf(file_nasm, "\n\n\t%-50s; %s (rax);", buffer, program->nametable[(size_t) crnt_node->left->value].name);
+    }
 
     if (variable_order == SECOND_EXPR)
     {

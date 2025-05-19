@@ -9,12 +9,19 @@ enum err_t
     ERROR,
 };
 
+enum arg_t
+{
+    WITHOUT_ARGUMENT = 0,
+    WITH_ARGUMENT = 1,
+};
+
 typedef struct node_t
 {
     size_t  type;
     double  value;
     node_t* left;
     node_t* right;
+
 } node_t;
 
 typedef struct identificator_t
@@ -23,6 +30,8 @@ typedef struct identificator_t
     size_t      n_symbols;
     char*       name;
     type_id_t   type_id;
+    arg_t       argument;
+
 } identificator_t;
 
 struct token_t;
@@ -32,6 +41,7 @@ typedef struct keyword_t
     const char*  name_key;
     int          number_key;
     const char*  key_op;
+
 } keyword_t;
 
 const size_t N_KEYWORDS = 33;
@@ -88,6 +98,7 @@ typedef struct tree_t
 
     FILE*               log_file;
     FILE*               dbg_log_file;
+
 } tree_t;
 
 enum modelang_t

@@ -224,6 +224,8 @@ node_t* GetFunc (tree_t* program)
 
         program->nametable[(size_t) (program->tokens[p].value)].type_id = TYPE_FUNC;
 
+        size_t index_func = p;
+
         p++;
 
         if (_CMP_OP("("))
@@ -236,6 +238,8 @@ node_t* GetFunc (tree_t* program)
                 FRONT_DBG fprintf (stderr, CYN " function's argument = \"%lu\"\n" RESET, (size_t) (program->tokens[p].value));
 
                 argument_func_node = GetE (program, TYPE_LOCAL);
+
+                program->nametable[(size_t) (program->tokens[index_func].value)].argument = WITH_ARGUMENT;
             }
 
             FRONT_DBG fprintf (stderr, GRN "end check argument\n" RESET);

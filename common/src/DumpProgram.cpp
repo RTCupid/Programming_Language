@@ -61,6 +61,8 @@ void MakeNameTableHTM (tree_t* expr, modelang_t mode)
 
     fprintf (expr->log_file, "\t\t\t<th>Identificator's type</th>\n");
 
+    fprintf (expr->log_file, "\t\t\t<th>arguments</th>\n");
+
     fprintf (expr->log_file, "\t\t</tr>\n");
 
     fprintf (expr->log_file, "</thead>\n");
@@ -89,6 +91,8 @@ void MakeNameTableHTM (tree_t* expr, modelang_t mode)
         }
 
         fprintf (expr->log_file, "<td> %lu </td>\n", (size_t)(expr->nametable[i].type_id));
+
+        fprintf (expr->log_file, "<td> %lu </td>\n", (size_t)(expr->nametable[i].argument));
 
         fprintf (expr->log_file, "</tr>\n");
     }

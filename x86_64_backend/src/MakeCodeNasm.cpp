@@ -300,6 +300,12 @@ static err_t ProcessDEF (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 {
     RecursiveMakeNasm (program, file_nasm, crnt_node->left);
 
+    fprintf(file_nasm, "\n\n\t%-50s; rbp = rsp, save old value of rsp", "mov rbp, rsp");
+
+    fprintf(file_nasm, "\n\n\t%-50s; [rbp] = address for return", " ");
+
+    fprintf(file_nasm, "\n\n\t%-50s; [rbp + 8] = function's argument", " ");
+
     RecursiveMakeNasm (program, file_nasm, crnt_node->right);
 
     return OK;
@@ -324,7 +330,9 @@ static err_t ProcessCALL (tree_t* program, FILE* file_nasm, node_t* crnt_node, o
 
     RecursiveMakeNasm (program, file_nasm, crnt_node->right, FIRST_EXPR);
 
-    fprintf(file_nasm, "\n\n\t%-50s; rax => stack, make stack frame;", "push rax");
+    fprintf(file_nasm, "\n\n\t%-50s; reserved 8 byte for argument", "sub rsp, 8");
+
+    fprintf(file_nasm, "\n\n\t%-50s; rax => [rsp], make stack frame;", "mov [rsp], rax");
 
     snprintf (buffer, sizeof(buffer), "call %s", program->nametable[(size_t) crnt_node->left->value].name);
 

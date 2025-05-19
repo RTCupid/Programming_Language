@@ -12,101 +12,100 @@ _start:
 
 	and rsp, -16
 
+	mov rax, 19                                       ; rax = 19 
+	mov [utyutyu], rax                                ; utyutyu = rax  ; number operator 2 
+
 ;--------------------------------------------------------------------------------------------------
 ;	my_main:
 ;--------------------------------------------------------------------------------------------------
 
-my_main:                                              ; it is definition of my_main  ; number operator 3 
+my_main:                                              ; it is definition of my_main  ; number operator 5 
+
+	mov rbp, rsp                                      ; rbp = rsp, save old value of rsp
+
+	                                                  ; [rbp] = address for return
+
+	                                                  ; [rbp + 8] = function's argument
+
+	mov rax, [utyutyu]                                ; rax = utyutyu 
+
+	call _my_print                                    ; print (eax) ; number operator 7 
 
 	call _my_input                                    ; input(argument); rax = input 
-	mov [argument], rax                               ; [argument] = rax  ; number operator 5 
+	mov [argument], rax                               ; [argument] = rax  ; number operator 9 
 
 	mov rax, [argument]                               ; rax = argument 
 
-	push rax                                          ; rax => stack, make stack frame;
+	sub rsp, 8                                        ; reserved 8 byte for argument
 
-	call Factorial                                    ; Factorial (rax);
+	mov [rsp], rax                                    ; rax => [rsp], make stack frame;
 
-	add rsp, 8                                        ; clean stack frame; ; number operator 8 
-	mov [answer], rax                                 ; answer = rax  ; number operator 8 
+	call Function                                     ; Function (rax);
 
-	mov rax, [answer]                                 ; rax = answer 
+	add rsp, 8                                        ; clean stack frame; ; number operator 11 
 
-	call _my_print                                    ; print (eax) ; number operator 10 
+	mov rax, [argument]                               ; rax = argument 
 
-	call _my_hlt                                      ; exit (0) ; number operator 12  ; number operator 13  ; number operator 13  ; number operator 13  ; number operator 13  ; number operator 13  ; number operator 13 
+	sub rsp, 8                                        ; reserved 8 byte for argument
+
+	mov [rsp], rax                                    ; rax => [rsp], make stack frame;
+
+	call Summator                                     ; Summator (rax);
+
+	add rsp, 8                                        ; clean stack frame; ; number operator 13 
+
+	call _my_hlt                                      ; exit (0) ; number operator 15  ; number operator 16  ; number operator 16  ; number operator 16  ; number operator 16  ; number operator 16  ; number operator 16  ; number operator 16 
 
 ;--------------------------------------------------------------------------------------------------
-;	Factorial:
+;	Function:
 ;--------------------------------------------------------------------------------------------------
 
-Factorial:                                            ; it is definition of Factorial  ; number operator 16 
-;---start-if-18-----------------------------------------------------------------------------------
-;   test-18
+Function:                                             ; it is definition of Function  ; number operator 19 
+
+	mov rbp, rsp                                      ; rbp = rsp, save old value of rsp
+
+	                                                  ; [rbp] = address for return
+
+	                                                  ; [rbp + 8] = function's argument
 
 	mov rax, [fact]                                   ; rax = fact 
-	mov rdx, 2                                        ; rdx = 2 
-	cmp rax, rdx                                      ; if (rax >= rdx)
-	jge  .end_if18                                    ;  goto .end_if18
-;   action-18
 
-	mov rax, 1                                        ; rax = 1 
+	call _my_print                                    ; print (eax) ; number operator 21 
 
-	ret                                               ; return; ; number operator 20  ; number operator 21  ; number operator 21 
+	mov rax, 0                                        ; rax = 0 
 
-.end_if18:
+	ret                                               ; return; ; number operator 23  ; number operator 24  ; number operator 24  ; number operator 24  ; number operator 24 
 
-;---end-if-18------------------------------------------------------------------------------------- ; number operator 21 
-;---start-if-23-----------------------------------------------------------------------------------
-;   test-23
+;--------------------------------------------------------------------------------------------------
+;	Summator:
+;--------------------------------------------------------------------------------------------------
 
-	mov rax, [fact]                                   ; rax = fact 
-	mov rdx, 3                                        ; rdx = 3 
-	cmp rax, rdx                                      ; if (rax >= rdx)
-	jge  .end_if23                                    ;  goto .end_if23
-;   action-23
+Summator:                                             ; it is definition of Summator  ; number operator 27 
 
-	mov rax, 2                                        ; rax = 2 
+	mov rbp, rsp                                      ; rbp = rsp, save old value of rsp
 
-	ret                                               ; return; ; number operator 25  ; number operator 26  ; number operator 26 
+	                                                  ; [rbp] = address for return
 
-.end_if23:
+	                                                  ; [rbp + 8] = function's argument
 
-;---end-if-23------------------------------------------------------------------------------------- ; number operator 26 
-
-	mov rax, [fact]                                   ; rax = fact 
-	push rax                                          ; rax => stack
-
-	mov rax, [fact]                                   ; rax = fact 
+	mov rax, [sum]                                    ; rax = sum 
 	push rax                                          ; rax => stack
 	mov rdx, 1                                        ; rdx = 1 
 	pop rax                                           ; rax <= stack
-	sub rax, rdx                                      ; rax -= rdx ; number operator 31 
+	add rax, rdx                                      ; rax += rdx ; number operator 30 
 
-	push rax                                          ; rax => stack, make stack frame;
+	call _my_print                                    ; print (eax) ; number operator 30 
 
-	call Factorial                                    ; Factorial (rax);
+	mov rax, 0                                        ; rax = 0 
 
-	add rsp, 8                                        ; clean stack frame;
-
-	mov rdx, rax                                      ; rdx = rax ; number operator 31 
-	pop rax                                           ; rax <= stack
-	mov rdi, rdx                                      ; rdi = rdx
-	imul rdi                                          ; rdx:rax = rax * rdi ; number operator 31 
-	mov [fact], rax                                   ; fact = rax  ; number operator 31 
-
-	mov rax, [fact]                                   ; rax = fact 
-
-	ret                                               ; return; ; number operator 33  ; number operator 34  ; number operator 34  ; number operator 34  ; number operator 34  ; number operator 34  ; number operator 34  ; number operator 35  ; number operator 35  ; number operator 35 
+	ret                                               ; return; ; number operator 32  ; number operator 33  ; number operator 33  ; number operator 33  ; number operator 33  ; number operator 34  ; number operator 34  ; number operator 34  ; number operator 34  ; number operator 34 
 
 call _my_hlt                                          ; exit (0)
 ;--------------------------------------------------------------------------------------------------
 
 section .data
 
-argument: dq 0
-answer: dq 0
-fact: dq 0
+utyutyu: dq 0
 ;--------------------------------------------------------------------------------------------------
 
 section .note.GNU-stack

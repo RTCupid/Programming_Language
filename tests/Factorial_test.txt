@@ -1,9 +1,5 @@
-utyutyu = 19;
-
 my_main ()
 {
-    write_about {utyutyu};
-
     input (argument);
 
     answer = Factorial (argument);

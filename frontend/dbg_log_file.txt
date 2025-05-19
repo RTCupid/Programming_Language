@@ -1,6 +1,6 @@
 
-386
-count of char = 386
+303
+count of char = 303
 
 utyutyu = 19;
 
@@ -10,32 +10,30 @@ my_main ()
 
     input (argument);
 
-    answer = Factorial (argument);
+    Function (argument);
 
-    write_about {answer};
+    Summator (argument);
 
     then_commit_seppuku
 };
 
-Factorial (fact)
+Function (fact)
 {
-    if_happens (fact < 2)
-    {
-        return 1;
-    };
-    if_happens (fact < 3)
-    {
-        return 2;
-    };
+    write_about {fact};
 
-    fact = fact * Factorial (fact - 1);
+    return 0;
+};
 
-    return fact;
+Summator (sum)
+{
+    write_about {sum + 1};
+
+    return 0;
 };
 
 then_commit_seppuku
 
-sizeOfFile = <386>
+sizeOfFile = <303>
 
 
 Start Tokenizer:
@@ -164,17 +162,8 @@ name = <;>
 <;> is keyword
 number_key = <9>
 
-first symbol = <a> is alpha
-name = <answer>
-number_key = <-1>
-number_id = <-1>
-first symbol = <=> is alpha
-name = <=>
-<=> is keyword
-number_key = <11>
-
 first symbol = <F> is alpha
-name = <Factorial>
+name = <Function>
 number_key = <-1>
 number_id = <-1>
 first symbol = <(> is alpha
@@ -197,25 +186,24 @@ name = <;>
 <;> is keyword
 number_key = <9>
 
-first symbol = <w> is alpha
-name = <write_about>
-<write_about> is keyword
-number_key = <21>
-
-first symbol = <{> is alpha
-name = <{>
-<{> is keyword
-number_key = <19>
+first symbol = <S> is alpha
+name = <Summator>
+number_key = <-1>
+number_id = <-1>
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
 
 first symbol = <a> is alpha
-name = <answer>
+name = <argument>
 number_key = <-1>
-<answer> is identificator
-number_id = <3>
-first symbol = <}> is alpha
-name = <}>
-<}> is keyword
-number_key = <20>
+<argument> is identificator
+number_id = <2>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
 
 first symbol = <;> is alpha
 name = <;>
@@ -238,10 +226,10 @@ name = <;>
 number_key = <9>
 
 first symbol = <F> is alpha
-name = <Factorial>
+name = <Function>
 number_key = <-1>
-<Factorial> is identificator
-number_id = <4>
+<Function> is identificator
+number_id = <3>
 first symbol = <(> is alpha
 name = <(>
 <(> is keyword
@@ -261,46 +249,38 @@ name = <{>
 <{> is keyword
 number_key = <19>
 
-first symbol = <i> is alpha
-name = <if_happens>
-<if_happens> is keyword
-number_key = <16>
-
-first symbol = <(> is alpha
-name = <(>
-<(> is keyword
-number_key = <17>
-
-first symbol = <f> is alpha
-name = <fact>
-number_key = <-1>
-<fact> is identificator
-number_id = <5>
-first symbol = <<> is alpha
-name = <<>
-<<> is keyword
-number_key = <26>
-
-first symbol = '2' is number
-number is <2>
-
-first symbol = <)> is alpha
-name = <)>
-<)> is keyword
-number_key = <18>
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
 
 first symbol = <{> is alpha
 name = <{>
 <{> is keyword
 number_key = <19>
 
+first symbol = <f> is alpha
+name = <fact>
+number_key = <-1>
+<fact> is identificator
+number_id = <5>
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
 first symbol = <r> is alpha
 name = <return>
 <return> is keyword
 number_key = <31>
 
-first symbol = '1' is number
-number is <1>
+first symbol = '0' is number
+number is <0>
 
 first symbol = <;> is alpha
 name = <;>
@@ -317,109 +297,57 @@ name = <;>
 <;> is keyword
 number_key = <9>
 
-first symbol = <i> is alpha
-name = <if_happens>
-<if_happens> is keyword
-number_key = <16>
-
-first symbol = <(> is alpha
-name = <(>
-<(> is keyword
-number_key = <17>
-
-first symbol = <f> is alpha
-name = <fact>
+first symbol = <S> is alpha
+name = <Summator>
 number_key = <-1>
-<fact> is identificator
-number_id = <5>
-first symbol = <<> is alpha
-name = <<>
-<<> is keyword
-number_key = <26>
-
-first symbol = '3' is number
-number is <3>
-
-first symbol = <)> is alpha
-name = <)>
-<)> is keyword
-number_key = <18>
-
-first symbol = <{> is alpha
-name = <{>
-<{> is keyword
-number_key = <19>
-
-first symbol = <r> is alpha
-name = <return>
-<return> is keyword
-number_key = <31>
-
-first symbol = '2' is number
-number is <2>
-
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
-first symbol = <}> is alpha
-name = <}>
-<}> is keyword
-number_key = <20>
-
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
-first symbol = <f> is alpha
-name = <fact>
-number_key = <-1>
-<fact> is identificator
-number_id = <5>
-first symbol = <=> is alpha
-name = <=>
-<=> is keyword
-number_key = <11>
-
-first symbol = <f> is alpha
-name = <fact>
-number_key = <-1>
-<fact> is identificator
-number_id = <5>
-first symbol = <*> is alpha
-name = <*>
-<*> is keyword
-number_key = <5>
-
-first symbol = <F> is alpha
-name = <Factorial>
-number_key = <-1>
-<Factorial> is identificator
+<Summator> is identificator
 number_id = <4>
 first symbol = <(> is alpha
 name = <(>
 <(> is keyword
 number_key = <17>
 
-first symbol = <f> is alpha
-name = <fact>
+first symbol = <s> is alpha
+name = <sum>
 number_key = <-1>
-<fact> is identificator
-number_id = <5>
-first symbol = <-> is alpha
-name = <->
-<-> is keyword
-number_key = <3>
-
-first symbol = '1' is number
-number is <1>
-
+number_id = <-1>
 first symbol = <)> is alpha
 name = <)>
 <)> is keyword
 number_key = <18>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <s> is alpha
+name = <sum>
+number_key = <-1>
+<sum> is identificator
+number_id = <6>
+first symbol = <+> is alpha
+name = <+>
+<+> is keyword
+number_key = <1>
+
+first symbol = '1' is number
+number is <1>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
 
 first symbol = <;> is alpha
 name = <;>
@@ -431,11 +359,9 @@ name = <return>
 <return> is keyword
 number_key = <31>
 
-first symbol = <f> is alpha
-name = <fact>
-number_key = <-1>
-<fact> is identificator
-number_id = <5>
+first symbol = '0' is number
+number is <0>
+
 first symbol = <;> is alpha
 name = <;>
 <;> is keyword
@@ -476,63 +402,48 @@ OP (
 ID argument
 OP )
 OP ;
-ID answer
-OP =
-ID Factorial
+ID Function
 OP (
 ID argument
 OP )
 OP ;
-OP print
-OP {
-ID answer
-OP }
+ID Summator
+OP (
+ID argument
+OP )
 OP ;
 OP $
 OP }
 OP ;
-ID Factorial
+ID Function
 OP (
 ID fact
 OP )
 OP {
-OP if
-OP (
-ID fact
-OP <
-NUM 2
-OP )
+OP print
 OP {
+ID fact
+OP }
+OP ;
 OP return
-NUM 1
+NUM 0
 OP ;
 OP }
 OP ;
-OP if
+ID Summator
 OP (
-ID fact
-OP <
-NUM 3
+ID sum
 OP )
 OP {
-OP return
-NUM 2
-OP ;
+OP print
+OP {
+ID sum
+OP +
+NUM 1
 OP }
 OP ;
-ID fact
-OP =
-ID fact
-OP *
-ID Factorial
-OP (
-ID fact
-OP -
-NUM 1
-OP )
-OP ;
 OP return
-ID fact
+NUM 0
 OP ;
 OP }
 OP ;

@@ -25,11 +25,15 @@ my_main:                                              ; it is definition of my_m
 	call _my_input                                    ; input(first_argument); rax = input 
 	mov [first_argument], rax                         ; [first_argument] = rax  ; number operator 5 
 
-	mov rax, [first_argument]                         ; rax = first_argument 
+	mov rcx, 8 * 0                                    ; rcx = 8 * 0 
+
+	mov rax, [ebp + rcx]                              ; rax = first_argument 
 
 	call _my_print                                    ; print (eax) ; number operator 7 
 
-	mov rax, [first_argument]                         ; rax = first_argument 
+	mov rcx, 8 * 0                                    ; rcx = 8 * 0 
+
+	mov rax, [ebp + rcx]                              ; rax = first_argument 
 
 	sub rsp, 8                                        ; reserved 8 byte for argument
 
@@ -76,7 +80,6 @@ call _my_hlt                                          ; exit (0)
 
 section .data
 
-first_argument: dq 0
 arg: dq 0
 ;--------------------------------------------------------------------------------------------------
 

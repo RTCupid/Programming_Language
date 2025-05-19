@@ -262,7 +262,7 @@ node_t* GetFunc (tree_t* program)
 
                     new_right_node_def        = _ST(NULL, NULL);
 
-                    new_right_node_def->left  = GetOp (program, TYPE_LOCAL);
+                    new_right_node_def->left  = GetOp (program, TYPE_GLOBAL);
 
                     new_right_node_def->right = _ST(NULL, NULL);
 
@@ -279,7 +279,7 @@ node_t* GetFunc (tree_t* program)
                             break;
                         }
 
-                        crnt_node->left  = GetOp (program, TYPE_LOCAL);
+                        crnt_node->left  = GetOp (program, TYPE_GLOBAL);
 
                         crnt_node->right = _ST(NULL, NULL);
 
@@ -833,7 +833,7 @@ node_t* GetP (tree_t* program, type_id_t scope)
         {
             FRONT_DBG fprintf (stderr, CYN "It is free Id\n" RESET);
 
-            program->nametable[(size_t) token_value].type_id     = TYPE_GLOBAL;
+            program->nametable[(size_t) token_value].type_id     = scope;
 
             return _ID (token_value);
         }

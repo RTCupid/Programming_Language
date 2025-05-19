@@ -1,6 +1,6 @@
 size table: 4
 0 my_main 2 0 -1
-1 first_argument 3 0 -1
+1 first_argument 1 0 -1
 2 Function 2 1 -1
 3 arg 3 0 -1
 {OP:";"

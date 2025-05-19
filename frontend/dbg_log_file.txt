@@ -1,8 +1,13 @@
 
-274
-count of char = 274
+312
+count of char = 312
 
 utyutyu = 19;
+
+fictive ()
+{
+    write_about {5};
+};
 
 my_main ()
 {
@@ -28,7 +33,7 @@ Function ()
 
 then_commit_seppuku
 
-sizeOfFile = <274>
+sizeOfFile = <312>
 
 
 Start Tokenizer:
@@ -83,6 +88,58 @@ number_key = <11>
 
 first symbol = '1' is number
 number is <19>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <f> is alpha
+name = <fictive>
+number_key = <-1>
+number_id = <-1>
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = '5' is number
+number is <5>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
 
 first symbol = <;> is alpha
 name = <;>
@@ -164,7 +221,7 @@ first symbol = <f> is alpha
 name = <first_argument>
 number_key = <-1>
 <first_argument> is identificator
-number_id = <2>
+number_id = <3>
 first symbol = <}> is alpha
 name = <}>
 <}> is keyword
@@ -208,7 +265,7 @@ first symbol = <f> is alpha
 name = <first_argument>
 number_key = <-1>
 <first_argument> is identificator
-number_id = <2>
+number_id = <3>
 first symbol = <}> is alpha
 name = <}>
 <}> is keyword
@@ -238,7 +295,7 @@ first symbol = <F> is alpha
 name = <Function>
 number_key = <-1>
 <Function> is identificator
-number_id = <3>
+number_id = <4>
 first symbol = <(> is alpha
 name = <(>
 <(> is keyword
@@ -258,7 +315,7 @@ first symbol = <f> is alpha
 name = <first_argument>
 number_key = <-1>
 <first_argument> is identificator
-number_id = <2>
+number_id = <3>
 first symbol = <=> is alpha
 name = <=>
 <=> is keyword
@@ -305,6 +362,17 @@ Dump Tokens:
 ID utyutyu
 OP =
 NUM 19
+OP ;
+ID fictive
+OP (
+OP )
+OP {
+OP print
+OP {
+NUM 5
+OP }
+OP ;
+OP }
 OP ;
 ID my_main
 OP (

@@ -20,6 +20,8 @@ void WriteNameTable (tree_t* program, FILE* file)
         snprintf (identificator, program->nametable[i].n_symbols + 1, "%s", program->nametable[i].start_pos);
 
         fprintf (file, "%lu %s %d %d %d\n", i, identificator, program->nametable[i].type_id, program->nametable[i].argument, program->nametable[i].number_func);
+
+        fprintf (stderr, BHMAG "%lu %s %d %d %d\n" RESET, i, identificator, program->nametable[i].type_id, program->nametable[i].argument, program->nametable[i].number_func);
     }
 }
 

@@ -1,5 +1,10 @@
 utyutyu = 19;
 
+fictive ()
+{
+    write_about {5};
+};
+
 my_main ()
 {
     write_about {utyutyu};

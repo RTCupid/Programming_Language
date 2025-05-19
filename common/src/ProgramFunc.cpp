@@ -132,7 +132,7 @@ void AddToNameTable (tree_t* program, size_t n_symbols, char* start_pos, type_id
 
     program->nametable[program->nametable_id].type_id     = type_id;
 
-    program->nametable[program->nametable_id].number_func = number_func;                     // POISON
+    program->nametable[program->nametable_id].number_func = number_func;
 
     return;
 }

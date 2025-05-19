@@ -692,6 +692,27 @@ node_t* GetA (tree_t* program, type_id_t scope, int number_func)
             program->nametable[(size_t) program->tokens[p].value].type_id = TYPE_GLOBAL;
         }
 
+        if (program->nametable[(size_t) program->tokens[p].value].type_id == TYPE_LOCAL && program->nametable[(size_t) program->tokens[p].value].number_func != number_func)
+        {
+            FRONT_DBG fprintf (stderr, BHBLU "In GetP new LOCAL variable with same name: index in nametable = <%lu>\n" RESET, program->nametable_id);
+
+            FRONT_DBG fprintf (stderr, BHBLU "new n_symbols = <%lu>\n"  RESET, program->nametable[(size_t) program->tokens[p].value].n_symbols);
+
+            FRONT_DBG fprintf (stderr, BHBLU "new start_pos = <%p>\n"   RESET, program->nametable[(size_t) program->tokens[p].value].start_pos);
+
+            FRONT_DBG fprintf (stderr, BHBLU "new type_id = <%d>\n"     RESET, program->nametable[(size_t) program->tokens[p].value].type_id);
+
+            FRONT_DBG fprintf (stderr, BHBLU "new number_func = <%d>\n" RESET, number_func);
+
+            AddToNameTable (program,
+                            program->nametable[(size_t) program->tokens[p].value].n_symbols,
+                            program->nametable[(size_t) program->tokens[p].value].start_pos,
+                            program->nametable[(size_t) program->tokens[p].value].type_id,
+                            number_func);
+
+            program->nametable_id++;
+        }
+
         FRONT_DBG fprintf (stderr, CYN "in GetA: first token is ID\n" RESET);
 
         p++;
@@ -853,6 +874,8 @@ node_t* GetP (tree_t* program, type_id_t scope, int number_func)
         {
             FRONT_DBG fprintf (stderr, CYN "It is free Id\n" RESET);
 
+            p--;
+
             if (program->nametable[(size_t) token_value].type_id == TYPE_NONE && scope == TYPE_LOCAL)
             {
                 program->nametable[(size_t) token_value].type_id     = TYPE_LOCAL;
@@ -862,8 +885,18 @@ node_t* GetP (tree_t* program, type_id_t scope, int number_func)
                 program->nametable[(size_t) token_value].type_id     = TYPE_GLOBAL;
             }
 
-            if (program->nametable[(size_t) token_value].number_func != number_func)
+            if (program->nametable[(size_t) token_value].type_id == TYPE_LOCAL && program->nametable[(size_t) token_value].number_func != number_func)
             {
+                FRONT_DBG fprintf (stderr, BHBLU "In GetP new LOCAL variable with same name: index in nametable = <%lu>\n" RESET, program->nametable_id);
+
+                FRONT_DBG fprintf (stderr, BHBLU "new n_symbols = <%lu>\n"  RESET, program->nametable[(size_t) token_value].n_symbols);
+
+                FRONT_DBG fprintf (stderr, BHBLU "new start_pos = <%p>\n"   RESET, program->nametable[(size_t) token_value].start_pos);
+
+                FRONT_DBG fprintf (stderr, BHBLU "new type_id = <%d>\n"     RESET, program->nametable[(size_t) token_value].type_id);
+
+                FRONT_DBG fprintf (stderr, BHBLU "new number_func = <%d>\n" RESET, number_func);
+
                 AddToNameTable (program,
                                 program->nametable[(size_t) token_value].n_symbols,
                                 program->nametable[(size_t) token_value].start_pos,
@@ -872,6 +905,8 @@ node_t* GetP (tree_t* program, type_id_t scope, int number_func)
 
                 program->nametable_id++;
             }
+
+            p++;
 
             return _ID (token_value);
         }

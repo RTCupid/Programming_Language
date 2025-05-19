@@ -2,7 +2,7 @@ my_main ()
 {
     first_argument = 1;
 
-    Function (first_argument);
+    Function (first_argument + 4);
 
     write_about {first_argument};
 

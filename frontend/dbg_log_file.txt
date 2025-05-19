@@ -1,19 +1,106 @@
 
-136
-count of char = 136
+1720
+count of char = 1720
 
-utyutyu = 0;
+input (a);
+input (b);
+input (c);
 
-while (utyutyu < 20)
+if_happens (a multiply b multiply c)
 {
-    write_about {utyutyu};
-    write_about {8};
-    utyutyu = utyutyu + 1;
+    Diskriminant = b multiply b subtract 4 multiply a multiply c;
+    write_about {Diskriminant};
+
+    if_happens (Diskriminant < 0)
+    {
+        write_about {0};
+
+        then_commit_seppuku
+    };
+
+    first_answ  = ((0 subtract 1) multiply b subtract sqrt (Diskriminant)) divide (2 multiply a);
+    second_answ = ((0 subtract 1) multiply b add      sqrt (Diskriminant)) divide (2 multiply a);
+    write_about {2};
+    write_about {first_answ};
+    write_about {second_answ};
+
+    then_commit_seppuku
 };
+
+if_happens (a multiply b)
+{
+    first_answ  = 0;
+    second_answ = (0 subtract 1) multiply b divide a;
+
+    write_about {2};
+    write_about {first_answ};
+    write_about {second_answ};
+
+    then_commit_seppuku
+};
+
+if_happens (a multiply c)
+{
+    if_happens (c > 0)
+    {
+        write_about {0};
+        then_commit_seppuku
+    };
+
+    first_answ  =                         sqrt ((0 subtract 1) multiply c divide a);
+    second_answ = (0 subtract 1) multiply sqrt ((0 subtract 1) multiply c divide a);
+
+    write_about {2};
+    write_about {first_answ};
+    write_about {second_answ};
+
+    then_commit_seppuku
+};
+
+if_happens (b multiply c)
+{
+    first_answ = (0 subtract 1) multiply c divide b;
+
+    write_about {1};
+    write_about {first_answ};
+
+    then_commit_seppuku
+};
+
+if_happens (c)
+{
+    first_answ = 0;
+
+    write_about {0};
+
+    then_commit_seppuku
+};
+
+if_happens (a)
+{
+    first_answ = 0;
+
+    write_about {1};
+    write_about {first_answ};
+
+    then_commit_seppuku
+};
+
+if_happens (b)
+{
+    first_answ = 0;
+
+    write_about {1};
+    write_about {first_answ};
+
+    then_commit_seppuku
+};
+
+write_about {8};
 
 then_commit_seppuku
 
-sizeOfFile = <136>
+sizeOfFile = <1720>
 
 
 Start Tokenizer:
@@ -57,8 +144,125 @@ give                             25
 ----------------------------------------------------------------
 End Dump!
 
-first symbol = <u> is alpha
-name = <utyutyu>
+first symbol = <i> is alpha
+name = <input>
+<input> is keyword
+number_key = <23>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <a> is alpha
+name = <a>
+number_key = <-1>
+number_id = <-1>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <i> is alpha
+name = <input>
+<input> is keyword
+number_key = <23>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <b> is alpha
+name = <b>
+number_key = <-1>
+number_id = <-1>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <i> is alpha
+name = <input>
+<input> is keyword
+number_key = <23>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <c> is alpha
+name = <c>
+number_key = <-1>
+number_id = <-1>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <i> is alpha
+name = <if_happens>
+<if_happens> is keyword
+number_key = <16>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <a> is alpha
+name = <a>
+number_key = <-1>
+<a> is identificator
+number_id = <0>
+first symbol = <m> is alpha
+name = <multiply>
+<multiply> is keyword
+number_key = <4>
+
+first symbol = <b> is alpha
+name = <b>
+number_key = <-1>
+<b> is identificator
+number_id = <1>
+first symbol = <m> is alpha
+name = <multiply>
+<multiply> is keyword
+number_key = <4>
+
+first symbol = <c> is alpha
+name = <c>
+number_key = <-1>
+<c> is identificator
+number_id = <2>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <D> is alpha
+name = <Diskriminant>
 number_key = <-1>
 number_id = <-1>
 first symbol = <=> is alpha
@@ -66,36 +270,101 @@ name = <=>
 <=> is keyword
 number_key = <11>
 
-first symbol = '0' is number
-number is <0>
+first symbol = <b> is alpha
+name = <b>
+number_key = <-1>
+<b> is identificator
+number_id = <1>
+first symbol = <m> is alpha
+name = <multiply>
+<multiply> is keyword
+number_key = <4>
 
+first symbol = <b> is alpha
+name = <b>
+number_key = <-1>
+<b> is identificator
+number_id = <1>
+first symbol = <s> is alpha
+name = <subtract>
+<subtract> is keyword
+number_key = <2>
+
+first symbol = '4' is number
+number is <4>
+
+first symbol = <m> is alpha
+name = <multiply>
+<multiply> is keyword
+number_key = <4>
+
+first symbol = <a> is alpha
+name = <a>
+number_key = <-1>
+<a> is identificator
+number_id = <0>
+first symbol = <m> is alpha
+name = <multiply>
+<multiply> is keyword
+number_key = <4>
+
+first symbol = <c> is alpha
+name = <c>
+number_key = <-1>
+<c> is identificator
+number_id = <2>
 first symbol = <;> is alpha
 name = <;>
 <;> is keyword
 number_key = <9>
 
 first symbol = <w> is alpha
-name = <while>
-<while> is keyword
-number_key = <27>
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <D> is alpha
+name = <Diskriminant>
+number_key = <-1>
+<Diskriminant> is identificator
+number_id = <3>
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <i> is alpha
+name = <if_happens>
+<if_happens> is keyword
+number_key = <16>
 
 first symbol = <(> is alpha
 name = <(>
 <(> is keyword
 number_key = <17>
 
-first symbol = <u> is alpha
-name = <utyutyu>
+first symbol = <D> is alpha
+name = <Diskriminant>
 number_key = <-1>
-<utyutyu> is identificator
-number_id = <0>
+<Diskriminant> is identificator
+number_id = <3>
 first symbol = <<> is alpha
 name = <<>
 <<> is keyword
 number_key = <26>
 
-first symbol = '2' is number
-number is <20>
+first symbol = '0' is number
+number is <0>
 
 first symbol = <)> is alpha
 name = <)>
@@ -117,11 +386,1334 @@ name = <{>
 <{> is keyword
 number_key = <19>
 
-first symbol = <u> is alpha
-name = <utyutyu>
+first symbol = '0' is number
+number is <0>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <t> is alpha
+name = <then_commit_seppuku>
+<then_commit_seppuku> is keyword
+number_key = <14>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <f> is alpha
+name = <first_answ>
 number_key = <-1>
-<utyutyu> is identificator
+number_id = <-1>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = '0' is number
+number is <0>
+
+first symbol = <s> is alpha
+name = <subtract>
+<subtract> is keyword
+number_key = <2>
+
+first symbol = '1' is number
+number is <1>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <m> is alpha
+name = <multiply>
+<multiply> is keyword
+number_key = <4>
+
+first symbol = <b> is alpha
+name = <b>
+number_key = <-1>
+<b> is identificator
+number_id = <1>
+first symbol = <s> is alpha
+name = <subtract>
+<subtract> is keyword
+number_key = <2>
+
+first symbol = <s> is alpha
+name = <sqrt>
+<sqrt> is keyword
+number_key = <24>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <D> is alpha
+name = <Diskriminant>
+number_key = <-1>
+<Diskriminant> is identificator
+number_id = <3>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <d> is alpha
+name = <divide>
+<divide> is keyword
+number_key = <6>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = '2' is number
+number is <2>
+
+first symbol = <m> is alpha
+name = <multiply>
+<multiply> is keyword
+number_key = <4>
+
+first symbol = <a> is alpha
+name = <a>
+number_key = <-1>
+<a> is identificator
 number_id = <0>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <s> is alpha
+name = <second_answ>
+number_key = <-1>
+number_id = <-1>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = '0' is number
+number is <0>
+
+first symbol = <s> is alpha
+name = <subtract>
+<subtract> is keyword
+number_key = <2>
+
+first symbol = '1' is number
+number is <1>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <m> is alpha
+name = <multiply>
+<multiply> is keyword
+number_key = <4>
+
+first symbol = <b> is alpha
+name = <b>
+number_key = <-1>
+<b> is identificator
+number_id = <1>
+first symbol = <a> is alpha
+name = <add>
+<add> is keyword
+number_key = <0>
+
+first symbol = <s> is alpha
+name = <sqrt>
+<sqrt> is keyword
+number_key = <24>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <D> is alpha
+name = <Diskriminant>
+number_key = <-1>
+<Diskriminant> is identificator
+number_id = <3>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <d> is alpha
+name = <divide>
+<divide> is keyword
+number_key = <6>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = '2' is number
+number is <2>
+
+first symbol = <m> is alpha
+name = <multiply>
+<multiply> is keyword
+number_key = <4>
+
+first symbol = <a> is alpha
+name = <a>
+number_key = <-1>
+<a> is identificator
+number_id = <0>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = '2' is number
+number is <2>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <f> is alpha
+name = <first_answ>
+number_key = <-1>
+<first_answ> is identificator
+number_id = <4>
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <s> is alpha
+name = <second_answ>
+number_key = <-1>
+<second_answ> is identificator
+number_id = <5>
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <t> is alpha
+name = <then_commit_seppuku>
+<then_commit_seppuku> is keyword
+number_key = <14>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <i> is alpha
+name = <if_happens>
+<if_happens> is keyword
+number_key = <16>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <a> is alpha
+name = <a>
+number_key = <-1>
+<a> is identificator
+number_id = <0>
+first symbol = <m> is alpha
+name = <multiply>
+<multiply> is keyword
+number_key = <4>
+
+first symbol = <b> is alpha
+name = <b>
+number_key = <-1>
+<b> is identificator
+number_id = <1>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <f> is alpha
+name = <first_answ>
+number_key = <-1>
+<first_answ> is identificator
+number_id = <4>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = '0' is number
+number is <0>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <s> is alpha
+name = <second_answ>
+number_key = <-1>
+<second_answ> is identificator
+number_id = <5>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = '0' is number
+number is <0>
+
+first symbol = <s> is alpha
+name = <subtract>
+<subtract> is keyword
+number_key = <2>
+
+first symbol = '1' is number
+number is <1>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <m> is alpha
+name = <multiply>
+<multiply> is keyword
+number_key = <4>
+
+first symbol = <b> is alpha
+name = <b>
+number_key = <-1>
+<b> is identificator
+number_id = <1>
+first symbol = <d> is alpha
+name = <divide>
+<divide> is keyword
+number_key = <6>
+
+first symbol = <a> is alpha
+name = <a>
+number_key = <-1>
+<a> is identificator
+number_id = <0>
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = '2' is number
+number is <2>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <f> is alpha
+name = <first_answ>
+number_key = <-1>
+<first_answ> is identificator
+number_id = <4>
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <s> is alpha
+name = <second_answ>
+number_key = <-1>
+<second_answ> is identificator
+number_id = <5>
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <t> is alpha
+name = <then_commit_seppuku>
+<then_commit_seppuku> is keyword
+number_key = <14>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <i> is alpha
+name = <if_happens>
+<if_happens> is keyword
+number_key = <16>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <a> is alpha
+name = <a>
+number_key = <-1>
+<a> is identificator
+number_id = <0>
+first symbol = <m> is alpha
+name = <multiply>
+<multiply> is keyword
+number_key = <4>
+
+first symbol = <c> is alpha
+name = <c>
+number_key = <-1>
+<c> is identificator
+number_id = <2>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <i> is alpha
+name = <if_happens>
+<if_happens> is keyword
+number_key = <16>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <c> is alpha
+name = <c>
+number_key = <-1>
+<c> is identificator
+number_id = <2>
+first symbol = <>> is alpha
+name = <>>
+<>> is keyword
+number_key = <25>
+
+first symbol = '0' is number
+number is <0>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = '0' is number
+number is <0>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <t> is alpha
+name = <then_commit_seppuku>
+<then_commit_seppuku> is keyword
+number_key = <14>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <f> is alpha
+name = <first_answ>
+number_key = <-1>
+<first_answ> is identificator
+number_id = <4>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = <s> is alpha
+name = <sqrt>
+<sqrt> is keyword
+number_key = <24>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = '0' is number
+number is <0>
+
+first symbol = <s> is alpha
+name = <subtract>
+<subtract> is keyword
+number_key = <2>
+
+first symbol = '1' is number
+number is <1>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <m> is alpha
+name = <multiply>
+<multiply> is keyword
+number_key = <4>
+
+first symbol = <c> is alpha
+name = <c>
+number_key = <-1>
+<c> is identificator
+number_id = <2>
+first symbol = <d> is alpha
+name = <divide>
+<divide> is keyword
+number_key = <6>
+
+first symbol = <a> is alpha
+name = <a>
+number_key = <-1>
+<a> is identificator
+number_id = <0>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <s> is alpha
+name = <second_answ>
+number_key = <-1>
+<second_answ> is identificator
+number_id = <5>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = '0' is number
+number is <0>
+
+first symbol = <s> is alpha
+name = <subtract>
+<subtract> is keyword
+number_key = <2>
+
+first symbol = '1' is number
+number is <1>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <m> is alpha
+name = <multiply>
+<multiply> is keyword
+number_key = <4>
+
+first symbol = <s> is alpha
+name = <sqrt>
+<sqrt> is keyword
+number_key = <24>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = '0' is number
+number is <0>
+
+first symbol = <s> is alpha
+name = <subtract>
+<subtract> is keyword
+number_key = <2>
+
+first symbol = '1' is number
+number is <1>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <m> is alpha
+name = <multiply>
+<multiply> is keyword
+number_key = <4>
+
+first symbol = <c> is alpha
+name = <c>
+number_key = <-1>
+<c> is identificator
+number_id = <2>
+first symbol = <d> is alpha
+name = <divide>
+<divide> is keyword
+number_key = <6>
+
+first symbol = <a> is alpha
+name = <a>
+number_key = <-1>
+<a> is identificator
+number_id = <0>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = '2' is number
+number is <2>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <f> is alpha
+name = <first_answ>
+number_key = <-1>
+<first_answ> is identificator
+number_id = <4>
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <s> is alpha
+name = <second_answ>
+number_key = <-1>
+<second_answ> is identificator
+number_id = <5>
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <t> is alpha
+name = <then_commit_seppuku>
+<then_commit_seppuku> is keyword
+number_key = <14>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <i> is alpha
+name = <if_happens>
+<if_happens> is keyword
+number_key = <16>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <b> is alpha
+name = <b>
+number_key = <-1>
+<b> is identificator
+number_id = <1>
+first symbol = <m> is alpha
+name = <multiply>
+<multiply> is keyword
+number_key = <4>
+
+first symbol = <c> is alpha
+name = <c>
+number_key = <-1>
+<c> is identificator
+number_id = <2>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <f> is alpha
+name = <first_answ>
+number_key = <-1>
+<first_answ> is identificator
+number_id = <4>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = '0' is number
+number is <0>
+
+first symbol = <s> is alpha
+name = <subtract>
+<subtract> is keyword
+number_key = <2>
+
+first symbol = '1' is number
+number is <1>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <m> is alpha
+name = <multiply>
+<multiply> is keyword
+number_key = <4>
+
+first symbol = <c> is alpha
+name = <c>
+number_key = <-1>
+<c> is identificator
+number_id = <2>
+first symbol = <d> is alpha
+name = <divide>
+<divide> is keyword
+number_key = <6>
+
+first symbol = <b> is alpha
+name = <b>
+number_key = <-1>
+<b> is identificator
+number_id = <1>
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = '1' is number
+number is <1>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <f> is alpha
+name = <first_answ>
+number_key = <-1>
+<first_answ> is identificator
+number_id = <4>
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <t> is alpha
+name = <then_commit_seppuku>
+<then_commit_seppuku> is keyword
+number_key = <14>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <i> is alpha
+name = <if_happens>
+<if_happens> is keyword
+number_key = <16>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <c> is alpha
+name = <c>
+number_key = <-1>
+<c> is identificator
+number_id = <2>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <f> is alpha
+name = <first_answ>
+number_key = <-1>
+<first_answ> is identificator
+number_id = <4>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = '0' is number
+number is <0>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = '0' is number
+number is <0>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <t> is alpha
+name = <then_commit_seppuku>
+<then_commit_seppuku> is keyword
+number_key = <14>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <i> is alpha
+name = <if_happens>
+<if_happens> is keyword
+number_key = <16>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <a> is alpha
+name = <a>
+number_key = <-1>
+<a> is identificator
+number_id = <0>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <f> is alpha
+name = <first_answ>
+number_key = <-1>
+<first_answ> is identificator
+number_id = <4>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = '0' is number
+number is <0>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = '1' is number
+number is <1>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <f> is alpha
+name = <first_answ>
+number_key = <-1>
+<first_answ> is identificator
+number_id = <4>
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <t> is alpha
+name = <then_commit_seppuku>
+<then_commit_seppuku> is keyword
+number_key = <14>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <i> is alpha
+name = <if_happens>
+<if_happens> is keyword
+number_key = <16>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <b> is alpha
+name = <b>
+number_key = <-1>
+<b> is identificator
+number_id = <1>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <f> is alpha
+name = <first_answ>
+number_key = <-1>
+<first_answ> is identificator
+number_id = <4>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = '0' is number
+number is <0>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = '1' is number
+number is <1>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <f> is alpha
+name = <first_answ>
+number_key = <-1>
+<first_answ> is identificator
+number_id = <4>
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <t> is alpha
+name = <then_commit_seppuku>
+<then_commit_seppuku> is keyword
+number_key = <14>
+
 first symbol = <}> is alpha
 name = <}>
 <}> is keyword
@@ -155,44 +1747,6 @@ name = <;>
 <;> is keyword
 number_key = <9>
 
-first symbol = <u> is alpha
-name = <utyutyu>
-number_key = <-1>
-<utyutyu> is identificator
-number_id = <0>
-first symbol = <=> is alpha
-name = <=>
-<=> is keyword
-number_key = <11>
-
-first symbol = <u> is alpha
-name = <utyutyu>
-number_key = <-1>
-<utyutyu> is identificator
-number_id = <0>
-first symbol = <+> is alpha
-name = <+>
-<+> is keyword
-number_key = <1>
-
-first symbol = '1' is number
-number is <1>
-
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
-first symbol = <}> is alpha
-name = <}>
-<}> is keyword
-number_key = <20>
-
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
 first symbol = <t> is alpha
 name = <then_commit_seppuku>
 <then_commit_seppuku> is keyword
@@ -200,33 +1754,339 @@ number_key = <14>
 
 ----------------------------------------------------------------
 Dump Tokens:
-ID utyutyu
-OP =
-NUM 0
-OP ;
-OP while
+OP input
 OP (
-ID utyutyu
+ID a
+OP )
+OP ;
+OP input
+OP (
+ID b
+OP )
+OP ;
+OP input
+OP (
+ID c
+OP )
+OP ;
+OP if
+OP (
+ID a
+OP *
+ID b
+OP *
+ID c
+OP )
+OP {
+ID Diskriminant
+OP =
+ID b
+OP *
+ID b
+OP -
+NUM 4
+OP *
+ID a
+OP *
+ID c
+OP ;
+OP print
+OP {
+ID Diskriminant
+OP }
+OP ;
+OP if
+OP (
+ID Diskriminant
 OP <
-NUM 20
+NUM 0
 OP )
 OP {
 OP print
 OP {
-ID utyutyu
+NUM 0
+OP }
+OP ;
+OP $
+OP }
+OP ;
+ID first_answ
+OP =
+OP (
+OP (
+NUM 0
+OP -
+NUM 1
+OP )
+OP *
+ID b
+OP -
+OP sqrt
+OP (
+ID Diskriminant
+OP )
+OP )
+OP /
+OP (
+NUM 2
+OP *
+ID a
+OP )
+OP ;
+ID second_answ
+OP =
+OP (
+OP (
+NUM 0
+OP -
+NUM 1
+OP )
+OP *
+ID b
+OP +
+OP sqrt
+OP (
+ID Diskriminant
+OP )
+OP )
+OP /
+OP (
+NUM 2
+OP *
+ID a
+OP )
+OP ;
+OP print
+OP {
+NUM 2
+OP }
+OP ;
+OP print
+OP {
+ID first_answ
+OP }
+OP ;
+OP print
+OP {
+ID second_answ
+OP }
+OP ;
+OP $
+OP }
+OP ;
+OP if
+OP (
+ID a
+OP *
+ID b
+OP )
+OP {
+ID first_answ
+OP =
+NUM 0
+OP ;
+ID second_answ
+OP =
+OP (
+NUM 0
+OP -
+NUM 1
+OP )
+OP *
+ID b
+OP /
+ID a
+OP ;
+OP print
+OP {
+NUM 2
+OP }
+OP ;
+OP print
+OP {
+ID first_answ
+OP }
+OP ;
+OP print
+OP {
+ID second_answ
+OP }
+OP ;
+OP $
+OP }
+OP ;
+OP if
+OP (
+ID a
+OP *
+ID c
+OP )
+OP {
+OP if
+OP (
+ID c
+OP >
+NUM 0
+OP )
+OP {
+OP print
+OP {
+NUM 0
+OP }
+OP ;
+OP $
+OP }
+OP ;
+ID first_answ
+OP =
+OP sqrt
+OP (
+OP (
+NUM 0
+OP -
+NUM 1
+OP )
+OP *
+ID c
+OP /
+ID a
+OP )
+OP ;
+ID second_answ
+OP =
+OP (
+NUM 0
+OP -
+NUM 1
+OP )
+OP *
+OP sqrt
+OP (
+OP (
+NUM 0
+OP -
+NUM 1
+OP )
+OP *
+ID c
+OP /
+ID a
+OP )
+OP ;
+OP print
+OP {
+NUM 2
+OP }
+OP ;
+OP print
+OP {
+ID first_answ
+OP }
+OP ;
+OP print
+OP {
+ID second_answ
+OP }
+OP ;
+OP $
+OP }
+OP ;
+OP if
+OP (
+ID b
+OP *
+ID c
+OP )
+OP {
+ID first_answ
+OP =
+OP (
+NUM 0
+OP -
+NUM 1
+OP )
+OP *
+ID c
+OP /
+ID b
+OP ;
+OP print
+OP {
+NUM 1
+OP }
+OP ;
+OP print
+OP {
+ID first_answ
+OP }
+OP ;
+OP $
+OP }
+OP ;
+OP if
+OP (
+ID c
+OP )
+OP {
+ID first_answ
+OP =
+NUM 0
+OP ;
+OP print
+OP {
+NUM 0
+OP }
+OP ;
+OP $
+OP }
+OP ;
+OP if
+OP (
+ID a
+OP )
+OP {
+ID first_answ
+OP =
+NUM 0
+OP ;
+OP print
+OP {
+NUM 1
+OP }
+OP ;
+OP print
+OP {
+ID first_answ
+OP }
+OP ;
+OP $
+OP }
+OP ;
+OP if
+OP (
+ID b
+OP )
+OP {
+ID first_answ
+OP =
+NUM 0
+OP ;
+OP print
+OP {
+NUM 1
+OP }
+OP ;
+OP print
+OP {
+ID first_answ
+OP }
+OP ;
+OP $
 OP }
 OP ;
 OP print
 OP {
 NUM 8
-OP }
-OP ;
-ID utyutyu
-OP =
-ID utyutyu
-OP +
-NUM 1
-OP ;
 OP }
 OP ;
 OP $

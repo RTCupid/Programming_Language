@@ -9,20 +9,20 @@ my_main ()
     then_commit_seppuku
 };
 
-Factorial (fact)
+Factorial (number)
 {
-    if_happens (fact < 2)
+    write_about {number};
+
+    if (number < 2)
     {
         return 1;
     };
-    if_happens (fact < 3)
+    if (number < 3)
     {
         return 2;
     };
 
-    fact = fact * Factorial (fact - 1);
-
-    return fact;
+    return number * Factorial (number - 1);
 };
 
 then_commit_seppuku

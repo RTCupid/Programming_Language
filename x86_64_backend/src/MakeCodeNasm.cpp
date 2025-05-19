@@ -287,11 +287,14 @@ static err_t ProcessFUNC (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
     if (program->nametable[(size_t) crnt_node->left->value].argument == WITH_ARGUMENT)
     {
-        fprintf (file_nasm, "\n;\tEntry: %s = [rbp + 8]", program->nametable[(size_t) crnt_node->right->value].name);
+        fprintf (file_nasm, "\n;\tEntry: after saving rbp:");
+
+        fprintf (file_nasm, "\n;\tEntry: %s = [rsp + 16]", program->nametable[(size_t) crnt_node->right->value].name);
 
         program->nametable[(size_t) crnt_node->right->value].type_id = TYPE_LOCAL;
 
-        fprintf (file_nasm, "\n;\tEntry: adress to return = [rbp]");
+        fprintf (file_nasm, "\n;\tEntry: [rsp + 8] = adress to return");
+        fprintf (file_nasm, "\n;\tEntry: [rsp] = rbp");
     }
 
     fprintf (file_nasm, "\n;--------------------------------------------------------------------------------------------------");
@@ -309,11 +312,13 @@ static err_t ProcessDEF (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 {
     RecursiveMakeNasm (program, file_nasm, crnt_node->left);
 
+    fprintf(file_nasm, "\n\n\t%-50s; rbp => stack, save old value of rbp", "push rbp");
+
     fprintf(file_nasm, "\n\n\t%-50s; rbp = rsp, save old value of rsp", "mov rbp, rsp");
 
     fprintf(file_nasm, "\n\n\t%-50s; [rbp] = address for return", " ");
 
-    fprintf(file_nasm, "\n\n\t%-50s; [rbp + 8] = function's argument", " ");
+    fprintf(file_nasm, "\n\n\t%-50s; [rbp + 16] = function's argument", " ");
 
     RecursiveMakeNasm (program, file_nasm, crnt_node->right);
 
@@ -327,6 +332,8 @@ static err_t ProcessRET (tree_t* program, FILE* file_nasm, node_t* crnt_node)
     RecursiveMakeNasm (program, file_nasm, crnt_node->left, FIRST_EXPR);
 
     fprintf (file_nasm, "\n\n\t%-50s; rsp = rbp; back old value rsp;", "mov rsp, rbp");
+
+    fprintf(file_nasm, "\n\n\t%-50s; rbp <= stack, back old value of rbp", "pop rbp");
 
     fprintf (file_nasm, "\n\n\t%-50s; return;", "ret");
 
@@ -425,7 +432,7 @@ static err_t ProcessID (tree_t* program, FILE* file_nasm, node_t* crnt_node, ord
     }
     else if (program->nametable[(int)crnt_node->value].type_id == TYPE_LOCAL)
     {
-        fprintf  (file_nasm, "\n\n\t%-50s; rax = %s ",  "mov rax, [rbp + 8]", program->nametable[(int)crnt_node->value].name);
+        fprintf  (file_nasm, "\n\n\t%-50s; rax = %s ",  "mov rax, [rbp + 16]", program->nametable[(int)crnt_node->value].name);
     }
     else
     {

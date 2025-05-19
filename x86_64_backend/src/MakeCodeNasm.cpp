@@ -15,7 +15,7 @@ static err_t ProcessDEF     (tree_t* program, FILE* file_nasm, node_t* crnt_node
 
 static err_t ProcessRET     (tree_t* program, FILE* file_nasm, node_t* crnt_node);
 
-static err_t ProcessCALL    (tree_t* program, FILE* file_nasm, node_t* crnt_node);
+static err_t ProcessCALL    (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order);
 
 static err_t ProcessNUM     (FILE* file_nasm, node_t* crnt_node, order_t variable_order);
 
@@ -167,7 +167,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node, ord
             {
                 n_operator++;
 
-                ProcessCALL (program, file_nasm, crnt_node);
+                ProcessCALL (program, file_nasm, crnt_node, variable_order);
 
                 break;
             }
@@ -318,7 +318,7 @@ static err_t ProcessRET (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
 //---------------------------------------------------------------------------------------
 
-static err_t ProcessCALL (tree_t* program, FILE* file_nasm, node_t* crnt_node)
+static err_t ProcessCALL (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order)
 {
     char buffer[100] = {};
 
@@ -331,6 +331,11 @@ static err_t ProcessCALL (tree_t* program, FILE* file_nasm, node_t* crnt_node)
     fprintf(file_nasm, "\n\n\t%-50s; %s (rax);", buffer, program->nametable[(size_t) crnt_node->left->value].name);
 
     fprintf(file_nasm, "\n\n\t%-50s; clean stack frame;", "add rsp, 8");
+
+    if (variable_order == SECOND_EXPR)
+    {
+        fprintf(file_nasm, "\n\n\t%-50s; rdx = rax", "mov rdx, rax");
+    }
 
     return OK;
 }

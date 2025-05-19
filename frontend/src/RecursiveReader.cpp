@@ -57,7 +57,7 @@ node_t* GetG (tree_t* program)
 
     node_t* node      = _ST(NULL, NULL);
 
-    node->left        = GetOp (program);
+    node->left        = GetOp (program, TYPE_GLOBAL);
 
     node->right       = _ST(NULL, NULL);
 
@@ -74,7 +74,7 @@ node_t* GetG (tree_t* program)
             break;
         }
 
-        crnt_node->left  = GetOp (program);
+        crnt_node->left  = GetOp (program, TYPE_GLOBAL);
 
         crnt_node->right = _ST(NULL, NULL);
 
@@ -88,7 +88,7 @@ node_t* GetG (tree_t* program)
 
 //---------------------------------------------------------------------------------------
 
-node_t* GetOp (tree_t* program, int number_func_for_local_id)
+node_t* GetOp (tree_t* program, type_id_t scope)
 {
     FRONT_DBG fprintf (stderr, CYN "Start GetOp\n" RESET);
 
@@ -104,7 +104,7 @@ node_t* GetOp (tree_t* program, int number_func_for_local_id)
 
             FRONT_DBG fprintf (stderr, CYN "Start Assignment\n" RESET);
 
-            node = GetA (program);
+            node = GetA (program, scope);
         }
         else if (_CMP_OP("("))
         {
@@ -125,31 +125,31 @@ node_t* GetOp (tree_t* program, int number_func_for_local_id)
     {
         FRONT_DBG fprintf (stderr, CYN "Start return\n" RESET);
 
-        node = GetReturn (program);
+        node = GetReturn (program, scope);
     }
     else if (_CMP_OP("if"))
     {
         FRONT_DBG fprintf (stderr, CYN "Start if\n" RESET);
 
-        node = GetIf (program);
+        node = GetIf (program, scope);
     }
     else if (_CMP_OP("while"))
     {
         FRONT_DBG fprintf (stderr, CYN "Start while\n" RESET);
 
-        node = GetWhile (program);
+        node = GetWhile (program, scope);
     }
     else if (_CMP_OP("print"))
     {
         FRONT_DBG fprintf (stderr, CYN "Start print\n" RESET);
 
-        node = GetPrint (program);
+        node = GetPrint (program, scope);
     }
     else if (_CMP_OP("input"))
     {
         FRONT_DBG fprintf (stderr, CYN "Start input\n" RESET);
 
-        node = GetInput (program);
+        node = GetInput (program, scope);
     }
     else if (_CMP_OP("$"))
     {
@@ -186,7 +186,7 @@ node_t* GetOp (tree_t* program, int number_func_for_local_id)
 
 //---------------------------------------------------------------------------------------
 
-node_t* GetReturn (tree_t* program)
+node_t* GetReturn (tree_t* program, type_id_t scope)
 {
     node_t* return_node = NULL;
 
@@ -194,7 +194,7 @@ node_t* GetReturn (tree_t* program)
     {
         p++;
 
-        return_node = GetE (program);
+        return_node = GetE (program, scope);
     }
     else
     {
@@ -235,7 +235,7 @@ node_t* GetFunc (tree_t* program)
             {
                 FRONT_DBG fprintf (stderr, CYN " function's argument = \"%lu\"\n" RESET, (size_t) (program->tokens[p].value));
 
-                argument_func_node = GetE (program);
+                argument_func_node = GetE (program, TYPE_LOCAL);
             }
 
             FRONT_DBG fprintf (stderr, GRN "end check argument\n" RESET);
@@ -258,7 +258,7 @@ node_t* GetFunc (tree_t* program)
 
                     new_right_node_def        = _ST(NULL, NULL);
 
-                    new_right_node_def->left  = GetOp (program);
+                    new_right_node_def->left  = GetOp (program, TYPE_LOCAL);
 
                     new_right_node_def->right = _ST(NULL, NULL);
 
@@ -275,7 +275,7 @@ node_t* GetFunc (tree_t* program)
                             break;
                         }
 
-                        crnt_node->left  = GetOp (program);
+                        crnt_node->left  = GetOp (program, TYPE_LOCAL);
 
                         crnt_node->right = _ST(NULL, NULL);
 
@@ -317,7 +317,7 @@ node_t* GetFunc (tree_t* program)
 
 //---------------------------------------------------------------------------------------
 
-node_t* GetInput (tree_t* program)
+node_t* GetInput (tree_t* program, type_id_t scope)
 {
     node_t* input_node = NULL;
 
@@ -332,6 +332,15 @@ node_t* GetInput (tree_t* program)
             if (program->tokens[p].type == ID)
             {
                 input_node = _ID (program->tokens[p].value);
+
+                if (program->nametable[(size_t) program->tokens[p].value].type_id == TYPE_NONE && scope == TYPE_LOCAL)
+                {
+                    program->nametable[(size_t) program->tokens[p].value].type_id = TYPE_LOCAL;
+                }
+                else if (program->nametable[(size_t) program->tokens[p].value].type_id == TYPE_NONE)
+                {
+                    program->nametable[(size_t) program->tokens[p].value].type_id = TYPE_GLOBAL;
+                }
 
                 p++;
 
@@ -370,7 +379,7 @@ node_t* GetInput (tree_t* program)
     return _INPUT(input_node);
 }
 
-node_t* GetPrint (tree_t* program)
+node_t* GetPrint (tree_t* program, type_id_t scope)
 {
     node_t* print_node = NULL;
 
@@ -382,7 +391,7 @@ node_t* GetPrint (tree_t* program)
         {
             p++;
 
-            print_node = GetE (program);
+            print_node = GetE (program, scope);
 
             if (_CMP_OP("}"))
             {
@@ -414,7 +423,7 @@ node_t* GetPrint (tree_t* program)
 
 //---------------------------------------------------------------------------------------
 
-node_t* GetIf (tree_t* program)
+node_t* GetIf (tree_t* program, type_id_t scope)
 {
     node_t* condition_node       = NULL;
 
@@ -436,7 +445,7 @@ node_t* GetIf (tree_t* program)
 
             p++;
 
-            condition_node = GetE (program);
+            condition_node = GetE (program, scope);
 
             if (_CMP_OP("<"))
             {
@@ -446,7 +455,7 @@ node_t* GetIf (tree_t* program)
 
                 left_condition_node  = condition_node;
 
-                right_condition_node = GetE (program);
+                right_condition_node = GetE (program, scope);
 
                 condition_node       = _LESS(left_condition_node, right_condition_node);
             }
@@ -458,7 +467,7 @@ node_t* GetIf (tree_t* program)
 
                 left_condition_node  = condition_node;
 
-                right_condition_node = GetE (program);
+                right_condition_node = GetE (program, scope);
 
                 condition_node       = _MORE(left_condition_node, right_condition_node);
             }
@@ -477,7 +486,7 @@ node_t* GetIf (tree_t* program)
 
                     new_right_node        = _ST(NULL, NULL);
 
-                    new_right_node->left  = GetOp (program);
+                    new_right_node->left  = GetOp (program, scope);
 
                     new_right_node->right = _ST(NULL, NULL);
 
@@ -494,7 +503,7 @@ node_t* GetIf (tree_t* program)
                             break;
                         }
 
-                        crnt_node->left  = GetOp (program);
+                        crnt_node->left  = GetOp (program, scope);
 
                         crnt_node->right = _ST(NULL, NULL);
 
@@ -534,7 +543,7 @@ node_t* GetIf (tree_t* program)
 
 //---------------------------------------------------------------------------------------
 
-node_t* GetWhile (tree_t* program)
+node_t* GetWhile (tree_t* program, type_id_t scope)
 {
     node_t* condition_node       = NULL;
 
@@ -556,7 +565,7 @@ node_t* GetWhile (tree_t* program)
 
             p++;
 
-            condition_node = GetE (program);
+            condition_node = GetE (program, scope);
 
             if (_CMP_OP("<"))
             {
@@ -566,7 +575,7 @@ node_t* GetWhile (tree_t* program)
 
                 left_condition_node  = condition_node;
 
-                right_condition_node = GetE (program);
+                right_condition_node = GetE (program, scope);
 
                 condition_node       = _MORE(left_condition_node, right_condition_node);
             }
@@ -578,7 +587,7 @@ node_t* GetWhile (tree_t* program)
 
                 left_condition_node  = condition_node;
 
-                right_condition_node = GetE (program);
+                right_condition_node = GetE (program, scope);
 
                 condition_node       = _LESS(left_condition_node, right_condition_node);
             }
@@ -597,7 +606,7 @@ node_t* GetWhile (tree_t* program)
 
                     new_right_node        = _ST(NULL, NULL);
 
-                    new_right_node->left  = GetOp (program);
+                    new_right_node->left  = GetOp (program, scope);
 
                     new_right_node->right = _ST(NULL, NULL);
 
@@ -614,7 +623,7 @@ node_t* GetWhile (tree_t* program)
                             break;
                         }
 
-                        crnt_node->left  = GetOp (program);
+                        crnt_node->left  = GetOp (program, scope);
 
                         crnt_node->right = _ST(NULL, NULL);
 
@@ -654,7 +663,7 @@ node_t* GetWhile (tree_t* program)
 
 //---------------------------------------------------------------------------------------
 
-node_t* GetA (tree_t* program)
+node_t* GetA (tree_t* program, type_id_t scope)
 {
     node_t* new_right_node = NULL;
 
@@ -663,6 +672,15 @@ node_t* GetA (tree_t* program)
     if (program->tokens[p].type == ID)
     {
         new_left_node = _ID (program->tokens[p].value);
+
+        if (program->nametable[(size_t) program->tokens[p].value].type_id == TYPE_NONE && scope == TYPE_LOCAL)
+        {
+            program->nametable[(size_t) program->tokens[p].value].type_id = TYPE_LOCAL;
+        }
+        else if (program->nametable[(size_t) program->tokens[p].value].type_id == TYPE_NONE)
+        {
+            program->nametable[(size_t) program->tokens[p].value].type_id = TYPE_GLOBAL;
+        }
 
         FRONT_DBG fprintf (stderr, CYN "in GetA: first token is ID\n" RESET);
 
@@ -681,7 +699,7 @@ node_t* GetA (tree_t* program)
             SintaxError (program, "GetA");
         }
 
-        new_right_node = GetE (program);
+        new_right_node = GetE (program, scope);
     }
     else
     {
@@ -695,9 +713,9 @@ node_t* GetA (tree_t* program)
 
 //---------------------------------------------------------------------------------------
 
-node_t* GetE (tree_t* program)
+node_t* GetE (tree_t* program, type_id_t scope)
 {
-    node_t* node = GetT (program);
+    node_t* node = GetT (program, scope);
 
     FRONT_DBG fprintf (stderr, GRN "in GetE Start check \"+\" or \"-\"\n" RESET);
 
@@ -709,7 +727,7 @@ node_t* GetE (tree_t* program)
 
         p++;
 
-        node_t* new_node = GetT (program);
+        node_t* new_node = GetT (program, scope);
 
         if (strcmp (op, "+") == 0)
         {
@@ -729,9 +747,9 @@ node_t* GetE (tree_t* program)
 
 //---------------------------------------------------------------------------------------
 
-node_t* GetT (tree_t* program)
+node_t* GetT (tree_t* program, type_id_t scope)
 {
-    node_t* node = GetP (program);
+    node_t* node = GetP (program, scope);
 
     while (_CMP_OP("*") || _CMP_OP ("/"))
     {
@@ -739,7 +757,7 @@ node_t* GetT (tree_t* program)
 
         p++;
 
-        node_t* new_node = GetP (program);
+        node_t* new_node = GetP (program, scope);
 
         if (strcmp (op, "*") == 0)
         {
@@ -756,13 +774,13 @@ node_t* GetT (tree_t* program)
 
 //---------------------------------------------------------------------------------------
 
-node_t* GetP (tree_t* program)
+node_t* GetP (tree_t* program, type_id_t scope)
 {
     if (_CMP_OP("("))
     {
         p++;
 
-        node_t* node = GetE (program);
+        node_t* node = GetE (program, scope);
 
         if (!_CMP_OP(")"))
         {
@@ -783,7 +801,7 @@ node_t* GetP (tree_t* program)
         {
             p++;
 
-            argument_node = GetE (program);
+            argument_node = GetE (program, scope);
 
             if (_CMP_OP(")"))
             {
@@ -824,6 +842,15 @@ node_t* GetP (tree_t* program)
         else
         {
             FRONT_DBG fprintf (stderr, CYN "It is free Id\n" RESET);
+
+            if (program->nametable[(size_t) token_value].type_id == TYPE_NONE && scope == TYPE_LOCAL)
+            {
+                program->nametable[(size_t) token_value].type_id = TYPE_LOCAL;
+            }
+            else if (program->nametable[(size_t) token_value].type_id == TYPE_NONE)
+            {
+                program->nametable[(size_t) token_value].type_id = TYPE_GLOBAL;
+            }
 
             return _ID (token_value);
         }

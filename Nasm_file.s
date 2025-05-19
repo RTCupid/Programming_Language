@@ -45,18 +45,34 @@ Factorial:                                            ; it is definition of Fact
 ;   test-18
 
 	mov rax, [fact]                                   ; rax = fact 
-	mov rdx, 3                                        ; rdx = 3 
+	mov rdx, 2                                        ; rdx = 2 
 	cmp rax, rdx                                      ; if (rax >= rdx)
 	jge  .end_if18                                    ;  goto .end_if18
 ;   action-18
 
-	mov rax, 2                                        ; rax = 2 
+	mov rax, 1                                        ; rax = 1 
 
 	ret                                               ; return; ; number operator 20  ; number operator 21  ; number operator 21 
 
 .end_if18:
 
 ;---end-if-18------------------------------------------------------------------------------------- ; number operator 21 
+;---start-if-23-----------------------------------------------------------------------------------
+;   test-23
+
+	mov rax, [fact]                                   ; rax = fact 
+	mov rdx, 3                                        ; rdx = 3 
+	cmp rax, rdx                                      ; if (rax >= rdx)
+	jge  .end_if23                                    ;  goto .end_if23
+;   action-23
+
+	mov rax, 2                                        ; rax = 2 
+
+	ret                                               ; return; ; number operator 25  ; number operator 26  ; number operator 26 
+
+.end_if23:
+
+;---end-if-23------------------------------------------------------------------------------------- ; number operator 26 
 
 	mov rax, [fact]                                   ; rax = fact 
 	push rax                                          ; rax => stack
@@ -65,18 +81,23 @@ Factorial:                                            ; it is definition of Fact
 	push rax                                          ; rax => stack
 	mov rdx, 1                                        ; rdx = 1 
 	pop rax                                           ; rax <= stack
-	sub rax, rdx                                      ; rax -= rdx ; number operator 26 
+	sub rax, rdx                                      ; rax -= rdx ; number operator 31 
 
 	push rax                                          ; rax => stack, make stack frame;
 
 	call Factorial                                    ; Factorial (rax);
 
-	add rsp, 8                                        ; clean stack frame; ; number operator 26 
+	add rsp, 8                                        ; clean stack frame;
+
+	mov rdx, rax                                      ; rdx = rax ; number operator 31 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	imul rdi                                          ; rdx:rax = rax * rdi ; number operator 26 
+	imul rdi                                          ; rdx:rax = rax * rdi ; number operator 31 
+	mov [fact], rax                                   ; fact = rax  ; number operator 31 
 
-	ret                                               ; return; ; number operator 26  ; number operator 27  ; number operator 27  ; number operator 27  ; number operator 27  ; number operator 28  ; number operator 28  ; number operator 28 
+	mov rax, [fact]                                   ; rax = fact 
+
+	ret                                               ; return; ; number operator 33  ; number operator 34  ; number operator 34  ; number operator 34  ; number operator 34  ; number operator 34  ; number operator 34  ; number operator 35  ; number operator 35  ; number operator 35 
 
 call _my_hlt                                          ; exit (0)
 ;--------------------------------------------------------------------------------------------------

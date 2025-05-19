@@ -1,9 +1,13 @@
 
-268
-count of char = 268
+386
+count of char = 386
+
+utyutyu = 19;
 
 my_main ()
 {
+    write_about {utyutyu};
+
     input (argument);
 
     answer = Factorial (argument);
@@ -15,17 +19,23 @@ my_main ()
 
 Factorial (fact)
 {
+    if_happens (fact < 2)
+    {
+        return 1;
+    };
     if_happens (fact < 3)
     {
         return 2;
     };
 
-    return fact * Factorial (fact - 1);
+    fact = fact * Factorial (fact - 1);
+
+    return fact;
 };
 
 then_commit_seppuku
 
-sizeOfFile = <268>
+sizeOfFile = <386>
 
 
 Start Tokenizer:
@@ -69,6 +79,23 @@ give                             25
 ----------------------------------------------------------------
 End Dump!
 
+first symbol = <u> is alpha
+name = <utyutyu>
+number_key = <-1>
+number_id = <-1>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = '1' is number
+number is <19>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
 first symbol = <m> is alpha
 name = <my_main>
 number_key = <-1>
@@ -87,6 +114,31 @@ first symbol = <{> is alpha
 name = <{>
 <{> is keyword
 number_key = <19>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <u> is alpha
+name = <utyutyu>
+number_key = <-1>
+<utyutyu> is identificator
+number_id = <0>
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
 
 first symbol = <i> is alpha
 name = <input>
@@ -134,7 +186,7 @@ first symbol = <a> is alpha
 name = <argument>
 number_key = <-1>
 <argument> is identificator
-number_id = <1>
+number_id = <2>
 first symbol = <)> is alpha
 name = <)>
 <)> is keyword
@@ -159,7 +211,7 @@ first symbol = <a> is alpha
 name = <answer>
 number_key = <-1>
 <answer> is identificator
-number_id = <2>
+number_id = <3>
 first symbol = <}> is alpha
 name = <}>
 <}> is keyword
@@ -189,7 +241,7 @@ first symbol = <F> is alpha
 name = <Factorial>
 number_key = <-1>
 <Factorial> is identificator
-number_id = <3>
+number_id = <4>
 first symbol = <(> is alpha
 name = <(>
 <(> is keyword
@@ -223,7 +275,63 @@ first symbol = <f> is alpha
 name = <fact>
 number_key = <-1>
 <fact> is identificator
-number_id = <4>
+number_id = <5>
+first symbol = <<> is alpha
+name = <<>
+<<> is keyword
+number_key = <26>
+
+first symbol = '2' is number
+number is <2>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <r> is alpha
+name = <return>
+<return> is keyword
+number_key = <31>
+
+first symbol = '1' is number
+number is <1>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <i> is alpha
+name = <if_happens>
+<if_happens> is keyword
+number_key = <16>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <f> is alpha
+name = <fact>
+number_key = <-1>
+<fact> is identificator
+number_id = <5>
 first symbol = <<> is alpha
 name = <<>
 <<> is keyword
@@ -265,16 +373,21 @@ name = <;>
 <;> is keyword
 number_key = <9>
 
-first symbol = <r> is alpha
-name = <return>
-<return> is keyword
-number_key = <31>
+first symbol = <f> is alpha
+name = <fact>
+number_key = <-1>
+<fact> is identificator
+number_id = <5>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
 
 first symbol = <f> is alpha
 name = <fact>
 number_key = <-1>
 <fact> is identificator
-number_id = <4>
+number_id = <5>
 first symbol = <*> is alpha
 name = <*>
 <*> is keyword
@@ -284,7 +397,7 @@ first symbol = <F> is alpha
 name = <Factorial>
 number_key = <-1>
 <Factorial> is identificator
-number_id = <3>
+number_id = <4>
 first symbol = <(> is alpha
 name = <(>
 <(> is keyword
@@ -294,7 +407,7 @@ first symbol = <f> is alpha
 name = <fact>
 number_key = <-1>
 <fact> is identificator
-number_id = <4>
+number_id = <5>
 first symbol = <-> is alpha
 name = <->
 <-> is keyword
@@ -308,6 +421,21 @@ name = <)>
 <)> is keyword
 number_key = <18>
 
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <r> is alpha
+name = <return>
+<return> is keyword
+number_key = <31>
+
+first symbol = <f> is alpha
+name = <fact>
+number_key = <-1>
+<fact> is identificator
+number_id = <5>
 first symbol = <;> is alpha
 name = <;>
 <;> is keyword
@@ -330,10 +458,19 @@ number_key = <14>
 
 ----------------------------------------------------------------
 Dump Tokens:
+ID utyutyu
+OP =
+NUM 19
+OP ;
 ID my_main
 OP (
 OP )
 OP {
+OP print
+OP {
+ID utyutyu
+OP }
+OP ;
 OP input
 OP (
 ID argument
@@ -363,6 +500,18 @@ OP if
 OP (
 ID fact
 OP <
+NUM 2
+OP )
+OP {
+OP return
+NUM 1
+OP ;
+OP }
+OP ;
+OP if
+OP (
+ID fact
+OP <
 NUM 3
 OP )
 OP {
@@ -371,7 +520,8 @@ NUM 2
 OP ;
 OP }
 OP ;
-OP return
+ID fact
+OP =
 ID fact
 OP *
 ID Factorial
@@ -380,6 +530,9 @@ ID fact
 OP -
 NUM 1
 OP )
+OP ;
+OP return
+ID fact
 OP ;
 OP }
 OP ;

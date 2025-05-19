@@ -23,7 +23,6 @@ typedef struct identificator_t
     size_t      n_symbols;
     char*       name;
     type_id_t   type_id;
-    int         number_func_for_local_id;
 } identificator_t;
 
 struct token_t;

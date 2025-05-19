@@ -322,7 +322,7 @@ static err_t ProcessCALL (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 {
     char buffer[100] = {};
 
-    RecursiveMakeNasm (program, file_nasm, crnt_node->left, FIRST_EXPR);
+    RecursiveMakeNasm (program, file_nasm, crnt_node->right, FIRST_EXPR);
 
     fprintf(file_nasm, "\n\n\t%-50s; rax => stack, make stack frame;", "push rax");
 

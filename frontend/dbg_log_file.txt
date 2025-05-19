@@ -1,20 +1,31 @@
 
-149
-count of char = 149
+268
+count of char = 268
 
 my_main ()
 {
-    input (utyutyu);
+    input (argument);
 
-    if (utyutyu < 20)
-    {
-        write_about {utyutyu};
-        write_about {8};
-    };
+    answer = Factorial (argument);
+
+    write_about {answer};
+
+    then_commit_seppuku
 };
+
+Factorial (fact)
+{
+    if_happens (fact < 3)
+    {
+        return 2;
+    };
+
+    return fact * Factorial (fact - 1);
+};
+
 then_commit_seppuku
 
-sizeOfFile = <149>
+sizeOfFile = <268>
 
 
 Start Tokenizer:
@@ -87,8 +98,8 @@ name = <(>
 <(> is keyword
 number_key = <17>
 
-first symbol = <u> is alpha
-name = <utyutyu>
+first symbol = <a> is alpha
+name = <argument>
 number_key = <-1>
 number_id = <-1>
 first symbol = <)> is alpha
@@ -101,28 +112,125 @@ name = <;>
 <;> is keyword
 number_key = <9>
 
+first symbol = <a> is alpha
+name = <answer>
+number_key = <-1>
+number_id = <-1>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = <F> is alpha
+name = <Factorial>
+number_key = <-1>
+number_id = <-1>
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <a> is alpha
+name = <argument>
+number_key = <-1>
+<argument> is identificator
+number_id = <1>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <a> is alpha
+name = <answer>
+number_key = <-1>
+<answer> is identificator
+number_id = <2>
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <t> is alpha
+name = <then_commit_seppuku>
+<then_commit_seppuku> is keyword
+number_key = <14>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <F> is alpha
+name = <Factorial>
+number_key = <-1>
+<Factorial> is identificator
+number_id = <3>
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <f> is alpha
+name = <fact>
+number_key = <-1>
+number_id = <-1>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
 first symbol = <i> is alpha
-name = <if>
-<if> is keyword
-number_key = <13>
+name = <if_happens>
+<if_happens> is keyword
+number_key = <16>
 
 first symbol = <(> is alpha
 name = <(>
 <(> is keyword
 number_key = <17>
 
-first symbol = <u> is alpha
-name = <utyutyu>
+first symbol = <f> is alpha
+name = <fact>
 number_key = <-1>
-<utyutyu> is identificator
-number_id = <1>
+<fact> is identificator
+number_id = <4>
 first symbol = <<> is alpha
 name = <<>
 <<> is keyword
 number_key = <26>
 
-first symbol = '2' is number
-number is <20>
+first symbol = '3' is number
+number is <3>
 
 first symbol = <)> is alpha
 name = <)>
@@ -134,58 +242,71 @@ name = <{>
 <{> is keyword
 number_key = <19>
 
-first symbol = <w> is alpha
-name = <write_about>
-<write_about> is keyword
-number_key = <21>
+first symbol = <r> is alpha
+name = <return>
+<return> is keyword
+number_key = <31>
 
-first symbol = <{> is alpha
-name = <{>
-<{> is keyword
-number_key = <19>
+first symbol = '2' is number
+number is <2>
 
-first symbol = <u> is alpha
-name = <utyutyu>
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <r> is alpha
+name = <return>
+<return> is keyword
+number_key = <31>
+
+first symbol = <f> is alpha
+name = <fact>
 number_key = <-1>
-<utyutyu> is identificator
-number_id = <1>
-first symbol = <}> is alpha
-name = <}>
-<}> is keyword
-number_key = <20>
+<fact> is identificator
+number_id = <4>
+first symbol = <*> is alpha
+name = <*>
+<*> is keyword
+number_key = <5>
 
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
+first symbol = <F> is alpha
+name = <Factorial>
+number_key = <-1>
+<Factorial> is identificator
+number_id = <3>
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
 
-first symbol = <w> is alpha
-name = <write_about>
-<write_about> is keyword
-number_key = <21>
+first symbol = <f> is alpha
+name = <fact>
+number_key = <-1>
+<fact> is identificator
+number_id = <4>
+first symbol = <-> is alpha
+name = <->
+<-> is keyword
+number_key = <3>
 
-first symbol = <{> is alpha
-name = <{>
-<{> is keyword
-number_key = <19>
+first symbol = '1' is number
+number is <1>
 
-first symbol = '8' is number
-number is <8>
-
-first symbol = <}> is alpha
-name = <}>
-<}> is keyword
-number_key = <20>
-
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
-first symbol = <}> is alpha
-name = <}>
-<}> is keyword
-number_key = <20>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
 
 first symbol = <;> is alpha
 name = <;>
@@ -215,27 +336,50 @@ OP )
 OP {
 OP input
 OP (
-ID utyutyu
+ID argument
 OP )
 OP ;
+ID answer
+OP =
+ID Factorial
+OP (
+ID argument
+OP )
+OP ;
+OP print
+OP {
+ID answer
+OP }
+OP ;
+OP $
+OP }
+OP ;
+ID Factorial
+OP (
+ID fact
+OP )
+OP {
 OP if
 OP (
-ID utyutyu
+ID fact
 OP <
-NUM 20
+NUM 3
 OP )
 OP {
-OP print
-OP {
-ID utyutyu
-OP }
-OP ;
-OP print
-OP {
-NUM 8
-OP }
+OP return
+NUM 2
 OP ;
 OP }
+OP ;
+OP return
+ID fact
+OP *
+ID Factorial
+OP (
+ID fact
+OP -
+NUM 1
+OP )
 OP ;
 OP }
 OP ;

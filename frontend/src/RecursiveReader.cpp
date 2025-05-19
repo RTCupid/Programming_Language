@@ -833,7 +833,10 @@ node_t* GetP (tree_t* program, type_id_t scope)
         {
             FRONT_DBG fprintf (stderr, CYN "It is free Id\n" RESET);
 
-            program->nametable[(size_t) token_value].type_id     = scope;
+            if (program->nametable[(size_t) token_value].type_id == TYPE_NONE)
+            {
+                program->nametable[(size_t) token_value].type_id = scope;
+            }
 
             return _ID (token_value);
         }

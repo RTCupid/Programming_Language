@@ -85,7 +85,7 @@ token_t* Tokenizer (tree_t* program)
                 if (number_id == -1)
                 {
 
-                    AddToNameTable (program, (size_t)n_print_symbols, start_pos, TYPE_NONE);
+                    AddToNameTable (program, (size_t)n_print_symbols, start_pos, TYPE_GLOBAL);
 
                     tokens[token_id].type  = ID;
 

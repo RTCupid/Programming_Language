@@ -57,7 +57,7 @@ node_t* GetG (tree_t* program)
 
     node_t* node      = _ST(NULL, NULL);
 
-    node->left        = GetOp (program, TYPE_GLOBAL);
+    node->left        = GetOp (program);
 
     node->right       = _ST(NULL, NULL);
 
@@ -74,7 +74,7 @@ node_t* GetG (tree_t* program)
             break;
         }
 
-        crnt_node->left  = GetOp (program, TYPE_GLOBAL);
+        crnt_node->left  = GetOp (program);
 
         crnt_node->right = _ST(NULL, NULL);
 
@@ -88,7 +88,7 @@ node_t* GetG (tree_t* program)
 
 //---------------------------------------------------------------------------------------
 
-node_t* GetOp (tree_t* program, type_id_t scope)
+node_t* GetOp (tree_t* program)
 {
     FRONT_DBG fprintf (stderr, CYN "Start GetOp\n" RESET);
 
@@ -104,7 +104,7 @@ node_t* GetOp (tree_t* program, type_id_t scope)
 
             FRONT_DBG fprintf (stderr, CYN "Start Assignment\n" RESET);
 
-            node = GetA (program, scope);
+            node = GetA (program);
         }
         else if (_CMP_OP("("))
         {
@@ -125,25 +125,25 @@ node_t* GetOp (tree_t* program, type_id_t scope)
     {
         FRONT_DBG fprintf (stderr, CYN "Start return\n" RESET);
 
-        node = GetReturn (program, scope);
+        node = GetReturn (program);
     }
     else if (_CMP_OP("if"))
     {
         FRONT_DBG fprintf (stderr, CYN "Start if\n" RESET);
 
-        node = GetIf (program, scope);
+        node = GetIf (program);
     }
     else if (_CMP_OP("while"))
     {
         FRONT_DBG fprintf (stderr, CYN "Start while\n" RESET);
 
-        node = GetWhile (program, scope);
+        node = GetWhile (program);
     }
     else if (_CMP_OP("print"))
     {
         FRONT_DBG fprintf (stderr, CYN "Start print\n" RESET);
 
-        node = GetPrint (program, scope);
+        node = GetPrint (program);
     }
     else if (_CMP_OP("input"))
     {
@@ -186,7 +186,7 @@ node_t* GetOp (tree_t* program, type_id_t scope)
 
 //---------------------------------------------------------------------------------------
 
-node_t* GetReturn (tree_t* program, type_id_t scope)
+node_t* GetReturn (tree_t* program)
 {
     node_t* return_node = NULL;
 
@@ -194,7 +194,7 @@ node_t* GetReturn (tree_t* program, type_id_t scope)
     {
         p++;
 
-        return_node = GetE (program, scope);
+        return_node = GetE (program);
     }
     else
     {
@@ -237,7 +237,7 @@ node_t* GetFunc (tree_t* program)
             {
                 FRONT_DBG fprintf (stderr, CYN " function's argument = \"%lu\"\n" RESET, (size_t) (program->tokens[p].value));
 
-                argument_func_node = GetE (program, TYPE_LOCAL);
+                argument_func_node = GetE (program);
 
                 program->nametable[(size_t) (number_func)].argument = WITH_ARGUMENT;
             }
@@ -262,7 +262,7 @@ node_t* GetFunc (tree_t* program)
 
                     new_right_node_def        = _ST(NULL, NULL);
 
-                    new_right_node_def->left  = GetOp (program, TYPE_GLOBAL);
+                    new_right_node_def->left  = GetOp (program);
 
                     new_right_node_def->right = _ST(NULL, NULL);
 
@@ -279,7 +279,7 @@ node_t* GetFunc (tree_t* program)
                             break;
                         }
 
-                        crnt_node->left  = GetOp (program, TYPE_GLOBAL);
+                        crnt_node->left  = GetOp (program);
 
                         crnt_node->right = _ST(NULL, NULL);
 
@@ -376,7 +376,7 @@ node_t* GetInput (tree_t* program)
     return _INPUT(input_node);
 }
 
-node_t* GetPrint (tree_t* program, type_id_t scope)
+node_t* GetPrint (tree_t* program)
 {
     node_t* print_node = NULL;
 
@@ -388,7 +388,7 @@ node_t* GetPrint (tree_t* program, type_id_t scope)
         {
             p++;
 
-            print_node = GetE (program, scope);
+            print_node = GetE (program);
 
             if (_CMP_OP("}"))
             {
@@ -420,7 +420,7 @@ node_t* GetPrint (tree_t* program, type_id_t scope)
 
 //---------------------------------------------------------------------------------------
 
-node_t* GetIf (tree_t* program, type_id_t scope)
+node_t* GetIf (tree_t* program)
 {
     node_t* condition_node       = NULL;
 
@@ -442,7 +442,7 @@ node_t* GetIf (tree_t* program, type_id_t scope)
 
             p++;
 
-            condition_node = GetE (program, scope);
+            condition_node = GetE (program);
 
             if (_CMP_OP("<"))
             {
@@ -452,7 +452,7 @@ node_t* GetIf (tree_t* program, type_id_t scope)
 
                 left_condition_node  = condition_node;
 
-                right_condition_node = GetE (program, scope);
+                right_condition_node = GetE (program);
 
                 condition_node       = _LESS(left_condition_node, right_condition_node);
             }
@@ -464,7 +464,7 @@ node_t* GetIf (tree_t* program, type_id_t scope)
 
                 left_condition_node  = condition_node;
 
-                right_condition_node = GetE (program, scope);
+                right_condition_node = GetE (program);
 
                 condition_node       = _MORE(left_condition_node, right_condition_node);
             }
@@ -483,7 +483,7 @@ node_t* GetIf (tree_t* program, type_id_t scope)
 
                     new_right_node        = _ST(NULL, NULL);
 
-                    new_right_node->left  = GetOp (program, scope);
+                    new_right_node->left  = GetOp (program);
 
                     new_right_node->right = _ST(NULL, NULL);
 
@@ -500,7 +500,7 @@ node_t* GetIf (tree_t* program, type_id_t scope)
                             break;
                         }
 
-                        crnt_node->left  = GetOp (program, scope);
+                        crnt_node->left  = GetOp (program);
 
                         crnt_node->right = _ST(NULL, NULL);
 
@@ -540,7 +540,7 @@ node_t* GetIf (tree_t* program, type_id_t scope)
 
 //---------------------------------------------------------------------------------------
 
-node_t* GetWhile (tree_t* program, type_id_t scope)
+node_t* GetWhile (tree_t* program)
 {
     node_t* condition_node       = NULL;
 
@@ -562,7 +562,7 @@ node_t* GetWhile (tree_t* program, type_id_t scope)
 
             p++;
 
-            condition_node = GetE (program, scope);
+            condition_node = GetE (program);
 
             if (_CMP_OP("<"))
             {
@@ -572,7 +572,7 @@ node_t* GetWhile (tree_t* program, type_id_t scope)
 
                 left_condition_node  = condition_node;
 
-                right_condition_node = GetE (program, scope);
+                right_condition_node = GetE (program);
 
                 condition_node       = _MORE(left_condition_node, right_condition_node);
             }
@@ -584,7 +584,7 @@ node_t* GetWhile (tree_t* program, type_id_t scope)
 
                 left_condition_node  = condition_node;
 
-                right_condition_node = GetE (program, scope);
+                right_condition_node = GetE (program);
 
                 condition_node       = _LESS(left_condition_node, right_condition_node);
             }
@@ -603,7 +603,7 @@ node_t* GetWhile (tree_t* program, type_id_t scope)
 
                     new_right_node        = _ST(NULL, NULL);
 
-                    new_right_node->left  = GetOp (program, scope);
+                    new_right_node->left  = GetOp (program);
 
                     new_right_node->right = _ST(NULL, NULL);
 
@@ -620,7 +620,7 @@ node_t* GetWhile (tree_t* program, type_id_t scope)
                             break;
                         }
 
-                        crnt_node->left  = GetOp (program, scope);
+                        crnt_node->left  = GetOp (program);
 
                         crnt_node->right = _ST(NULL, NULL);
 
@@ -660,7 +660,7 @@ node_t* GetWhile (tree_t* program, type_id_t scope)
 
 //---------------------------------------------------------------------------------------
 
-node_t* GetA (tree_t* program, type_id_t scope)
+node_t* GetA (tree_t* program)
 {
     node_t* new_right_node = NULL;
 
@@ -669,8 +669,6 @@ node_t* GetA (tree_t* program, type_id_t scope)
     if (program->tokens[p].type == ID)
     {
         new_left_node = _ID (program->tokens[p].value);
-
-        program->nametable[(size_t) program->tokens[p].value].type_id = TYPE_GLOBAL;
 
         FRONT_DBG fprintf (stderr, CYN "in GetA: first token is ID\n" RESET);
 
@@ -689,7 +687,7 @@ node_t* GetA (tree_t* program, type_id_t scope)
             SintaxError (program, "GetA");
         }
 
-        new_right_node = GetE (program, scope);
+        new_right_node = GetE (program);
     }
     else
     {
@@ -703,9 +701,9 @@ node_t* GetA (tree_t* program, type_id_t scope)
 
 //---------------------------------------------------------------------------------------
 
-node_t* GetE (tree_t* program, type_id_t scope)
+node_t* GetE (tree_t* program)
 {
-    node_t* node = GetT (program, scope);
+    node_t* node = GetT (program);
 
     FRONT_DBG fprintf (stderr, GRN "in GetE Start check \"+\" or \"-\"\n" RESET);
 
@@ -717,7 +715,7 @@ node_t* GetE (tree_t* program, type_id_t scope)
 
         p++;
 
-        node_t* new_node = GetT (program, scope);
+        node_t* new_node = GetT (program);
 
         if (strcmp (op, "+") == 0)
         {
@@ -737,9 +735,9 @@ node_t* GetE (tree_t* program, type_id_t scope)
 
 //---------------------------------------------------------------------------------------
 
-node_t* GetT (tree_t* program, type_id_t scope)
+node_t* GetT (tree_t* program)
 {
-    node_t* node = GetP (program, scope);
+    node_t* node = GetP (program);
 
     while (_CMP_OP("*") || _CMP_OP ("/"))
     {
@@ -747,7 +745,7 @@ node_t* GetT (tree_t* program, type_id_t scope)
 
         p++;
 
-        node_t* new_node = GetP (program, scope);
+        node_t* new_node = GetP (program);
 
         if (strcmp (op, "*") == 0)
         {
@@ -764,13 +762,13 @@ node_t* GetT (tree_t* program, type_id_t scope)
 
 //---------------------------------------------------------------------------------------
 
-node_t* GetP (tree_t* program, type_id_t scope)
+node_t* GetP (tree_t* program)
 {
     if (_CMP_OP("("))
     {
         p++;
 
-        node_t* node = GetE (program, scope);
+        node_t* node = GetE (program);
 
         if (!_CMP_OP(")"))
         {
@@ -791,7 +789,7 @@ node_t* GetP (tree_t* program, type_id_t scope)
         {
             p++;
 
-            argument_node = GetE (program, scope);
+            argument_node = GetE (program);
 
             if (_CMP_OP(")"))
             {
@@ -832,11 +830,6 @@ node_t* GetP (tree_t* program, type_id_t scope)
         else
         {
             FRONT_DBG fprintf (stderr, CYN "It is free Id\n" RESET);
-
-            if (program->nametable[(size_t) token_value].type_id == TYPE_NONE)
-            {
-                program->nametable[(size_t) token_value].type_id = scope;
-            }
 
             return _ID (token_value);
         }

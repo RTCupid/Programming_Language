@@ -10,24 +10,18 @@ size table: 4
 			{ID:""}
 		}
 		{OP:";"
-			{OP:"input"
+			{OP:"="
 				{ID:"1"}
-				{ID:""}
+				{NUM:"1"}
 			}
 			{OP:";"
-				{OP:"print"
+				{OP:"call"
+					{ID:"2"}
 					{ID:"1"}
-					{ID:""}
 				}
 				{OP:";"
-					{OP:"call"
-						{ID:"2"}
-						{ID:"1"}
-					}
-					{OP:";"
-						{OP:"$"}
-						{OP:";"}
-					}
+					{OP:"$"}
+					{OP:";"}
 				}
 			}
 		}
@@ -43,7 +37,7 @@ size table: 4
 					{ID:"3"}
 					{OP:"+"
 						{ID:"3"}
-						{NUM:"2"}
+						{NUM:"1000"}
 					}
 				}
 				{OP:";"

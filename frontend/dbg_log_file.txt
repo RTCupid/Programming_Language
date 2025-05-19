@@ -1,12 +1,10 @@
 
-236
-count of char = 236
+200
+count of char = 200
 
 my_main ()
 {
-    input (first_argument);
-
-    write_about {first_argument};
+    first_argument = 1;
 
     Function (first_argument);
 
@@ -15,7 +13,7 @@ my_main ()
 
 Function (arg)
 {
-    arg = arg + 2;
+    arg = arg + 1000;
 
     write_about {arg};
 
@@ -24,7 +22,7 @@ Function (arg)
 
 then_commit_seppuku
 
-sizeOfFile = <236>
+sizeOfFile = <200>
 
 
 Start Tokenizer:
@@ -87,49 +85,17 @@ name = <{>
 <{> is keyword
 number_key = <19>
 
-first symbol = <i> is alpha
-name = <input>
-<input> is keyword
-number_key = <23>
-
-first symbol = <(> is alpha
-name = <(>
-<(> is keyword
-number_key = <17>
-
 first symbol = <f> is alpha
 name = <first_argument>
 number_key = <-1>
 number_id = <-1>
-first symbol = <)> is alpha
-name = <)>
-<)> is keyword
-number_key = <18>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
 
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
-first symbol = <w> is alpha
-name = <write_about>
-<write_about> is keyword
-number_key = <21>
-
-first symbol = <{> is alpha
-name = <{>
-<{> is keyword
-number_key = <19>
-
-first symbol = <f> is alpha
-name = <first_argument>
-number_key = <-1>
-<first_argument> is identificator
-number_id = <1>
-first symbol = <}> is alpha
-name = <}>
-<}> is keyword
-number_key = <20>
+first symbol = '1' is number
+number is <1>
 
 first symbol = <;> is alpha
 name = <;>
@@ -219,8 +185,8 @@ name = <+>
 <+> is keyword
 number_key = <1>
 
-first symbol = '2' is number
-number is <2>
+first symbol = '1' is number
+number is <1000>
 
 first symbol = <;> is alpha
 name = <;>
@@ -286,15 +252,9 @@ ID my_main
 OP (
 OP )
 OP {
-OP input
-OP (
 ID first_argument
-OP )
-OP ;
-OP print
-OP {
-ID first_argument
-OP }
+OP =
+NUM 1
 OP ;
 ID Function
 OP (
@@ -313,7 +273,7 @@ ID arg
 OP =
 ID arg
 OP +
-NUM 2
+NUM 1000
 OP ;
 OP print
 OP {

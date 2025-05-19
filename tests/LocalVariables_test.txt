@@ -1,8 +1,6 @@
 my_main ()
 {
-    input (first_argument);
-
-    write_about {first_argument};
+    first_argument = 1;
 
     Function (first_argument);
 
@@ -11,7 +9,7 @@ my_main ()
 
 Function (arg)
 {
-    arg = arg + 2;
+    arg = arg + 1000;
 
     write_about {arg};
 

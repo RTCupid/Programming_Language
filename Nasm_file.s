@@ -53,14 +53,14 @@ Function:                                             ; it is definition of Func
 
 	                                                  ; [rbp + 8] = function's argument
 
-	mov rax, [arg]                                    ; rax = arg 
+	mov rax, [rbp + 8]                                ; rax = arg 
 	push rax                                          ; rax => stack
 	mov rdx, 1000                                     ; rdx = 1000 
 	pop rax                                           ; rax <= stack
 	add rax, rdx                                      ; rax += rdx ; number operator 16 
 	mov [arg], rax                                    ; arg = rax  ; number operator 16 
 
-	mov rax, [arg]                                    ; rax = arg 
+	mov rax, [rbp + 8]                                ; rax = arg 
 
 	call _my_print                                    ; print (eax) ; number operator 18 
 
@@ -74,7 +74,6 @@ call _my_hlt                                          ; exit (0)
 section .data
 
 first_argument: dq 0
-arg: dq 0
 ;--------------------------------------------------------------------------------------------------
 
 section .note.GNU-stack

@@ -288,6 +288,9 @@ static err_t ProcessFUNC (tree_t* program, FILE* file_nasm, node_t* crnt_node)
     if (program->nametable[(size_t) crnt_node->left->value].argument == WITH_ARGUMENT)
     {
         fprintf (file_nasm, "\n;\tEntry: %s = [rbp + 8]", program->nametable[(size_t) crnt_node->right->value].name);
+
+        program->nametable[(size_t) crnt_node->right->value].type_id = TYPE_LOCAL;
+
         fprintf (file_nasm, "\n;\tEntry: adress to return = [rbp]");
     }
 
@@ -348,11 +351,15 @@ static err_t ProcessCALL (tree_t* program, FILE* file_nasm, node_t* crnt_node, o
 
         fprintf(file_nasm, "\n\n\t%-50s; clean stack frame;", "add rsp, 8");
     }
-    else
+    else if (program->nametable[(size_t) crnt_node->left->value].argument == WITHOUT_ARGUMENT)
     {
         snprintf (buffer, sizeof(buffer), "call %s", program->nametable[(size_t) crnt_node->left->value].name);
 
-        fprintf(file_nasm, "\n\n\t%-50s; %s (rax);", buffer, program->nametable[(size_t) crnt_node->left->value].name);
+        fprintf(file_nasm, "\n\n\t%-50s; %s ();", buffer, program->nametable[(size_t) crnt_node->left->value].name);
+    }
+    else
+    {
+        fprintf (stderr, RED "ERROR: ProcessCall: It hasn't information about function's arguments\n" RESET);
     }
 
     if (variable_order == SECOND_EXPR)
@@ -416,7 +423,7 @@ static err_t ProcessID (tree_t* program, FILE* file_nasm, node_t* crnt_node, ord
     }
     else if (program->nametable[(int)crnt_node->value].type_id == TYPE_LOCAL)
     {
-        fprintf  (file_nasm, "\n\n\t%-50s; rax = %s ",  "mov rax, [ebp + 8]", program->nametable[(int)crnt_node->value].name);
+        fprintf  (file_nasm, "\n\n\t%-50s; rax = %s ",  "mov rax, [rbp + 8]", program->nametable[(int)crnt_node->value].name);
     }
     else
     {

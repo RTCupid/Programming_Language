@@ -13,6 +13,8 @@ int main (int argc, char* argv[])
 {
     printf (GRN "### Samurai Programming Language\n" RESET);
 
+    fprintf (stderr, GRN "<%c>\n", 17);
+
     if (argc > 1)
     {
         tree_t program = {};

@@ -31,13 +31,14 @@ Everything
 {Print ::= "print" ...
 {Input ::= "input" "(" ID ")"
 {While ::= "while" "(" MORE | LESS | E ")" "{" {OP ";"}+ "}"
-{Func  ::= "Id "(" ")" "{" {OP ";"}+ "}"
+{Func  ::= Id "(" Id | " " ")" "{" {OP ";"}+ "}"
+{Call  ::= Id "(" Id | " " ")" ";"
 {Ret   ::= "return" E
 
 Equation
 { E    ::= T {["+" "-"] T}*
 { T    ::= P {["*" "/"] P}*
-{ P    ::= "(" E ")" | N | Id | "sqrt" "(" E ")"
+{ P    ::= "(" E ")" | N | Id | "sqrt" "(" E ")" | Func "("E")"
     >   <
 Tokens:
 { N    ::= NUM
@@ -232,12 +233,12 @@ node_t* GetFunc (tree_t* program)
 
             if (program->tokens[p].type == ID)
             {
-                FRONT_DBG fprintf (stderr, CYN " function's argument = \"%s\"\n" RESET, program->nametable[(size_t) (program->tokens[p].value)].name);
+                FRONT_DBG fprintf (stderr, CYN " function's argument = \"%lu\"\n" RESET, (size_t) (program->tokens[p].value));
 
-                argument_func_node = _ID(program->tokens[p].value);
-
-                p++;
+                argument_func_node = GetE (program);
             }
+
+            FRONT_DBG fprintf (stderr, GRN "end check argument\n" RESET);
 
             if (_CMP_OP(")"))
             {
@@ -700,6 +701,8 @@ node_t* GetE (tree_t* program)
 
     while (_CMP_OP("+") || _CMP_OP("-"))
     {
+        FRONT_DBG fprintf (stderr, CYN "in GetE \"+\" or \"-\"\n" RESET);
+
         const char* op = keywords[(int)program->tokens[p].value].key_op;
 
         p++;
@@ -802,14 +805,31 @@ node_t* GetP (tree_t* program)
     }
     if (program->tokens[p].type == ID)
     {
+        FRONT_DBG fprintf (stderr, GRN "Start check ID in GetP\n" RESET);
+
         double token_value = program->tokens[p].value;
 
         p++;
 
-        return _ID (token_value);
+        if (_CMP_OP("("))
+        {
+            p--;
+
+            FRONT_DBG fprintf (stderr, CYN "Start Function\n" RESET);
+
+            return GetFunc (program);
+        }
+        else
+        {
+            FRONT_DBG fprintf (stderr, CYN "It is free Id\n" RESET);
+
+            return _ID (token_value);
+        }
     }
     if (program->tokens[p].type == NUM)
     {
+        FRONT_DBG fprintf (stderr, GRN "Start check NUM in GetP\n" RESET);
+
         double token_value = program->tokens[p].value;
 
         p++;

@@ -29,17 +29,14 @@ my_main:                                              ; it is definition of my_m
 
 	call _my_print                                    ; print (eax) ; number operator 7 
 
-	call _my_input                                    ; input(argument); rax = input 
-	mov [argument], rax                               ; [argument] = rax  ; number operator 9 
+	mov rax, 0                                        ; rax = 0 
+	mov [first_argument], rax                         ; first_argument = rax  ; number operator 9 
 
-	mov rax, 10                                       ; rax = 10 
-	mov [fact], rax                                   ; fact = rax  ; number operator 11 
+	mov rax, [first_argument]                         ; rax = first_argument 
 
-	mov rax, [fact]                                   ; rax = fact 
+	call _my_print                                    ; print (eax) ; number operator 11 
 
-	call _my_print                                    ; print (eax) ; number operator 13 
-
-	mov rax, [argument]                               ; rax = argument 
+	mov rax, [utyutyu]                                ; rax = utyutyu 
 
 	sub rsp, 8                                        ; reserved 8 byte for argument
 
@@ -47,75 +44,39 @@ my_main:                                              ; it is definition of my_m
 
 	call Function                                     ; Function (rax);
 
-	add rsp, 8                                        ; clean stack frame; ; number operator 15 
+	add rsp, 8                                        ; clean stack frame; ; number operator 13 
 
-	mov rax, [argument]                               ; rax = argument 
+	mov rax, [first_argument]                         ; rax = first_argument 
 
-	sub rsp, 8                                        ; reserved 8 byte for argument
+	call _my_print                                    ; print (eax) ; number operator 15 
 
-	mov [rsp], rax                                    ; rax => [rsp], make stack frame;
-
-	call Summator                                     ; Summator (rax);
-
-	add rsp, 8                                        ; clean stack frame; ; number operator 17 
-
-	call _my_hlt                                      ; exit (0) ; number operator 19  ; number operator 20  ; number operator 20  ; number operator 20  ; number operator 20  ; number operator 20  ; number operator 20  ; number operator 20  ; number operator 20  ; number operator 20 
+	call _my_hlt                                      ; exit (0) ; number operator 17  ; number operator 18  ; number operator 18  ; number operator 18  ; number operator 18  ; number operator 18  ; number operator 18  ; number operator 18  ; number operator 18 
 
 ;--------------------------------------------------------------------------------------------------
 ;	Function:
-;	Entry: fact = [rbp + 8]
 ;--------------------------------------------------------------------------------------------------
 
-Function:                                             ; it is definition of Function  ; number operator 23 
+Function:                                             ; it is definition of Function  ; number operator 21 
 
 	mov rbp, rsp                                      ; rbp = rsp, save old value of rsp
 
 	                                                  ; [rbp] = address for return
 
-	                                                  ; [rbp + 8] = function's argument
-
-	mov rax, [fact]                                   ; rax = fact 
-
-	call _my_print                                    ; print (eax) ; number operator 25 
+	mov rax, 1                                        ; rax = 1 
+	mov [first_argument], rax                         ; first_argument = rax  ; number operator 23 
 
 	mov rax, 0                                        ; rax = 0 
 
 	mov rsp, rbp                                      ; rsp = rbp, back old value of rsp
 
-	ret                                               ; return; ; number operator 27  ; number operator 28  ; number operator 28  ; number operator 28  ; number operator 28 
-
-;--------------------------------------------------------------------------------------------------
-;	Summator:
-;	Entry: sum = [rbp + 8]
-;--------------------------------------------------------------------------------------------------
-
-Summator:                                             ; it is definition of Summator  ; number operator 31 
-
-	mov rbp, rsp                                      ; rbp = rsp, save old value of rsp
-
-	                                                  ; [rbp] = address for return
-
-	                                                  ; [rbp + 8] = function's argument
-
-	mov rax, [sum]                                    ; rax = sum 
-	push rax                                          ; rax => stack
-	mov rdx, 1                                        ; rdx = 1 
-	pop rax                                           ; rax <= stack
-	add rax, rdx                                      ; rax += rdx ; number operator 34 
-
-	call _my_print                                    ; print (eax) ; number operator 34 
-
-	mov rax, 0                                        ; rax = 0 
-
-	mov rsp, rbp                                      ; rsp = rbp, back old value of rsp
-
-	ret                                               ; return; ; number operator 36  ; number operator 37  ; number operator 37  ; number operator 37  ; number operator 37  ; number operator 38  ; number operator 38  ; number operator 38  ; number operator 38  ; number operator 38 
+	ret                                               ; return; ; number operator 25  ; number operator 26  ; number operator 26  ; number operator 26  ; number operator 26  ; number operator 27  ; number operator 27  ; number operator 27  ; number operator 27 
 
 call _my_hlt                                          ; exit (0)
 ;--------------------------------------------------------------------------------------------------
 
 section .data
 
+utyutyu: dq 0
 utyutyu: dq 0
 ;--------------------------------------------------------------------------------------------------
 

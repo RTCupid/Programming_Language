@@ -84,11 +84,8 @@ token_t* Tokenizer (tree_t* program)
 
                 if (number_id == -1)
                 {
-                    program->nametable[program->nametable_id].start_pos = start_pos;
 
-                    program->nametable[program->nametable_id].n_symbols = (size_t)n_print_symbols;
-
-                    program->nametable[program->nametable_id].type_id   = TYPE_NONE;
+                    AddToNameTable (program, (size_t)n_print_symbols, start_pos, TYPE_NONE, -1);  // -1 = POISON
 
                     tokens[token_id].type  = ID;
 

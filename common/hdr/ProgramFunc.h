@@ -31,6 +31,7 @@ typedef struct identificator_t
     char*       name;
     type_id_t   type_id;
     arg_t       argument;
+    int         number_func;
 
 } identificator_t;
 
@@ -231,4 +232,8 @@ void        VerifyOpenFile  (FILE* file, const char* namefunc);
 //! @endcode
 //}
 const char* KeyFromEnum     (int value);
+
+
+void        AddToNameTable  (tree_t* program, size_t n_symbols, char* start_pos, type_id_t type_id, int number_func);
+
 #endif

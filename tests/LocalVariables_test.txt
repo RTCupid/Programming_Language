@@ -4,29 +4,20 @@ my_main ()
 {
     write_about {utyutyu};
 
-    input (argument);
+    first_argument = 0;
 
-    fact = 10;
+    write_about {first_argument};
 
-    write_about {fact};
+    Function ();
 
-    Function (argument);
-
-    Summator (argument);
+    write_about {first_argument};
 
     then_commit_seppuku
 };
 
-Function (fact)
+Function ()
 {
-    write_about {fact};
-
-    return 0;
-};
-
-Summator (sum)
-{
-    write_about {sum + 1};
+    first_argument = 1;
 
     return 0;
 };

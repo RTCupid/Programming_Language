@@ -309,10 +309,7 @@ static err_t ProcessDEF (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
     fprintf(file_nasm, "\n\n\t%-50s; [rbp] = address for return", " ");
 
-    if (program->nametable[(size_t) crnt_node->left->left->value].argument == WITH_ARGUMENT)
-    {
-        fprintf(file_nasm, "\n\n\t%-50s; [rbp + 8] = function's argument", " ");
-    }
+    fprintf(file_nasm, "\n\n\t%-50s; [rbp + 8] = function's argument", " ");
 
     RecursiveMakeNasm (program, file_nasm, crnt_node->right, 0);
 
@@ -324,8 +321,6 @@ static err_t ProcessDEF (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 static err_t ProcessRET (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 {
     RecursiveMakeNasm (program, file_nasm, crnt_node->left, FIRST_EXPR);
-
-    fprintf(file_nasm, "\n\n\t%-50s; rsp = rbp, back old value of rsp", "mov rsp, rbp");
 
     fprintf (file_nasm, "\n\n\t%-50s; return;", "ret");
 

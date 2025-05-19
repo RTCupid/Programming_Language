@@ -19,31 +19,31 @@ static err_t ProcessCALL    (tree_t* program, FILE* file_nasm, node_t* crnt_node
 
 static err_t ProcessNUM     (FILE* file_nasm, node_t* crnt_node, order_t variable_order);
 
-static err_t ProcessID      (tree_t* program, FILE* file_nasm, node_t* crnt_node, int number_previous_variable, order_t variable_order);
+static err_t ProcessID      (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order);
 
-static err_t ProcessSMC     (tree_t* program, FILE* file_nasm, node_t* crnt_node, int number_previous_variable);
+static err_t ProcessSMC     (tree_t* program, FILE* file_nasm, node_t* crnt_node);
 
 static err_t ProcessEND     (FILE* file_nasm);
 
-static err_t ProcessPRNT    (tree_t* program, FILE* file_nasm, node_t* crnt_node, int number_previous_variable);
+static err_t ProcessPRNT    (tree_t* program, FILE* file_nasm, node_t* crnt_node);
 
 static err_t ProcessINPT    (tree_t* program, FILE* file_nasm, node_t* crnt_node);
 
-static err_t ProcessSQRT    (tree_t* program, FILE* file_nasm, node_t* crnt_node, int number_previous_variable, order_t variable_order);
+static err_t ProcessSQRT    (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order);
 
-static err_t ProcessIF      (tree_t* program, FILE* file_nasm, node_t* crnt_node, size_t num_if, int number_previous_variable);
+static err_t ProcessIF      (tree_t* program, FILE* file_nasm, node_t* crnt_node, size_t num_if);
 
-static err_t ProcessWHILE   (tree_t* program, FILE* file_nasm, node_t* crnt_node, size_t num_while, int number_previous_variable);
+static err_t ProcessWHILE   (tree_t* program, FILE* file_nasm, node_t* crnt_node, size_t num_while);
 
-static err_t ProcessEQU     (tree_t* program, FILE* file_nasm, node_t* crnt_node, int number_previous_variable);
+static err_t ProcessEQU     (tree_t* program, FILE* file_nasm, node_t* crnt_node);
 
-static err_t ProcessADD     (tree_t* program, FILE* file_nasm, node_t* crnt_node, int number_previous_variable, order_t variable_order);
+static err_t ProcessADD     (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order);
 
-static err_t ProcessSUB     (tree_t* program, FILE* file_nasm, node_t* crnt_node, int number_previous_variable, order_t variable_order);
+static err_t ProcessSUB     (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order);
 
-static err_t ProcessMUL     (tree_t* program, FILE* file_nasm, node_t* crnt_node, int number_previous_variable, order_t variable_order);
+static err_t ProcessMUL     (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order);
 
-static err_t ProcessDIV     (tree_t* program, FILE* file_nasm, node_t* crnt_node, int number_previous_variable, order_t variable_order);
+static err_t ProcessDIV     (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order);
 
 //---------------------------------------------------------------------------------------
 
@@ -74,7 +74,7 @@ void MakeNasmCode (tree_t* program)
 
     fprintf (file_nasm, "\n\tand rsp, -16");
 
-    RecursiveMakeNasm (program, file_nasm, program->root, 0);
+    RecursiveMakeNasm (program, file_nasm, program->root);
 
     fprintf (file_nasm, "\n\n%-54s; exit (0)", "call _my_hlt");
 
@@ -106,7 +106,7 @@ void MakeSectionData (tree_t* program, FILE* file_nasm)
 
 //---------------------------------------------------------------------------------------
 
-void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node, int number_previous_variable, order_t variable_order)
+void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order)
 {
     static size_t n_operator = 0;
 
@@ -127,7 +127,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node, int
             {
                 n_operator++;
 
-                ProcessSMC (program, file_nasm, crnt_node, number_previous_variable);
+                ProcessSMC (program, file_nasm, crnt_node);
 
                 break;
             }
@@ -175,7 +175,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node, int
             {
                 n_operator++;
 
-                ProcessPRNT (program, file_nasm, crnt_node, number_previous_variable);
+                ProcessPRNT (program, file_nasm, crnt_node);
 
                 break;
             }
@@ -191,7 +191,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node, int
             {
                 n_operator++;
 
-                ProcessSQRT (program, file_nasm, crnt_node, number_previous_variable, variable_order);
+                ProcessSQRT (program, file_nasm, crnt_node, variable_order);
 
                 break;
             }
@@ -199,7 +199,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node, int
             {
                 n_operator++;
 
-                ProcessIF (program, file_nasm, crnt_node, n_operator, number_previous_variable);
+                ProcessIF (program, file_nasm, crnt_node, n_operator);
 
                 break;
             }
@@ -207,7 +207,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node, int
             {
                 n_operator++;
 
-                ProcessWHILE (program, file_nasm, crnt_node, n_operator, number_previous_variable);
+                ProcessWHILE (program, file_nasm, crnt_node, n_operator);
 
                 break;
             }
@@ -215,7 +215,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node, int
             {
                 n_operator++;
 
-                ProcessEQU (program, file_nasm, crnt_node, number_previous_variable);
+                ProcessEQU (program, file_nasm, crnt_node);
 
                 break;
             }
@@ -223,7 +223,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node, int
             {
                 n_operator++;
 
-                ProcessADD (program, file_nasm, crnt_node, number_previous_variable, variable_order);
+                ProcessADD (program, file_nasm, crnt_node, variable_order);
 
                 break;
             }
@@ -231,7 +231,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node, int
             {
                 n_operator++;
 
-                ProcessSUB (program, file_nasm, crnt_node, number_previous_variable, variable_order);
+                ProcessSUB (program, file_nasm, crnt_node, variable_order);
 
                 break;
             }
@@ -239,7 +239,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node, int
             {
                 n_operator++;
 
-                ProcessMUL (program, file_nasm, crnt_node, number_previous_variable, variable_order);
+                ProcessMUL (program, file_nasm, crnt_node, variable_order);
 
                 break;
             }
@@ -247,7 +247,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node, int
             {
                 n_operator++;
 
-                ProcessDIV (program, file_nasm, crnt_node, number_previous_variable, variable_order);
+                ProcessDIV (program, file_nasm, crnt_node, variable_order);
 
                 break;
             }
@@ -269,7 +269,7 @@ void RecursiveMakeNasm (tree_t* program, FILE* file_nasm, node_t* crnt_node, int
     }
     else if (crnt_node->type == ID)
     {
-        ProcessID (program, file_nasm, crnt_node, number_previous_variable, variable_order);
+        ProcessID (program, file_nasm, crnt_node, variable_order);
 
         return;
     }
@@ -288,6 +288,7 @@ static err_t ProcessFUNC (tree_t* program, FILE* file_nasm, node_t* crnt_node)
     if (program->nametable[(size_t) crnt_node->left->value].argument == WITH_ARGUMENT)
     {
         fprintf (file_nasm, "\n;\tEntry: %s = [rbp + 8]", program->nametable[(size_t) crnt_node->right->value].name);
+        fprintf (file_nasm, "\n;\tEntry: adress to return = [rbp]");
     }
 
     fprintf (file_nasm, "\n;--------------------------------------------------------------------------------------------------");
@@ -303,7 +304,7 @@ static err_t ProcessFUNC (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
 static err_t ProcessDEF (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 {
-    RecursiveMakeNasm (program, file_nasm, crnt_node->left, 0);
+    RecursiveMakeNasm (program, file_nasm, crnt_node->left);
 
     fprintf(file_nasm, "\n\n\t%-50s; rbp = rsp, save old value of rsp", "mov rbp, rsp");
 
@@ -311,7 +312,7 @@ static err_t ProcessDEF (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
     fprintf(file_nasm, "\n\n\t%-50s; [rbp + 8] = function's argument", " ");
 
-    RecursiveMakeNasm (program, file_nasm, crnt_node->right, 0);
+    RecursiveMakeNasm (program, file_nasm, crnt_node->right);
 
     return OK;
 }
@@ -390,7 +391,7 @@ static err_t ProcessNUM (FILE* file_nasm, node_t* crnt_node, order_t variable_or
 
 //---------------------------------------------------------------------------------------
 
-static err_t ProcessID (tree_t* program, FILE* file_nasm, node_t* crnt_node, int number_previous_variable, order_t variable_order)
+static err_t ProcessID (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order)
 {
     char buffer[100] = {};
 
@@ -415,13 +416,7 @@ static err_t ProcessID (tree_t* program, FILE* file_nasm, node_t* crnt_node, int
     }
     else if (program->nametable[(int)crnt_node->value].type_id == TYPE_LOCAL)
     {
-        snprintf (buffer, sizeof(buffer), "mov rcx, 8 * %d", number_previous_variable);
-
-        fprintf (file_nasm, "\n\n\t%-50s; rcx = 8 * %d ", buffer, number_previous_variable);
-
-        snprintf (buffer, sizeof(buffer), "mov rax, [ebp + rcx]");
-
-        fprintf  (file_nasm, "\n\n\t%-50s; rax = %s ", buffer, program->nametable[(int)crnt_node->value].name);
+        fprintf  (file_nasm, "\n\n\t%-50s; rax = %s ",  "mov rax, [ebp + 8]", program->nametable[(int)crnt_node->value].name);
     }
     else
     {
@@ -433,13 +428,13 @@ static err_t ProcessID (tree_t* program, FILE* file_nasm, node_t* crnt_node, int
 
 //---------------------------------------------------------------------------------------
 
-static err_t ProcessSMC (tree_t* program, FILE* file_nasm, node_t* crnt_node, int number_previous_variable)
+static err_t ProcessSMC (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 {
     BACK_DBG fprintf (stderr, "operator = %s\n", KeyFromEnum ((int)crnt_node->value));
 
-    RecursiveMakeNasm (program, file_nasm, crnt_node->left, number_previous_variable );
+    RecursiveMakeNasm (program, file_nasm, crnt_node->left );
 
-    RecursiveMakeNasm (program, file_nasm, crnt_node->right, number_previous_variable);
+    RecursiveMakeNasm (program, file_nasm, crnt_node->right);
 
     return OK;
 }
@@ -455,11 +450,11 @@ static err_t ProcessEND (FILE* file_nasm)
 
 //---------------------------------------------------------------------------------------
 
-static err_t ProcessPRNT (tree_t* program, FILE* file_nasm, node_t* crnt_node, int number_previous_variable)
+static err_t ProcessPRNT (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 {
     BACK_DBG fprintf (stderr, "operator = %s\n", KeyFromEnum ((int)crnt_node->value));
 
-    RecursiveMakeNasm (program, file_nasm, crnt_node->left, number_previous_variable, FIRST_EXPR);
+    RecursiveMakeNasm (program, file_nasm, crnt_node->left, FIRST_EXPR);
 
     fprintf (file_nasm, "\n\n\t%-50s; print (eax)", "call _my_print");
 
@@ -485,9 +480,9 @@ static err_t ProcessINPT (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
 //---------------------------------------------------------------------------------------
 
-static err_t ProcessSQRT (tree_t* program, FILE* file_nasm, node_t* crnt_node, int number_previous_variable, order_t variable_order)
+static err_t ProcessSQRT (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order)
 {
-    RecursiveMakeNasm (program, file_nasm, crnt_node->left, number_previous_variable, FIRST_EXPR);
+    RecursiveMakeNasm (program, file_nasm, crnt_node->left, FIRST_EXPR);
 
     fprintf (file_nasm, "\n\n\t%-50s; xmm0 = (double) rax", "cvtsi2sd xmm0, rax");
 
@@ -511,7 +506,7 @@ static err_t ProcessSQRT (tree_t* program, FILE* file_nasm, node_t* crnt_node, i
 
 //---------------------------------------------------------------------------------------
 
-static err_t ProcessIF (tree_t* program, FILE* file_nasm, node_t* crnt_node, size_t num_if, int number_previous_variable)
+static err_t ProcessIF (tree_t* program, FILE* file_nasm, node_t* crnt_node, size_t num_if)
 {
     char buffer[100] = {};
 
@@ -523,9 +518,9 @@ static err_t ProcessIF (tree_t* program, FILE* file_nasm, node_t* crnt_node, siz
 
     if (crnt_node->left->type == OP && (int)crnt_node->left->value == LESS)
     {
-        RecursiveMakeNasm (program, file_nasm, crnt_node->left->left, number_previous_variable, FIRST_EXPR);
+        RecursiveMakeNasm (program, file_nasm, crnt_node->left->left, FIRST_EXPR);
 
-        RecursiveMakeNasm (program, file_nasm, crnt_node->left->right, number_previous_variable, SECOND_EXPR);
+        RecursiveMakeNasm (program, file_nasm, crnt_node->left->right, SECOND_EXPR);
 
         fprintf  (file_nasm, "\n\t%-50s; if (rax >= rdx)",  "cmp rax, rdx");
 
@@ -535,9 +530,9 @@ static err_t ProcessIF (tree_t* program, FILE* file_nasm, node_t* crnt_node, siz
     }
     else if (crnt_node->left->type == OP && (int)crnt_node->left->value == MORE)
     {
-        RecursiveMakeNasm (program, file_nasm, crnt_node->left->left, number_previous_variable, FIRST_EXPR);
+        RecursiveMakeNasm (program, file_nasm, crnt_node->left->left, FIRST_EXPR);
 
-        RecursiveMakeNasm (program, file_nasm, crnt_node->left->right, number_previous_variable, SECOND_EXPR);
+        RecursiveMakeNasm (program, file_nasm, crnt_node->left->right, SECOND_EXPR);
 
         fprintf  (file_nasm, "\n\t%-50s; if (rax <= rdx)", "cmp rax, rdx");
 
@@ -547,7 +542,7 @@ static err_t ProcessIF (tree_t* program, FILE* file_nasm, node_t* crnt_node, siz
     }
     else
     {
-        RecursiveMakeNasm (program, file_nasm, crnt_node->left, number_previous_variable, FIRST_EXPR);
+        RecursiveMakeNasm (program, file_nasm, crnt_node->left, FIRST_EXPR);
 
         fprintf  (file_nasm, "\n\t%-50s;  if (rax = 0)", "test rax, rax");
 
@@ -558,7 +553,7 @@ static err_t ProcessIF (tree_t* program, FILE* file_nasm, node_t* crnt_node, siz
 
     fprintf (file_nasm, "\n;   action-%lu", num_if);
 
-    RecursiveMakeNasm (program, file_nasm, crnt_node->right, number_previous_variable);
+    RecursiveMakeNasm (program, file_nasm, crnt_node->right);
 
     fprintf (file_nasm, "\n\n.end_if%lu:\n", num_if);
 
@@ -569,7 +564,7 @@ static err_t ProcessIF (tree_t* program, FILE* file_nasm, node_t* crnt_node, siz
 
 //---------------------------------------------------------------------------------------
 
-static err_t ProcessWHILE (tree_t* program, FILE* file_nasm, node_t* crnt_node, size_t num_while, int number_previous_variable)
+static err_t ProcessWHILE (tree_t* program, FILE* file_nasm, node_t* crnt_node, size_t num_while)
 {
     char buffer[100] = {};
 
@@ -583,9 +578,9 @@ static err_t ProcessWHILE (tree_t* program, FILE* file_nasm, node_t* crnt_node, 
 
     if (crnt_node->left->type == OP && (int)crnt_node->left->value == LESS)
     {
-        RecursiveMakeNasm (program, file_nasm, crnt_node->left->left, number_previous_variable, FIRST_EXPR);
+        RecursiveMakeNasm (program, file_nasm, crnt_node->left->left, FIRST_EXPR);
 
-        RecursiveMakeNasm (program, file_nasm, crnt_node->left->right, number_previous_variable, SECOND_EXPR);
+        RecursiveMakeNasm (program, file_nasm, crnt_node->left->right, SECOND_EXPR);
 
         fprintf(file_nasm, "\n\t%-50s; if (rax < rdx)", "cmp rax, rdx");
 
@@ -595,9 +590,9 @@ static err_t ProcessWHILE (tree_t* program, FILE* file_nasm, node_t* crnt_node, 
     }
     else if (crnt_node->left->type == OP && (int)crnt_node->left->value == MORE)
     {
-        RecursiveMakeNasm (program, file_nasm, crnt_node->left->left, number_previous_variable, FIRST_EXPR);
+        RecursiveMakeNasm (program, file_nasm, crnt_node->left->left, FIRST_EXPR);
 
-        RecursiveMakeNasm (program, file_nasm, crnt_node->left->right, number_previous_variable, SECOND_EXPR);
+        RecursiveMakeNasm (program, file_nasm, crnt_node->left->right, SECOND_EXPR);
 
         fprintf  (file_nasm, "\n\t%-50s; if (rax > rdx)", "cmp rax, rdx");
 
@@ -607,7 +602,7 @@ static err_t ProcessWHILE (tree_t* program, FILE* file_nasm, node_t* crnt_node, 
     }
     else
     {
-        RecursiveMakeNasm (program, file_nasm, crnt_node->left, number_previous_variable, FIRST_EXPR);
+        RecursiveMakeNasm (program, file_nasm, crnt_node->left, FIRST_EXPR);
 
         fprintf  (file_nasm, "\n\t%-50s;  if (rax = 0)", "test rax, rax");
 
@@ -618,7 +613,7 @@ static err_t ProcessWHILE (tree_t* program, FILE* file_nasm, node_t* crnt_node, 
 
     fprintf (file_nasm, "\n;   action-%lu", num_while);
 
-    RecursiveMakeNasm (program, file_nasm, crnt_node->right, number_previous_variable);
+    RecursiveMakeNasm (program, file_nasm, crnt_node->right);
 
     snprintf (buffer, sizeof(buffer), "jmp short .start_while%lu", num_while);
 
@@ -633,9 +628,9 @@ static err_t ProcessWHILE (tree_t* program, FILE* file_nasm, node_t* crnt_node, 
 
 //---------------------------------------------------------------------------------------
 
-static err_t ProcessEQU (tree_t* program, FILE* file_nasm, node_t* crnt_node, int number_previous_variable)
+static err_t ProcessEQU (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 {
-    RecursiveMakeNasm (program, file_nasm, crnt_node->right, number_previous_variable);
+    RecursiveMakeNasm (program, file_nasm, crnt_node->right);
 
     char buffer[100] = {};
 
@@ -657,13 +652,13 @@ static err_t ProcessEQU (tree_t* program, FILE* file_nasm, node_t* crnt_node, in
 
 //---------------------------------------------------------------------------------------
 
-static err_t ProcessADD (tree_t* program, FILE* file_nasm, node_t* crnt_node, int number_previous_variable, order_t variable_order)
+static err_t ProcessADD (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order)
 {
-    RecursiveMakeNasm (program, file_nasm, crnt_node->left, number_previous_variable, FIRST_EXPR);
+    RecursiveMakeNasm (program, file_nasm, crnt_node->left, FIRST_EXPR);
 
     fprintf (file_nasm, "\n\t%-50s; rax => stack", "push rax");
 
-    RecursiveMakeNasm (program, file_nasm, crnt_node->right, number_previous_variable, SECOND_EXPR);
+    RecursiveMakeNasm (program, file_nasm, crnt_node->right, SECOND_EXPR);
 
     fprintf (file_nasm, "\n\t%-50s; rax <= stack", "pop rax");
 
@@ -679,13 +674,13 @@ static err_t ProcessADD (tree_t* program, FILE* file_nasm, node_t* crnt_node, in
 
 //---------------------------------------------------------------------------------------
 
-static err_t ProcessSUB (tree_t* program, FILE* file_nasm, node_t* crnt_node, int number_previous_variable, order_t variable_order)
+static err_t ProcessSUB (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order)
 {
-    RecursiveMakeNasm (program, file_nasm, crnt_node->left, number_previous_variable, FIRST_EXPR);
+    RecursiveMakeNasm (program, file_nasm, crnt_node->left, FIRST_EXPR);
 
     fprintf (file_nasm, "\n\t%-50s; rax => stack", "push rax");
 
-    RecursiveMakeNasm (program, file_nasm, crnt_node->right, number_previous_variable, SECOND_EXPR);
+    RecursiveMakeNasm (program, file_nasm, crnt_node->right, SECOND_EXPR);
 
     fprintf (file_nasm, "\n\t%-50s; rax <= stack", "pop rax");
 
@@ -701,13 +696,13 @@ static err_t ProcessSUB (tree_t* program, FILE* file_nasm, node_t* crnt_node, in
 
 //---------------------------------------------------------------------------------------
 
-static err_t ProcessMUL (tree_t* program, FILE* file_nasm, node_t* crnt_node, int number_previous_variable, order_t variable_order)
+static err_t ProcessMUL (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order)
 {
-    RecursiveMakeNasm (program, file_nasm, crnt_node->left, number_previous_variable, FIRST_EXPR);
+    RecursiveMakeNasm (program, file_nasm, crnt_node->left, FIRST_EXPR);
 
     fprintf (file_nasm, "\n\t%-50s; rax => stack", "push rax");
 
-    RecursiveMakeNasm (program, file_nasm, crnt_node->right, number_previous_variable, SECOND_EXPR);
+    RecursiveMakeNasm (program, file_nasm, crnt_node->right, SECOND_EXPR);
 
     fprintf (file_nasm, "\n\t%-50s; rax <= stack", "pop rax");
 
@@ -725,13 +720,13 @@ static err_t ProcessMUL (tree_t* program, FILE* file_nasm, node_t* crnt_node, in
 
 //---------------------------------------------------------------------------------------
 
-static err_t ProcessDIV (tree_t* program, FILE* file_nasm, node_t* crnt_node, int number_previous_variable, order_t variable_order)
+static err_t ProcessDIV (tree_t* program, FILE* file_nasm, node_t* crnt_node, order_t variable_order)
 {
-    RecursiveMakeNasm (program, file_nasm, crnt_node->left, number_previous_variable, FIRST_EXPR);
+    RecursiveMakeNasm (program, file_nasm, crnt_node->left, FIRST_EXPR);
 
     fprintf (file_nasm, "\n\t%-50s; rax => stack", "push rax");
 
-    RecursiveMakeNasm (program, file_nasm, crnt_node->right, number_previous_variable, SECOND_EXPR);
+    RecursiveMakeNasm (program, file_nasm, crnt_node->right, SECOND_EXPR);
 
     fprintf (file_nasm, "\n\t%-50s; rax <= stack", "pop rax");
 

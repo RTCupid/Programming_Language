@@ -9,7 +9,7 @@ enum order_t
 
 void   MakeNasmCode         (tree_t* program);
 
-void   RecursiveMakeNasm    (tree_t* program, FILE* file_asm, node_t* crnt_node, int number_previous_variable, order_t variable_order = FIRST_EXPR);
+void   RecursiveMakeNasm    (tree_t* program, FILE* file_asm, node_t* crnt_node, order_t variable_order = FIRST_EXPR);
 
 void   MakeSectionData      (tree_t* program, FILE* file_nasm);
 

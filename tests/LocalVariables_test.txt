@@ -15,7 +15,11 @@ Function ()
 {
     first_argument = 1;
 
-    return 0;
+    cool_variable = 5;
+
+    answer = cool_variable * 66;
+
+    return answer;
 };
 
 then_commit_seppuku

@@ -6,6 +6,7 @@
 #include "../../common/hdr/ProgramFunc.h"
 #include "../hdr/WriteProgramFile.h"
 #include "../../common/hdr/colors.h"
+#include "../../common/hdr/Config.h"
 
 void WriteNameTable (tree_t* program, FILE* file)
 {
@@ -21,7 +22,7 @@ void WriteNameTable (tree_t* program, FILE* file)
 
         fprintf (file, "%lu %s %d %d %d\n", i, identificator, program->nametable[i].type_id, program->nametable[i].argument, program->nametable[i].number_func);
 
-        fprintf (stderr, BHMAG "%lu %s %d %d %d\n" RESET, i, identificator, program->nametable[i].type_id, program->nametable[i].argument, program->nametable[i].number_func);
+        FRONT_DBG fprintf (stderr, BHMAG "%lu %s %d %d %d\n" RESET, i, identificator, program->nametable[i].type_id, program->nametable[i].argument, program->nametable[i].number_func);
     }
 }
 

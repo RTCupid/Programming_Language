@@ -421,7 +421,7 @@ static err_t ProcessID (tree_t* program, FILE* file_nasm, node_t* crnt_node, int
     }
     else
     {
-        fprintf (stderr, RED "None type in ProcessID" RESET);
+        fprintf (stderr, RED "None type in ProcessID\n" RESET);
     }
 
     return OK;
@@ -523,7 +523,7 @@ static err_t ProcessIF (tree_t* program, FILE* file_nasm, node_t* crnt_node, siz
 
         RecursiveMakeNasm (program, file_nasm, crnt_node->left->right, number_previous_variable, SECOND_EXPR);
 
-        fprintf  (file_nasm, "\n\t%-50s; if (rax >= rdx)", "cmp rax, rdx");
+        fprintf  (file_nasm, "\n\t%-50s; if (rax >= rdx)",  "cmp rax, rdx");
 
         snprintf (buffer, sizeof(buffer), "jge  .end_if%lu", num_if);
 

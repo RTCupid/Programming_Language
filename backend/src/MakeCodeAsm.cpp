@@ -149,6 +149,57 @@ void RecursiveMakeAsm (tree_t* program, FILE* file_asm, node_t* crnt_node)
 
                 break;
             }
+            case WHILE:
+            {
+                n_operator++;
+
+                size_t num_while = n_operator;
+
+                BACK_DBG fprintf (stderr, GRN "operator = %s\n" RESET, KeyFromEnum ((int)crnt_node->value));
+
+                fprintf (file_asm, "\n; -------start-while-%lu-----------------------\n", num_while);
+
+                fprintf (file_asm, "\nstart-while-%lu:\n", num_while);
+
+                fprintf (file_asm, "\n; -------start-test-%lu---------------------\n", num_while);
+
+                if (crnt_node->left->type == OP && (int)crnt_node->left->value == LESS)
+                {
+                    RecursiveMakeAsm (program, file_asm, crnt_node->left->left);
+
+                    RecursiveMakeAsm (program, file_asm, crnt_node->left->right);
+
+                    fprintf (file_asm, "\nja end_while%lu:\n", num_while);
+                }
+                else if (crnt_node->left->type == OP && (int)crnt_node->left->value == MORE)
+                {
+                    RecursiveMakeAsm (program, file_asm, crnt_node->left->left);
+
+                    RecursiveMakeAsm (program, file_asm, crnt_node->left->right);
+
+                    fprintf (file_asm, "\njb end_while%lu:\n", num_while);
+                }
+                else
+                {
+                    RecursiveMakeAsm (program, file_asm, crnt_node->left);
+
+                    fprintf (file_asm, "\npush 0\n");
+
+                    fprintf (file_asm, "\nje end_while%lu:\n", num_while);
+                }
+
+                fprintf (file_asm, "; action\n");
+
+                RecursiveMakeAsm (program, file_asm, crnt_node->right);
+
+                fprintf (file_asm, "\njmp start-while-%lu:\n", num_while);
+
+                fprintf (file_asm, "\nend_while%lu:\n", num_while);
+
+                fprintf (file_asm, "; -------end-while-------------------------\n");
+
+                break;
+            }
             case EQU:
             {
                 n_operator++;

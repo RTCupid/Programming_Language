@@ -1,0 +1,16 @@
+input(number);
+
+factorial = 1;
+
+while (number > 1)
+{
+    factorial = factorial * number;
+
+    number = number - 1;
+};
+
+factorial = factorial + 1000;
+
+write_about {factorial};
+
+then_commit_seppuku

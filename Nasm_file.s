@@ -25,8 +25,6 @@ my_main:                                              ; it is definition of my_m
 
 	                                                  ; [rbp] = address for return
 
-	                                                  ; [rbp + 8] = function's argument
-
 	mov rax, [utyutyu]                                ; rax = utyutyu 
 
 	call _my_print                                    ; print (eax) ; number operator 7 
@@ -74,6 +72,8 @@ Function:                                             ; it is definition of Func
 
 	mov rax, 0                                        ; rax = 0 
 
+	mov rsp, rbp                                      ; rsp = rbp, back old value of rsp
+
 	ret                                               ; return; ; number operator 23  ; number operator 24  ; number operator 24  ; number operator 24  ; number operator 24 
 
 ;--------------------------------------------------------------------------------------------------
@@ -97,6 +97,8 @@ Summator:                                             ; it is definition of Summ
 	call _my_print                                    ; print (eax) ; number operator 30 
 
 	mov rax, 0                                        ; rax = 0 
+
+	mov rsp, rbp                                      ; rsp = rbp, back old value of rsp
 
 	ret                                               ; return; ; number operator 32  ; number operator 33  ; number operator 33  ; number operator 33  ; number operator 33  ; number operator 34  ; number operator 34  ; number operator 34  ; number operator 34  ; number operator 34 
 

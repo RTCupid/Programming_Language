@@ -12,45 +12,24 @@ _start:
 
 	and rsp, -16
 
-	mov rax, 19                                       ; rax = 19 
-	mov [utyutyu], rax                                ; utyutyu = rax  ; number operator 2 
-
-;--------------------------------------------------------------------------------------------------
-;	fictive:
-;--------------------------------------------------------------------------------------------------
-
-fictive:                                              ; it is definition of fictive  ; number operator 5 
-
-	mov rbp, rsp                                      ; rbp = rsp, save old value of rsp
-
-	                                                  ; [rbp] = address for return
-
-	mov rax, 5                                        ; rax = 5 
-
-	call _my_print                                    ; print (eax) ; number operator 7  ; number operator 8  ; number operator 8  ; number operator 8 
-
 ;--------------------------------------------------------------------------------------------------
 ;	my_main:
 ;--------------------------------------------------------------------------------------------------
 
-my_main:                                              ; it is definition of my_main  ; number operator 11 
+my_main:                                              ; it is definition of my_main  ; number operator 3 
 
 	mov rbp, rsp                                      ; rbp = rsp, save old value of rsp
 
 	                                                  ; [rbp] = address for return
 
-	mov rax, [utyutyu]                                ; rax = utyutyu 
-
-	call _my_print                                    ; print (eax) ; number operator 13 
-
 	mov rax, 0                                        ; rax = 0 
-	mov [first_argument], rax                         ; first_argument = rax  ; number operator 15 
+	mov [first_argument], rax                         ; first_argument = rax  ; number operator 5 
 
 	mov rax, [first_argument]                         ; rax = first_argument 
 
-	call _my_print                                    ; print (eax) ; number operator 17 
+	call _my_print                                    ; print (eax) ; number operator 7 
 
-	mov rax, [utyutyu]                                ; rax = utyutyu 
+	mov rax, [my_main]                                ; rax = my_main 
 
 	sub rsp, 8                                        ; reserved 8 byte for argument
 
@@ -58,39 +37,38 @@ my_main:                                              ; it is definition of my_m
 
 	call Function                                     ; Function (rax);
 
-	add rsp, 8                                        ; clean stack frame; ; number operator 19 
+	add rsp, 8                                        ; clean stack frame; ; number operator 9 
 
 	mov rax, [first_argument]                         ; rax = first_argument 
 
-	call _my_print                                    ; print (eax) ; number operator 21 
+	call _my_print                                    ; print (eax) ; number operator 11 
 
-	call _my_hlt                                      ; exit (0) ; number operator 23  ; number operator 24  ; number operator 24  ; number operator 24  ; number operator 24  ; number operator 24  ; number operator 24  ; number operator 24  ; number operator 24 
+	call _my_hlt                                      ; exit (0) ; number operator 13  ; number operator 14  ; number operator 14  ; number operator 14  ; number operator 14  ; number operator 14  ; number operator 14  ; number operator 14 
 
 ;--------------------------------------------------------------------------------------------------
 ;	Function:
 ;--------------------------------------------------------------------------------------------------
 
-Function:                                             ; it is definition of Function  ; number operator 27 
+Function:                                             ; it is definition of Function  ; number operator 17 
 
 	mov rbp, rsp                                      ; rbp = rsp, save old value of rsp
 
 	                                                  ; [rbp] = address for return
 
 	mov rax, 1                                        ; rax = 1 
-	mov [first_argument], rax                         ; first_argument = rax  ; number operator 29 
+	mov [first_argument], rax                         ; first_argument = rax  ; number operator 19 
 
 	mov rax, 0                                        ; rax = 0 
 
 	mov rsp, rbp                                      ; rsp = rbp, back old value of rsp
 
-	ret                                               ; return; ; number operator 31  ; number operator 32  ; number operator 32  ; number operator 32  ; number operator 32  ; number operator 33  ; number operator 33  ; number operator 33  ; number operator 33  ; number operator 33 
+	ret                                               ; return; ; number operator 21  ; number operator 22  ; number operator 22  ; number operator 22  ; number operator 22  ; number operator 23  ; number operator 23  ; number operator 23 
 
 call _my_hlt                                          ; exit (0)
 ;--------------------------------------------------------------------------------------------------
 
 section .data
 
-utyutyu: dq 0
 ;--------------------------------------------------------------------------------------------------
 
 section .note.GNU-stack

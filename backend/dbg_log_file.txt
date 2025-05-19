@@ -3,23 +3,6 @@ text = <;>
 <;> is keyword
 end symbol = <{>
 start symbol = <{>
-text = <=>
-<=> is keyword
-end symbol = <{>
-start symbol = <{>
-text = <0>
-end symbol = <}>
-return
-start symbol = <{>
-text = <19>
-end symbol = <}>
-return
-end symbol = <}>
-start symbol = <{>
-text = <;>
-<;> is keyword
-end symbol = <{>
-start symbol = <{>
 text = <def>
 <def> is keyword
 end symbol = <{>
@@ -28,7 +11,58 @@ text = <func>
 <func> is keyword
 end symbol = <{>
 start symbol = <{>
+text = <0>
+end symbol = <}>
+return
+start symbol = <{>
+text = <ID:>
+end symbol = <">
+end symbol = <}>
+end symbol = <}>
+start symbol = <{>
+text = <;>
+<;> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <=>
+<=> is keyword
+end symbol = <{>
+start symbol = <{>
 text = <1>
+end symbol = <}>
+return
+start symbol = <{>
+text = <0>
+end symbol = <}>
+return
+end symbol = <}>
+start symbol = <{>
+text = <;>
+<;> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <print>
+<print> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <1>
+end symbol = <}>
+return
+start symbol = <{>
+text = <ID:>
+end symbol = <">
+end symbol = <}>
+end symbol = <}>
+start symbol = <{>
+text = <;>
+<;> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <call>
+<call> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <2>
 end symbol = <}>
 return
 start symbol = <{>
@@ -45,7 +79,7 @@ text = <print>
 <print> is keyword
 end symbol = <{>
 start symbol = <{>
-text = <5>
+text = <1>
 end symbol = <}>
 return
 start symbol = <{>
@@ -56,8 +90,21 @@ end symbol = <}>
 start symbol = <{>
 text = <;>
 <;> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <$>
+<$> is keyword
 end symbol = <}>
 return
+start symbol = <{>
+text = <;>
+<;> is keyword
+end symbol = <}>
+return
+end symbol = <}>
+end symbol = <}>
+end symbol = <}>
+end symbol = <}>
 end symbol = <}>
 end symbol = <}>
 start symbol = <{>
@@ -86,138 +133,11 @@ text = <;>
 <;> is keyword
 end symbol = <{>
 start symbol = <{>
-text = <print>
-<print> is keyword
-end symbol = <{>
-start symbol = <{>
-text = <0>
-end symbol = <}>
-return
-start symbol = <{>
-text = <ID:>
-end symbol = <">
-end symbol = <}>
-end symbol = <}>
-start symbol = <{>
-text = <;>
-<;> is keyword
-end symbol = <{>
-start symbol = <{>
 text = <=>
 <=> is keyword
 end symbol = <{>
 start symbol = <{>
-text = <3>
-end symbol = <}>
-return
-start symbol = <{>
-text = <0>
-end symbol = <}>
-return
-end symbol = <}>
-start symbol = <{>
-text = <;>
-<;> is keyword
-end symbol = <{>
-start symbol = <{>
-text = <print>
-<print> is keyword
-end symbol = <{>
-start symbol = <{>
-text = <3>
-end symbol = <}>
-return
-start symbol = <{>
-text = <ID:>
-end symbol = <">
-end symbol = <}>
-end symbol = <}>
-start symbol = <{>
-text = <;>
-<;> is keyword
-end symbol = <{>
-start symbol = <{>
-text = <call>
-<call> is keyword
-end symbol = <{>
-start symbol = <{>
-text = <4>
-end symbol = <}>
-return
-start symbol = <{>
-text = <ID:>
-end symbol = <">
-end symbol = <}>
-end symbol = <}>
-start symbol = <{>
-text = <;>
-<;> is keyword
-end symbol = <{>
-start symbol = <{>
-text = <print>
-<print> is keyword
-end symbol = <{>
-start symbol = <{>
-text = <3>
-end symbol = <}>
-return
-start symbol = <{>
-text = <ID:>
-end symbol = <">
-end symbol = <}>
-end symbol = <}>
-start symbol = <{>
-text = <;>
-<;> is keyword
-end symbol = <{>
-start symbol = <{>
-text = <$>
-<$> is keyword
-end symbol = <}>
-return
-start symbol = <{>
-text = <;>
-<;> is keyword
-end symbol = <}>
-return
-end symbol = <}>
-end symbol = <}>
-end symbol = <}>
-end symbol = <}>
-end symbol = <}>
-end symbol = <}>
-end symbol = <}>
-start symbol = <{>
-text = <;>
-<;> is keyword
-end symbol = <{>
-start symbol = <{>
-text = <def>
-<def> is keyword
-end symbol = <{>
-start symbol = <{>
-text = <func>
-<func> is keyword
-end symbol = <{>
-start symbol = <{>
-text = <4>
-end symbol = <}>
-return
-start symbol = <{>
-text = <ID:>
-end symbol = <">
-end symbol = <}>
-end symbol = <}>
-start symbol = <{>
-text = <;>
-<;> is keyword
-end symbol = <{>
-start symbol = <{>
-text = <=>
-<=> is keyword
-end symbol = <{>
-start symbol = <{>
-text = <3>
+text = <1>
 end symbol = <}>
 return
 start symbol = <{>
@@ -255,7 +175,5 @@ text = <;>
 <;> is keyword
 end symbol = <}>
 return
-end symbol = <}>
-end symbol = <}>
 end symbol = <}>
 end symbol = <}>

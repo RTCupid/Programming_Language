@@ -34,13 +34,15 @@ node_t* MakeProgram (tree_t* program, const char* namefile)
 
         fscanf (base_file, "%lu %s %d %d %d", &addr_RAM, name, (int*)(&type_id), (int*)(&argument), &number_func);
 
-        BACK_DBG fprintf (stderr, "%lu %s %d %d\n", addr_RAM, name, type_id, argument);
+        BACK_DBG fprintf (stderr, "%lu %s %d %d %d\n", addr_RAM, name, type_id, argument, number_func);
 
-        program->nametable[i].name = name;
+        program->nametable[i].name        = name;
 
-        program->nametable[i].type_id = type_id;
+        program->nametable[i].type_id     = type_id;
 
-        program->nametable[i].argument = argument;
+        program->nametable[i].argument    = argument;
+
+        program->nametable[i].number_func = number_func;
 
         BACK_DBG fprintf (stderr, "%p %s\n", program->nametable[i].start_pos,
                             program->nametable[i].name);

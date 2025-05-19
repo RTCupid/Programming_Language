@@ -1,16 +1,8 @@
-size table: 12
+size table: 4
 0 my_main 2 0 -1
-1 first_argument 1 0 0
-2 Function 2 0 -1
-3 cool_variable 1 0 2
-4 Second_Function 2 0 -1
-5 answer 1 0 2
-6 first_argument 1 0 0
-7 first_argument 1 0 2
-8 cool_variable 1 0 2
-9 answer 1 0 2
-10 answer 1 0 4
-11 answer 1 0 4
+1 first_argument 3 0 -1
+2 Function 2 1 -1
+3 arg 3 0 -1
 {OP:";"
 	{OP:"def"
 		{OP:"func"
@@ -18,9 +10,9 @@ size table: 12
 			{ID:""}
 		}
 		{OP:";"
-			{OP:"="
+			{OP:"input"
 				{ID:"1"}
-				{NUM:"0"}
+				{ID:""}
 			}
 			{OP:";"
 				{OP:"print"
@@ -30,17 +22,11 @@ size table: 12
 				{OP:";"
 					{OP:"call"
 						{ID:"2"}
-						{ID:""}
+						{ID:"1"}
 					}
 					{OP:";"
-						{OP:"print"
-							{ID:"1"}
-							{ID:""}
-						}
-						{OP:";"
-							{OP:"$"}
-							{OP:";"}
-						}
+						{OP:"$"}
+						{OP:";"}
 					}
 				}
 			}
@@ -50,64 +36,31 @@ size table: 12
 		{OP:"def"
 			{OP:"func"
 				{ID:"2"}
-				{ID:""}
+				{ID:"3"}
 			}
 			{OP:";"
 				{OP:"="
-					{ID:"1"}
-					{NUM:"1"}
-				}
-				{OP:";"
-					{OP:"="
+					{ID:"3"}
+					{OP:"+"
 						{ID:"3"}
-						{NUM:"5"}
+						{NUM:"2"}
 					}
-					{OP:";"
-						{OP:"call"
-							{ID:"4"}
-							{ID:""}
-						}
-						{OP:";"
-							{OP:"="
-								{ID:"5"}
-								{OP:"*"
-									{ID:"3"}
-									{NUM:"66"}
-								}
-							}
-							{OP:";"
-								{OP:"return"
-									{ID:"5"}
-									{ID:""}
-								}
-								{OP:";"}
-							}
-						}
-					}
-				}
-			}
-		}
-		{OP:";"
-			{OP:"def"
-				{OP:"func"
-					{ID:"4"}
-					{ID:""}
 				}
 				{OP:";"
-					{OP:"="
-						{ID:"5"}
-						{NUM:"222"}
+					{OP:"print"
+						{ID:"3"}
+						{ID:""}
 					}
 					{OP:";"
-						{OP:"print"
-							{ID:"5"}
+						{OP:"return"
+							{NUM:"0"}
 							{ID:""}
 						}
 						{OP:";"}
 					}
 				}
 			}
-			{OP:";"}
 		}
+		{OP:";"}
 	}
 }

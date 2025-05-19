@@ -1,43 +1,30 @@
 
-389
-count of char = 389
+236
+count of char = 236
 
 my_main ()
 {
-    first_argument = 0;
+    input (first_argument);
 
     write_about {first_argument};
 
-    Function ();
-
-    write_about {first_argument};
+    Function (first_argument);
 
     then_commit_seppuku
 };
 
-Function ()
+Function (arg)
 {
-    first_argument = 1;
+    arg = arg + 2;
 
-    cool_variable = 5;
+    write_about {arg};
 
-    Second_Function ();
-
-    answer = cool_variable * 66;
-
-    return answer;
-};
-
-Second_Function ()
-{
-    answer = 222;
-
-    write_about {answer};
+    return 0;
 };
 
 then_commit_seppuku
 
-sizeOfFile = <389>
+sizeOfFile = <236>
 
 
 Start Tokenizer:
@@ -100,17 +87,24 @@ name = <{>
 <{> is keyword
 number_key = <19>
 
+first symbol = <i> is alpha
+name = <input>
+<input> is keyword
+number_key = <23>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
 first symbol = <f> is alpha
 name = <first_argument>
 number_key = <-1>
 number_id = <-1>
-first symbol = <=> is alpha
-name = <=>
-<=> is keyword
-number_key = <11>
-
-first symbol = '0' is number
-number is <0>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
 
 first symbol = <;> is alpha
 name = <;>
@@ -151,35 +145,15 @@ name = <(>
 <(> is keyword
 number_key = <17>
 
-first symbol = <)> is alpha
-name = <)>
-<)> is keyword
-number_key = <18>
-
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
-first symbol = <w> is alpha
-name = <write_about>
-<write_about> is keyword
-number_key = <21>
-
-first symbol = <{> is alpha
-name = <{>
-<{> is keyword
-number_key = <19>
-
 first symbol = <f> is alpha
 name = <first_argument>
 number_key = <-1>
 <first_argument> is identificator
 number_id = <1>
-first symbol = <}> is alpha
-name = <}>
-<}> is keyword
-number_key = <20>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
 
 first symbol = <;> is alpha
 name = <;>
@@ -211,6 +185,10 @@ name = <(>
 <(> is keyword
 number_key = <17>
 
+first symbol = <a> is alpha
+name = <arg>
+number_key = <-1>
+number_id = <-1>
 first symbol = <)> is alpha
 name = <)>
 <)> is keyword
@@ -221,144 +199,28 @@ name = <{>
 <{> is keyword
 number_key = <19>
 
-first symbol = <f> is alpha
-name = <first_argument>
-number_key = <-1>
-<first_argument> is identificator
-number_id = <1>
-first symbol = <=> is alpha
-name = <=>
-<=> is keyword
-number_key = <11>
-
-first symbol = '1' is number
-number is <1>
-
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
-first symbol = <c> is alpha
-name = <cool_variable>
-number_key = <-1>
-number_id = <-1>
-first symbol = <=> is alpha
-name = <=>
-<=> is keyword
-number_key = <11>
-
-first symbol = '5' is number
-number is <5>
-
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
-first symbol = <S> is alpha
-name = <Second_Function>
-number_key = <-1>
-number_id = <-1>
-first symbol = <(> is alpha
-name = <(>
-<(> is keyword
-number_key = <17>
-
-first symbol = <)> is alpha
-name = <)>
-<)> is keyword
-number_key = <18>
-
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
 first symbol = <a> is alpha
-name = <answer>
+name = <arg>
 number_key = <-1>
-number_id = <-1>
-first symbol = <=> is alpha
-name = <=>
-<=> is keyword
-number_key = <11>
-
-first symbol = <c> is alpha
-name = <cool_variable>
-number_key = <-1>
-<cool_variable> is identificator
+<arg> is identificator
 number_id = <3>
-first symbol = <*> is alpha
-name = <*>
-<*> is keyword
-number_key = <5>
-
-first symbol = '6' is number
-number is <66>
-
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
-first symbol = <r> is alpha
-name = <return>
-<return> is keyword
-number_key = <31>
-
-first symbol = <a> is alpha
-name = <answer>
-number_key = <-1>
-<answer> is identificator
-number_id = <5>
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
-first symbol = <}> is alpha
-name = <}>
-<}> is keyword
-number_key = <20>
-
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
-first symbol = <S> is alpha
-name = <Second_Function>
-number_key = <-1>
-<Second_Function> is identificator
-number_id = <4>
-first symbol = <(> is alpha
-name = <(>
-<(> is keyword
-number_key = <17>
-
-first symbol = <)> is alpha
-name = <)>
-<)> is keyword
-number_key = <18>
-
-first symbol = <{> is alpha
-name = <{>
-<{> is keyword
-number_key = <19>
-
-first symbol = <a> is alpha
-name = <answer>
-number_key = <-1>
-<answer> is identificator
-number_id = <5>
 first symbol = <=> is alpha
 name = <=>
 <=> is keyword
 number_key = <11>
+
+first symbol = <a> is alpha
+name = <arg>
+number_key = <-1>
+<arg> is identificator
+number_id = <3>
+first symbol = <+> is alpha
+name = <+>
+<+> is keyword
+number_key = <1>
 
 first symbol = '2' is number
-number is <222>
+number is <2>
 
 first symbol = <;> is alpha
 name = <;>
@@ -376,14 +238,27 @@ name = <{>
 number_key = <19>
 
 first symbol = <a> is alpha
-name = <answer>
+name = <arg>
 number_key = <-1>
-<answer> is identificator
-number_id = <5>
+<arg> is identificator
+number_id = <3>
 first symbol = <}> is alpha
 name = <}>
 <}> is keyword
 number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <r> is alpha
+name = <return>
+<return> is keyword
+number_key = <31>
+
+first symbol = '0' is number
+number is <0>
 
 first symbol = <;> is alpha
 name = <;>
@@ -411,9 +286,10 @@ ID my_main
 OP (
 OP )
 OP {
+OP input
+OP (
 ID first_argument
-OP =
-NUM 0
+OP )
 OP ;
 OP print
 OP {
@@ -422,55 +298,30 @@ OP }
 OP ;
 ID Function
 OP (
-OP )
-OP ;
-OP print
-OP {
 ID first_argument
-OP }
+OP )
 OP ;
 OP $
 OP }
 OP ;
 ID Function
 OP (
+ID arg
 OP )
 OP {
-ID first_argument
+ID arg
 OP =
-NUM 1
-OP ;
-ID cool_variable
-OP =
-NUM 5
-OP ;
-ID Second_Function
-OP (
-OP )
-OP ;
-ID answer
-OP =
-ID cool_variable
-OP *
-NUM 66
-OP ;
-OP return
-ID answer
-OP ;
-OP }
-OP ;
-ID Second_Function
-OP (
-OP )
-OP {
-ID answer
-OP =
-NUM 222
+ID arg
+OP +
+NUM 2
 OP ;
 OP print
 OP {
-ID answer
+ID arg
 OP }
+OP ;
+OP return
+NUM 0
 OP ;
 OP }
 OP ;

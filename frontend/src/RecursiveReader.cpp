@@ -699,9 +699,11 @@ node_t* GetE (tree_t* program)
 {
     node_t* node = GetT (program);
 
+    FRONT_DBG fprintf (stderr, GRN "in GetE Start check \"+\" or \"-\"\n" RESET);
+
     while (_CMP_OP("+") || _CMP_OP("-"))
     {
-        FRONT_DBG fprintf (stderr, CYN "in GetE \"+\" or \"-\"\n" RESET);
+        FRONT_DBG fprintf (stderr, GRN "in GetE \"+\" or \"-\"\n" RESET);
 
         const char* op = keywords[(int)program->tokens[p].value].key_op;
 

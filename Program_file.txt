@@ -1,9 +1,6 @@
-size table: 5
+size table: 2
 0 my_main 2
-1 argument 3
-2 not_argument 3
-3 Process 2
-4 NoFactorial 2
+1 utyutyu 3
 {OP:";"
 	{OP:"def"
 		{OP:"func"
@@ -11,81 +8,33 @@ size table: 5
 			{ID:""}
 		}
 		{OP:";"
-			{OP:"="
+			{OP:"input"
 				{ID:"1"}
-				{NUM:"19"}
+				{ID:""}
 			}
 			{OP:";"
-				{OP:"="
-					{ID:"2"}
-					{NUM:"222"}
-				}
-				{OP:";"
-					{OP:"call"
-						{ID:"3"}
+				{OP:"if"
+					{OP:"<"
 						{ID:"1"}
+						{NUM:"20"}
 					}
 					{OP:";"
-						{OP:"call"
-							{ID:"4"}
+						{OP:"print"
+							{ID:"1"}
 							{ID:""}
 						}
 						{OP:";"
 							{OP:"print"
-								{NUM:"7"}
+								{NUM:"8"}
 								{ID:""}
 							}
-							{OP:";"
-								{OP:"$"}
-								{OP:";"}
-							}
+							{OP:";"}
 						}
 					}
 				}
+				{OP:";"}
 			}
 		}
 	}
-	{OP:";"
-		{OP:"def"
-			{OP:"func"
-				{ID:"4"}
-				{ID:""}
-			}
-			{OP:";"
-				{OP:"print"
-					{NUM:"334"}
-					{ID:""}
-				}
-				{OP:";"
-					{OP:"return"
-						{NUM:"0"}
-						{ID:""}
-					}
-					{OP:";"}
-				}
-			}
-		}
-		{OP:";"
-			{OP:"def"
-				{OP:"func"
-					{ID:"3"}
-					{ID:"1"}
-				}
-				{OP:";"
-					{OP:"print"
-						{NUM:"8"}
-						{ID:""}
-					}
-					{OP:";"
-						{OP:"return"
-							{NUM:"0"}
-							{ID:""}
-						}
-						{OP:";"}
-					}
-				}
-			}
-			{OP:";"}
-		}
-	}
+	{OP:";"}
 }

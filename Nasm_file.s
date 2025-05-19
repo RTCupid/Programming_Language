@@ -18,69 +18,35 @@ _start:
 
 my_main:                                              ; it is definition of my_main  ; number operator 3 
 
-	mov rax, 19                                       ; rax = 19 
-	mov [argument], rax                               ; argument = rax  ; number operator 5 
+	call _my_input                                    ; input(utyutyu); rax = input 
+	mov [utyutyu], rax                                ; [utyutyu] = rax  ; number operator 5 
+;---start-if-7-----------------------------------------------------------------------------------
+;   test-7
 
-	mov rax, 222                                      ; rax = 222 
-	mov [not_argument], rax                           ; not_argument = rax  ; number operator 7 
+	mov rax, [utyutyu]                                ; rax = utyutyu 
+	mov rdx, 20                                       ; rdx = 20 
+	cmp rax, rdx                                      ; if (rax >= rdx)
+	jge  .end_if7                                     ;  goto .end_if7
+;   action-7
 
-	mov rax, [Process]                                ; rax = Process 
+	mov rax, [utyutyu]                                ; rax = utyutyu 
 
-	push rax                                          ; rax => stack, make stack frame;
-
-	call Process                                      ; Process (rax);
-
-	add rsp, 8                                        ; clean stack frame; ; number operator 9 
-
-	mov rax, [NoFactorial]                            ; rax = NoFactorial 
-
-	push rax                                          ; rax => stack, make stack frame;
-
-	call NoFactorial                                  ; NoFactorial (rax);
-
-	add rsp, 8                                        ; clean stack frame; ; number operator 11 
-
-	mov rax, 7                                        ; rax = 7 
-
-	call _my_print                                    ; print (eax) ; number operator 13 
-
-	call _my_hlt                                      ; exit (0) ; number operator 15  ; number operator 16  ; number operator 16  ; number operator 16  ; number operator 16  ; number operator 16  ; number operator 16  ; number operator 16  ; number operator 16 
-
-;--------------------------------------------------------------------------------------------------
-;	NoFactorial:
-;--------------------------------------------------------------------------------------------------
-
-NoFactorial:                                          ; it is definition of NoFactorial  ; number operator 19 
-
-	mov rax, 334                                      ; rax = 334 
-
-	call _my_print                                    ; print (eax) ; number operator 21 
-
-	mov rax, 0                                        ; rax = 0 
-
-	ret                                               ; return; ; number operator 23  ; number operator 24  ; number operator 24  ; number operator 24  ; number operator 24 
-
-;--------------------------------------------------------------------------------------------------
-;	Process:
-;--------------------------------------------------------------------------------------------------
-
-Process:                                              ; it is definition of Process  ; number operator 27 
+	call _my_print                                    ; print (eax) ; number operator 9 
 
 	mov rax, 8                                        ; rax = 8 
 
-	call _my_print                                    ; print (eax) ; number operator 29 
+	call _my_print                                    ; print (eax) ; number operator 11  ; number operator 12  ; number operator 12  ; number operator 12 
 
-	mov rax, 0                                        ; rax = 0 
+.end_if7:
 
-	ret                                               ; return; ; number operator 31  ; number operator 32  ; number operator 32  ; number operator 32  ; number operator 32  ; number operator 33  ; number operator 33  ; number operator 33  ; number operator 33 
+;---end-if-7------------------------------------------------------------------------------------- ; number operator 12  ; number operator 13  ; number operator 13  ; number operator 13  ; number operator 13  ; number operator 14  ; number operator 14 
 
 call _my_hlt                                          ; exit (0)
 ;--------------------------------------------------------------------------------------------------
 
 section .data
 
-argument: dq 0
-not_argument: dq 0
+utyutyu: dq 0
 ;--------------------------------------------------------------------------------------------------
 
 section .note.GNU-stack

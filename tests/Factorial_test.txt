@@ -11,9 +11,9 @@ my_main ()
 
 Factorial (fact)
 {
-    if_happen (fact < 2)
+    if_happens (fact < 3)
     {
-        return 1;
+        return 2;
     };
 
     return fact * Factorial (fact - 1);

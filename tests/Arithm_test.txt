@@ -3,9 +3,9 @@ my_main ()
     x = 10;
     y = 20;
     z = 3;
-    sum = x + y;
+    sum = x + 1;
 
-    sub = y - z;
+    sub = y - 1;
 
     write_about {sum};
 

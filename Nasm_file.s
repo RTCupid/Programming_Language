@@ -32,6 +32,13 @@ my_main:                                              ; it is definition of my_m
 	call _my_input                                    ; input(argument); rax = input 
 	mov [argument], rax                               ; [argument] = rax  ; number operator 9 
 
+	mov rax, 10                                       ; rax = 10 
+	mov [fact], rax                                   ; fact = rax  ; number operator 11 
+
+	mov rax, [fact]                                   ; rax = fact 
+
+	call _my_print                                    ; print (eax) ; number operator 13 
+
 	mov rax, [argument]                               ; rax = argument 
 
 	sub rsp, 8                                        ; reserved 8 byte for argument
@@ -40,7 +47,7 @@ my_main:                                              ; it is definition of my_m
 
 	call Function                                     ; Function (rax);
 
-	add rsp, 8                                        ; clean stack frame; ; number operator 11 
+	add rsp, 8                                        ; clean stack frame; ; number operator 15 
 
 	mov rax, [argument]                               ; rax = argument 
 
@@ -50,15 +57,16 @@ my_main:                                              ; it is definition of my_m
 
 	call Summator                                     ; Summator (rax);
 
-	add rsp, 8                                        ; clean stack frame; ; number operator 13 
+	add rsp, 8                                        ; clean stack frame; ; number operator 17 
 
-	call _my_hlt                                      ; exit (0) ; number operator 15  ; number operator 16  ; number operator 16  ; number operator 16  ; number operator 16  ; number operator 16  ; number operator 16  ; number operator 16 
+	call _my_hlt                                      ; exit (0) ; number operator 19  ; number operator 20  ; number operator 20  ; number operator 20  ; number operator 20  ; number operator 20  ; number operator 20  ; number operator 20  ; number operator 20  ; number operator 20 
 
 ;--------------------------------------------------------------------------------------------------
 ;	Function:
+;	Entry: fact = [rbp + 8]
 ;--------------------------------------------------------------------------------------------------
 
-Function:                                             ; it is definition of Function  ; number operator 19 
+Function:                                             ; it is definition of Function  ; number operator 23 
 
 	mov rbp, rsp                                      ; rbp = rsp, save old value of rsp
 
@@ -68,19 +76,20 @@ Function:                                             ; it is definition of Func
 
 	mov rax, [fact]                                   ; rax = fact 
 
-	call _my_print                                    ; print (eax) ; number operator 21 
+	call _my_print                                    ; print (eax) ; number operator 25 
 
 	mov rax, 0                                        ; rax = 0 
 
 	mov rsp, rbp                                      ; rsp = rbp, back old value of rsp
 
-	ret                                               ; return; ; number operator 23  ; number operator 24  ; number operator 24  ; number operator 24  ; number operator 24 
+	ret                                               ; return; ; number operator 27  ; number operator 28  ; number operator 28  ; number operator 28  ; number operator 28 
 
 ;--------------------------------------------------------------------------------------------------
 ;	Summator:
+;	Entry: sum = [rbp + 8]
 ;--------------------------------------------------------------------------------------------------
 
-Summator:                                             ; it is definition of Summator  ; number operator 27 
+Summator:                                             ; it is definition of Summator  ; number operator 31 
 
 	mov rbp, rsp                                      ; rbp = rsp, save old value of rsp
 
@@ -92,15 +101,15 @@ Summator:                                             ; it is definition of Summ
 	push rax                                          ; rax => stack
 	mov rdx, 1                                        ; rdx = 1 
 	pop rax                                           ; rax <= stack
-	add rax, rdx                                      ; rax += rdx ; number operator 30 
+	add rax, rdx                                      ; rax += rdx ; number operator 34 
 
-	call _my_print                                    ; print (eax) ; number operator 30 
+	call _my_print                                    ; print (eax) ; number operator 34 
 
 	mov rax, 0                                        ; rax = 0 
 
 	mov rsp, rbp                                      ; rsp = rbp, back old value of rsp
 
-	ret                                               ; return; ; number operator 32  ; number operator 33  ; number operator 33  ; number operator 33  ; number operator 33  ; number operator 34  ; number operator 34  ; number operator 34  ; number operator 34  ; number operator 34 
+	ret                                               ; return; ; number operator 36  ; number operator 37  ; number operator 37  ; number operator 37  ; number operator 37  ; number operator 38  ; number operator 38  ; number operator 38  ; number operator 38  ; number operator 38 
 
 call _my_hlt                                          ; exit (0)
 ;--------------------------------------------------------------------------------------------------

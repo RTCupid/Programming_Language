@@ -6,6 +6,10 @@ my_main ()
 
     input (argument);
 
+    fact = 10;
+
+    write_about {fact};
+
     Function (argument);
 
     Summator (argument);

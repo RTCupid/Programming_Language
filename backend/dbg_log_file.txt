@@ -75,11 +75,45 @@ text = <;>
 <;> is keyword
 end symbol = <{>
 start symbol = <{>
+text = <=>
+<=> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <3>
+end symbol = <}>
+return
+start symbol = <{>
+text = <10>
+end symbol = <}>
+return
+end symbol = <}>
+start symbol = <{>
+text = <;>
+<;> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <print>
+<print> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <3>
+end symbol = <}>
+return
+start symbol = <{>
+text = <ID:>
+end symbol = <">
+end symbol = <}>
+end symbol = <}>
+start symbol = <{>
+text = <;>
+<;> is keyword
+end symbol = <{>
+start symbol = <{>
 text = <call>
 <call> is keyword
 end symbol = <{>
 start symbol = <{>
-text = <3>
+text = <4>
 end symbol = <}>
 return
 start symbol = <{>
@@ -96,7 +130,7 @@ text = <call>
 <call> is keyword
 end symbol = <{>
 start symbol = <{>
-text = <4>
+text = <5>
 end symbol = <}>
 return
 start symbol = <{>
@@ -124,6 +158,8 @@ end symbol = <}>
 end symbol = <}>
 end symbol = <}>
 end symbol = <}>
+end symbol = <}>
+end symbol = <}>
 start symbol = <{>
 text = <;>
 <;> is keyword
@@ -137,11 +173,11 @@ text = <func>
 <func> is keyword
 end symbol = <{>
 start symbol = <{>
-text = <3>
+text = <4>
 end symbol = <}>
 return
 start symbol = <{>
-text = <5>
+text = <3>
 end symbol = <}>
 return
 end symbol = <}>
@@ -154,7 +190,7 @@ text = <print>
 <print> is keyword
 end symbol = <{>
 start symbol = <{>
-text = <5>
+text = <3>
 end symbol = <}>
 return
 start symbol = <{>
@@ -200,7 +236,7 @@ text = <func>
 <func> is keyword
 end symbol = <{>
 start symbol = <{>
-text = <4>
+text = <5>
 end symbol = <}>
 return
 start symbol = <{>

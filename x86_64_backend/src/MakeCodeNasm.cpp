@@ -285,6 +285,11 @@ static err_t ProcessFUNC (tree_t* program, FILE* file_nasm, node_t* crnt_node)
 
     fprintf (file_nasm, "\n;\t%s:", program->nametable[(size_t) crnt_node->left->value].name);
 
+    if (program->nametable[(size_t) crnt_node->left->value].argument == WITH_ARGUMENT)
+    {
+        fprintf (file_nasm, "\n;\tEntry: %s = [rbp + 8]", program->nametable[(size_t) crnt_node->right->value].name);
+    }
+
     fprintf (file_nasm, "\n;--------------------------------------------------------------------------------------------------");
 
     snprintf (buffer, sizeof(buffer), "%s:", program->nametable[(size_t) crnt_node->left->value].name);

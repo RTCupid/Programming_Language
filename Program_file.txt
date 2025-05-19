@@ -2,9 +2,9 @@ size table: 7
 0 utyutyu 3 0
 1 my_main 2 0
 2 argument 1 0
-3 Function 2 1
-4 Summator 2 1
-5 fact 1 0
+3 fact 1 0
+4 Function 2 1
+5 Summator 2 1
 6 sum 1 0
 {OP:";"
 	{OP:"="
@@ -28,18 +28,30 @@ size table: 7
 						{ID:""}
 					}
 					{OP:";"
-						{OP:"call"
+						{OP:"="
 							{ID:"3"}
-							{ID:"2"}
+							{NUM:"10"}
 						}
 						{OP:";"
-							{OP:"call"
-								{ID:"4"}
-								{ID:"2"}
+							{OP:"print"
+								{ID:"3"}
+								{ID:""}
 							}
 							{OP:";"
-								{OP:"$"}
-								{OP:";"}
+								{OP:"call"
+									{ID:"4"}
+									{ID:"2"}
+								}
+								{OP:";"
+									{OP:"call"
+										{ID:"5"}
+										{ID:"2"}
+									}
+									{OP:";"
+										{OP:"$"}
+										{OP:";"}
+									}
+								}
 							}
 						}
 					}
@@ -49,12 +61,12 @@ size table: 7
 		{OP:";"
 			{OP:"def"
 				{OP:"func"
+					{ID:"4"}
 					{ID:"3"}
-					{ID:"5"}
 				}
 				{OP:";"
 					{OP:"print"
-						{ID:"5"}
+						{ID:"3"}
 						{ID:""}
 					}
 					{OP:";"
@@ -69,7 +81,7 @@ size table: 7
 			{OP:";"
 				{OP:"def"
 					{OP:"func"
-						{ID:"4"}
+						{ID:"5"}
 						{ID:"6"}
 					}
 					{OP:";"

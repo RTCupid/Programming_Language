@@ -1,6 +1,6 @@
 
-303
-count of char = 303
+344
+count of char = 344
 
 utyutyu = 19;
 
@@ -9,6 +9,10 @@ my_main ()
     write_about {utyutyu};
 
     input (argument);
+
+    fact = 10;
+
+    write_about {fact};
 
     Function (argument);
 
@@ -33,7 +37,7 @@ Summator (sum)
 
 then_commit_seppuku
 
-sizeOfFile = <303>
+sizeOfFile = <344>
 
 
 Start Tokenizer:
@@ -162,6 +166,48 @@ name = <;>
 <;> is keyword
 number_key = <9>
 
+first symbol = <f> is alpha
+name = <fact>
+number_key = <-1>
+number_id = <-1>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = '1' is number
+number is <10>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <f> is alpha
+name = <fact>
+number_key = <-1>
+<fact> is identificator
+number_id = <3>
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
 first symbol = <F> is alpha
 name = <Function>
 number_key = <-1>
@@ -229,7 +275,7 @@ first symbol = <F> is alpha
 name = <Function>
 number_key = <-1>
 <Function> is identificator
-number_id = <3>
+number_id = <4>
 first symbol = <(> is alpha
 name = <(>
 <(> is keyword
@@ -238,7 +284,8 @@ number_key = <17>
 first symbol = <f> is alpha
 name = <fact>
 number_key = <-1>
-number_id = <-1>
+<fact> is identificator
+number_id = <3>
 first symbol = <)> is alpha
 name = <)>
 <)> is keyword
@@ -263,7 +310,7 @@ first symbol = <f> is alpha
 name = <fact>
 number_key = <-1>
 <fact> is identificator
-number_id = <5>
+number_id = <3>
 first symbol = <}> is alpha
 name = <}>
 <}> is keyword
@@ -301,7 +348,7 @@ first symbol = <S> is alpha
 name = <Summator>
 number_key = <-1>
 <Summator> is identificator
-number_id = <4>
+number_id = <5>
 first symbol = <(> is alpha
 name = <(>
 <(> is keyword
@@ -401,6 +448,15 @@ OP input
 OP (
 ID argument
 OP )
+OP ;
+ID fact
+OP =
+NUM 10
+OP ;
+OP print
+OP {
+ID fact
+OP }
 OP ;
 ID Function
 OP (

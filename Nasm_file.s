@@ -57,6 +57,8 @@ Function:                                             ; it is definition of Func
 	mov rax, 5                                        ; rax = 5 
 	mov [cool_variable], rax                          ; cool_variable = rax  ; number operator 21 
 
+	call Second_Function                              ; Second_Function (rax); ; number operator 23 
+
 	mov rcx, 8 * 0                                    ; rcx = 8 * 0 
 
 	mov rax, [ebp + rcx]                              ; rax = cool_variable 
@@ -64,8 +66,8 @@ Function:                                             ; it is definition of Func
 	mov rdx, 66                                       ; rdx = 66 
 	pop rax                                           ; rax <= stack
 	mov rdi, rdx                                      ; rdi = rdx
-	imul rdi                                          ; rdx:rax = rax * rdi ; number operator 24 
-	mov [answer], rax                                 ; answer = rax  ; number operator 24 
+	imul rdi                                          ; rdx:rax = rax * rdi ; number operator 26 
+	mov [answer], rax                                 ; answer = rax  ; number operator 26 
 
 	mov rcx, 8 * 0                                    ; rcx = 8 * 0 
 
@@ -73,7 +75,26 @@ Function:                                             ; it is definition of Func
 
 	mov rsp, rbp                                      ; rsp = rbp, back old value of rsp
 
-	ret                                               ; return; ; number operator 26  ; number operator 27  ; number operator 27  ; number operator 27  ; number operator 27  ; number operator 27  ; number operator 27  ; number operator 28  ; number operator 28  ; number operator 28 
+	ret                                               ; return; ; number operator 28  ; number operator 29  ; number operator 29  ; number operator 29  ; number operator 29  ; number operator 29  ; number operator 29  ; number operator 29 
+
+;--------------------------------------------------------------------------------------------------
+;	Second_Function:
+;--------------------------------------------------------------------------------------------------
+
+Second_Function:                                      ; it is definition of Second_Function  ; number operator 32 
+
+	mov rbp, rsp                                      ; rbp = rsp, save old value of rsp
+
+	                                                  ; [rbp] = address for return
+
+	mov rax, 222                                      ; rax = 222 
+	mov [answer], rax                                 ; answer = rax  ; number operator 34 
+
+	mov rcx, 8 * 0                                    ; rcx = 8 * 0 
+
+	mov rax, [ebp + rcx]                              ; rax = answer 
+
+	call _my_print                                    ; print (eax) ; number operator 36  ; number operator 37  ; number operator 37  ; number operator 37  ; number operator 37  ; number operator 38  ; number operator 38  ; number operator 38  ; number operator 38 
 
 call _my_hlt                                          ; exit (0)
 ;--------------------------------------------------------------------------------------------------

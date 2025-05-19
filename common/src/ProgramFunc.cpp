@@ -124,6 +124,21 @@ void ProgramDtor (tree_t* program)
     program->crnt_node = NULL;
 }
 
+bool FindIdentificator (tree_t* program, identificator_t first_identificator)
+{
+    for (size_t index = 0; index < program->nametable_id; index++)
+    {
+        if (program->nametable[index].n_symbols   == first_identificator.n_symbols &&
+            program->nametable[index].number_func == first_identificator.number_func &&
+            strncmp (program->nametable[index].start_pos, first_identificator.start_pos, first_identificator.n_symbols) == 0)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 void AddToNameTable (tree_t* program, size_t n_symbols, char* start_pos, type_id_t type_id, int number_func)
 {
     program->nametable[program->nametable_id].start_pos   = start_pos;

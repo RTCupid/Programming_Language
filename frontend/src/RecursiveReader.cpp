@@ -689,10 +689,10 @@ node_t* GetA (tree_t* program, type_id_t scope, int number_func)
         }
         else if (program->nametable[(size_t) program->tokens[p].value].type_id == TYPE_NONE)
         {
-            program->nametable[(size_t) program->tokens[p].value].type_id = TYPE_GLOBAL;
+            program->nametable[(size_t) program->tokens[p].value].type_id     = TYPE_GLOBAL;
         }
 
-        if (program->nametable[(size_t) program->tokens[p].value].type_id == TYPE_LOCAL && program->nametable[(size_t) program->tokens[p].value].number_func != number_func)
+        if (program->nametable[(size_t) program->tokens[p].value].type_id == TYPE_LOCAL && FindIdentificator (program, program->nametable[(size_t) program->tokens[p].value]))
         {
             FRONT_DBG fprintf (stderr, BHBLU "In GetP new LOCAL variable with same name: index in nametable = <%lu>\n" RESET, program->nametable_id);
 

@@ -1,6 +1,6 @@
 
-294
-count of char = 294
+389
+count of char = 389
 
 my_main ()
 {
@@ -21,14 +21,23 @@ Function ()
 
     cool_variable = 5;
 
+    Second_Function ();
+
     answer = cool_variable * 66;
 
     return answer;
 };
 
+Second_Function ()
+{
+    answer = 222;
+
+    write_about {answer};
+};
+
 then_commit_seppuku
 
-sizeOfFile = <294>
+sizeOfFile = <389>
 
 
 Start Tokenizer:
@@ -247,6 +256,25 @@ name = <;>
 <;> is keyword
 number_key = <9>
 
+first symbol = <S> is alpha
+name = <Second_Function>
+number_key = <-1>
+number_id = <-1>
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
 first symbol = <a> is alpha
 name = <answer>
 number_key = <-1>
@@ -283,7 +311,80 @@ first symbol = <a> is alpha
 name = <answer>
 number_key = <-1>
 <answer> is identificator
+number_id = <5>
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <S> is alpha
+name = <Second_Function>
+number_key = <-1>
+<Second_Function> is identificator
 number_id = <4>
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <a> is alpha
+name = <answer>
+number_key = <-1>
+<answer> is identificator
+number_id = <5>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = '2' is number
+number is <222>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <w> is alpha
+name = <write_about>
+<write_about> is keyword
+number_key = <21>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <a> is alpha
+name = <answer>
+number_key = <-1>
+<answer> is identificator
+number_id = <5>
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
 first symbol = <;> is alpha
 name = <;>
 <;> is keyword
@@ -343,6 +444,10 @@ ID cool_variable
 OP =
 NUM 5
 OP ;
+ID Second_Function
+OP (
+OP )
+OP ;
 ID answer
 OP =
 ID cool_variable
@@ -351,6 +456,21 @@ NUM 66
 OP ;
 OP return
 ID answer
+OP ;
+OP }
+OP ;
+ID Second_Function
+OP (
+OP )
+OP {
+ID answer
+OP =
+NUM 222
+OP ;
+OP print
+OP {
+ID answer
+OP }
 OP ;
 OP }
 OP ;

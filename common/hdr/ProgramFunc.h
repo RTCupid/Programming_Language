@@ -231,9 +231,10 @@ void        VerifyOpenFile  (FILE* file, const char* namefunc);
 //!          KeyFromEnum ((int)crnt_node->value));
 //! @endcode
 //}
-const char* KeyFromEnum     (int value);
+const char* KeyFromEnum       (int value);
 
+bool        FindIdentificator (tree_t* program, identificator_t first_identificator);
 
-void        AddToNameTable  (tree_t* program, size_t n_symbols, char* start_pos, type_id_t type_id, int number_func);
+void        AddToNameTable    (tree_t* program, size_t n_symbols, char* start_pos, type_id_t type_id, int number_func);
 
 #endif

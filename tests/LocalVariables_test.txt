@@ -17,9 +17,18 @@ Function ()
 
     cool_variable = 5;
 
+    Second_Function ();
+
     answer = cool_variable * 66;
 
     return answer;
+};
+
+Second_Function ()
+{
+    answer = 222;
+
+    write_about {answer};
 };
 
 then_commit_seppuku

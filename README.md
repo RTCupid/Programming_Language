@@ -70,10 +70,10 @@ ntimes = 10000000;
 
 while (ntimes > 1)
 {
-    Diskriminant = b multiply b subtract 4 multiply a multiply c;
+    Discriminant = b multiply b subtract 4 multiply a multiply c;
 
-    first_answ  = ((0 subtract 1) multiply b subtract sqrt (Diskriminant)) divide (2 multiply a);
-    second_answ = ((0 subtract 1) multiply b add      sqrt (Diskriminant)) divide (2 multiply a);
+    first_answ  = ((0 subtract 1) multiply b subtract sqrt (Discriminant)) divide (2 multiply a);
+    second_answ = ((0 subtract 1) multiply b add      sqrt (Discriminant)) divide (2 multiply a);
 
     ntimes = ntimes - 1;
 };

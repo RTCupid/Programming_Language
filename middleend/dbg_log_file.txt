@@ -15,9 +15,9 @@ text = <0>
 end symbol = <}>
 return
 start symbol = <{>
-text = <0>
+text = <ID:>
+end symbol = <">
 end symbol = <}>
-return
 end symbol = <}>
 start symbol = <{>
 text = <;>
@@ -32,9 +32,45 @@ text = <1>
 end symbol = <}>
 return
 start symbol = <{>
-text = <3125>
+text = <*>
+<*> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <*>
+<*> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <*>
+<*> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <*>
+<*> is keyword
+end symbol = <{>
+start symbol = <{>
+text = <5>
 end symbol = <}>
 return
+start symbol = <{>
+text = <5>
+end symbol = <}>
+return
+end symbol = <}>
+start symbol = <{>
+text = <5>
+end symbol = <}>
+return
+end symbol = <}>
+start symbol = <{>
+text = <5>
+end symbol = <}>
+return
+end symbol = <}>
+start symbol = <{>
+text = <5>
+end symbol = <}>
+return
+end symbol = <}>
 end symbol = <}>
 start symbol = <{>
 text = <;>
@@ -49,9 +85,9 @@ text = <1>
 end symbol = <}>
 return
 start symbol = <{>
-text = <0>
+text = <ID:>
+end symbol = <">
 end symbol = <}>
-return
 end symbol = <}>
 start symbol = <{>
 text = <;>

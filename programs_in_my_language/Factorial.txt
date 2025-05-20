@@ -1,6 +1,6 @@
 my_main ()
 {
-    input (argument);
+    argument = 5;
 
     answer = Factorial (argument);
 
@@ -11,8 +11,6 @@ my_main ()
 
 Factorial (number)
 {
-    write_about {number};
-
     if (number < 2)
     {
         return 1;

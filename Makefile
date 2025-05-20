@@ -9,7 +9,7 @@ LINUXFLAGSDEBUG = -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ -Waggre
          -flto-odr-type-merging -fno-omit-frame-pointer -Wstack-usage=8192 -pie -fPIE -Werror=vla \
          -fsanitize=address,alignment,bool,bounds,enum,float-cast-overflow,float-divide-by-zero,integer-divide-by-zero,leak,nonnull-attribute,null,object-size,return,returns-nonnull-attribute,shift,signed-integer-overflow,undefined,unreachable,vla-bound,vptr
 
-LINUXFLAGSRELEASE = -D NDEBUG -std=c++17 -Wall -mavx2 -O3
+LINUXFLAGSRELEASE = -D NDEBUG -std=c++17 -Wno-unused-result -Wall -mavx2 -O3
 
 CFLAGS = $(LINUXFLAGSDEBUG)
 
@@ -21,7 +21,7 @@ NASMFLAGSDEBUG = -f elf64 -g -F dwarf
 
 NASMFLAGSRELEASE = -f elf64 -g -F dwarf -O3
 
-NASMFLAGS = $(NASMFLAGSDEBUG)
+NASMFLAGS = $(NASMFLAGSRELEASE)
 
 LDFLAGS = -no-pie -nostartfiles
 
@@ -29,6 +29,9 @@ FRONTEND_SOURCES = frontend/src/fmain.cpp \
                    frontend/src/RecursiveReader.cpp \
                    frontend/src/Tokenizer.cpp \
                    frontend/src/WriteProgramFile.cpp
+
+MIDDLEEND_SOURCES = middleend/src/mmain.cpp \
+					middleend/src/Optimization.cpp
 
 BACKEND_SOURCES = backend/src/bmain.cpp \
                   backend/src/MakeCodeAsm.cpp \
@@ -40,23 +43,25 @@ COMMON_SOURCES = common/src/DumpProgram.cpp \
                  common/src/ProgramFunc.cpp
 
 FRONTEND_OBJECTS = $(FRONTEND_SOURCES:frontend/src/%.cpp=build/obj/%.o)
+MIDDLEEND_OBJECTS = $(MIDDLEEND_SOURCES:middleend/src/%.cpp=build/obj/%.o)
 BACKEND_OBJECTS = $(BACKEND_SOURCES:backend/src/%.cpp=build/obj/%.o)
 X8664_OBJECTS = $(X8664_SOURCES:x86_64_backend/src/%.cpp=build/obj/%.o)
 COMMON_OBJECTS = $(COMMON_SOURCES:common/src/%.cpp=build/obj/%.o)
 
 FRONTEND_DEPENDS = $(FRONTEND_OBJECTS:build/obj/%.o=build/dep/%.d)
+MIDDLEEND_DEPENDS = $(MIDDLEEND_OBJECTS:build/obj/%.o=build/dep/%.d)
 BACKEND_DEPENDS = $(BACKEND_OBJECTS:build/obj/%.o=build/dep/%.d)
 X8664_DEPENDS = $(x8664_OBJECTS:build/obj/%.o=build/dep/%.d)
 COMMON_DEPENDS = $(COMMON_OBJECTS:build/obj/%.o=build/dep/%.d)
 
-INCLUDES = -I./frontend/hdr -I./common/hdr -I./backend/hdr "-I./x86_64_backend/hdr" -I./common/lib
+INCLUDES = -I./frontend/hdr -I./common/hdr -I./backend/hdr "-I./x86_64_backend/hdr" -I./middleend/hdr  -I./common/lib
 
 .PHONY: all build clean nasm
 
 all: build
 	@echo -e "\033[33mCompilation complete. Run the programs using './build/bin/frontend' and './build/bin/backend'.\033[0m"
 
-build: ./build/bin/frontend ./build/bin/backend
+build: ./build/bin/frontend ./build/bin/backend ./build/bin/middleend
 
 nasm: ./build/bin/nasm
 
@@ -65,6 +70,10 @@ nasm: ./build/bin/nasm
 	$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@
 
 ./build/bin/backend: $(BACKEND_OBJECTS) $(COMMON_OBJECTS) $(X8664_OBJECTS) ./build/obj/Tokenizer.o ./build/obj/RecursiveReader.o
+	@mkdir -p $(@D) ./build/dep
+	$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@
+
+./build/bin/middleend: $(COMMON_OBJECTS) $(MIDDLEEND_OBJECTS) ./build/obj/ProgramReader.o ./build/obj/WriteProgramFile.o ./build/obj/Tokenizer.o
 	@mkdir -p $(@D) ./build/dep
 	$(CC) $(CFLAGS) $(INCLUDES) $^ -o $@
 
@@ -77,6 +86,12 @@ nasm: ./build/bin/nasm
 	$(NASM) $(NASMFLAGS) -I./common/lib $< -o $@
 
 ./build/obj/%.o: frontend/src/%.cpp
+	@mkdir -p $(@D) ./build/dep
+	@if ! $(CC) $(CFLAGS) $(INCLUDES) $(DEPFLAGS) -c $< -o $@; then \
+		rm -f $@; exit 1; \
+	fi
+
+./build/obj/%.o: middleend/src/%.cpp
 	@mkdir -p $(@D) ./build/dep
 	@if ! $(CC) $(CFLAGS) $(INCLUDES) $(DEPFLAGS) -c $< -o $@; then \
 		rm -f $@; exit 1; \

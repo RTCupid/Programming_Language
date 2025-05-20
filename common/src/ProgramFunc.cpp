@@ -67,6 +67,16 @@ bool ProgramCtor (tree_t* program, modelang_t mode, const char* name_file_for_fr
 
         VerifyOpenFile (program->log_file, "ProgramCtor");
     }
+    else if (mode == MIDDLEEND)
+    {
+        program->dbg_log_file = fopen ("middleend/dbg_log_file.txt", "wt");
+
+        VerifyOpenFile (program->dbg_log_file, "ProgramCtor");
+
+        program->log_file     = fopen ("./build/png/mid_log_file.htm", "wt");
+
+        VerifyOpenFile (program->log_file, "ProgramCtor");
+    }
 
     program->crnt_node = NULL;
 
@@ -88,7 +98,7 @@ bool TreeCtor (tree_t* program, modelang_t mode)
         FRONT_DBG fprintf (stderr, GRN "expr->root = %p\n" RESET, program->root);
     }
 
-    else if (mode == BACKEND)
+    else if (mode == BACKEND || mode == MIDDLEEND)
     {
         program->root = MakeProgram (program, "Program_file.txt");
 

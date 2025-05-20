@@ -40,9 +40,6 @@ node_t* MakeProgram (tree_t* program, const char* namefile)
         program->nametable[i].type_id     = type_id;
 
         program->nametable[i].argument    = argument;
-
-        BACK_DBG fprintf (stderr, "%p %s\n", program->nametable[i].start_pos,
-                            program->nametable[i].name);
     }
 
     node_t* new_node = RunProgram (program, base_file);

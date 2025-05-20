@@ -20,6 +20,12 @@ void ProgramGraphviz (tree_t* expr, modelang_t mode)
         fprintf (expr->log_file, "<FONT SIZE=\"6\"><center>Program: Backend</center><FONT SIZE=\"5\">\n\n");
         numpng = 222;
     }
+    else if (mode == MIDDLEEND)
+    {
+        fprintf (expr->log_file, "<FONT SIZE=\"6\"><center>Program: Middleend</center><FONT SIZE=\"5\">\n\n");
+        numpng = 333;
+    }
+
     printf (BLU "<%s>\n" RESET, expr->data);
     fprintf (expr->log_file, "<center>\"%s\"</center>\n", expr->data);
 
@@ -50,7 +56,7 @@ void MakeNameTableHTM (tree_t* expr, modelang_t mode)
                                 "\t\t\t<th></th>\n"
                                 "\t\t\t<th>Start position</th>\n");
 
-    if (mode == FRONTEND)
+    if (mode == FRONTEND || mode == MIDDLEEND)
     {
         fprintf (expr->log_file, "\t\t\t<th>Number of symbols</th>\n");
     }
@@ -77,7 +83,7 @@ void MakeNameTableHTM (tree_t* expr, modelang_t mode)
 
         fprintf (expr->log_file, "<td> %p </td>\n", expr->nametable[i].start_pos);
 
-        if (mode == FRONTEND)
+        if (mode == FRONTEND || mode == MIDDLEEND)
         {
             fprintf (expr->log_file, "<td> %lu </td>\n", expr->nametable[i].n_symbols);
         }
@@ -181,6 +187,11 @@ void DiffDump (tree_t* tree, modelang_t mode)
     {
         fprintf (tree->log_file, "<FONT SIZE=\"6\"><center>Dump program: Frontend</center><FONT SIZE=\"5\">\n\n");
         numpng = 2222;
+    }
+    else if (mode == MIDDLEEND)
+    {
+        fprintf (tree->log_file, "<FONT SIZE=\"6\"><center>Program: Middleend</center><FONT SIZE=\"5\">\n\n");
+        numpng = 3333;
     }
 
     MakeDotFileDump (tree);

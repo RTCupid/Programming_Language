@@ -1,0 +1,8 @@
+my_main ()
+{
+    x = 5 * 5 * 5 * 5 * 5;
+
+    write_about {x};
+};
+
+then_commit_seppuku

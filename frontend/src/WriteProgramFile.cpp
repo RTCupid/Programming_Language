@@ -8,7 +8,7 @@
 #include "../../common/hdr/colors.h"
 #include "../../common/hdr/Config.h"
 
-void WriteNameTable (tree_t* program, FILE* file)
+void WriteNameTable (tree_t* program, FILE* file, modelang_t mode)
 {
     fprintf (file, "size table: %lu\n", program->nametable_id);
 
@@ -18,11 +18,21 @@ void WriteNameTable (tree_t* program, FILE* file)
 
         char identificator[MAX_LEN_BUF] = {};
 
-        snprintf (identificator, program->nametable[i].n_symbols + 1, "%s", program->nametable[i].start_pos);
+        if (mode == FRONTEND)
+        {
+            snprintf (identificator, program->nametable[i].n_symbols + 1, "%s", program->nametable[i].start_pos);
 
-        fprintf (file, "%lu %s %d %d \n", i, identificator, program->nametable[i].type_id, program->nametable[i].argument);
+            fprintf (file, "%lu %s %d %d \n", i, identificator, program->nametable[i].type_id, program->nametable[i].argument);
 
-        FRONT_DBG fprintf (stderr, BHMAG "%lu %s %d %d \n" RESET, i, identificator, program->nametable[i].type_id, program->nametable[i].argument);
+            FRONT_DBG fprintf (stderr, BHMAG "%lu %s %d %d \n" RESET, i, identificator, program->nametable[i].type_id, program->nametable[i].argument);
+        }
+        else if (mode == MIDDLEEND)
+        {
+
+            fprintf (file, "%lu %s %d %d \n", i, program->nametable[i].name, program->nametable[i].type_id, program->nametable[i].argument);
+
+            FRONT_DBG fprintf (stderr, BHMAG "%lu %s %d %d \n" RESET, i, program->nametable[i].name, program->nametable[i].type_id, program->nametable[i].argument);
+        }
     }
 }
 

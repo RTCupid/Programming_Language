@@ -103,8 +103,9 @@ typedef struct tree_t
 
 enum modelang_t
 {
-    FRONTEND = 0,
-    BACKEND,
+    FRONTEND  = 0,
+    MIDDLEEND = 1,
+    BACKEND   = 2,
 };
 
 const size_t SIZE_NAMETABLE = 100;

@@ -415,13 +415,13 @@ static err_t ProcessID (tree_t* program, FILE* file_nasm, node_t* crnt_node, ord
     {
         if (variable_order == FIRST_EXPR)
         {
-            snprintf (buffer, sizeof(buffer), "mov rax, [%s]", program->nametable[(int)crnt_node->value].name);
+            snprintf (buffer, sizeof(buffer), "mov rax, qword [%s]", program->nametable[(int)crnt_node->value].name);
 
             fprintf  (file_nasm, "\n\n\t%-50s; rax = %s ", buffer, program->nametable[(int)crnt_node->value].name);
         }
         else if (variable_order == SECOND_EXPR)
         {
-            snprintf (buffer, sizeof(buffer), "mov rdx, [%s]", program->nametable[(int)crnt_node->value].name);
+            snprintf (buffer, sizeof(buffer), "mov rdx, qword [%s]", program->nametable[(int)crnt_node->value].name);
 
             fprintf  (file_nasm, "\n\t%-50s; rdx = %s ", buffer, program->nametable[(int)crnt_node->value].name);
         }
@@ -432,7 +432,7 @@ static err_t ProcessID (tree_t* program, FILE* file_nasm, node_t* crnt_node, ord
     }
     else if (program->nametable[(int)crnt_node->value].type_id == TYPE_LOCAL)
     {
-        fprintf  (file_nasm, "\n\n\t%-50s; rax = %s ",  "mov rax, [rbp + 16]", program->nametable[(int)crnt_node->value].name);
+        fprintf  (file_nasm, "\n\n\t%-50s; rax = %s ",  "mov rax, qword [rbp + 16]", program->nametable[(int)crnt_node->value].name);
     }
     else
     {
@@ -631,7 +631,7 @@ static err_t ProcessWHILE (tree_t* program, FILE* file_nasm, node_t* crnt_node, 
 
     RecursiveMakeNasm (program, file_nasm, crnt_node->right);
 
-    snprintf (buffer, sizeof(buffer), "jmp short .start_while%lu", num_while);
+    snprintf (buffer, sizeof(buffer), "jmp near .start_while%lu", num_while);
 
     fprintf  (file_nasm, "\n\t%-50s;  goto .start_while%lu", buffer, num_while);
 

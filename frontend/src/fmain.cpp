@@ -31,7 +31,7 @@ int main (int argc, char* argv[])
 
         FILE* base_file = fopen ("Program_file.txt", "wb");
 
-        WriteNameTable  (&program, base_file);
+        WriteNameTable  (&program, base_file, FRONTEND);
 
         WriteBase       (&program, program.root, base_file, 1);
 

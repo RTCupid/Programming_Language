@@ -3,20 +3,15 @@ my_main ()
     x = 10;
     y = 20;
     z = 3;
+
     sum = x + 1;
-
     sub = y - 1;
-
-    write_about {sum};
-
-    write_about {sub};
-
     mult = x * z;
-
-    write_about {mult};
-
     divi = sum divide z;
 
+    write_about {sum};
+    write_about {sub};
+    write_about {mult};
     write_about {divi};
 };
 

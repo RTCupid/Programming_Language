@@ -134,7 +134,7 @@ then_commit_seppuku
 
 6-7. Бэкенд для генерации кода, выполняемого на эмуляторе процессора [Файл]: ссылки на файлы из репозитория. -  [MakeCodeAsm.h](/backend/hdr/MakeCodeAsm.h), [MakeCodeAsm.cpp](/backend/src/MakeCodeAsm.cpp)
 
-8-9. Бэкенд для генерации кода, выполняемого на процессорах архитектуры x86-64 [Файл]: ссылки на файлы из репозитория. -  [MakeCodeNasm.h](/x86_64_backend/hdr/MakeCodeNasm.h), [MakeCodeNasm.cpp](/x86_64_backend/src/MakeCodeNasm.cpp))
+8-9. Бэкенд для генерации кода, выполняемого на процессорах архитектуры x86-64 [Файл]: ссылки на файлы из репозитория. -  [MakeCodeNasm.h](/x86_64_backend/hdr/MakeCodeNasm.h), [MakeCodeNasm.cpp](/x86_64_backend/src/MakeCodeNasm.cpp)
 
 10. Программы, написанные на моём языке [Папка с файлами]: ссылка на папку из репозитория. - [programs_in_my_language](/programs_in_my_language)
 

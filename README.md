@@ -108,9 +108,9 @@ then_commit_seppuku
 
 4-5. Синтаксический анализатор, реализованный с использованием алгоритма рекурсивного спуска [Файл]: ссылки на файлы из репозитория. - [RecursiveReader.h](/frontend/hdr/RecursiveReader.h), [RecursiveReader.cpp](/frontend/src/RecursiveReader.cpp) 
 
-6-7. Бэкенд для генерации кода, выполняемого на эмуляторе процессора [Файл]: ссылки на файлы из репозитория. -  [MakeCodeAsm.h](/backend/hdr/MakeCodeAsm.h), [MakeCodeAsm.cpp](/backend/MakeCodeAsm.cpp)
+6-7. Бэкенд для генерации кода, выполняемого на эмуляторе процессора [Файл]: ссылки на файлы из репозитория. -  [MakeCodeAsm.h](/backend/hdr/MakeCodeAsm.h), [MakeCodeAsm.cpp](/backend/src/MakeCodeAsm.cpp)
 
-8-9. Бэкенд для генерации кода, выполняемого на процессорах архитектуры x86-64 [Файл]: ссылки на файлы из репозитория. -  [MakeCodeNasm.h](/x86_64_backend/hdr/MakeCodeNasm.h), [MakeCodeNasm.cpp](/x86_64_backend/MakeCodeNasm.cpp))
+8-9. Бэкенд для генерации кода, выполняемого на процессорах архитектуры x86-64 [Файл]: ссылки на файлы из репозитория. -  [MakeCodeNasm.h](/x86_64_backend/hdr/MakeCodeNasm.h), [MakeCodeNasm.cpp](/x86_64_backend/src/MakeCodeNasm.cpp))
 
 10. Библиотека с реализацией на ассемблере NASM операторов ввода, вывода и завершения программы [Файл]: ссылка на файл из репозитория. - [[stdlib.s]](/common/lib/stdlib.s)
 

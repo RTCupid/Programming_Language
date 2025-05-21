@@ -117,6 +117,37 @@ then_commit_seppuku
 # Приложение 
 ## Синтаксис реализованного языка программирования
 
-Тесты, используемые для отладки приведены в папке `./tests`[[1]](/tests/) репозитория. На этих примерах можно изучить синтаксис языка. 
+Тесты, используемые для отладки приведены в папке `./tests`[[1]](/tests/) репозитория. На этих примерах можно изучить синтаксис языка.
 
-1. Тестовые программы [Файл]: ссылка на папку из репозитория. - [tests](/tests/).
+Описание грамматики языка в близком к РБНФ [[2]](https://divancoder.ru/2017/06/ebnf/) формате:
+
+```
+Main
+{General    ::= {OP {";" | "next"}}+ Hlt
+{OP         ::= Assign | Func | Call | Ret | IF | Print | Input | Hlt
+
+Everything
+{Assign     ::= Id "=" Expr
+{More       ::= Expr ">" Expr
+{Less       ::= Expr "<" Expr
+{IF         ::= "if_happen" "(" MORE | LESS | Expr ")"  "{" {OP ";"}+ "}"
+{Print      ::= "write_about" "{" Expr "}"
+{Input      ::= "input" "(" ID ")"
+{While      ::= "while" "(" MORE | LESS | Expr ")" "{" {OP ";"}+ "}"
+{Func       ::= Id "(" Id | " " ")" "{" {OP ";"}+ "}"
+{Call       ::= Id "(" Id | " " ")" { ";" | "next" }
+{Ret        ::= "return" Expr
+{Hlt        ::= "then_commit_seppuku" | "$"
+
+Equation
+{Expr       ::= T {["+" | "add" | "-" | "subtract"] T}*
+{T          ::= P {["*" | "multiply" | "/" | "divide"] P}*
+{P          ::= "(" Expr ")" | Num | Id | "sqrt" "(" Expr ")" | Func "(" Expr ")"
+
+Tokens
+{Num        ::= NUM
+{Id         ::= ID
+```
+
+1. Тестовые программы [Файл]: ссылка на папку из репозитория. - [tests](/tests/)
+2. Расширенная форма Бэкуса - Наура [Электронный ресурс]: статья. - https://divancoder.ru/2017/06/ebnf/ (дата обращения - 21.05.2025)

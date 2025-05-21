@@ -64,23 +64,25 @@
 Для сравнения производительности кода, полученного при компиляции для эмулятора процессора, и при компиляции для процессора x86-64 (см. Рис. 1), использовался следующий код на "языке Самурая":
 
 ```
-a = 7;
-b = 12;
-c = 4;
+a = 7 next
+b = 12 next
+c = 4 next
 
-ntimes = 10000000;
+ntimes = 10000000 next
 
 while (ntimes > 1)
 {
-    Discriminant = b multiply b subtract 4 multiply a multiply c;
+    Discriminant = b multiply b subtract 4 multiply a multiply c next
 
-    first_answ  = ((0 subtract 1) multiply b subtract sqrt (Discriminant)) divide (2 multiply a);
-    second_answ = ((0 subtract 1) multiply b add      sqrt (Discriminant)) divide (2 multiply a);
+    first_answ  = ((0 subtract 1) multiply b subtract sqrt (Discriminant)) divide (2 multiply a)next
+    second_answ = ((0 subtract 1) multiply b add      sqrt (Discriminant)) divide (2 multiply a) next
 
-    ntimes = ntimes - 1;
-};
+    ntimes = ntimes - 1 next
+} next
 
 then_commit_seppuku
+
+
 ```
 
 По результатам измерений (см. Табл. 1) видно, что код на процессоре х86-64 выполнялся в 530 раз быстрее, чем на эмуляторе процессора, несмотря на то, что производились одинаковые действия, полученные из одного фронтенда.  

@@ -11,7 +11,7 @@ LINUXFLAGSDEBUG = -D _DEBUG -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ -Waggre
 
 LINUXFLAGSRELEASE = -D NDEBUG -std=c++17 -Wno-unused-result -Wall -mavx2 -O3
 
-CFLAGS = $(LINUXFLAGSDEBUG)
+CFLAGS = $(LINUXFLAGSRELEASE)
 
 DEPFLAGS = -MT $@ -MMD -MP -MF ./build/dep/$*.d
 

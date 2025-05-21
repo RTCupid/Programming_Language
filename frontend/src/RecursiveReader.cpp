@@ -20,29 +20,31 @@
 bool status = true;
 
 /*
-Main:
-{ G    ::= {OP ";"}+ "$"
-{ OP   ::= A | IF | Print | Input..
+Main
+{General    ::= {OP {";" | "next"}}+ Hlt
+{OP         ::= Assign | Func | Call | Ret | IF | Print | Input | Hlt
+
 Everything
-{ A    ::= Id "=" E
-{More  ::= E ">" E
-{Less  ::= E "<" E
-{ IF   ::= "if_happen" "(" MORE | LESS | E ")"  "{" {OP ";"}+ "}"
-{Print ::= "print" ...
-{Input ::= "input" "(" ID ")"
-{While ::= "while" "(" MORE | LESS | E ")" "{" {OP ";"}+ "}"
-{Func  ::= Id "(" Id | " " ")" "{" {OP ";"}+ "}"
-{Call  ::= Id "(" Id | " " ")" ";"
-{Ret   ::= "return" E
+{Assign     ::= Id "=" Expr
+{More       ::= Expr ">" Expr
+{Less       ::= Expr "<" Expr
+{IF         ::= "if_happen" "(" MORE | LESS | Expr ")"  "{" {OP { ";" | "next" } }+ "}"
+{Print      ::= "write_about" "{" Expr "}"
+{Input      ::= "input" "(" Id ")"
+{While      ::= "while" "(" MORE | LESS | Expr ")" "{" {OP { ";" | "next" } }+ "}"
+{Func       ::= Id "(" Id | " " ")" "{" {OP { ";" | "next" } }+ "}"
+{Call       ::= Id "(" Id | " " ")" { ";" | "next" }
+{Ret        ::= "return" Expr
+{Hlt        ::= "then_commit_seppuku" | "$"
 
 Equation
-{ E    ::= T {["+" "-"] T}*
-{ T    ::= P {["*" "/"] P}*
-{ P    ::= "(" E ")" | N | Id | "sqrt" "(" E ")" | Func "("E")"
-    >   <
-Tokens:
-{ N    ::= NUM
-{ Id   ::= ID
+{Expr       ::= T {["+" | "add" | "-" | "subtract"] T}*
+{T          ::= P {["*" | "multiply" | "/" | "divide"] P}*
+{P          ::= "(" Expr ")" | Num | Id | "sqrt" "(" Expr ")" | Func "(" Expr ")"
+
+Tokens
+{Num        ::= NUM
+{Id         ::= ID
 */
 
 static size_t p = 0;

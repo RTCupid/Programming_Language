@@ -1,25 +1,94 @@
-size table: 2
+size table: 5
 0 my_main 2 0 
-1 x 3 0 
+1 argument 3 0 
+2 answer 3 0 
+3 Factorial 2 1 
+4 number 3 0 
 {OP:";"
 	{OP:"def"
 		{OP:"func"
 			{ID:"0"}
-			{ID:"0"}
+			{ID:""}
 		}
 		{OP:";"
-			{OP:"="
+			{OP:"input"
 				{ID:"1"}
-				{NUM:"3125"}
+				{ID:""}
 			}
 			{OP:";"
-				{OP:"print"
-					{ID:"1"}
-					{ID:"0"}
+				{OP:"="
+					{ID:"2"}
+					{OP:"call"
+						{ID:"3"}
+						{ID:"1"}
+					}
 				}
-				{OP:";"}
+				{OP:";"
+					{OP:"print"
+						{ID:"2"}
+						{ID:""}
+					}
+					{OP:";"
+						{OP:"$"}
+						{OP:";"}
+					}
+				}
 			}
 		}
 	}
-	{OP:";"}
+	{OP:";"
+		{OP:"def"
+			{OP:"func"
+				{ID:"3"}
+				{ID:"4"}
+			}
+			{OP:";"
+				{OP:"if"
+					{OP:"<"
+						{ID:"4"}
+						{NUM:"2"}
+					}
+					{OP:";"
+						{OP:"return"
+							{NUM:"1"}
+							{ID:""}
+						}
+						{OP:";"}
+					}
+				}
+				{OP:";"
+					{OP:"if"
+						{OP:"<"
+							{ID:"4"}
+							{NUM:"3"}
+						}
+						{OP:";"
+							{OP:"return"
+								{NUM:"2"}
+								{ID:""}
+							}
+							{OP:";"}
+						}
+					}
+					{OP:";"
+						{OP:"return"
+							{OP:"*"
+								{ID:"4"}
+								{OP:"call"
+									{ID:"3"}
+									{OP:"-"
+										{ID:"4"}
+										{NUM:"1"}
+									}
+								}
+							}
+							{ID:""}
+						}
+						{OP:";"}
+					}
+				}
+			}
+		}
+		{OP:";"}
+	}
 }

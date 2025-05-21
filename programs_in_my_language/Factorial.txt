@@ -1,6 +1,6 @@
 my_main ()
 {
-    argument = 5;
+    input (argument);
 
     answer = Factorial (argument);
 

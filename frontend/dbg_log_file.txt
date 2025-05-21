@@ -1,17 +1,35 @@
 
-86
-count of char = 86
+319
+count of char = 319
 
 my_main ()
 {
-    x = 5 * 5 * 5 * 5 * 5;
+    input (argument);
 
-    write_about {x};
+    answer = Factorial (argument);
+
+    write_about {answer};
+
+    then_commit_seppuku
+};
+
+Factorial (number)
+{
+    if (number < 2)
+    {
+        return 1;
+    };
+    if (number < 3)
+    {
+        return 2;
+    };
+
+    return number * Factorial (number - 1);
 };
 
 then_commit_seppuku
 
-sizeOfFile = <86>
+sizeOfFile = <319>
 
 
 Start Tokenizer:
@@ -74,8 +92,32 @@ name = <{>
 <{> is keyword
 number_key = <19>
 
-first symbol = <x> is alpha
-name = <x>
+first symbol = <i> is alpha
+name = <input>
+<input> is keyword
+number_key = <23>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <a> is alpha
+name = <argument>
+number_key = <-1>
+number_id = <-1>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <a> is alpha
+name = <answer>
 number_key = <-1>
 number_id = <-1>
 first symbol = <=> is alpha
@@ -83,40 +125,24 @@ name = <=>
 <=> is keyword
 number_key = <11>
 
-first symbol = '5' is number
-number is <5>
+first symbol = <F> is alpha
+name = <Factorial>
+number_key = <-1>
+number_id = <-1>
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
 
-first symbol = <*> is alpha
-name = <*>
-<*> is keyword
-number_key = <5>
-
-first symbol = '5' is number
-number is <5>
-
-first symbol = <*> is alpha
-name = <*>
-<*> is keyword
-number_key = <5>
-
-first symbol = '5' is number
-number is <5>
-
-first symbol = <*> is alpha
-name = <*>
-<*> is keyword
-number_key = <5>
-
-first symbol = '5' is number
-number is <5>
-
-first symbol = <*> is alpha
-name = <*>
-<*> is keyword
-number_key = <5>
-
-first symbol = '5' is number
-number is <5>
+first symbol = <a> is alpha
+name = <argument>
+number_key = <-1>
+<argument> is identificator
+number_id = <1>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
 
 first symbol = <;> is alpha
 name = <;>
@@ -133,15 +159,214 @@ name = <{>
 <{> is keyword
 number_key = <19>
 
-first symbol = <x> is alpha
-name = <x>
+first symbol = <a> is alpha
+name = <answer>
 number_key = <-1>
-<x> is identificator
-number_id = <1>
+<answer> is identificator
+number_id = <2>
 first symbol = <}> is alpha
 name = <}>
 <}> is keyword
 number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <t> is alpha
+name = <then_commit_seppuku>
+<then_commit_seppuku> is keyword
+number_key = <14>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <F> is alpha
+name = <Factorial>
+number_key = <-1>
+<Factorial> is identificator
+number_id = <3>
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <n> is alpha
+name = <number>
+number_key = <-1>
+number_id = <-1>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <i> is alpha
+name = <if>
+<if> is keyword
+number_key = <13>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <n> is alpha
+name = <number>
+number_key = <-1>
+<number> is identificator
+number_id = <4>
+first symbol = <<> is alpha
+name = <<>
+<<> is keyword
+number_key = <26>
+
+first symbol = '2' is number
+number is <2>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <r> is alpha
+name = <return>
+<return> is keyword
+number_key = <31>
+
+first symbol = '1' is number
+number is <1>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <i> is alpha
+name = <if>
+<if> is keyword
+number_key = <13>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <n> is alpha
+name = <number>
+number_key = <-1>
+<number> is identificator
+number_id = <4>
+first symbol = <<> is alpha
+name = <<>
+<<> is keyword
+number_key = <26>
+
+first symbol = '3' is number
+number is <3>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <{> is alpha
+name = <{>
+<{> is keyword
+number_key = <19>
+
+first symbol = <r> is alpha
+name = <return>
+<return> is keyword
+number_key = <31>
+
+first symbol = '2' is number
+number is <2>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <}> is alpha
+name = <}>
+<}> is keyword
+number_key = <20>
+
+first symbol = <;> is alpha
+name = <;>
+<;> is keyword
+number_key = <9>
+
+first symbol = <r> is alpha
+name = <return>
+<return> is keyword
+number_key = <31>
+
+first symbol = <n> is alpha
+name = <number>
+number_key = <-1>
+<number> is identificator
+number_id = <4>
+first symbol = <*> is alpha
+name = <*>
+<*> is keyword
+number_key = <5>
+
+first symbol = <F> is alpha
+name = <Factorial>
+number_key = <-1>
+<Factorial> is identificator
+number_id = <3>
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <n> is alpha
+name = <number>
+number_key = <-1>
+<number> is identificator
+number_id = <4>
+first symbol = <-> is alpha
+name = <->
+<-> is keyword
+number_key = <3>
+
+first symbol = '1' is number
+number is <1>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
 
 first symbol = <;> is alpha
 name = <;>
@@ -169,22 +394,64 @@ ID my_main
 OP (
 OP )
 OP {
-ID x
+OP input
+OP (
+ID argument
+OP )
+OP ;
+ID answer
 OP =
-NUM 5
-OP *
-NUM 5
-OP *
-NUM 5
-OP *
-NUM 5
-OP *
-NUM 5
+ID Factorial
+OP (
+ID argument
+OP )
 OP ;
 OP print
 OP {
-ID x
+ID answer
 OP }
+OP ;
+OP $
+OP }
+OP ;
+ID Factorial
+OP (
+ID number
+OP )
+OP {
+OP if
+OP (
+ID number
+OP <
+NUM 2
+OP )
+OP {
+OP return
+NUM 1
+OP ;
+OP }
+OP ;
+OP if
+OP (
+ID number
+OP <
+NUM 3
+OP )
+OP {
+OP return
+NUM 2
+OP ;
+OP }
+OP ;
+OP return
+ID number
+OP *
+ID Factorial
+OP (
+ID number
+OP -
+NUM 1
+OP )
 OP ;
 OP }
 OP ;

@@ -60,34 +60,34 @@
 "Язык Самурая" предназначен для работы только с целыми числами, поэтому для вычислений использовались регистры общего назначения. Операция взятия корня, используемая при написании программы для решения квадратных уравнений [[10]](/programs_in_my_language), реализована при помощи загрузки в регистр `xmm0`, вычисления корня при помощи инструкции `sqrtsd`, и обратной загрузки результата в регистр общего назначения:
 
 ```Asm
-	cvtsi2sd xmm0, rax                                ; xmm0 = (double) rax
-	sqrtsd xmm1, xmm0                                 ; xmm1 = sqrt (xmm0)
-	cvtsd2si rdx, xmm1                                ; rdx  = xmm1 
+	cvtsi2sd xmm0, rax               	; xmm0 = (double) rax
+	sqrtsd xmm1, xmm0                    	; xmm1 = sqrt (xmm0)
+	cvtsd2si rdx, xmm1                  	; rdx  = xmm1 
 ```
 
 Аргумент функции передавался через стек и внутри функции считался локальной переменной. Это позволило написать рекурсивную функцию вычисления факториала [[10]](/programs_in_my_language):
 
 ```Asm
-	sub rsp, 8                                        ; reserved 8 byte for argument
+	sub rsp, 8              		; reserved 8 byte for argument
 
-	mov [rsp], rax                                    ; rax => [rsp], make stack frame;
+	mov [rsp], rax                         	; rax => [rsp], make stack frame;
 
-	call Factorial                                    ; Factorial (rax);
+	call Factorial                        	; Factorial (rax);
 ```
 
 Для компиляции таких операторов, как ввод, вывод и завершение программы потребовалось написать библиотеку с их реализацией на ассемблере NASM [[11]](/common/lib/stdlib.s). При её написании использовались наработки из предыдущих проектов, например, функция для вывода десятичного числа частично взята из проекта [MyPrintf](https://github.com/RTCupid/MyPrintf). Библиотека подключалась при помощи директивы `%include`, а в местах использования этих операторов в основной код вставлялась конструкция `call "имя функции для обработки оператора"`:
 
-```
-	mov rax, qword [answer]                           ; rax = answer 
+```Asm
+	mov rax, qword [answer]			; rax = answer 
 
-	call _my_print                                    ; print (eax) ; number operator 10 
+	call _my_print         			; print (rax)
 ```
 
 ### Результаты измерений
 
 Для сравнения производительности кода, полученного при компиляции для эмулятора процессора, и при компиляции для процессора x86-64 (см. Рис. 1), использовался следующий код на "языке Самурая":
 
-```
+```C
 a = 7 next
 b = 12 next
 c = 4 next

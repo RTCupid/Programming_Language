@@ -119,7 +119,7 @@ then_commit_seppuku
 
 Тесты, используемые для отладки приведены в папке `./tests`[[1]](/tests/) репозитория. На этих примерах можно изучить синтаксис языка.
 
-Описание грамматики языка в близком к РБНФ [[2]](https://divancoder.ru/2017/06/ebnf/) формате:
+Описание грамматики языка в близком к РБНФ [[2]](https://divancoder.ru/2017/06/ebnf/) формате, которое обновлялось перед добавлением нового синтаксиса языка:
 
 ```
 Main
@@ -130,11 +130,11 @@ Everything
 {Assign     ::= Id "=" Expr
 {More       ::= Expr ">" Expr
 {Less       ::= Expr "<" Expr
-{IF         ::= "if_happen" "(" MORE | LESS | Expr ")"  "{" {OP ";"}+ "}"
+{IF         ::= "if_happen" "(" MORE | LESS | Expr ")"  "{" {OP { ";" | "next" } }+ "}"
 {Print      ::= "write_about" "{" Expr "}"
-{Input      ::= "input" "(" ID ")"
-{While      ::= "while" "(" MORE | LESS | Expr ")" "{" {OP ";"}+ "}"
-{Func       ::= Id "(" Id | " " ")" "{" {OP ";"}+ "}"
+{Input      ::= "input" "(" Id ")"
+{While      ::= "while" "(" MORE | LESS | Expr ")" "{" {OP { ";" | "next" } }+ "}"
+{Func       ::= Id "(" Id | " " ")" "{" {OP { ";" | "next" } }+ "}"
 {Call       ::= Id "(" Id | " " ")" { ";" | "next" }
 {Ret        ::= "return" Expr
 {Hlt        ::= "then_commit_seppuku" | "$"

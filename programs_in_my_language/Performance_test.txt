@@ -2,7 +2,7 @@ a = 7 next
 b = 12 next
 c = 4 next
 
-ntimes = 10000000 next
+ntimes = 100000000 next
 
 while (ntimes > 1)
 {

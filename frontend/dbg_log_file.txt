@@ -1,35 +1,27 @@
 
-319
-count of char = 319
+414
+count of char = 414
 
-my_main ()
+a = 7 next
+b = 12 next
+c = 4 next
+
+ntimes = 100000000 next
+
+while (ntimes > 1)
 {
-    input (argument);
+    Discriminant = b multiply b subtract 4 multiply a multiply c next
 
-    answer = Factorial (argument);
+    first_answ  = ((0 subtract 1) multiply b subtract sqrt (Discriminant)) divide (2 multiply a)next
+    second_answ = ((0 subtract 1) multiply b add      sqrt (Discriminant)) divide (2 multiply a) next
 
-    write_about {answer};
-
-    then_commit_seppuku
-};
-
-Factorial (number)
-{
-    if (number < 2)
-    {
-        return 1;
-    };
-    if (number < 3)
-    {
-        return 2;
-    };
-
-    return number * Factorial (number - 1);
-};
+    ntimes = ntimes - 1 next
+} next
 
 then_commit_seppuku
 
-sizeOfFile = <319>
+
+sizeOfFile = <414>
 
 
 Start Tokenizer:
@@ -73,51 +65,8 @@ give                             25
 ----------------------------------------------------------------
 End Dump!
 
-first symbol = <m> is alpha
-name = <my_main>
-number_key = <-1>
-number_id = <-1>
-first symbol = <(> is alpha
-name = <(>
-<(> is keyword
-number_key = <17>
-
-first symbol = <)> is alpha
-name = <)>
-<)> is keyword
-number_key = <18>
-
-first symbol = <{> is alpha
-name = <{>
-<{> is keyword
-number_key = <19>
-
-first symbol = <i> is alpha
-name = <input>
-<input> is keyword
-number_key = <23>
-
-first symbol = <(> is alpha
-name = <(>
-<(> is keyword
-number_key = <17>
-
 first symbol = <a> is alpha
-name = <argument>
-number_key = <-1>
-number_id = <-1>
-first symbol = <)> is alpha
-name = <)>
-<)> is keyword
-number_key = <18>
-
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
-first symbol = <a> is alpha
-name = <answer>
+name = <a>
 number_key = <-1>
 number_id = <-1>
 first symbol = <=> is alpha
@@ -125,173 +74,88 @@ name = <=>
 <=> is keyword
 number_key = <11>
 
-first symbol = <F> is alpha
-name = <Factorial>
+first symbol = '7' is number
+number is <7>
+
+first symbol = <n> is alpha
+name = <next>
+<next> is keyword
+number_key = <8>
+
+first symbol = <b> is alpha
+name = <b>
 number_key = <-1>
 number_id = <-1>
-first symbol = <(> is alpha
-name = <(>
-<(> is keyword
-number_key = <17>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
 
-first symbol = <a> is alpha
-name = <argument>
+first symbol = '1' is number
+number is <12>
+
+first symbol = <n> is alpha
+name = <next>
+<next> is keyword
+number_key = <8>
+
+first symbol = <c> is alpha
+name = <c>
 number_key = <-1>
-<argument> is identificator
-number_id = <1>
-first symbol = <)> is alpha
-name = <)>
-<)> is keyword
-number_key = <18>
+number_id = <-1>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
 
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
+first symbol = '4' is number
+number is <4>
+
+first symbol = <n> is alpha
+name = <next>
+<next> is keyword
+number_key = <8>
+
+first symbol = <n> is alpha
+name = <ntimes>
+number_key = <-1>
+number_id = <-1>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = '1' is number
+number is <1e+08>
+
+first symbol = <n> is alpha
+name = <next>
+<next> is keyword
+number_key = <8>
 
 first symbol = <w> is alpha
-name = <write_about>
-<write_about> is keyword
-number_key = <21>
+name = <while>
+<while> is keyword
+number_key = <27>
 
-first symbol = <{> is alpha
-name = <{>
-<{> is keyword
-number_key = <19>
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
 
-first symbol = <a> is alpha
-name = <answer>
+first symbol = <n> is alpha
+name = <ntimes>
 number_key = <-1>
-<answer> is identificator
-number_id = <2>
-first symbol = <}> is alpha
-name = <}>
-<}> is keyword
-number_key = <20>
-
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
-first symbol = <t> is alpha
-name = <then_commit_seppuku>
-<then_commit_seppuku> is keyword
-number_key = <14>
-
-first symbol = <}> is alpha
-name = <}>
-<}> is keyword
-number_key = <20>
-
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
-first symbol = <F> is alpha
-name = <Factorial>
-number_key = <-1>
-<Factorial> is identificator
+<ntimes> is identificator
 number_id = <3>
-first symbol = <(> is alpha
-name = <(>
-<(> is keyword
-number_key = <17>
-
-first symbol = <n> is alpha
-name = <number>
-number_key = <-1>
-number_id = <-1>
-first symbol = <)> is alpha
-name = <)>
-<)> is keyword
-number_key = <18>
-
-first symbol = <{> is alpha
-name = <{>
-<{> is keyword
-number_key = <19>
-
-first symbol = <i> is alpha
-name = <if>
-<if> is keyword
-number_key = <13>
-
-first symbol = <(> is alpha
-name = <(>
-<(> is keyword
-number_key = <17>
-
-first symbol = <n> is alpha
-name = <number>
-number_key = <-1>
-<number> is identificator
-number_id = <4>
-first symbol = <<> is alpha
-name = <<>
-<<> is keyword
-number_key = <26>
-
-first symbol = '2' is number
-number is <2>
-
-first symbol = <)> is alpha
-name = <)>
-<)> is keyword
-number_key = <18>
-
-first symbol = <{> is alpha
-name = <{>
-<{> is keyword
-number_key = <19>
-
-first symbol = <r> is alpha
-name = <return>
-<return> is keyword
-number_key = <31>
+first symbol = <>> is alpha
+name = <>>
+<>> is keyword
+number_key = <25>
 
 first symbol = '1' is number
 number is <1>
 
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
-first symbol = <}> is alpha
-name = <}>
-<}> is keyword
-number_key = <20>
-
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
-
-first symbol = <i> is alpha
-name = <if>
-<if> is keyword
-number_key = <13>
-
-first symbol = <(> is alpha
-name = <(>
-<(> is keyword
-number_key = <17>
-
-first symbol = <n> is alpha
-name = <number>
-number_key = <-1>
-<number> is identificator
-number_id = <4>
-first symbol = <<> is alpha
-name = <<>
-<<> is keyword
-number_key = <26>
-
-first symbol = '3' is number
-number is <3>
-
 first symbol = <)> is alpha
 name = <)>
 <)> is keyword
@@ -302,59 +166,294 @@ name = <{>
 <{> is keyword
 number_key = <19>
 
-first symbol = <r> is alpha
-name = <return>
-<return> is keyword
-number_key = <31>
+first symbol = <D> is alpha
+name = <Discriminant>
+number_key = <-1>
+number_id = <-1>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
 
-first symbol = '2' is number
-number is <2>
+first symbol = <b> is alpha
+name = <b>
+number_key = <-1>
+<b> is identificator
+number_id = <1>
+first symbol = <m> is alpha
+name = <multiply>
+<multiply> is keyword
+number_key = <4>
 
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
+first symbol = <b> is alpha
+name = <b>
+number_key = <-1>
+<b> is identificator
+number_id = <1>
+first symbol = <s> is alpha
+name = <subtract>
+<subtract> is keyword
+number_key = <2>
 
-first symbol = <}> is alpha
-name = <}>
-<}> is keyword
-number_key = <20>
+first symbol = '4' is number
+number is <4>
 
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
+first symbol = <m> is alpha
+name = <multiply>
+<multiply> is keyword
+number_key = <4>
 
-first symbol = <r> is alpha
-name = <return>
-<return> is keyword
-number_key = <31>
+first symbol = <a> is alpha
+name = <a>
+number_key = <-1>
+<a> is identificator
+number_id = <0>
+first symbol = <m> is alpha
+name = <multiply>
+<multiply> is keyword
+number_key = <4>
 
+first symbol = <c> is alpha
+name = <c>
+number_key = <-1>
+<c> is identificator
+number_id = <2>
 first symbol = <n> is alpha
-name = <number>
-number_key = <-1>
-<number> is identificator
-number_id = <4>
-first symbol = <*> is alpha
-name = <*>
-<*> is keyword
-number_key = <5>
+name = <next>
+<next> is keyword
+number_key = <8>
 
-first symbol = <F> is alpha
-name = <Factorial>
+first symbol = <f> is alpha
+name = <first_answ>
 number_key = <-1>
-<Factorial> is identificator
-number_id = <3>
+number_id = <-1>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
 first symbol = <(> is alpha
 name = <(>
 <(> is keyword
 number_key = <17>
 
-first symbol = <n> is alpha
-name = <number>
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = '0' is number
+number is <0>
+
+first symbol = <s> is alpha
+name = <subtract>
+<subtract> is keyword
+number_key = <2>
+
+first symbol = '1' is number
+number is <1>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <m> is alpha
+name = <multiply>
+<multiply> is keyword
+number_key = <4>
+
+first symbol = <b> is alpha
+name = <b>
 number_key = <-1>
-<number> is identificator
+<b> is identificator
+number_id = <1>
+first symbol = <s> is alpha
+name = <subtract>
+<subtract> is keyword
+number_key = <2>
+
+first symbol = <s> is alpha
+name = <sqrt>
+<sqrt> is keyword
+number_key = <24>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <D> is alpha
+name = <Discriminant>
+number_key = <-1>
+<Discriminant> is identificator
 number_id = <4>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <d> is alpha
+name = <divide>
+<divide> is keyword
+number_key = <6>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = '2' is number
+number is <2>
+
+first symbol = <m> is alpha
+name = <multiply>
+<multiply> is keyword
+number_key = <4>
+
+first symbol = <a> is alpha
+name = <a>
+number_key = <-1>
+<a> is identificator
+number_id = <0>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <n> is alpha
+name = <next>
+<next> is keyword
+number_key = <8>
+
+first symbol = <s> is alpha
+name = <second_answ>
+number_key = <-1>
+number_id = <-1>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = '0' is number
+number is <0>
+
+first symbol = <s> is alpha
+name = <subtract>
+<subtract> is keyword
+number_key = <2>
+
+first symbol = '1' is number
+number is <1>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <m> is alpha
+name = <multiply>
+<multiply> is keyword
+number_key = <4>
+
+first symbol = <b> is alpha
+name = <b>
+number_key = <-1>
+<b> is identificator
+number_id = <1>
+first symbol = <a> is alpha
+name = <add>
+<add> is keyword
+number_key = <0>
+
+first symbol = <s> is alpha
+name = <sqrt>
+<sqrt> is keyword
+number_key = <24>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = <D> is alpha
+name = <Discriminant>
+number_key = <-1>
+<Discriminant> is identificator
+number_id = <4>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <d> is alpha
+name = <divide>
+<divide> is keyword
+number_key = <6>
+
+first symbol = <(> is alpha
+name = <(>
+<(> is keyword
+number_key = <17>
+
+first symbol = '2' is number
+number is <2>
+
+first symbol = <m> is alpha
+name = <multiply>
+<multiply> is keyword
+number_key = <4>
+
+first symbol = <a> is alpha
+name = <a>
+number_key = <-1>
+<a> is identificator
+number_id = <0>
+first symbol = <)> is alpha
+name = <)>
+<)> is keyword
+number_key = <18>
+
+first symbol = <n> is alpha
+name = <next>
+<next> is keyword
+number_key = <8>
+
+first symbol = <n> is alpha
+name = <ntimes>
+number_key = <-1>
+<ntimes> is identificator
+number_id = <3>
+first symbol = <=> is alpha
+name = <=>
+<=> is keyword
+number_key = <11>
+
+first symbol = <n> is alpha
+name = <ntimes>
+number_key = <-1>
+<ntimes> is identificator
+number_id = <3>
 first symbol = <-> is alpha
 name = <->
 <-> is keyword
@@ -363,25 +462,20 @@ number_key = <3>
 first symbol = '1' is number
 number is <1>
 
-first symbol = <)> is alpha
-name = <)>
-<)> is keyword
-number_key = <18>
-
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
+first symbol = <n> is alpha
+name = <next>
+<next> is keyword
+number_key = <8>
 
 first symbol = <}> is alpha
 name = <}>
 <}> is keyword
 number_key = <20>
 
-first symbol = <;> is alpha
-name = <;>
-<;> is keyword
-number_key = <9>
+first symbol = <n> is alpha
+name = <next>
+<next> is keyword
+number_key = <8>
 
 first symbol = <t> is alpha
 name = <then_commit_seppuku>
@@ -390,68 +484,92 @@ number_key = <14>
 
 ----------------------------------------------------------------
 Dump Tokens:
-ID my_main
-OP (
-OP )
-OP {
-OP input
-OP (
-ID argument
-OP )
-OP ;
-ID answer
+ID a
 OP =
-ID Factorial
-OP (
-ID argument
-OP )
+NUM 7
 OP ;
-OP print
-OP {
-ID answer
-OP }
+ID b
+OP =
+NUM 12
 OP ;
-OP $
-OP }
+ID c
+OP =
+NUM 4
 OP ;
-ID Factorial
+ID ntimes
+OP =
+NUM 1e+08
+OP ;
+OP while
 OP (
-ID number
-OP )
-OP {
-OP if
-OP (
-ID number
-OP <
-NUM 2
-OP )
-OP {
-OP return
+ID ntimes
+OP >
 NUM 1
-OP ;
-OP }
-OP ;
-OP if
-OP (
-ID number
-OP <
-NUM 3
 OP )
 OP {
-OP return
-NUM 2
-OP ;
-OP }
-OP ;
-OP return
-ID number
+ID Discriminant
+OP =
+ID b
 OP *
-ID Factorial
+ID b
+OP -
+NUM 4
+OP *
+ID a
+OP *
+ID c
+OP ;
+ID first_answ
+OP =
 OP (
-ID number
+OP (
+NUM 0
 OP -
 NUM 1
 OP )
+OP *
+ID b
+OP -
+OP sqrt
+OP (
+ID Discriminant
+OP )
+OP )
+OP /
+OP (
+NUM 2
+OP *
+ID a
+OP )
+OP ;
+ID second_answ
+OP =
+OP (
+OP (
+NUM 0
+OP -
+NUM 1
+OP )
+OP *
+ID b
+OP +
+OP sqrt
+OP (
+ID Discriminant
+OP )
+OP )
+OP /
+OP (
+NUM 2
+OP *
+ID a
+OP )
+OP ;
+ID ntimes
+OP =
+ID ntimes
+OP -
+NUM 1
 OP ;
 OP }
 OP ;

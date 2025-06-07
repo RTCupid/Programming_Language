@@ -11,7 +11,7 @@ push 4
 
 pop [2] 	; c
 ;number operator = 6 ;number operator = 7 
-push 10000000
+push 100000000
 
 pop [3] 	; ntimes
 ;number operator = 8 ;number operator = 9 
@@ -46,24 +46,16 @@ mul
 
 sub
 
-pop [4] 	; Diskriminant
-;number operator = 16 ;number operator = 17 ;number operator = 18 ;number operator = 19 ;number operator = 20 ;number operator = 21 
-push 0
-
-push 1
-
-sub
-
-push [1] 	;b
-
-mul
-;number operator = 22 
-push [4] 	;Diskriminant
+pop [4] 	; Discriminant
+;number operator = 16 ;number operator = 17 ;number operator = 18 ;number operator = 19 
+push -1
+;number operator = 20 
+push [4] 	;Discriminant
 
 sqrt
 
 sub
-;number operator = 23 
+;number operator = 21 
 push 2
 
 push [0] 	;a
@@ -73,23 +65,15 @@ mul
 div
 
 pop [5] 	; first_answ
-;number operator = 24 ;number operator = 25 ;number operator = 26 ;number operator = 27 ;number operator = 28 ;number operator = 29 
-push 0
-
-push 1
-
-sub
-
-push [1] 	;b
-
-mul
-;number operator = 30 
-push [4] 	;Diskriminant
+;number operator = 22 ;number operator = 23 ;number operator = 24 ;number operator = 25 
+push -1
+;number operator = 26 
+push [4] 	;Discriminant
 
 sqrt
 
 add
-;number operator = 31 
+;number operator = 27 
 push 2
 
 push [0] 	;a
@@ -99,7 +83,7 @@ mul
 div
 
 pop [6] 	; second_answ
-;number operator = 32 ;number operator = 33 ;number operator = 34 
+;number operator = 28 ;number operator = 29 ;number operator = 30 
 push [3] 	;ntimes
 
 push 1
@@ -107,10 +91,10 @@ push 1
 sub
 
 pop [3] 	; ntimes
-;number operator = 35 
+;number operator = 31 
 jmp start-while-10:
 
 end_while10:
 ; -------end-while-------------------------
-;number operator = 36 
+;number operator = 32 
 hlt

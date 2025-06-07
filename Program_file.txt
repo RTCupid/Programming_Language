@@ -1,94 +1,105 @@
-size table: 5
-0 my_main 2 0 
-1 argument 3 0 
-2 answer 3 0 
-3 Factorial 2 1 
-4 number 3 0 
+size table: 7
+0 a 3 0 
+1 b 3 0 
+2 c 3 0 
+3 ntimes 3 0 
+4 Discriminant 3 0 
+5 first_answ 3 0 
+6 second_answ 3 0 
 {OP:";"
-	{OP:"def"
-		{OP:"func"
-			{ID:"0"}
-			{ID:""}
+	{OP:"="
+		{ID:"0"}
+		{NUM:"7"}
+	}
+	{OP:";"
+		{OP:"="
+			{ID:"1"}
+			{NUM:"12"}
 		}
 		{OP:";"
-			{OP:"input"
-				{ID:"1"}
-				{ID:""}
+			{OP:"="
+				{ID:"2"}
+				{NUM:"4"}
 			}
 			{OP:";"
 				{OP:"="
-					{ID:"2"}
-					{OP:"call"
-						{ID:"3"}
-						{ID:"1"}
-					}
+					{ID:"3"}
+					{NUM:"1e+08"}
 				}
 				{OP:";"
-					{OP:"print"
-						{ID:"2"}
-						{ID:""}
-					}
-					{OP:";"
-						{OP:"$"}
-						{OP:";"}
-					}
-				}
-			}
-		}
-	}
-	{OP:";"
-		{OP:"def"
-			{OP:"func"
-				{ID:"3"}
-				{ID:"4"}
-			}
-			{OP:";"
-				{OP:"if"
-					{OP:"<"
-						{ID:"4"}
-						{NUM:"2"}
-					}
-					{OP:";"
-						{OP:"return"
-							{NUM:"1"}
-							{ID:""}
-						}
-						{OP:";"}
-					}
-				}
-				{OP:";"
-					{OP:"if"
+					{OP:"while"
 						{OP:"<"
-							{ID:"4"}
-							{NUM:"3"}
+							{ID:"3"}
+							{NUM:"1"}
 						}
 						{OP:";"
-							{OP:"return"
-								{NUM:"2"}
-								{ID:""}
-							}
-							{OP:";"}
-						}
-					}
-					{OP:";"
-						{OP:"return"
-							{OP:"*"
+							{OP:"="
 								{ID:"4"}
-								{OP:"call"
-									{ID:"3"}
-									{OP:"-"
-										{ID:"4"}
-										{NUM:"1"}
+								{OP:"-"
+									{OP:"*"
+										{ID:"1"}
+										{ID:"1"}
+									}
+									{OP:"*"
+										{OP:"*"
+											{NUM:"4"}
+											{ID:"0"}
+										}
+										{ID:"2"}
 									}
 								}
 							}
-							{ID:""}
+							{OP:";"
+								{OP:"="
+									{ID:"5"}
+									{OP:"/"
+										{OP:"-"
+											{NUM:"-1"}
+											{OP:"sqrt"
+												{ID:"4"}
+												{ID:"0"}
+											}
+										}
+										{OP:"*"
+											{NUM:"2"}
+											{ID:"0"}
+										}
+									}
+								}
+								{OP:";"
+									{OP:"="
+										{ID:"6"}
+										{OP:"/"
+											{OP:"+"
+												{NUM:"-1"}
+												{OP:"sqrt"
+													{ID:"4"}
+													{ID:"0"}
+												}
+											}
+											{OP:"*"
+												{NUM:"2"}
+												{ID:"0"}
+											}
+										}
+									}
+									{OP:";"
+										{OP:"="
+											{ID:"3"}
+											{OP:"-"
+												{ID:"3"}
+												{NUM:"1"}
+											}
+										}
+										{OP:";"}
+									}
+								}
+							}
 						}
-						{OP:";"}
 					}
+					{OP:";"}
 				}
 			}
 		}
-		{OP:";"}
 	}
 }

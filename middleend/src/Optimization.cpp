@@ -103,7 +103,7 @@ node_t* RemoveNeutralExpr (tree_t* expr, node_t* crnt_node, int* n_change_elems)
 
                 return ret_node;
             }
-            if (((int) crnt_node->left->type == NUM && (int) crnt_node->left->value == 0) || ((int) crnt_node->left->type == NUM && (int) crnt_node->right->value == 0))
+            if (((int) crnt_node->left->type == NUM && (int) crnt_node->left->value == 0) || ((int) crnt_node->right->type == NUM && (int) crnt_node->right->value == 0))
             {
                 ClearTree (crnt_node);
 
@@ -176,6 +176,11 @@ double Evaluate (node_t* node)
     if (node->type == NUM)
     {
         return node->value;
+    }
+    if (node->type == ID)
+    {
+        fprintf (stderr, RED "Evaluate with identificator\n" RESET);
+        exit (0);
     }
     if (node->type == OP)
     {

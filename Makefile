@@ -59,7 +59,7 @@ INCLUDES = -I./frontend/hdr -I./common/hdr -I./backend/hdr "-I./x86_64_backend/h
 .PHONY: all build clean nasm
 
 all: build
-	@echo -e "\033[33mCompilation complete. Run the programs using './build/bin/frontend' and './build/bin/backend'.\033[0m"
+	@echo -e "\033[33mCompilation complete. Run the programs using './build/bin/frontend', './build/bin/middleend' and './build/bin/backend'.\033[0m"
 
 build: ./build/bin/frontend ./build/bin/backend ./build/bin/middleend
 
